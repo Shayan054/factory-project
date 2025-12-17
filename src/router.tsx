@@ -3,6 +3,7 @@ import { createBrowserRouter } from "react-router-dom";
 import AppLayout from "./layout/AppLayout";
 import Dashboard from "./pages/Dashboard";
 import LoginPage from "./pages/Login";
+import Operations from "./pages/Operations";
 
 export const router = createBrowserRouter([
   { path: "/login", element: <LoginPage /> },
@@ -10,6 +11,7 @@ export const router = createBrowserRouter([
     element: <AppLayout />, // sidebar + topbar wrapper
     children: [
       { path: "/", element: <Dashboard /> },
+      { path: "/operations", element:<Operations/>},
       // { path: "/orders", element: <Orders /> }, etc.
     ],
   },
