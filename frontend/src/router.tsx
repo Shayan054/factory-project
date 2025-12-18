@@ -4,6 +4,7 @@ import AppLayout from "./layout/AppLayout";
 import Dashboard from "./pages/Dashboard";
 import LoginPage from "./pages/Login";
 import Operations from "./pages/Operations";
+import Management from "./pages/Managment";
 
 export const router = createBrowserRouter([
   { path: "/login", element: <LoginPage /> },
@@ -12,6 +13,7 @@ export const router = createBrowserRouter([
     children: [
       { path: "/", element: <Dashboard /> },
       { path: "/operations", element:<Operations/>},
+      { path: "/management", element:<Management/>},
       // { path: "/orders", element: <Orders /> }, etc.
     ],
   },
