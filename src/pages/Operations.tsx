@@ -1,6 +1,7 @@
 import { useState } from "react";
 
 const Operations = () => {
+  const [activeSection, setActiveSection]= useState<string | null>(null);
   return (
     <div className="p-6 space-y-6">
 
@@ -14,9 +15,12 @@ const Operations = () => {
 
       {/* Raw Material Section */}
       <div className="bg-white rounded-xl shadow p-4">
-        <h2 className="text-lg font-semibold mb-4">Add Raw Material</h2>
-
-        <form className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <button onClick={()=> setActiveSection (activeSection=== "raw"? null:"raw")}
+        className="bg-indigo-100 text-indigo-700 px-4 py-2 rounded-lg">
+          Add Raw Material
+        </button>
+        {activeSection === "raw" && (
+          <form className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
             <label className="block text-sm font-medium mb-1">Material Name</label>
             <input type="text" className="w-full border rounded-lg px-3 py-2" />
@@ -43,13 +47,20 @@ const Operations = () => {
             </button>
           </div>
         </form>
-      </div>
 
+
+        )}
+              </div>
+
+
+        
       {/* Product Section */}
       <div className="bg-white rounded-xl shadow p-4">
-        <h2 className="text-lg font-semibold mb-4">Create Product</h2>
-
-        <form className="grid grid-cols-1 md:grid-cols-2 gap-4">
+         <button onClick={()=> setActiveSection (activeSection=== "product"? null:"product")}
+          className="bg-indigo-100 text-indigo-700 px-4 py-2 rounded-lg">
+          Create Product
+          </button>
+          {activeSection==="product" && ( <form className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
             <label className="block text-sm font-medium mb-1">Product Name</label>
             <input type="text" className="w-full border rounded-lg px-3 py-2" />
@@ -65,14 +76,19 @@ const Operations = () => {
               Add Product
             </button>
           </div>
-        </form>
+        </form>)}
+       
       </div>
 
       {/* Customer Section */}
       <div className="bg-white rounded-xl shadow p-4">
-        <h2 className="text-lg font-semibold mb-4">Add Customer</h2>
+        <button onClick={()=> setActiveSection (activeSection=== "customer"? null:"customer")}
+          className="bg-indigo-100 text-indigo-700 px-4 py-2 rounded-lg">
+          Add Customer
+        </button>
 
-        <form className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        {activeSection=== "customer" && (
+          <form className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
             <label className="block text-sm font-medium mb-1">Customer Name</label>
             <input type="text" className="w-full border rounded-lg px-3 py-2" />
@@ -99,13 +115,22 @@ const Operations = () => {
             </button>
           </div>
         </form>
-      </div>
+        )}
+            </div>
+
+
+
+        
 
       {/* Place Order Section */}
       <div className="bg-white rounded-xl shadow p-4">
-        <h2 className="text-lg font-semibold mb-4">Place Order</h2>
+        <button onClick={()=> setActiveSection (activeSection=== "order"? null:"order")}
+          className="bg-indigo-100 text-indigo-700 px-4 py-2 rounded-lg">
+          Place Order
+        </button>
 
-        <form className="space-y-4">
+        {activeSection==='order'&& (
+          <form className="space-y-4">
 
           {/* Order (Header) */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -152,13 +177,20 @@ const Operations = () => {
             </button>
           </div>
         </form>
+          
+        )}
+
+        
       </div>
 
       {/* Billing Section */}
       <div className="bg-white rounded-xl shadow p-4">
-        <h2 className="text-lg font-semibold mb-4">Billing</h2>
-
-        <form className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <button onClick={()=> setActiveSection (activeSection=== "bill"? null:"bill")}
+          className="bg-indigo-100 text-indigo-700 px-4 py-2 rounded-lg">
+          Billing
+        </button>
+        {activeSection ==='bill' && (
+          <form className="grid grid-cols-1 md:grid-cols-3 gap-4">
           <div>
             <label className="block text-sm font-medium mb-1">Order ID</label>
             <input type="number" className="w-full border rounded-lg px-3 py-2" />
@@ -190,6 +222,9 @@ const Operations = () => {
             </button>
           </div>
         </form>
+
+        )}
+        
       </div>
 
     </div>
