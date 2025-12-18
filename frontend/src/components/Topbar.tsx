@@ -1,19 +1,22 @@
 // src/components/Topbar.tsx
 import * as React from "react";
-
-type User = { name: string; avatarUrl?: string };
+import { useAuth } from "../context/AuthContext";
 
 export default function Topbar({
   onMenuClick,
-  notifCount = 3,
-  msgCount = 7,
-  user = { name: "Douglas McGee" },
 }: {
   onMenuClick: () => void;
-  notifCount?: number;
-  msgCount?: number;
-  user?: User;
 }) {
+  const { user, logout } = useAuth();
+  
+  // Notification and message counts (can be fetched from API later)
+  const notifCount = 0;
+  const msgCount = 0;
+  
+  // Safely get user info
+  const userName = user ? `${user.first_name} ${user.last_name}` : "User";
+  const userRole = user?.role === "CEO" ? "CEO" : "Manager";
+  
   return (
     <header className="sticky top-0 z-30 border-b bg-white/90 backdrop-blur">
       <div className="mx-auto flex h-16 items-center justify-between px-4 sm:px-6 lg:px-8">
@@ -77,19 +80,20 @@ export default function Topbar({
 
           {/* User */}
           <div className="hidden items-center gap-3 md:flex">
-            <span className="text-sm text-gray-700">{user.name}</span>
-            {user.avatarUrl ? (
-              <img
-                src={user.avatarUrl}
-                alt={`${user.name} avatar`}
-                className="h-9 w-9 rounded-full object-cover"
-                referrerPolicy="no-referrer"
-              />
-            ) : (
-              <div className="grid h-9 w-9 place-items-center rounded-full bg-gray-200">
-                <UserIcon className="h-5 w-5 text-gray-600" />
-              </div>
-            )}
+            <div className="text-right">
+              <span className="block text-sm font-medium text-gray-700">{userName}</span>
+              <span className="block text-xs text-gray-500">{userRole}</span>
+            </div>
+            <div className="grid h-9 w-9 place-items-center rounded-full bg-indigo-100">
+              <UserIcon className="h-5 w-5 text-indigo-600" />
+            </div>
+            <button
+              onClick={logout}
+              className="ml-2 px-3 py-1 text-sm text-red-600 hover:bg-red-50 rounded-lg transition"
+              title="Logout"
+            >
+              Logout
+            </button>
           </div>
         </div>
       </div>

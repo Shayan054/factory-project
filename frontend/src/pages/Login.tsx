@@ -1,16 +1,37 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [remember, setRemember] = useState(false);
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
+  const { login, isAuthenticated } = useAuth();
+  const navigate = useNavigate();
+
+  // Redirect if already authenticated
+  useEffect(() => {
+    if (isAuthenticated) {
+      navigate("/", { replace: true });
+    }
+  }, [isAuthenticated, navigate]);
 
   const year = new Date().getFullYear();
 
-  const onSubmit = (e) => {
+  const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // TODO: replace with your auth logic
-    console.log({ email, password, remember });
+    setError("");
+    setLoading(true);
+
+    try {
+      await login(email, password);
+    } catch (err: any) {
+      setError(err.message || "Login failed. Please check your credentials.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -47,6 +68,12 @@ export default function LoginPage() {
           <h2 className="text-3xl font-bold text-gray-800 mb-2 text-center">Login to Your Account</h2>
           <p className="text-gray-500 text-center mb-8">Access your dashboard and manage everything</p>
 
+          {error && (
+            <div className="mb-4 p-3 bg-red-100 border border-red-400 text-red-700 rounded-lg">
+              {error}
+            </div>
+          )}
+
           <form className="space-y-6" onSubmit={onSubmit}>
             <div>
               <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
@@ -60,6 +87,7 @@ export default function LoginPage() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
+                disabled={loading}
               />
             </div>
 
@@ -75,6 +103,7 @@ export default function LoginPage() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
+                disabled={loading}
               />
             </div>
 
@@ -95,17 +124,15 @@ export default function LoginPage() {
 
             <button
               type="submit"
-              className="w-full bg-purple-700 hover:bg-purple-600 text-white py-3 rounded-xl font-semibold transition shadow-md"
+              disabled={loading}
+              className="w-full bg-purple-700 hover:bg-purple-600 disabled:bg-gray-400 disabled:cursor-not-allowed text-white py-3 rounded-xl font-semibold transition shadow-md"
             >
-              Sign In
+              {loading ? "Signing in..." : "Sign In"}
             </button>
           </form>
 
           <p className="text-center text-gray-600 text-sm mt-6">
-            Don’t have an account?{" "}
-            <a href="#" className="text-purple-600 font-semibold hover:underline">
-              Sign Up
-            </a>
+            Factory Management System
           </p>
         </div>
       </div>

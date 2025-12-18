@@ -1,13 +1,15 @@
 // src/components/Sidebar.tsx
 import { useState } from "react";
 import { NavLink, Link } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 
 type Props = { open: boolean; onClose: () => void };
 
 export default function Sidebar({ open, onClose }: Props) {
+  const { isCEO } = useAuth();
   // collapsible groups (open by default like SB Admin 2)
-  const [componentsOpen, setComponentsOpen] = useState(true);
-  const [utilitiesOpen, setUtilitiesOpen] = useState(true);
+  const [componentsOpen, setComponentsOpen] = useState(false);
+  const [utilitiesOpen, setUtilitiesOpen] = useState(false);
   const [pagesOpen, setPagesOpen] = useState(false);
 
   // shared link styles
@@ -61,101 +63,37 @@ export default function Sidebar({ open, onClose }: Props) {
 
         <Divider />
 
-        {/* Interface */}
-        <SectionLabel>Interface</SectionLabel>
+        {/* Factory Operations */}
+        <SectionLabel>Factory Operations</SectionLabel>
         <nav className="px-3 space-y-1">
-          {/* Components group */}
-          <button
-            className={`${base} w-full justify-between`}
-            aria-expanded={componentsOpen}
-            onClick={() => setComponentsOpen((s) => !s)}
+          <NavLink
+            to="/operations"
+            className={({ isActive }) => `${base} ${isActive ? active : ""}`}
+            onClick={onClose}
           >
-            <span className="flex items-center gap-3">
-              <IconCog className="h-4 w-4" />
-              Components
-            </span>
-            <IconChevron className={`h-4 w-4 transition-transform ${componentsOpen ? "rotate-180" : ""}`} />
-          </button>
-          {componentsOpen && (
-            <div className="ml-3 space-y-1">
-              <NavLink to="/components/buttons" className={({ isActive }) => `${base} ${isActive ? active : "text-white/80"}`} onClick={onClose}>
-                Buttons
-              </NavLink>
-              <NavLink to="/components/cards" className={({ isActive }) => `${base} ${isActive ? active : "text-white/80"}`} onClick={onClose}>
-                Cards
-              </NavLink>
-            </div>
+            <IconCog className="h-4 w-4" />
+            <span>Operations</span>
+          </NavLink>
+          {isCEO && (
+            <NavLink
+              to="/management"
+              className={({ isActive }) => `${base} ${isActive ? active : ""}`}
+              onClick={onClose}
+            >
+              <IconTable className="h-4 w-4" />
+              <span>Management</span>
+            </NavLink>
           )}
-
-          {/* Utilities group */}
-          <button
-            className={`${base} w-full justify-between`}
-            aria-expanded={utilitiesOpen}
-            onClick={() => setUtilitiesOpen((s) => !s)}
-          >
-            <span className="flex items-center gap-3">
-              <IconWrench className="h-4 w-4" />
-              Utilities
-            </span>
-            <IconChevron className={`h-4 w-4 transition-transform ${utilitiesOpen ? "rotate-180" : ""}`} />
-          </button>
-          {utilitiesOpen && (
-            <div className="ml-3 space-y-1">
-              <NavLink to="/utilities/colors" className={({ isActive }) => `${base} ${isActive ? active : "text-white/80"}`} onClick={onClose}>
-                Colors
-              </NavLink>
-              <NavLink to="/utilities/borders" className={({ isActive }) => `${base} ${isActive ? active : "text-white/80"}`} onClick={onClose}>
-                Borders
-              </NavLink>
-              <NavLink to="/utilities/animations" className={({ isActive }) => `${base} ${isActive ? active : "text-white/80"}`} onClick={onClose}>
-                Animations
-              </NavLink>
-              <NavLink to="/utilities/other" className={({ isActive }) => `${base} ${isActive ? active : "text-white/80"}`} onClick={onClose}>
-                Other
-              </NavLink>
-            </div>
-          )}
-        </nav>
-
-        <Divider />
-
-        {/* Addons */}
-        <SectionLabel>Addons</SectionLabel>
-        <nav className="px-3 space-y-1">
-          {/* Pages group */}
-          <button
-            className={`${base} w-full justify-between`}
-            aria-expanded={pagesOpen}
-            onClick={() => setPagesOpen((s) => !s)}
-          >
-            <span className="flex items-center gap-3">
+          {isCEO && (
+            <NavLink
+              to="/register"
+              className={({ isActive }) => `${base} ${isActive ? active : ""}`}
+              onClick={onClose}
+            >
               <IconFolder className="h-4 w-4" />
-              Pages
-            </span>
-            <IconChevron className={`h-4 w-4 transition-transform ${pagesOpen ? "rotate-180" : ""}`} />
-          </button>
-          {pagesOpen && (
-            <div className="ml-3 space-y-1">
-              <NavLink to="/pages/login" className={({ isActive }) => `${base} ${isActive ? active : "text-white/80"}`} onClick={onClose}>
-                Login
-              </NavLink>
-              <NavLink to="/pages/register" className={({ isActive }) => `${base} ${isActive ? active : "text-white/80"}`} onClick={onClose}>
-                Register
-              </NavLink>
-              <NavLink to="/pages/forgot" className={({ isActive }) => `${base} ${isActive ? active : "text-white/80"}`} onClick={onClose}>
-                Forgot Password
-              </NavLink>
-            </div>
+              <span>Register Employee</span>
+            </NavLink>
           )}
-
-          <NavLink to="/charts" className={({ isActive }) => `${base} ${isActive ? active : ""}`} onClick={onClose}>
-            <IconChart className="h-4 w-4" />
-            Charts
-          </NavLink>
-          <NavLink to="/tables" className={({ isActive }) => `${base} ${isActive ? active : ""}`} onClick={onClose}>
-            <IconTable className="h-4 w-4" />
-            Tables
-          </NavLink>
         </nav>
 
         {/* Footer strip */}
