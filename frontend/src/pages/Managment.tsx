@@ -1,7 +1,17 @@
 import { useEffect, useState } from "react";
 import { apiRequest } from "../utils/api";
+import { useAuth } from "../context/AuthContext";
 
 const API = "http://127.0.0.1:8000/api";
+
+// Currency formatter for PKR
+const formatCurrency = (amount: number) => {
+  return new Intl.NumberFormat('en-PK', {
+    style: 'currency',
+    currency: 'PKR',
+    maximumFractionDigits: 0,
+  }).format(amount);
+};
 
 type Entity = "customers" | "vendors" | "products" | "raw-materials" | "orders";
 
@@ -49,11 +59,13 @@ const formatCellValue = (value: any): string => {
 };
 
 const Management = () => {
+  const { isCEO } = useAuth();
   const [activeTab, setActiveTab] = useState<Entity>("customers");
   const [data, setData] = useState<any[]>([]);
   const [editingItem, setEditingItem] = useState<any | null>(null);
   const [customers, setCustomers] = useState<any[]>([]);
   const [billings, setBillings] = useState<any[]>([]);
+  const [amountReceived, setAmountReceived] = useState<string>(""); // For order editing
 
   /* ---------------- FETCH DATA ---------------- */
   const loadData = async (entity: Entity) => {
@@ -99,13 +111,103 @@ const Management = () => {
       if (isPrimaryKey(k) || k === "order_no") delete payload[k];
     });
 
-    await apiRequest(`/${activeTab}/${id}/`, {
-      method: "PUT",
-      body: JSON.stringify(payload),
-    });
+    try {
+      // If updating an order and amount_received is provided, update/create billing
+      if (activeTab === "orders" && amountReceived) {
+        const receivedAmount = Number(amountReceived);
+        if (isNaN(receivedAmount) || receivedAmount < 0) {
+          alert("Invalid amount received. Please enter a valid number.");
+          return;
+        }
 
-    setEditingItem(null);
-    loadData(activeTab);
+        const orderId = id;
+        const order = data.find(o => {
+          const oId = getId(o);
+          return oId === orderId;
+        });
+
+        if (!order) {
+          alert("Order not found");
+          return;
+        }
+
+        const totalAmount = order.total_amount || 0;
+        if (receivedAmount > totalAmount) {
+          alert(`Amount received (${formatCurrency(receivedAmount)}) cannot exceed total amount (${formatCurrency(totalAmount)})`);
+          return;
+        }
+
+        // Check if billing exists
+        const existingBilling = getOrderBilling(orderId);
+        
+        if (existingBilling) {
+          // Update existing billing - include order and customer as they're required
+          const billingPayload = {
+            order: orderId,
+            customer: order.customer,
+            total_bill: totalAmount,
+            amount_received: receivedAmount,
+            balance: totalAmount - receivedAmount,
+          };
+
+          const billingResponse = await apiRequest(`/billings/${existingBilling.billing_id}/`, {
+            method: "PUT",
+            body: JSON.stringify(billingPayload),
+          });
+
+          if (!billingResponse.ok) {
+            const error = await billingResponse.json();
+            alert(`Error updating billing: ${JSON.stringify(error)}`);
+            return;
+          }
+        } else {
+          // Create new billing
+          const billingPayload = {
+            order: orderId,
+            customer: order.customer,
+            total_bill: totalAmount,
+            amount_received: receivedAmount,
+            balance: totalAmount - receivedAmount,
+          };
+
+          const billingResponse = await apiRequest('/billings/', {
+            method: "POST",
+            body: JSON.stringify(billingPayload),
+          });
+
+          if (!billingResponse.ok) {
+            const error = await billingResponse.json();
+            alert(`Error creating billing: ${JSON.stringify(error)}`);
+            return;
+          }
+        }
+      }
+
+      // Update the order
+      const response = await apiRequest(`/${activeTab}/${id}/`, {
+        method: "PUT",
+        body: JSON.stringify(payload),
+      });
+
+      if (!response.ok) {
+        const error = await response.json();
+        alert(`Error updating record: ${JSON.stringify(error)}`);
+        return;
+      }
+
+      setEditingItem(null);
+      setAmountReceived("");
+      loadData(activeTab);
+      
+      // If updating an order, refresh might be needed for dashboard
+      if (activeTab === "orders") {
+        // Trigger a custom event that dashboard can listen to
+        window.dispatchEvent(new CustomEvent('ordersUpdated'));
+      }
+    } catch (error) {
+      console.error('Error updating item:', error);
+      alert('Error updating record. Please try again.');
+    }
   };
 
   /* ---------------- ORDER SPECIFIC HELPERS ---------------- */
@@ -130,7 +232,11 @@ const Management = () => {
   return (
     <div className="p-6 space-y-6">
       <h1 className="text-2xl font-semibold">Management</h1>
-      <p className="text-gray-600">View, edit, and delete factory records</p>
+      <p className="text-gray-600">
+        {isCEO 
+          ? "View, edit, and delete factory records" 
+          : "View factory records (Edit/Delete: CEO only)"}
+      </p>
 
       {/* -------- TABS -------- */}
       <div className="flex gap-3 flex-wrap">
@@ -208,13 +314,13 @@ const Management = () => {
                     <tr key={orderId}>
                       <td className="border p-2">{item.order_no || `Order #${orderId}`}</td>
                       <td className="border p-2">{getCustomerName(item.customer)}</td>
-                      <td className="border p-2">₹{item.total_amount}</td>
+                      <td className="border p-2">{formatCurrency(item.total_amount)}</td>
                       <td className="border p-2">
-                        {billing ? `₹${amountReceived}` : "Not Billed"}
+                        {billing ? formatCurrency(amountReceived) : "Not Billed"}
                       </td>
                       <td className="border p-2">
                         <span className={remaining > 0 ? "text-red-600 font-semibold" : "text-green-600 font-semibold"}>
-                          ₹{remaining}
+                          {formatCurrency(remaining)}
                         </span>
                       </td>
                       <td className="border p-2">
@@ -230,18 +336,30 @@ const Management = () => {
                         {item.order_date ? formatCellValue(item.order_date) : "N/A"}
                       </td>
                       <td className="border p-2 space-x-2">
-                        <button
-                          className="bg-yellow-500 text-white px-3 py-1 rounded"
-                          onClick={() => setEditingItem(item)}
-                        >
-                          Edit
-                        </button>
-                        <button
-                          className="bg-red-600 text-white px-3 py-1 rounded"
-                          onClick={() => deleteItem(item)}
-                        >
-                          Delete
-                        </button>
+                        {isCEO && (
+                          <>
+                            <button
+                              className="bg-yellow-500 text-white px-3 py-1 rounded hover:bg-yellow-600"
+                              onClick={() => {
+                                setEditingItem(item);
+                                // Set initial amount received from billing if exists
+                                const billing = getOrderBilling(orderId);
+                                setAmountReceived(billing ? String(billing.amount_received || 0) : "");
+                              }}
+                            >
+                              Edit
+                            </button>
+                            <button
+                              className="bg-red-600 text-white px-3 py-1 rounded hover:bg-red-700"
+                              onClick={() => deleteItem(item)}
+                            >
+                              Delete
+                            </button>
+                          </>
+                        )}
+                        {!isCEO && (
+                          <span className="text-gray-500 text-sm">View Only</span>
+                        )}
                       </td>
                     </tr>
                   );
@@ -304,20 +422,58 @@ const Management = () => {
       </div>
 
       {/* -------- EDIT PANEL -------- */}
-      {editingItem && (
+      {editingItem && isCEO && (
         <div className="bg-white p-4 rounded-xl shadow">
           <h2 className="font-semibold mb-3">Edit Record</h2>
 
           {/* Show order_no as read-only for orders */}
           {activeTab === "orders" && editingItem.order_no && (
-            <div className="mb-4 p-3 bg-gray-50 rounded-lg">
-              <label className="block text-sm font-medium mb-1">Order No (Read Only)</label>
-              <input
-                disabled
-                className="w-full border rounded-lg px-3 py-2 bg-gray-100 cursor-not-allowed"
-                value={editingItem.order_no}
-              />
-            </div>
+            <>
+              <div className="mb-4 p-3 bg-gray-50 rounded-lg">
+                <label className="block text-sm font-medium mb-1">Order No (Read Only)</label>
+                <input
+                  disabled
+                  className="w-full border rounded-lg px-3 py-2 bg-gray-100 cursor-not-allowed"
+                  value={editingItem.order_no}
+                />
+              </div>
+              
+              {/* Amount Received Field for Orders */}
+              <div className="mb-4 p-3 bg-blue-50 rounded-lg border border-blue-200">
+                <label className="block text-sm font-medium mb-2">
+                  Amount Received (PKR) *
+                </label>
+                <input
+                  type="number"
+                  className="w-full border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
+                  placeholder="Enter amount customer paid"
+                  min="0"
+                  max={editingItem.total_amount || 0}
+                  value={amountReceived}
+                  onChange={(e) => setAmountReceived(e.target.value)}
+                />
+                <div className="mt-2 text-sm text-gray-600">
+                  <div className="flex justify-between mb-1">
+                    <span>Total Amount:</span>
+                    <span className="font-semibold">{formatCurrency(editingItem.total_amount || 0)}</span>
+                  </div>
+                  {amountReceived && (
+                    <>
+                      <div className="flex justify-between mb-1">
+                        <span>Amount Received:</span>
+                        <span className="font-semibold text-blue-600">{formatCurrency(Number(amountReceived) || 0)}</span>
+                      </div>
+                      <div className="flex justify-between pt-1 border-t">
+                        <span>Remaining:</span>
+                        <span className={`font-semibold ${(editingItem.total_amount || 0) - (Number(amountReceived) || 0) > 0 ? 'text-red-600' : 'text-green-600'}`}>
+                          {formatCurrency((editingItem.total_amount || 0) - (Number(amountReceived) || 0))}
+                        </span>
+                      </div>
+                    </>
+                  )}
+                </div>
+              </div>
+            </>
           )}
 
           <div className="grid md:grid-cols-2 gap-4">
@@ -385,7 +541,10 @@ const Management = () => {
               Save Changes
             </button>
             <button
-              onClick={() => setEditingItem(null)}
+              onClick={() => {
+                setEditingItem(null);
+                setAmountReceived("");
+              }}
               className="bg-gray-400 text-white px-4 py-2 rounded-lg"
             >
               Cancel

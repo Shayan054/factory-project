@@ -44,6 +44,15 @@ const Operations = () => {
   const [active, setActive] = useState<string | null>(null);
   const [lastPlacedOrderId, setLastPlacedOrderId] = useState<number | null>(null);
 
+  // Currency formatter
+  const formatCurrency = (amount: number) => {
+    return new Intl.NumberFormat('en-PK', {
+      style: 'currency',
+      currency: 'PKR',
+      maximumFractionDigits: 0,
+    }).format(amount);
+  };
+
   /* ---------- MASTER DATA ---------- */
   const [customers, setCustomers] = useState<Customer[]>([]);
   const [products, setProducts] = useState<Product[]>([]);
@@ -272,6 +281,15 @@ const Operations = () => {
     const customer = customers.find(c => c.customer_id === bill.customer);
     const orderDetails = order ? apiRequest(`/orders/${order.order_id}/`).then(r => r.json()) : null;
 
+    // Format currency for receipt
+    const formatReceiptCurrency = (amount: number) => {
+      return new Intl.NumberFormat('en-PK', {
+        style: 'currency',
+        currency: 'PKR',
+        maximumFractionDigits: 0,
+      }).format(amount);
+    };
+
     // Create receipt content
     const receiptContent = `
       <!DOCTYPE html>
@@ -326,22 +344,22 @@ const Operations = () => {
         <div class="items">
           <div class="item-row">
             <span>Total Bill Amount:</span>
-            <span>₹${bill.total_bill}</span>
+            <span>${formatReceiptCurrency(bill.total_bill)}</span>
           </div>
           <div class="item-row">
             <span>Amount Received:</span>
-            <span>₹${bill.amount_received}</span>
+            <span>${formatReceiptCurrency(bill.amount_received)}</span>
           </div>
           <div class="item-row">
             <span>Balance:</span>
-            <span>₹${bill.balance}</span>
+            <span>${formatReceiptCurrency(bill.balance)}</span>
           </div>
         </div>
 
         <div class="total">
           <div class="total-row">
             <span>Total Amount:</span>
-            <span>₹${bill.total_bill}</span>
+            <span>${formatReceiptCurrency(bill.total_bill)}</span>
           </div>
         </div>
 
@@ -460,14 +478,14 @@ const Operations = () => {
             <option value="">Select Product</option>
             {products.map(p => (
               <option key={p.product_id} value={p.product_id}>
-                {p.product_name} {p.price ? `- ₹${p.price}` : ""}
+                {p.product_name} {p.price ? `- ${formatCurrency(p.price)}` : ""}
               </option>
             ))}
           </select>
 
           {selectedProduct && (
             <div className="bg-gray-50 p-3 rounded-lg">
-              <div className="text-sm text-gray-600">Price per unit: ₹{productPrice}</div>
+              <div className="text-sm text-gray-600">Price per unit: {formatCurrency(productPrice)}</div>
             </div>
           )}
 
@@ -495,10 +513,10 @@ const Operations = () => {
             <div className="bg-indigo-50 p-4 rounded-lg mt-4">
               <div className="flex justify-between items-center">
                 <span className="font-semibold text-lg">Subtotal:</span>
-                <span className="font-bold text-xl text-indigo-600">₹{subTotal}</span>
+                <span className="font-bold text-xl text-indigo-600">{formatCurrency(subTotal)}</span>
               </div>
               <div className="text-sm text-gray-600 mt-1">
-                {orderForm.quantity} × ₹{productPrice} = ₹{subTotal}
+                {orderForm.quantity} × {formatCurrency(productPrice)} = {formatCurrency(subTotal)}
               </div>
             </div>
           )}
@@ -526,7 +544,7 @@ const Operations = () => {
             <option value="">Select Order</option>
             {orders.map(o => (
               <option key={o.order_id} value={o.order_id}>
-                {o.order_no || `Order #${o.order_id}`} - {customers.find(c => c.customer_id === o.customer)?.name || "Unknown"} (₹{o.total_amount})
+                {o.order_no || `Order #${o.order_id}`} - {customers.find(c => c.customer_id === o.customer)?.name || "Unknown"} ({formatCurrency(o.total_amount)})
               </option>
             ))}
           </select>
@@ -540,7 +558,7 @@ const Operations = () => {
                 </div>
                 <div className="flex justify-between">
                   <span className="font-semibold">Total Price:</span>
-                  <span className="text-lg font-bold text-indigo-600">₹{selectedOrder.total_amount}</span>
+                  <span className="text-lg font-bold text-indigo-600">{formatCurrency(selectedOrder.total_amount)}</span>
                 </div>
                 <div className="flex justify-between">
                   <span className="font-semibold">Date:</span>
@@ -570,7 +588,7 @@ const Operations = () => {
                   <div className="flex justify-between">
                     <span className="font-semibold">Balance:</span>
                     <span className={`font-bold ${selectedOrder.total_amount - Number(billing.amount_received || 0) > 0 ? 'text-red-600' : 'text-green-600'}`}>
-                      ₹{selectedOrder.total_amount - Number(billing.amount_received || 0)}
+                      {formatCurrency(selectedOrder.total_amount - Number(billing.amount_received || 0))}
                     </span>
                   </div>
                 </div>
