@@ -1,7 +1,7 @@
 import { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const API = "http://127.0.0.1:8000/api";
+const API = import.meta.env.VITE_API_URL; 
 
 interface User {
   employee_id: number;

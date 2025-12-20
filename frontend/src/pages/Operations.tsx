@@ -1,8 +1,6 @@
 import { useEffect, useState } from "react";
 import { apiRequest } from "../utils/api";
 
-const API = "http://127.0.0.1:8000/api";
-
 /* ---------- UI CLASSES ---------- */
 const sectionBtn =
   "w-full text-left px-6 py-4 rounded-xl bg-gray-100 hover:bg-indigo-100 font-semibold text-lg transition";

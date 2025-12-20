@@ -2,8 +2,6 @@ import { useEffect, useState } from "react";
 import { apiRequest } from "../utils/api";
 import { useAuth } from "../context/AuthContext";
 
-const API = "http://127.0.0.1:8000/api";
-
 // Currency formatter for PKR
 const formatCurrency = (amount: number) => {
   return new Intl.NumberFormat('en-PK', {
