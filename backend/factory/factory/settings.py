@@ -31,7 +31,6 @@ ALLOWED_HOSTS = ['*',]
 # Application definition
 
 INSTALLED_APPS = [
-    'whitenoise.runserver_nostatic',
     'corsheaders',
     'rest_framework',
     'rest_framework_simplejwt',
@@ -57,9 +56,22 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+# CORS Configuration - Allow local development and production
+import os
+
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:5173"
+    "http://localhost:5173",
+    "http://127.0.0.1:5173",
 ]
+
+# Allow additional origins from environment variable (for production)
+# Set CORS_EXTRA_ORIGINS in your PythonAnywhere environment
+# Example: CORS_EXTRA_ORIGINS=https://your-app.vercel.app,https://www.yourdomain.com
+CORS_EXTRA_ORIGINS = os.environ.get('CORS_EXTRA_ORIGINS', '').split(',')
+CORS_ALLOWED_ORIGINS.extend([origin.strip() for origin in CORS_EXTRA_ORIGINS if origin.strip()])
+
+# For development, you can also use this (NOT recommended for production):
+# CORS_ALLOW_ALL_ORIGINS = True  # Only use this in development!
 
 ROOT_URLCONF = 'factory.urls'
 

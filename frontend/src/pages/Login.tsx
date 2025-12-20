@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
+import { formToJSON } from "../utils/form";
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
@@ -20,13 +21,25 @@ export default function LoginPage() {
 
   const year = new Date().getFullYear();
 
-  const onSubmit = async (e: React.FormEvent) => {
+  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setError("");
     setLoading(true);
 
     try {
-      await login(email, password);
+      // Convert form values to a JSON object so the API gets JSON payloads
+      const payload = formToJSON(e.currentTarget);
+
+      // Prefer form values if present, otherwise fall back to local state
+      const emailToUse = payload.email ?? email;
+      const passwordToUse = payload.password ?? password;
+
+      // Normalize remember checkbox if submitted via form
+      if (typeof payload.remember !== 'undefined') {
+        setRemember(payload.remember === true || payload.remember === 'true' || payload.remember === 'on');
+      }
+
+      await login(emailToUse, passwordToUse);
     } catch (err: any) {
       setError(err.message || "Login failed. Please check your credentials.");
     } finally {
