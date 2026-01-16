@@ -6,9 +6,12 @@ from .views import (
     RawMaterialViewSet,
     CustomerViewSet,
     ProductViewSet,
+    ProductRawMaterialViewSet,
     OrderViewSet,
     OrderDetailsViewSet,
-    BillingViewSet
+    BillingViewSet,
+    ExpenseViewSet,
+    ExpenseCategoryViewSet
 )
 from .auth_views import (
     login_view,
@@ -22,9 +25,12 @@ router.register(r'vendors', VendorViewSet)
 router.register(r'raw-materials', RawMaterialViewSet)
 router.register(r'customers', CustomerViewSet)
 router.register(r'products', ProductViewSet)
+router.register(r'product-raw-materials', ProductRawMaterialViewSet)
 router.register(r'orders', OrderViewSet)
 router.register(r'order-details', OrderDetailsViewSet)
 router.register(r'billings', BillingViewSet)
+router.register(r'expenses', ExpenseViewSet)
+router.register(r'expense-categories', ExpenseCategoryViewSet)
 
 urlpatterns = [
     # Authentication endpoints

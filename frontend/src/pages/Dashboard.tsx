@@ -20,6 +20,7 @@ interface Order {
   order_date: string;
   order_status: number;
   total_amount: number;
+  discount: number;
   customer: number;
   order_details?: OrderDetail[];
 }
@@ -41,27 +42,45 @@ interface Billing {
   customer: number; // Customer ID
 }
 
+interface Expense {
+  expense_id: number;
+  date: string;
+  amount: number;
+  quantity: number | null;
+  remarks: string;
+  category: number;
+  category_name?: string;
+  category_name_display?: string;
+}
+
 export default function Dashboard() {
   const [orders, setOrders] = useState<Order[]>([]);
   const [billings, setBillings] = useState<Billing[]>([]);
   const [customers, setCustomers] = useState<Customer[]>([]);
+  const [expenses, setExpenses] = useState<Expense[]>([]);
   const [loading, setLoading] = useState(true);
+  const [expenseViewType, setExpenseViewType] = useState<'monthly' | 'yearly' | 'category'>('monthly');
+  const [expenseStartDate, setExpenseStartDate] = useState<string>('');
+  const [expenseEndDate, setExpenseEndDate] = useState<string>('');
 
   const fetchData = async () => {
     try {
-      const [ordersRes, billingsRes, customersRes] = await Promise.all([
+      const [ordersRes, billingsRes, customersRes, expensesRes] = await Promise.all([
         apiRequest('/orders/'),
         apiRequest('/billings/'),
         apiRequest('/customers/'),
+        apiRequest('/expenses/'),
       ]);
       
       const ordersData = await ordersRes.json();
       const billingsData = await billingsRes.json();
       const customersData = await customersRes.json();
+      const expensesData = await expensesRes.json();
       
       setOrders(ordersData);
       setBillings(billingsData);
       setCustomers(customersData);
+      setExpenses(expensesData);
     } catch (error: unknown) {
       console.error('Error fetching dashboard data:', error);
     } finally {
@@ -172,12 +191,372 @@ export default function Dashboard() {
     { name: 'Pending', value: pendingOrders, color: '#f6c23e' },
   ];
 
+  // Filter expenses by date range and exclude "production" category
+  const getFilteredExpenses = () => {
+    let filtered = expenses.filter(expense => {
+      if (!expense.date) return false;
+      
+      // Exclude "production" category from calculations
+      const categoryName = (expense.category_name || expense.category_name_display || '').toLowerCase().trim();
+      if (categoryName === 'production') return false;
+      
+      try {
+        const expenseDate = new Date(expense.date);
+        // Reset time to compare dates only (not datetime)
+        expenseDate.setHours(0, 0, 0, 0);
+        
+        if (expenseStartDate) {
+          const startDate = new Date(expenseStartDate);
+          startDate.setHours(0, 0, 0, 0);
+          if (expenseDate < startDate) return false;
+        }
+        
+        if (expenseEndDate) {
+          const endDate = new Date(expenseEndDate);
+          endDate.setHours(23, 59, 59, 999); // Include the entire end date
+          if (expenseDate > endDate) return false;
+        }
+        
+        return true;
+      } catch {
+        return false;
+      }
+    });
+    return filtered;
+  };
+
+  const filteredExpenses = getFilteredExpenses();
+
+  // Expense calculations (excluding "production" category)
+  const monthlyExpenses = expenses
+    .filter(expense => {
+      if (!expense.date) return false;
+      
+      // Exclude "production" category
+      const categoryName = (expense.category_name || expense.category_name_display || '').toLowerCase().trim();
+      if (categoryName === 'production') return false;
+      
+      try {
+        const expenseDate = new Date(expense.date);
+        return expenseDate.getMonth() === currentMonth && expenseDate.getFullYear() === currentYear;
+      } catch {
+        return false;
+      }
+    })
+    .reduce((sum, expense) => sum + (Number(expense.amount) || 0), 0);
+
+  const annualExpenses = expenses
+    .filter(expense => {
+      if (!expense.date) return false;
+      
+      // Exclude "production" category
+      const categoryName = (expense.category_name || expense.category_name_display || '').toLowerCase().trim();
+      if (categoryName === 'production') return false;
+      
+      try {
+        const expenseDate = new Date(expense.date);
+        return expenseDate.getFullYear() === currentYear;
+      } catch {
+        return false;
+      }
+    })
+    .reduce((sum, expense) => sum + (Number(expense.amount) || 0), 0);
+
+  // Expense chart data based on view type
+  const getExpenseChartData = () => {
+    if (expenseViewType === 'category') {
+      // Category-wise data
+      const categoryMap = new Map<string, number>();
+      filteredExpenses.forEach(expense => {
+        const category = expense.category_name || expense.category_name_display || 'Unknown';
+        const current = categoryMap.get(category) || 0;
+        categoryMap.set(category, current + (Number(expense.amount) || 0));
+      });
+      
+      return Array.from(categoryMap.entries()).map(([name, value]) => ({
+        name: name.length > 15 ? name.substring(0, 15) + '...' : name,
+        expenses: value,
+        fullName: name,
+      }));
+    } else if (expenseViewType === 'yearly') {
+      // Yearly data - dynamically get all years from filtered expenses
+      const yearMap = new Map<number, number>();
+      filteredExpenses.forEach(expense => {
+        if (!expense.date) return;
+        try {
+          const expenseDate = new Date(expense.date);
+          const year = expenseDate.getFullYear();
+          const current = yearMap.get(year) || 0;
+          yearMap.set(year, current + (Number(expense.amount) || 0));
+        } catch {
+          return;
+        }
+      });
+      
+      // Get all years and sort
+      const allYears = Array.from(yearMap.keys()).sort();
+      
+      // If no date filter, show last 10 years or all available years
+      if (!expenseStartDate && !expenseEndDate) {
+        const minYear = Math.max(currentYear - 9, allYears.length > 0 ? Math.min(...allYears) : currentYear - 9);
+        const years: { year: string; expenses: number }[] = [];
+        for (let year = minYear; year <= currentYear; year++) {
+          years.push({
+            year: year.toString(),
+            expenses: yearMap.get(year) || 0,
+          });
+        }
+        return years;
+      } else {
+        // If date filter is applied, show only years in the filtered range
+        const years: { year: string; expenses: number }[] = [];
+        allYears.forEach(year => {
+          years.push({
+            year: year.toString(),
+            expenses: yearMap.get(year) || 0,
+          });
+        });
+        return years;
+      }
+    } else {
+      // Monthly data - show last 12 months dynamically
+      const months: { month: string; expenses: number; fullDate: string }[] = [];
+      
+      // If date filter is applied, show months in that range
+      if (expenseStartDate || expenseEndDate) {
+        const startDate = expenseStartDate ? new Date(expenseStartDate) : new Date(currentYear, currentMonth - 11, 1);
+        const endDate = expenseEndDate ? new Date(expenseEndDate) : new Date();
+        
+        startDate.setDate(1); // Start of month
+        endDate.setDate(1); // Start of month
+        
+        const monthMap = new Map<string, number>();
+        
+        // Get all unique months from filtered expenses
+        filteredExpenses.forEach(expense => {
+          if (!expense.date) return;
+          try {
+            const expenseDate = new Date(expense.date);
+            const monthKey = `${expenseDate.getFullYear()}-${expenseDate.getMonth()}`;
+            const current = monthMap.get(monthKey) || 0;
+            monthMap.set(monthKey, current + (Number(expense.amount) || 0));
+          } catch {
+            return;
+          }
+        });
+        
+        // Generate all months in range
+        const current = new Date(startDate);
+        while (current <= endDate) {
+          const monthKey = `${current.getFullYear()}-${current.getMonth()}`;
+          const monthName = current.toLocaleString('default', { month: 'short' });
+          const yearLabel = current.getFullYear() !== currentYear ? ` ${current.getFullYear().toString().slice(-2)}` : '';
+          
+          months.push({
+            month: monthName + yearLabel,
+            expenses: monthMap.get(monthKey) || 0,
+            fullDate: `${monthName} ${current.getFullYear()}`,
+          });
+          
+          // Move to next month
+          current.setMonth(current.getMonth() + 1);
+        }
+        
+        return months;
+      } else {
+        // No filter - show last 12 months from current date
+        for (let i = 11; i >= 0; i--) {
+          const date = new Date(currentYear, currentMonth - i, 1);
+          const monthName = date.toLocaleString('default', { month: 'short' });
+          const yearLabel = date.getFullYear() !== currentYear ? ` ${date.getFullYear().toString().slice(-2)}` : '';
+          
+          const monthExpenses = filteredExpenses
+            .filter(expense => {
+              if (!expense.date) return false;
+              try {
+                const expenseDate = new Date(expense.date);
+                return expenseDate.getMonth() === date.getMonth() && expenseDate.getFullYear() === date.getFullYear();
+              } catch {
+                return false;
+              }
+            })
+            .reduce((sum, expense) => sum + (Number(expense.amount) || 0), 0);
+          
+          months.push({
+            month: monthName + yearLabel,
+            expenses: monthExpenses,
+            fullDate: `${monthName} ${date.getFullYear()}`,
+          });
+        }
+        
+        return months;
+      }
+    }
+  };
+
+  const expenseChartData = getExpenseChartData();
+
   const formatCurrency = (amount: number) => {
     return new Intl.NumberFormat('en-PK', {
       style: 'currency',
       currency: 'PKR',
       maximumFractionDigits: 0,
     }).format(amount);
+  };
+
+  // Generate Expense PDF Report
+  const generateExpenseReport = () => {
+    try {
+      if (filteredExpenses.length === 0) {
+        alert('No expenses available for the selected period.');
+        return;
+      }
+
+      const doc = new jsPDF();
+      
+      // Title
+      doc.setFontSize(18);
+      doc.text('Expense Report', 14, 20);
+      
+      // Date range
+      doc.setFontSize(10);
+      const dateRange = expenseStartDate && expenseEndDate
+        ? `${new Date(expenseStartDate).toLocaleDateString('en-PK')} to ${new Date(expenseEndDate).toLocaleDateString('en-PK')}`
+        : expenseStartDate
+        ? `From ${new Date(expenseStartDate).toLocaleDateString('en-PK')}`
+        : expenseEndDate
+        ? `Until ${new Date(expenseEndDate).toLocaleDateString('en-PK')}`
+        : 'All Time';
+      doc.text(`Period: ${dateRange}`, 14, 30);
+      doc.text(`Generated on: ${new Date().toLocaleDateString('en-PK')}`, 14, 37);
+
+      // Category-wise summary
+      const categoryMap = new Map<string, { total: number; count: number; items: Expense[] }>();
+      filteredExpenses.forEach(expense => {
+        const category = expense.category_name || expense.category_name_display || 'Unknown';
+        const current = categoryMap.get(category) || { total: 0, count: 0, items: [] };
+        current.total += Number(expense.amount) || 0;
+        current.count += 1;
+        current.items.push(expense);
+        categoryMap.set(category, current);
+      });
+
+      // Summary table
+      const summaryData: (string | number)[][] = Array.from(categoryMap.entries())
+        .sort((a, b) => b[1].total - a[1].total)
+        .map(([category, data]) => [
+          category,
+          data.count,
+          formatCurrency(data.total),
+        ]);
+
+      let yPos = 50;
+      
+      // Category Summary Table
+      doc.setFontSize(12);
+      doc.text('Category Summary', 14, yPos);
+      yPos += 10;
+
+      try {
+        if (typeof autoTable === 'function') {
+          autoTable(doc, {
+            startY: yPos,
+            head: [['Category', 'Count', 'Total Amount']],
+            body: summaryData,
+            styles: { fontSize: 9 },
+            headStyles: { fillColor: [231, 74, 59] },
+            alternateRowStyles: { fillColor: [245, 247, 250] },
+          });
+        } else {
+          (doc as any).autoTable({
+            startY: yPos,
+            head: [['Category', 'Count', 'Total Amount']],
+            body: summaryData,
+            styles: { fontSize: 9 },
+            headStyles: { fillColor: [231, 74, 59] },
+            alternateRowStyles: { fillColor: [245, 247, 250] },
+          });
+        }
+        
+        yPos = ((doc as any).lastAutoTable?.finalY || yPos) + 10;
+      } catch (tableError) {
+        console.error('Error creating summary table:', tableError);
+        yPos += 20;
+      }
+
+      // Total
+      const grandTotal = filteredExpenses.reduce((sum, expense) => sum + (Number(expense.amount) || 0), 0);
+      doc.setFontSize(12);
+      doc.setFont('helvetica', 'bold');
+      doc.text(`Grand Total: ${formatCurrency(grandTotal)}`, 14, yPos);
+      yPos += 15;
+
+      // Detailed expenses by category
+      doc.setFontSize(10);
+      doc.setFont('helvetica', 'normal');
+      
+      Array.from(categoryMap.entries())
+        .sort((a, b) => b[1].total - a[1].total)
+        .forEach(([category, data]) => {
+          if (yPos > 250) {
+            doc.addPage();
+            yPos = 20;
+          }
+
+          doc.setFont('helvetica', 'bold');
+          doc.setFontSize(11);
+          doc.text(`${category} - Total: ${formatCurrency(data.total)}`, 14, yPos);
+          yPos += 8;
+
+          // Expense details table
+          const detailData: (string | number)[][] = data.items.map((expense) => {
+            const expenseDate = expense.date 
+              ? new Date(expense.date).toLocaleDateString('en-PK')
+              : 'N/A';
+            return [
+              expenseDate,
+              formatCurrency(Number(expense.amount) || 0),
+              expense.quantity ? expense.quantity.toString() : '-',
+              expense.remarks || '-',
+            ];
+          });
+
+          try {
+            if (typeof autoTable === 'function') {
+              autoTable(doc, {
+                startY: yPos,
+                head: [['Date', 'Amount', 'Quantity', 'Remarks']],
+                body: detailData,
+                styles: { fontSize: 7 },
+                headStyles: { fillColor: [108, 117, 125] },
+                margin: { left: 14 },
+              });
+            } else {
+              (doc as any).autoTable({
+                startY: yPos,
+                head: [['Date', 'Amount', 'Quantity', 'Remarks']],
+                body: detailData,
+                styles: { fontSize: 7 },
+                headStyles: { fillColor: [108, 117, 125] },
+                margin: { left: 14 },
+              });
+            }
+            
+            yPos = ((doc as any).lastAutoTable?.finalY || yPos) + 10;
+          } catch (detailTableError) {
+            console.error('Error creating detail table:', detailTableError);
+            yPos += 20;
+          }
+        });
+
+      // Save PDF
+      const fileName = `Expense_Report_${expenseStartDate || 'all'}_${expenseEndDate || 'time'}_${new Date().toISOString().split('T')[0]}.pdf`;
+      doc.save(fileName);
+    } catch (error: unknown) {
+      console.error('Error generating expense report:', error);
+      const errorMessage = error instanceof Error ? error.message : 'Unknown error occurred';
+      alert(`Error generating report: ${errorMessage}. Please try again.`);
+    }
   };
 
   // Generate PDF Report
@@ -415,6 +794,22 @@ export default function Dashboard() {
         />
       </div>
 
+      {/* Expense KPI Cards */}
+      <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-2">
+        <KpiCard
+          accent="#e74a3b"
+          title="EXPENSES (MONTHLY)"
+          value={formatCurrency(monthlyExpenses)}
+          icon={<ExpenseIcon />}
+        />
+        <KpiCard
+          accent="#dc3545"
+          title="EXPENSES (ANNUAL)"
+          value={formatCurrency(annualExpenses)}
+          icon={<ExpenseIcon />}
+        />
+      </div>
+
       {/* Charts row */}
       <div className="grid gap-4 lg:grid-cols-3">
         {/* Sales Overview (Area chart) */}
@@ -476,6 +871,238 @@ export default function Dashboard() {
               <div className="text-sm text-gray-600">Orders</div>
             </div>
           </div>
+        </Card>
+      </div>
+
+      {/* Expense Chart */}
+      <div className="grid gap-4 lg:grid-cols-1">
+        <Card shellTitle="Expenses Overview">
+          <div className="mb-4 space-y-3">
+            {/* View Type Selector */}
+            <div className="flex flex-wrap gap-2">
+              <button
+                onClick={() => setExpenseViewType('monthly')}
+                className={`px-4 py-2 rounded-lg text-sm font-medium transition ${
+                  expenseViewType === 'monthly'
+                    ? 'bg-indigo-600 text-white'
+                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                }`}
+              >
+                Monthly
+              </button>
+              <button
+                onClick={() => setExpenseViewType('yearly')}
+                className={`px-4 py-2 rounded-lg text-sm font-medium transition ${
+                  expenseViewType === 'yearly'
+                    ? 'bg-indigo-600 text-white'
+                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                }`}
+              >
+                Yearly
+              </button>
+              <button
+                onClick={() => setExpenseViewType('category')}
+                className={`px-4 py-2 rounded-lg text-sm font-medium transition ${
+                  expenseViewType === 'category'
+                    ? 'bg-indigo-600 text-white'
+                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                }`}
+              >
+                Category Wise
+              </button>
+            </div>
+
+            {/* Date Range Filter */}
+            <div className="flex flex-wrap gap-3 items-end">
+              <div>
+                <label className="block text-xs font-semibold text-gray-600 mb-1">Start Date</label>
+                <input
+                  type="date"
+                  value={expenseStartDate}
+                  onChange={(e) => setExpenseStartDate(e.target.value)}
+                  className="border rounded-lg px-3 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-400"
+                />
+              </div>
+              <div>
+                <label className="block text-xs font-semibold text-gray-600 mb-1">End Date</label>
+                <input
+                  type="date"
+                  value={expenseEndDate}
+                  onChange={(e) => setExpenseEndDate(e.target.value)}
+                  className="border rounded-lg px-3 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-400"
+                />
+              </div>
+              <button
+                onClick={() => {
+                  setExpenseStartDate('');
+                  setExpenseEndDate('');
+                }}
+                className="px-3 py-1.5 text-sm bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition"
+              >
+                Clear Filter
+              </button>
+              <button
+                onClick={generateExpenseReport}
+                className="px-4 py-1.5 text-sm bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition flex items-center gap-2"
+              >
+                <svg viewBox="0 0 24 24" className="h-4 w-4 fill-current">
+                  <path d="M5 20h14v-2H5v2zM12 2l4 4h-3v8h-2V6H8l4-4z" />
+                </svg>
+                Download PDF
+              </button>
+            </div>
+          </div>
+
+          {expenseViewType === 'category' ? (
+            <div className="flex flex-col lg:flex-row items-start justify-center gap-6 min-h-[350px]">
+              <div className="w-full lg:w-1/2 flex justify-center items-center">
+                {expenseChartData.length > 0 ? (
+                  <ResponsiveContainer width="100%" height={300}>
+                    <PieChart>
+                      <Pie
+                        data={expenseChartData}
+                        cx="50%"
+                        cy="50%"
+                        labelLine={false}
+                        label={false}
+                        outerRadius={100}
+                        innerRadius={50}
+                        fill="#8884d8"
+                        dataKey="expenses"
+                        paddingAngle={3}
+                      >
+                        {expenseChartData.map((entry: any, index: number) => {
+                          const colors = [
+                            '#8B5CF6', // Purple
+                            '#EC4899', // Pink
+                            '#F59E0B', // Amber
+                            '#10B981', // Emerald
+                            '#3B82F6', // Blue
+                            '#EF4444', // Red
+                            '#14B8A6', // Teal
+                            '#F97316', // Orange
+                            '#6366F1', // Indigo
+                            '#84CC16', // Lime
+                          ];
+                          return (
+                            <Cell key={`cell-${index}`} fill={colors[index % colors.length]} stroke="#fff" strokeWidth={2} />
+                          );
+                        })}
+                      </Pie>
+                      <Tooltip 
+                        formatter={(value: number | undefined, name: string, props: any) => {
+                          const fullName = props.payload?.fullName || name;
+                          return [
+                            formatCurrency(value || 0),
+                            fullName
+                          ];
+                        }}
+                        contentStyle={{ 
+                          backgroundColor: '#fff', 
+                          border: '1px solid #e5e7eb', 
+                          borderRadius: '8px',
+                          boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
+                          padding: '12px'
+                        }}
+                      />
+                    </PieChart>
+                  </ResponsiveContainer>
+                ) : (
+                  <div className="text-gray-500 text-center py-20">
+                    No expense data available for the selected period
+                  </div>
+                )}
+              </div>
+              <div className="w-full lg:w-1/2">
+                {expenseChartData.length > 0 ? (
+                  <div className="space-y-3 max-h-80 overflow-y-auto pr-2">
+                    {expenseChartData.map((entry: any, index: number) => {
+                      const colors = [
+                        '#8B5CF6', '#EC4899', '#F59E0B', '#10B981', '#3B82F6',
+                        '#EF4444', '#14B8A6', '#F97316', '#6366F1', '#84CC16',
+                      ];
+                      const total = expenseChartData.reduce((sum, e) => sum + (e.expenses || 0), 0);
+                      const percentage = total > 0 ? ((entry.expenses / total) * 100).toFixed(1) : '0';
+                      return (
+                        <div 
+                          key={index} 
+                          className="flex items-center gap-4 p-3 rounded-lg bg-gray-50 hover:bg-gray-100 transition border border-gray-200"
+                        >
+                          <div 
+                            className="w-5 h-5 rounded-full flex-shrink-0 shadow-sm" 
+                            style={{ backgroundColor: colors[index % colors.length] }}
+                          />
+                          <div className="flex-1 min-w-0">
+                            <div className="text-base font-bold text-gray-900 mb-1">
+                              {entry.fullName || entry.name}
+                            </div>
+                            <div className="flex items-center gap-4 text-sm">
+                              <span className="font-semibold text-indigo-600">
+                                {formatCurrency(entry.expenses)}
+                              </span>
+                              <span className="text-gray-600 font-medium">
+                                {percentage}%
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                ) : (
+                  <div className="text-gray-500 text-sm py-10">
+                    No categories found
+                  </div>
+                )}
+              </div>
+            </div>
+          ) : (
+            <ResponsiveContainer width="100%" height={300}>
+              <AreaChart data={expenseChartData}>
+                <defs>
+                  <linearGradient id="colorExpenses" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="5%" stopColor="#8B5CF6" stopOpacity={0.8}/>
+                    <stop offset="50%" stopColor="#EC4899" stopOpacity={0.4}/>
+                    <stop offset="95%" stopColor="#8B5CF6" stopOpacity={0}/>
+                  </linearGradient>
+                </defs>
+                <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
+                <XAxis 
+                  dataKey={expenseViewType === 'yearly' ? 'year' : 'month'} 
+                  stroke="#6b7280"
+                  style={{ fontSize: '12px' }}
+                />
+                <YAxis 
+                  stroke="#6b7280"
+                  style={{ fontSize: '12px' }}
+                  tickFormatter={(value) => {
+                    if (value >= 1000000) return `${(value / 1000000).toFixed(1)}M`;
+                    if (value >= 1000) return `${(value / 1000).toFixed(0)}K`;
+                    return value.toString();
+                  }}
+                />
+                <Tooltip 
+                  formatter={(value: number | undefined) => formatCurrency(value || 0)}
+                  contentStyle={{ 
+                    backgroundColor: '#fff', 
+                    border: '1px solid #e5e7eb', 
+                    borderRadius: '8px',
+                    boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
+                    padding: '10px'
+                  }}
+                  labelStyle={{ fontWeight: 'bold', color: '#374151' }}
+                />
+                <Area 
+                  type="monotone" 
+                  dataKey="expenses" 
+                  stroke="#8B5CF6" 
+                  strokeWidth={2}
+                  fillOpacity={1} 
+                  fill="url(#colorExpenses)" 
+                />
+              </AreaChart>
+            </ResponsiveContainer>
+          )}
         </Card>
       </div>
     </div>
@@ -565,6 +1192,14 @@ function PendingIcon() {
   return (
     <svg viewBox="0 0 24 24" className="h-6 w-6">
       <path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z" />
+    </svg>
+  );
+}
+
+function ExpenseIcon() {
+  return (
+    <svg viewBox="0 0 24 24" className="h-6 w-6">
+      <path fill="currentColor" d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z" />
     </svg>
   );
 }

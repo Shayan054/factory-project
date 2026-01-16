@@ -3,24 +3,31 @@ from rest_framework import viewsets
 from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
-from datetime import datetime
+from datetime import datetime, date
+from django.db import transaction
 from .models import (
     Vendor,
     RawMaterial,
     Customer,
     Product,
+    ProductRawMaterial,
     Order,
     OrderDetails,
-    Billing
+    Billing,
+    Expense,
+    ExpenseCategory
 )
 from .serializers import (
     VendorSerializer,
     RawMaterialSerializer,
     CustomerSerializer,
     ProductSerializer,
+    ProductRawMaterialSerializer,
     OrderSerializer,
     OrderDetailsSerializer,
-    BillingSerializer
+    BillingSerializer,
+    ExpenseSerializer,
+    ExpenseCategorySerializer
 )
 from .permissions import IsCEOOrReadOnly, IsCEOOrManagerCanAdd
 
@@ -35,6 +42,49 @@ class RawMaterialViewSet(viewsets.ModelViewSet):
     queryset = RawMaterial.objects.all()
     serializer_class = RawMaterialSerializer
     permission_classes = [IsAuthenticated, IsCEOOrManagerCanAdd]
+    
+    def perform_create(self, serializer):
+        with transaction.atomic():
+            material_name = serializer.validated_data.get('material')
+            vendor = serializer.validated_data.get('vendor')
+            quantity_to_add = serializer.validated_data.get('quantity', 0)
+            price = serializer.validated_data.get('price', 0)
+            
+            # Check if raw material with same name and vendor already exists
+            existing_raw_material = RawMaterial.objects.filter(
+                material=material_name,
+                vendor=vendor
+            ).first()
+            
+            if existing_raw_material:
+                # Add to existing quantity
+                existing_raw_material.quantity += quantity_to_add
+                # Update price if provided (use new price or keep existing)
+                if price > 0:
+                    existing_raw_material.price = price
+                existing_raw_material.save()
+                raw_material = existing_raw_material
+            else:
+                # Create new raw material
+                raw_material = serializer.save()
+            
+            # Auto-create expense entry for the quantity added
+            # Use the material name as the category (e.g., "Cement", "Sand")
+            expense_category, created = ExpenseCategory.objects.get_or_create(
+                name=raw_material.material
+            )
+            
+            # Calculate total cost for the quantity added (not total inventory)
+            total_cost = price * quantity_to_add
+            
+            # Create expense entry
+            Expense.objects.create(
+                category=expense_category,
+                date=date.today(),
+                amount=total_cost,
+                quantity=quantity_to_add,
+                remarks=f"Purchase of {quantity_to_add} {raw_material.measuring_unit} {raw_material.material} from {raw_material.vendor.name}"
+            )
 
 
 class CustomerViewSet(viewsets.ModelViewSet):
@@ -47,6 +97,64 @@ class ProductViewSet(viewsets.ModelViewSet):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
     permission_classes = [IsAuthenticated, IsCEOOrManagerCanAdd]
+    
+    def perform_create(self, serializer):
+        # Just save the product - deduction will happen after BOM entries are created
+        serializer.save()
+    
+    def _deduct_raw_materials_for_product(self, product, quantity_manufactured):
+        """Helper method to deduct raw materials for a product"""
+        if quantity_manufactured <= 0:
+            return
+        
+        raw_materials_used = ProductRawMaterial.objects.filter(product=product)
+        
+        if not raw_materials_used.exists():
+            # No BOM entries yet, can't deduct
+            return
+        
+        for bom_entry in raw_materials_used:
+            raw_material = bom_entry.raw_material
+            # quantity_required is the TOTAL quantity to deduct (not per unit)
+            quantity_needed = bom_entry.quantity_required
+            
+            # Check if enough raw material is available
+            if raw_material.quantity < quantity_needed:
+                raise ValueError(
+                    f"Insufficient {raw_material.material}. "
+                    f"Required: {quantity_needed} {raw_material.measuring_unit}, "
+                    f"Available: {raw_material.quantity} {raw_material.measuring_unit}"
+                )
+            
+            # Deduct raw material
+            raw_material.quantity -= quantity_needed
+            raw_material.save()
+    
+    def perform_update(self, serializer):
+        with transaction.atomic():
+            instance = serializer.instance
+            old_quantity = instance.quantity
+            new_quantity = serializer.validated_data.get('quantity', instance.quantity)
+            
+            # Calculate quantity difference (newly manufactured)
+            quantity_manufactured = new_quantity - old_quantity
+            
+            # Save the product first
+            product = serializer.save()
+            
+            # If quantity increased, deduct raw materials
+            if quantity_manufactured > 0:
+                self._deduct_raw_materials_for_product(product, quantity_manufactured)
+
+
+class ProductRawMaterialViewSet(viewsets.ModelViewSet):
+    queryset = ProductRawMaterial.objects.all()
+    serializer_class = ProductRawMaterialSerializer
+    permission_classes = [IsAuthenticated, IsCEOOrManagerCanAdd]
+    
+    def perform_create(self, serializer):
+        # Just save the BOM entry - deduction will be triggered by frontend
+        serializer.save()
 
 
 class OrderViewSet(viewsets.ModelViewSet):
@@ -55,10 +163,11 @@ class OrderViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated, IsCEOOrManagerCanAdd]
     
     def perform_create(self, serializer):
-        # Generate order number
-        last_order = Order.objects.order_by('-order_id').first()
-        order_no = f"ORD-{datetime.now().strftime('%Y%m%d')}-{((last_order.order_id if last_order else 0) + 1):04d}"
-        serializer.save(order_no=order_no)
+        with transaction.atomic():
+            # Generate order number
+            last_order = Order.objects.order_by('-order_id').first()
+            order_no = f"ORD-{datetime.now().strftime('%Y%m%d')}-{((last_order.order_id if last_order else 0) + 1):04d}"
+            serializer.save(order_no=order_no)
     
     def perform_update(self, serializer):
         instance = serializer.instance
@@ -98,6 +207,26 @@ class OrderDetailsViewSet(viewsets.ModelViewSet):
     queryset = OrderDetails.objects.all()
     serializer_class = OrderDetailsSerializer
     permission_classes = [IsAuthenticated, IsCEOOrManagerCanAdd]
+    
+    def perform_create(self, serializer):
+        with transaction.atomic():
+            order_detail = serializer.save()
+            
+            # Deduct product inventory when order is placed
+            if order_detail.product:
+                product = order_detail.product
+                quantity_ordered = order_detail.quantity
+                
+                # Check if enough product is available
+                if product.quantity < quantity_ordered:
+                    raise ValueError(
+                        f"Insufficient {product.product_name} inventory. "
+                        f"Required: {quantity_ordered}, Available: {product.quantity}"
+                    )
+                
+                # Deduct product quantity
+                product.quantity -= quantity_ordered
+                product.save()
 
 
 class BillingViewSet(viewsets.ModelViewSet):
@@ -127,5 +256,32 @@ class BillingViewSet(viewsets.ModelViewSet):
         balance = total_bill - new_amount_received
         if balance == 0 and instance.balance > 0:
             serializer.save(balance_payment_date=datetime.now())
+
+
+class ExpenseCategoryViewSet(viewsets.ModelViewSet):
+    queryset = ExpenseCategory.objects.all()
+    serializer_class = ExpenseCategorySerializer
+    permission_classes = [IsAuthenticated, IsCEOOrManagerCanAdd]
+
+
+class ExpenseViewSet(viewsets.ModelViewSet):
+    queryset = Expense.objects.all()
+    serializer_class = ExpenseSerializer
+    permission_classes = [IsAuthenticated, IsCEOOrManagerCanAdd]
+    
+    def perform_create(self, serializer):
+        # Get category name from serializer validated data
+        category_name = serializer.validated_data.pop('category_name', None)
+        
+        if not category_name:
+            raise ValueError("Category name is required")
+        
+        # Get or create the expense category
+        expense_category, created = ExpenseCategory.objects.get_or_create(
+            name=category_name.strip()
+        )
+        
+        # Save expense with the category
+        serializer.save(category=expense_category)
 
 # Create your views here.

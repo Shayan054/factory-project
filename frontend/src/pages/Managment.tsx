@@ -269,6 +269,7 @@ const Management = () => {
                   <th className="border p-2 text-left">Order No</th>
                   <th className="border p-2 text-left">Customer</th>
                   <th className="border p-2 text-left">Total Amount</th>
+                  <th className="border p-2 text-left">Discount</th>
                   <th className="border p-2 text-left">Amount Received</th>
                   <th className="border p-2 text-left">Remaining</th>
                   <th className="border p-2 text-left">Status</th>
@@ -308,11 +309,21 @@ const Management = () => {
                   const amountReceived = billing?.amount_received || 0;
                   const remaining = billing ? billing.balance : item.total_amount;
                   
+                  const discount = item.discount || 0;
+                  const netAmount = (item.total_amount || 0) - discount;
+                  
                   return (
                     <tr key={orderId}>
                       <td className="border p-2">{item.order_no || `Order #${orderId}`}</td>
                       <td className="border p-2">{getCustomerName(item.customer)}</td>
                       <td className="border p-2">{formatCurrency(item.total_amount)}</td>
+                      <td className="border p-2">
+                        {discount > 0 ? (
+                          <span className="text-red-600 font-semibold">-{formatCurrency(discount)}</span>
+                        ) : (
+                          <span className="text-gray-400">No discount</span>
+                        )}
+                      </td>
                       <td className="border p-2">
                         {billing ? formatCurrency(amountReceived) : "Not Billed"}
                       </td>
@@ -364,7 +375,7 @@ const Management = () => {
                 })}
                 {data.length === 0 && (
                   <tr>
-                    <td colSpan={8} className="text-center p-4 text-gray-500">
+                    <td colSpan={9} className="text-center p-4 text-gray-500">
                       No orders found
                     </td>
                   </tr>

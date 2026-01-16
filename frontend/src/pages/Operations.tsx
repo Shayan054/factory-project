@@ -17,6 +17,7 @@ type Order = {
   order_id: number; 
   customer: number; 
   total_amount: number; 
+  discount: number;
   order_status: number;
   order_no?: string;
   order_date?: string;
@@ -56,12 +57,15 @@ const Operations = () => {
   const [products, setProducts] = useState<Product[]>([]);
   const [orders, setOrders] = useState<Order[]>([]);
   const [billings, setBillings] = useState<Billing[]>([]);
+  const [vendors, setVendors] = useState<any[]>([]);
 
   useEffect(() => {
     apiRequest('/customers/').then(r => r.json()).then(setCustomers).catch(console.error);
     apiRequest('/products/').then(r => r.json()).then(setProducts).catch(console.error);
     apiRequest('/orders/').then(r => r.json()).then(setOrders).catch(console.error);
     apiRequest('/billings/').then(r => r.json()).then(setBillings).catch(console.error);
+    apiRequest('/raw-materials/').then(r => r.json()).then(setRawMaterials).catch(console.error);
+    apiRequest('/vendors/').then(r => r.json()).then(setVendors).catch(console.error);
   }, []);
 
   // Refresh orders after placing new order
@@ -78,11 +82,13 @@ const Operations = () => {
   });
 
   /* ---------- RAW MATERIAL ---------- */
+  const [rawMaterials, setRawMaterials] = useState<any[]>([]);
   const [raw, setRaw] = useState({
     material: "",
     measuring_unit: "",
     description: "",
     quantity: "",
+    price: "",
     vendor: "",
   });
 
@@ -91,7 +97,12 @@ const Operations = () => {
     product_name: "",
     description: "",
     price: "",
+    quantity: "",
   });
+  const [productRawMaterials, setProductRawMaterials] = useState<Array<{
+    raw_material: string;
+    quantity_required: string;
+  }>>([{ raw_material: "", quantity_required: "" }]);
 
   /* ---------- CUSTOMER ---------- */
   const [customer, setCustomer] = useState({
@@ -117,6 +128,15 @@ const Operations = () => {
   const [billing, setBilling] = useState({
     order: "",
     amount_received: "",
+  });
+
+  /* ---------- EXPENSE ---------- */
+  const [expense, setExpense] = useState({
+    category_name: "",
+    date: new Date().toISOString().split('T')[0],
+    amount: "",
+    quantity: "",
+    remarks: "",
   });
 
   // Auto-select last placed order if available
@@ -412,10 +432,29 @@ const Operations = () => {
           <input className={input} placeholder="Material" value={raw.material} onChange={e => setRaw({ ...raw, material: e.target.value })} />
           <input className={input} placeholder="Unit" value={raw.measuring_unit} onChange={e => setRaw({ ...raw, measuring_unit: e.target.value })} />
           <input className={input} placeholder="Quantity" type="number" value={raw.quantity} onChange={e => setRaw({ ...raw, quantity: e.target.value })} />
+          <input className={input} placeholder="Price per Unit" type="number" value={raw.price} onChange={e => setRaw({ ...raw, price: e.target.value })} />
           <textarea className={input} placeholder="Description" value={raw.description} onChange={e => setRaw({ ...raw, description: e.target.value })} />
-          <input className={input} placeholder="Vendor ID" type="number" value={raw.vendor} onChange={e => setRaw({ ...raw, vendor: e.target.value })} />
-          <button className={primaryBtn} onClick={() => post('/raw-materials/', raw).then(() => {
-            setRaw({ material: "", measuring_unit: "", description: "", quantity: "", vendor: "" });
+          <label className="block font-semibold mb-2">Vendor *</label>
+          <select
+            className={input}
+            value={raw.vendor}
+            onChange={e => setRaw({ ...raw, vendor: e.target.value })}
+          >
+            <option value="">Select Vendor</option>
+            {vendors.map(v => (
+              <option key={v.vendor_id} value={v.vendor_id}>
+                {v.name} - {v.phone || 'No phone'}
+              </option>
+            ))}
+          </select>
+          <button className={primaryBtn} onClick={() => post('/raw-materials/', {
+            ...raw,
+            quantity: Number(raw.quantity) || 0,
+            price: Number(raw.price) || 0,
+            vendor: Number(raw.vendor) || 0,
+          }).then(() => {
+            setRaw({ material: "", measuring_unit: "", description: "", quantity: "", price: "", vendor: "" });
+            apiRequest('/raw-materials/').then(r => r.json()).then(setRawMaterials).catch(console.error);
           })}>Save Raw Material</button>
         </div>
       )}
@@ -427,13 +466,149 @@ const Operations = () => {
           <input className={input} placeholder="Product Name" value={product.product_name} onChange={e => setProduct({ ...product, product_name: e.target.value })} />
           <textarea className={input} placeholder="Description" value={product.description} onChange={e => setProduct({ ...product, description: e.target.value })} />
           <input className={input} placeholder="Price" type="number" value={product.price} onChange={e => setProduct({ ...product, price: e.target.value })} />
-          <button className={primaryBtn} onClick={() => post('/products/', {
-            product_name: product.product_name,
-            description: product.description,
-            price: Number(product.price) || 0,
-          }).then(() => {
-            setProduct({ product_name: "", description: "", price: "" });
-          })}>Save Product</button>
+          <input className={input} placeholder="Quantity to Manufacture" type="number" value={product.quantity} onChange={e => setProduct({ ...product, quantity: e.target.value })} />
+          
+          <div className="mt-4">
+            <label className="block font-semibold mb-2">Raw Materials Required (Bill of Materials)</label>
+            {productRawMaterials.map((bom, index) => (
+              <div key={index} className="flex gap-2 mb-2">
+                <select
+                  className={input}
+                  value={bom.raw_material}
+                  onChange={e => {
+                    const updated = [...productRawMaterials];
+                    updated[index].raw_material = e.target.value;
+                    setProductRawMaterials(updated);
+                  }}
+                >
+                  <option value="">Select Raw Material</option>
+                  {rawMaterials.map(rm => (
+                    <option key={rm.material_id} value={rm.material_id}>
+                      {rm.material} ({rm.measuring_unit})
+                    </option>
+                  ))}
+                </select>
+                <input
+                  className={input}
+                  type="number"
+                  placeholder="Total Quantity to Use"
+                  value={bom.quantity_required}
+                  onChange={e => {
+                    const updated = [...productRawMaterials];
+                    updated[index].quantity_required = e.target.value;
+                    setProductRawMaterials(updated);
+                  }}
+                />
+                {productRawMaterials.length > 1 && (
+                  <button
+                    className="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600"
+                    onClick={() => {
+                      const updated = productRawMaterials.filter((_, i) => i !== index);
+                      setProductRawMaterials(updated);
+                    }}
+                  >
+                    Remove
+                  </button>
+                )}
+              </div>
+            ))}
+            <button
+              className="bg-gray-500 text-white px-4 py-2 rounded-lg hover:bg-gray-600 mt-2"
+              onClick={() => setProductRawMaterials([...productRawMaterials, { raw_material: "", quantity_required: "" }])}
+            >
+              Add Raw Material
+            </button>
+          </div>
+
+          <button className={primaryBtn} onClick={async () => {
+            try {
+              // First create the product
+              const productData = {
+                product_name: product.product_name,
+                description: product.description,
+                price: Number(product.price) || 0,
+                quantity: Number(product.quantity) || 0,
+              };
+              
+              const productRes = await apiRequest('/products/', {
+                method: "POST",
+                body: JSON.stringify(productData),
+              });
+              
+              if (!productRes.ok) {
+                const error = await productRes.json();
+                alert(`Error: ${JSON.stringify(error)}`);
+                return;
+              }
+              
+              const createdProduct = await productRes.json();
+              const productId = createdProduct.product_id || createdProduct.id;
+              
+              // Then create BOM entries
+              const validBOMs = productRawMaterials.filter(bom => bom.raw_material && bom.quantity_required);
+              
+              if (validBOMs.length > 0) {
+                for (const bom of validBOMs) {
+                  const bomRes = await apiRequest('/product-raw-materials/', {
+                    method: "POST",
+                    body: JSON.stringify({
+                      product: productId,
+                      raw_material: Number(bom.raw_material),
+                      quantity_required: Number(bom.quantity_required),
+                    }),
+                  });
+                  
+                  if (!bomRes.ok) {
+                    const error = await bomRes.json();
+                    alert(`Error creating BOM entry: ${JSON.stringify(error)}`);
+                    return;
+                  }
+                }
+              }
+              
+              // After all BOM entries are created, trigger deduction by updating product
+              // Set quantity to 0 first, then to desired quantity to trigger deduction
+              if (Number(product.quantity) > 0) {
+                const currentQty = Number(product.quantity);
+                
+                // First set to 0
+                await apiRequest(`/products/${productId}/`, {
+                  method: "PATCH",
+                  body: JSON.stringify({
+                    product_name: createdProduct.product_name,
+                    description: createdProduct.description || "",
+                    price: createdProduct.price,
+                    quantity: 0,
+                  }),
+                });
+                
+                // Then set to desired quantity - this will trigger deduction in perform_update
+                const updateRes = await apiRequest(`/products/${productId}/`, {
+                  method: "PATCH",
+                  body: JSON.stringify({
+                    product_name: createdProduct.product_name,
+                    description: createdProduct.description || "",
+                    price: createdProduct.price,
+                    quantity: currentQty,
+                  }),
+                });
+                
+                if (!updateRes.ok) {
+                  const error = await updateRes.json();
+                  alert(`Warning: Product created but raw material deduction failed: ${JSON.stringify(error)}`);
+                }
+              }
+              
+              alert("Product saved successfully!");
+              setProduct({ product_name: "", description: "", price: "", quantity: "" });
+              setProductRawMaterials([{ raw_material: "", quantity_required: "" }]);
+              
+              // Refresh products list
+              apiRequest('/products/').then(r => r.json()).then(setProducts).catch(console.error);
+            } catch (error: any) {
+              alert(`Error: ${error.message || String(error)}`);
+            }
+          }}>Save Product</button>
         </div>
       )}
 
@@ -605,6 +780,77 @@ const Operations = () => {
           {!selectedOrder && billing.order && (
             <div className="text-red-600 mt-2">Order not found</div>
           )}
+        </div>
+      )}
+
+      {/* ---------- EXPENSE ---------- */}
+      <button className={sectionBtn} onClick={() => setActive("expense")}>Add Expense</button>
+      {active === "expense" && (
+        <div className={card}>
+          <label className="block font-semibold mb-2">Category Name *</label>
+          <input
+            className={input}
+            type="text"
+            placeholder="e.g., Diesel, Guest Tea, Electricity, etc."
+            value={expense.category_name}
+            onChange={e => setExpense({ ...expense, category_name: e.target.value })}
+          />
+
+          <label className="block font-semibold mb-2 mt-4">Date *</label>
+          <input
+            className={input}
+            type="date"
+            value={expense.date}
+            onChange={e => setExpense({ ...expense, date: e.target.value })}
+          />
+
+          <label className="block font-semibold mb-2 mt-4">Amount *</label>
+          <input
+            className={input}
+            type="number"
+            placeholder="Amount"
+            value={expense.amount}
+            onChange={e => setExpense({ ...expense, amount: e.target.value })}
+          />
+
+          <label className="block font-semibold mb-2 mt-4">Quantity (Optional)</label>
+          <input
+            className={input}
+            type="number"
+            placeholder="Quantity"
+            value={expense.quantity}
+            onChange={e => setExpense({ ...expense, quantity: e.target.value })}
+          />
+
+          <label className="block font-semibold mb-2 mt-4">Remarks</label>
+          <textarea
+            className={input}
+            placeholder="Remarks"
+            value={expense.remarks}
+            onChange={e => setExpense({ ...expense, remarks: e.target.value })}
+          />
+
+          <button
+            className={primaryBtn}
+            onClick={() => post('/expenses/', {
+              category_name: expense.category_name,
+              date: expense.date,
+              amount: Number(expense.amount) || 0,
+              quantity: expense.quantity ? Number(expense.quantity) : null,
+              remarks: expense.remarks,
+            }).then(() => {
+              setExpense({
+                category_name: "",
+                date: new Date().toISOString().split('T')[0],
+                amount: "",
+                quantity: "",
+                remarks: "",
+              });
+            })}
+            disabled={!expense.category_name || !expense.date || !expense.amount}
+          >
+            Save Expense
+          </button>
         </div>
       )}
     </div>

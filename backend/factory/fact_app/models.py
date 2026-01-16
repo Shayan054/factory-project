@@ -89,6 +89,7 @@ class RawMaterial(models.Model):
     description = models.TextField(blank=True)
     measuring_unit = models.CharField(max_length=50)
     quantity = models.IntegerField()
+    price = models.IntegerField(default=0)  # Cost per unit
 
     # Foreign Key
     vendor = models.ForeignKey(
@@ -115,9 +116,32 @@ class Product(models.Model):
     product_name = models.CharField(max_length=100)
     description = models.TextField(blank=True)
     price = models.IntegerField(default=0)
+    quantity = models.IntegerField(default=0)  # Product inventory
 
     def __str__(self):
         return self.product_name
+
+
+class ProductRawMaterial(models.Model):
+    """Bill of Materials - Tracks raw materials needed to make a product"""
+    product_raw_material_id = models.AutoField(primary_key=True)
+    product = models.ForeignKey(
+        Product,
+        on_delete=models.CASCADE,
+        related_name="raw_materials_used"
+    )
+    raw_material = models.ForeignKey(
+        RawMaterial,
+        on_delete=models.CASCADE,
+        related_name="products_using"
+    )
+    quantity_required = models.IntegerField()  # Quantity of raw material needed per unit of product
+
+    class Meta:
+        unique_together = ['product', 'raw_material']
+
+    def __str__(self):
+        return f"{self.product.product_name} - {self.raw_material.material} ({self.quantity_required})"
 
 class Order(models.Model):
     order_id = models.AutoField(primary_key=True)
@@ -125,6 +149,7 @@ class Order(models.Model):
     order_date = models.DateTimeField(auto_now_add=True)
     order_status = models.IntegerField(default=0)  # enum value: 0=Pending, 1=Completed
     total_amount = models.IntegerField(default=0)
+    discount = models.IntegerField(default=0)  # Discount amount
     
     customer = models.ForeignKey(
         Customer,
@@ -183,3 +208,25 @@ class Billing(models.Model):
 
     def __str__(self):
         return f"Bill #{self.billing_id}"
+
+class ExpenseCategory(models.Model):
+    category_id = models.AutoField(primary_key=True)
+    name = models.CharField(max_length=100, unique=True)
+
+    def __str__(self):
+        return self.name
+class Expense(models.Model):
+    expense_id = models.AutoField(primary_key=True)
+    date = models.DateField()
+    amount = models.IntegerField()
+    quantity = models.IntegerField(null=True, blank=True)
+    remarks = models.TextField(blank=True)
+
+    category = models.ForeignKey(
+        ExpenseCategory,
+        on_delete=models.CASCADE,
+        related_name="expenses"
+    )
+
+    def __str__(self):
+        return f"{self.category.name} - {self.amount}"
