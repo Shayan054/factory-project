@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react";
 import { apiRequest } from "../utils/api";
+import { useSearchParams } from "react-router-dom";
 
 /* ---------- UI CLASSES ---------- */
-const sectionBtn =
-  "w-full text-left px-6 py-4 rounded-xl bg-gray-100 hover:bg-indigo-100 font-semibold text-lg transition";
 const card = "bg-white p-6 rounded-2xl shadow space-y-4";
 const input =
   "w-full border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-400";
@@ -40,8 +39,32 @@ type Billing = {
 };
 
 const Operations = () => {
+  const [searchParams, setSearchParams] = useSearchParams();
   const [active, setActive] = useState<string | null>(null);
   const [lastPlacedOrderId, setLastPlacedOrderId] = useState<number | null>(null);
+
+  const setActiveTab = (tab: string | null) => {
+    setActive(tab);
+    if (!tab) {
+      setSearchParams((prev) => {
+        const next = new URLSearchParams(prev);
+        next.delete("tab");
+        return next;
+      });
+      return;
+    }
+    setSearchParams((prev) => {
+      const next = new URLSearchParams(prev);
+      next.set("tab", tab);
+      return next;
+    });
+  };
+
+  // Sync active form with URL (?tab=vendor/raw/product/customer/order/billing/expense)
+  useEffect(() => {
+    const tab = searchParams.get("tab");
+    setActive(tab);
+  }, [searchParams]);
 
   // Currency formatter
   const formatCurrency = (amount: number) => {
@@ -237,7 +260,7 @@ const Operations = () => {
       // Store order ID and navigate to billing (orderId already declared above)
       setLastPlacedOrderId(orderId);
       alert("Order placed successfully! Moving to billing...");
-      setActive("billing");
+      setActiveTab("billing");
     } catch (error: any) {
       const errorMessage = error.message || String(error);
       alert(`Error placing order: ${errorMessage}`);
@@ -410,9 +433,13 @@ const Operations = () => {
   return (
     <div className="p-6 space-y-6">
       <h1 className="text-2xl font-semibold">Operations</h1>
+      {!active && (
+        <div className="rounded-xl border border-gray-200 bg-white p-4 text-sm text-gray-600">
+          Select an option from the left <span className="font-semibold">Operations</span> menu to open its form.
+        </div>
+      )}
 
       {/* ---------- VENDOR ---------- */}
-      <button className={sectionBtn} onClick={() => setActive("vendor")}>Add Vendor</button>
       {active === "vendor" && (
         <div className={card}>
           <input className={input} placeholder="Vendor Name" value={vendor.name} onChange={e => setVendor({ ...vendor, name: e.target.value })} />
@@ -426,7 +453,6 @@ const Operations = () => {
       )}
 
       {/* ---------- RAW MATERIAL ---------- */}
-      <button className={sectionBtn} onClick={() => setActive("raw")}>Add Raw Material</button>
       {active === "raw" && (
         <div className={card}>
           <input className={input} placeholder="Material" value={raw.material} onChange={e => setRaw({ ...raw, material: e.target.value })} />
@@ -460,7 +486,6 @@ const Operations = () => {
       )}
 
       {/* ---------- PRODUCT ---------- */}
-      <button className={sectionBtn} onClick={() => setActive("product")}>Add Product</button>
       {active === "product" && (
         <div className={card}>
           <input className={input} placeholder="Product Name" value={product.product_name} onChange={e => setProduct({ ...product, product_name: e.target.value })} />
@@ -613,7 +638,6 @@ const Operations = () => {
       )}
 
       {/* ---------- CUSTOMER ---------- */}
-      <button className={sectionBtn} onClick={() => setActive("customer")}>Add Customer</button>
       {active === "customer" && (
         <div className={card}>
           <input className={input} placeholder="Name" value={customer.name} onChange={e => setCustomer({ ...customer, name: e.target.value })} />
@@ -627,7 +651,6 @@ const Operations = () => {
       )}
 
       {/* ---------- PLACE ORDER ---------- */}
-      <button className={sectionBtn} onClick={() => setActive("order")}>Place Order</button>
       {active === "order" && (
         <div className={card}>
           <label className="block font-semibold mb-2">Customer *</label>
@@ -705,7 +728,6 @@ const Operations = () => {
       )}
 
       {/* ---------- BILLING ---------- */}
-      <button className={sectionBtn} onClick={() => setActive("billing")}>Billing</button>
       {active === "billing" && (
         <div className={card}>
           <label className="block font-semibold mb-2">Select Order</label>
@@ -784,7 +806,6 @@ const Operations = () => {
       )}
 
       {/* ---------- EXPENSE ---------- */}
-      <button className={sectionBtn} onClick={() => setActive("expense")}>Add Expense</button>
       {active === "expense" && (
         <div className={card}>
           <label className="block font-semibold mb-2">Category Name *</label>

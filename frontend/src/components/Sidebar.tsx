@@ -11,11 +11,14 @@ export default function Sidebar({ open, onClose }: Props) {
   const [componentsOpen, setComponentsOpen] = useState(false);
   const [utilitiesOpen, setUtilitiesOpen] = useState(false);
   const [pagesOpen, setPagesOpen] = useState(false);
+  const [operationsOpen, setOperationsOpen] = useState(true);
 
   // shared link styles
   const base =
     "flex items-center gap-3 rounded-md px-3 py-2 text-sm font-medium text-white/90 hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white/40";
   const active = "bg-white/10 text-white shadow-inner";
+  const subBase =
+    "ml-7 flex items-center gap-3 rounded-md px-3 py-2 text-sm font-medium text-white/85 hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white/40";
 
   return (
     <>
@@ -66,14 +69,70 @@ export default function Sidebar({ open, onClose }: Props) {
         {/* Factory Operations */}
         <SectionLabel>Factory Operations</SectionLabel>
         <nav className="px-3 space-y-1">
-          <NavLink
-            to="/operations"
-            className={({ isActive }) => `${base} ${isActive ? active : ""}`}
-            onClick={onClose}
+          <button
+            type="button"
+            className={base}
+            onClick={() => setOperationsOpen((v) => !v)}
+            aria-expanded={operationsOpen}
           >
             <IconCog className="h-4 w-4" />
-            <span>Operations</span>
-          </NavLink>
+            <span className="flex-1 text-left">Operations</span>
+            <IconChevron className={`h-4 w-4 transition-transform ${operationsOpen ? "rotate-180" : ""}`} />
+          </button>
+
+          {operationsOpen && (
+            <div className="space-y-1">
+              <NavLink
+                to="/operations?tab=vendor"
+                className={({ isActive }) => `${subBase} ${isActive ? active : ""}`}
+                onClick={onClose}
+              >
+                <span>Add Vendor</span>
+              </NavLink>
+              <NavLink
+                to="/operations?tab=raw"
+                className={({ isActive }) => `${subBase} ${isActive ? active : ""}`}
+                onClick={onClose}
+              >
+                <span>Add Raw Material</span>
+              </NavLink>
+              <NavLink
+                to="/operations?tab=product"
+                className={({ isActive }) => `${subBase} ${isActive ? active : ""}`}
+                onClick={onClose}
+              >
+                <span>Add Product</span>
+              </NavLink>
+              <NavLink
+                to="/operations?tab=customer"
+                className={({ isActive }) => `${subBase} ${isActive ? active : ""}`}
+                onClick={onClose}
+              >
+                <span>Add Customer</span>
+              </NavLink>
+              <NavLink
+                to="/operations?tab=order"
+                className={({ isActive }) => `${subBase} ${isActive ? active : ""}`}
+                onClick={onClose}
+              >
+                <span>Place Order</span>
+              </NavLink>
+              <NavLink
+                to="/operations?tab=billing"
+                className={({ isActive }) => `${subBase} ${isActive ? active : ""}`}
+                onClick={onClose}
+              >
+                <span>Billing</span>
+              </NavLink>
+              <NavLink
+                to="/operations?tab=expense"
+                className={({ isActive }) => `${subBase} ${isActive ? active : ""}`}
+                onClick={onClose}
+              >
+                <span>Add Expense</span>
+              </NavLink>
+            </div>
+          )}
           {isCEO && (
             <NavLink
               to="/management"
