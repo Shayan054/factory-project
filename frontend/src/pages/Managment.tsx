@@ -1,6 +1,8 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { apiRequest } from "../utils/api";
 import { useAuth } from "../context/AuthContext";
+import { useModal } from "../context/ModalContext";
 
 // Currency formatter for PKR
 const formatCurrency = (amount: number) => {
@@ -22,6 +24,17 @@ const getId = (item: any) => {
 
 const isPrimaryKey = (key: string) =>
   key.toLowerCase().endsWith("id");
+
+const isAuditField = (key: string) => {
+  const k = key.toLowerCase();
+  return (
+    k === "created_at" ||
+    k === "created_by" ||
+    k === "updated_at" ||
+    k === "updated_by" ||
+    k === "is_deleted"
+  );
+};
 
 const formatCellValue = (value: any): string => {
   if (value === null || value === undefined) {
@@ -58,12 +71,37 @@ const formatCellValue = (value: any): string => {
 
 const Management = () => {
   const { isCEO } = useAuth();
+  const { showModal } = useModal();
+  const navigate = useNavigate();
+  const [searchParams, setSearchParams] = useSearchParams();
   const [activeTab, setActiveTab] = useState<Entity>("customers");
   const [data, setData] = useState<any[]>([]);
   const [editingItem, setEditingItem] = useState<any | null>(null);
   const [customers, setCustomers] = useState<any[]>([]);
   const [billings, setBillings] = useState<any[]>([]);
   const [amountReceived, setAmountReceived] = useState<string>(""); // For order editing
+  const [orderSearch, setOrderSearch] = useState("");
+  const [orderSortKey, setOrderSortKey] = useState<"order_no" | "order_date" | "customer">("order_date");
+  const [orderSortDir, setOrderSortDir] = useState<"asc" | "desc">("desc");
+
+  // Sync active tab with URL (so sidebar submenu can deep-link)
+  useEffect(() => {
+    const tab = searchParams.get("tab") as Entity | null;
+    if (!tab) return;
+    const allowed: Entity[] = ["customers", "vendors", "products", "raw-materials", "orders"];
+    if (allowed.includes(tab) && tab !== activeTab) {
+      setActiveTab(tab);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [searchParams]);
+
+  useEffect(() => {
+    setSearchParams((prev) => {
+      const next = new URLSearchParams(prev);
+      next.set("tab", activeTab);
+      return next;
+    });
+  }, [activeTab, setSearchParams]);
 
   /* ---------------- FETCH DATA ---------------- */
   const loadData = async (entity: Entity) => {
@@ -90,23 +128,36 @@ const Management = () => {
   /* ---------------- DELETE ---------------- */
   const deleteItem = async (item: any) => {
     const id = getId(item);
-    if (!id) return alert("Invalid record ID");
+    if (!id) return showModal("Error", "Invalid record ID");
 
     if (!confirm("Are you sure you want to delete this record?")) return;
 
-    await apiRequest(`/${activeTab}/${id}/`, { method: "DELETE" });
+    if (activeTab === "orders") {
+      const resp = await apiRequest(`/orders/${id}/`, {
+        method: "PATCH",
+        body: JSON.stringify({ is_deleted: 1 }),
+      });
+      if (!resp.ok) {
+        const err = await resp.json().catch(() => ({}));
+        showModal("Error", `Failed to delete order.\n${JSON.stringify(err)}`);
+        return;
+      }
+      showModal("Success", "Order deleted (soft delete).");
+    } else {
+      await apiRequest(`/${activeTab}/${id}/`, { method: "DELETE" });
+    }
     loadData(activeTab);
   };
 
   /* ---------------- UPDATE ---------------- */
   const updateItem = async () => {
     const id = getId(editingItem);
-    if (!id) return alert("Invalid record ID");
+    if (!id) return showModal("Error", "Invalid record ID");
 
     // remove primary key and order_no before sending update
     const payload = { ...editingItem };
     Object.keys(payload).forEach((k) => {
-      if (isPrimaryKey(k) || k === "order_no") delete payload[k];
+      if (isPrimaryKey(k) || k === "order_no" || isAuditField(k)) delete payload[k];
     });
 
     try {
@@ -114,7 +165,7 @@ const Management = () => {
       if (activeTab === "orders" && amountReceived) {
         const receivedAmount = Number(amountReceived);
         if (isNaN(receivedAmount) || receivedAmount < 0) {
-          alert("Invalid amount received. Please enter a valid number.");
+          showModal("Invalid amount", "Invalid amount received. Please enter a valid number.");
           return;
         }
 
@@ -125,13 +176,16 @@ const Management = () => {
         });
 
         if (!order) {
-          alert("Order not found");
+          showModal("Error", "Order not found");
           return;
         }
 
         const totalAmount = order.total_amount || 0;
         if (receivedAmount > totalAmount) {
-          alert(`Amount received (${formatCurrency(receivedAmount)}) cannot exceed total amount (${formatCurrency(totalAmount)})`);
+          showModal(
+            "Invalid amount",
+            `Amount received (${formatCurrency(receivedAmount)}) cannot exceed total amount (${formatCurrency(totalAmount)})`
+          );
           return;
         }
 
@@ -155,7 +209,7 @@ const Management = () => {
 
           if (!billingResponse.ok) {
             const error = await billingResponse.json();
-            alert(`Error updating billing: ${JSON.stringify(error)}`);
+            showModal("Error updating billing", JSON.stringify(error));
             return;
           }
         } else {
@@ -175,7 +229,7 @@ const Management = () => {
 
           if (!billingResponse.ok) {
             const error = await billingResponse.json();
-            alert(`Error creating billing: ${JSON.stringify(error)}`);
+            showModal("Error creating billing", JSON.stringify(error));
             return;
           }
         }
@@ -189,7 +243,7 @@ const Management = () => {
 
       if (!response.ok) {
         const error = await response.json();
-        alert(`Error updating record: ${JSON.stringify(error)}`);
+        showModal("Error updating record", JSON.stringify(error));
         return;
       }
 
@@ -204,7 +258,7 @@ const Management = () => {
       }
     } catch (error) {
       console.error('Error updating item:', error);
-      alert('Error updating record. Please try again.');
+      showModal("Error", "Error updating record. Please try again.");
     }
   };
 
@@ -226,6 +280,49 @@ const Management = () => {
     return status === 1 ? "Complete" : "Pending";
   };
 
+  const filteredSortedOrders = useMemo(() => {
+    if (activeTab !== "orders") return data;
+    const q = orderSearch.trim().toLowerCase();
+
+    const rows = data.filter((item) => {
+      if (!q) return true;
+      const orderId = item.order_id || item.id;
+      const orderNo = String(item.order_no || `order #${orderId}`).toLowerCase();
+      const customerName = getCustomerName(item.customer).toLowerCase();
+      const orderDate = String(item.order_date || "").toLowerCase();
+      return orderNo.includes(q) || customerName.includes(q) || orderDate.includes(q);
+    });
+
+    const dir = orderSortDir === "asc" ? 1 : -1;
+    const safeStr = (v: any) => String(v ?? "").toLowerCase();
+    const safeDate = (v: any) => {
+      const d = v ? new Date(v) : null;
+      const t = d && !Number.isNaN(d.getTime()) ? d.getTime() : 0;
+      return t;
+    };
+
+    rows.sort((a, b) => {
+      if (orderSortKey === "customer") {
+        return safeStr(getCustomerName(a.customer)).localeCompare(safeStr(getCustomerName(b.customer))) * dir;
+      }
+      if (orderSortKey === "order_no") {
+        return safeStr(a.order_no || a.order_id || a.id).localeCompare(safeStr(b.order_no || b.order_id || b.id)) * dir;
+      }
+      return (safeDate(a.order_date) - safeDate(b.order_date)) * dir;
+    });
+
+    return rows;
+  }, [activeTab, data, orderSearch, orderSortKey, orderSortDir, customers]);
+
+  const toggleOrderSort = (key: "order_no" | "order_date" | "customer") => {
+    if (orderSortKey !== key) {
+      setOrderSortKey(key);
+      setOrderSortDir("asc");
+      return;
+    }
+    setOrderSortDir((d) => (d === "asc" ? "desc" : "asc"));
+  };
+
   /* ---------------- UI ---------------- */
   return (
     <div className="p-6 space-y-6">
@@ -236,44 +333,47 @@ const Management = () => {
           : "View factory records (Edit/Delete: CEO only)"}
       </p>
 
-      {/* -------- TABS -------- */}
-      <div className="flex gap-3 flex-wrap">
-        {[
-          ["customers", "Customers"],
-          ["vendors", "Vendors"],
-          ["products", "Products"],
-          ["raw-materials", "Raw Materials"],
-          ["orders", "Orders"],
-        ].map(([key, label]) => (
-          <button
-            key={key}
-            onClick={() => setActiveTab(key as Entity)}
-            className={`px-4 py-2 rounded-lg ${
-              activeTab === key
-                ? "bg-indigo-600 text-white"
-                : "bg-gray-200 text-gray-700"
-            }`}
-          >
-            {label}
-          </button>
-        ))}
+      <div className="rounded-xl border border-[var(--border-color)] bg-[var(--surface-color)] p-4 text-sm text-[var(--muted-color)]">
+        Select an option from the left <span className="font-semibold text-[var(--heading-color)]">Management</span> menu to manage that data.
       </div>
 
       {/* -------- TABLE -------- */}
       <div className="bg-white shadow rounded-xl overflow-x-auto">
+        {activeTab === "orders" && (
+          <div className="flex items-center justify-end gap-2 p-3">
+            <input
+              className="w-full max-w-xs rounded-lg border border-[var(--border-color)] bg-white px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[rgba(14,165,164,0.25)]"
+              placeholder="Search orders..."
+              value={orderSearch}
+              onChange={(e) => setOrderSearch(e.target.value)}
+            />
+          </div>
+        )}
         <table className="w-full border-collapse">
           <thead className="bg-gray-100">
             <tr>
               {activeTab === "orders" ? (
                 <>
-                  <th className="border p-2 text-left">Order No</th>
-                  <th className="border p-2 text-left">Customer</th>
+                  <th className="border p-2 text-left">
+                    <button type="button" className="font-semibold hover:underline" onClick={() => toggleOrderSort("order_no")}>
+                      Order No
+                    </button>
+                  </th>
+                  <th className="border p-2 text-left">
+                    <button type="button" className="font-semibold hover:underline" onClick={() => toggleOrderSort("customer")}>
+                      Customer
+                    </button>
+                  </th>
                   <th className="border p-2 text-left">Total Amount</th>
                   <th className="border p-2 text-left">Discount</th>
                   <th className="border p-2 text-left">Amount Received</th>
                   <th className="border p-2 text-left">Remaining</th>
                   <th className="border p-2 text-left">Status</th>
-                  <th className="border p-2 text-left">Order Date</th>
+                  <th className="border p-2 text-left">
+                    <button type="button" className="font-semibold hover:underline" onClick={() => toggleOrderSort("order_date")}>
+                      Order Date
+                    </button>
+                  </th>
                   <th className="border p-2">Actions</th>
                 </>
               ) : (
@@ -281,6 +381,8 @@ const Management = () => {
                   {data[0] &&
                     Object.keys(data[0])
                       .filter((key) => {
+                        // Hide audit fields
+                        if (isAuditField(key)) return false;
                         // Skip complex fields like arrays in table headers
                         const value = data[0][key];
                         if (Array.isArray(value)) {
@@ -302,7 +404,7 @@ const Management = () => {
           <tbody>
             {activeTab === "orders" ? (
               <>
-                {data.map((item) => {
+                {filteredSortedOrders.map((item) => {
                   // Handle both order_id and id field names
                   const orderId = item.order_id || item.id;
                   const billing = getOrderBilling(orderId);
@@ -350,10 +452,7 @@ const Management = () => {
                             <button
                               className="bg-yellow-500 text-white px-3 py-1 rounded hover:bg-yellow-600"
                               onClick={() => {
-                                setEditingItem(item);
-                                // Set initial amount received from billing if exists
-                                const billing = getOrderBilling(orderId);
-                                setAmountReceived(billing ? String(billing.amount_received || 0) : "");
+                                navigate(`/operations?tab=order&editOrderId=${orderId}`);
                               }}
                             >
                               Edit
@@ -387,6 +486,8 @@ const Management = () => {
                   <tr key={getId(item)}>
                     {Object.keys(item)
                       .filter((key) => {
+                        // Hide audit fields
+                        if (isAuditField(key)) return false;
                         // Skip complex fields like arrays in table cells (match header filtering)
                         const value = item[key];
                         if (Array.isArray(value)) {
@@ -431,7 +532,7 @@ const Management = () => {
       </div>
 
       {/* -------- EDIT PANEL -------- */}
-      {editingItem && isCEO && (
+      {editingItem && isCEO && activeTab !== "orders" && (
         <div className="bg-white p-4 rounded-xl shadow">
           <h2 className="font-semibold mb-3">Edit Record</h2>
 
@@ -448,7 +549,7 @@ const Management = () => {
               </div>
               
               {/* Amount Received Field for Orders */}
-              <div className="mb-4 p-3 bg-blue-50 rounded-lg border border-blue-200">
+              <div className="mb-4 p-3 bg-[rgba(14,165,164,0.10)] rounded-lg border border-[rgba(14,165,164,0.25)]">
                 <label className="block text-sm font-medium mb-2">
                   Amount Received (PKR) *
                 </label>
@@ -470,7 +571,7 @@ const Management = () => {
                     <>
                       <div className="flex justify-between mb-1">
                         <span>Amount Received:</span>
-                        <span className="font-semibold text-blue-600">{formatCurrency(Number(amountReceived) || 0)}</span>
+                        <span className="font-semibold text-[var(--accent-color)]">{formatCurrency(Number(amountReceived) || 0)}</span>
                       </div>
                       <div className="flex justify-between pt-1 border-t">
                         <span>Remaining:</span>
@@ -491,6 +592,10 @@ const Management = () => {
                 // Skip complex fields like arrays and nested objects in edit form
                 const value = editingItem[key];
                 if (Array.isArray(value) || (typeof value === "object" && value !== null && !(value instanceof Date))) {
+                  return false;
+                }
+                // Hide audit fields
+                if (isAuditField(key)) {
                   return false;
                 }
                 // Skip order_no for orders

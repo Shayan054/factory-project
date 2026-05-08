@@ -123,7 +123,7 @@ export default function RegisterPage() {
                 value={formData.first_name}
                 onChange={handleChange}
                 required
-                className="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-400"
+                className="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[rgba(14,165,164,0.35)] focus:border-[var(--accent-color)]"
                 disabled={loading}
               />
             </div>
@@ -138,7 +138,7 @@ export default function RegisterPage() {
                 value={formData.last_name}
                 onChange={handleChange}
                 required
-                className="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-400"
+                className="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[rgba(14,165,164,0.35)] focus:border-[var(--accent-color)]"
                 disabled={loading}
               />
             </div>
@@ -154,7 +154,7 @@ export default function RegisterPage() {
               value={formData.email}
               onChange={handleChange}
               required
-              className="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-400"
+              className="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[rgba(14,165,164,0.35)] focus:border-[var(--accent-color)]"
               disabled={loading}
             />
           </div>
@@ -167,7 +167,7 @@ export default function RegisterPage() {
               name="role"
               value={formData.role}
               onChange={handleChange}
-              className="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-400"
+              className="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[rgba(14,165,164,0.35)] focus:border-[var(--accent-color)]"
               disabled={loading}
             >
               <option value="MANAGER">Manager</option>
@@ -187,7 +187,7 @@ export default function RegisterPage() {
                 onChange={handleChange}
                 required
                 minLength={8}
-                className="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-400"
+                className="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[rgba(14,165,164,0.35)] focus:border-[var(--accent-color)]"
                 disabled={loading}
               />
             </div>
@@ -203,7 +203,7 @@ export default function RegisterPage() {
                 onChange={handleChange}
                 required
                 minLength={8}
-                className="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-400"
+                className="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[rgba(14,165,164,0.35)] focus:border-[var(--accent-color)]"
                 disabled={loading}
               />
             </div>
@@ -212,7 +212,7 @@ export default function RegisterPage() {
           <button
             type="submit"
             disabled={loading}
-            className="w-full bg-indigo-600 hover:bg-indigo-700 disabled:bg-gray-400 disabled:cursor-not-allowed text-white py-3 rounded-lg font-semibold transition"
+            className="w-full bg-[var(--accent-color)] hover:bg-[var(--accent-color-hover)] disabled:bg-gray-400 disabled:cursor-not-allowed text-white py-3 rounded-lg font-semibold transition"
           >
             {loading ? "Registering..." : "Register Employee"}
           </button>

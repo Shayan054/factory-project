@@ -1,115 +1,41 @@
 // src/pages/Dashboard.tsx
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { apiRequest } from "../utils/api";
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell, Legend } from "recharts";
 import jsPDF from "jspdf";
 // @ts-ignore
 import autoTable from "jspdf-autotable";
-
-interface OrderDetail {
-  order_detail_id: number;
-  order_item: string;
-  quantity: number;
-  price: number;
-  sub_total: number;
-}
-
-interface Order {
-  order_id: number;
-  order_no: string;
-  order_date: string;
-  order_status: number;
-  total_amount: number;
-  discount: number;
-  customer: number;
-  order_details?: OrderDetail[];
-}
-
-interface Customer {
-  customer_id: number;
-  name: string;
-  contact: string;
-  address: string;
-}
-
-interface Billing {
-  billing_id: number;
-  total_bill: number;
-  amount_received: number;
-  balance: number;
-  bill_date: string;
-  order: number; // Order ID
-  customer: number; // Customer ID
-}
-
-interface Expense {
-  expense_id: number;
-  date: string;
-  amount: number;
-  quantity: number | null;
-  remarks: string;
-  category: number;
-  category_name?: string;
-  category_name_display?: string;
-}
+import { Expense, Order, OrderDetail, useDashboardData } from "../context/DashboardDataContext";
+import { useModal } from "../context/ModalContext";
 
 export default function Dashboard() {
-  const [orders, setOrders] = useState<Order[]>([]);
-  const [billings, setBillings] = useState<Billing[]>([]);
-  const [customers, setCustomers] = useState<Customer[]>([]);
-  const [expenses, setExpenses] = useState<Expense[]>([]);
-  const [loading, setLoading] = useState(true);
+  const { data, loading, error, ensureLoaded, refresh } = useDashboardData();
+  const { showModal } = useModal();
   const [expenseViewType, setExpenseViewType] = useState<'monthly' | 'yearly' | 'category'>('monthly');
   const [expenseStartDate, setExpenseStartDate] = useState<string>('');
   const [expenseEndDate, setExpenseEndDate] = useState<string>('');
 
-  const fetchData = async () => {
-    try {
-      const [ordersRes, billingsRes, customersRes, expensesRes] = await Promise.all([
-        apiRequest('/orders/'),
-        apiRequest('/billings/'),
-        apiRequest('/customers/'),
-        apiRequest('/expenses/'),
-      ]);
-      
-      const ordersData = await ordersRes.json();
-      const billingsData = await billingsRes.json();
-      const customersData = await customersRes.json();
-      const expensesData = await expensesRes.json();
-      
-      setOrders(ordersData);
-      setBillings(billingsData);
-      setCustomers(customersData);
-      setExpenses(expensesData);
-    } catch (error: unknown) {
-      console.error('Error fetching dashboard data:', error);
-    } finally {
-      setLoading(false);
-    }
-  };
-
   useEffect(() => {
-    fetchData();
+    void ensureLoaded();
   }, []);
 
-  // Refresh data when window gains focus or when orders are updated
+  // Refresh data when orders are updated (explicit event from other pages)
   useEffect(() => {
-    const handleFocus = () => {
-      fetchData();
-    };
-    
     const handleOrdersUpdate = () => {
-      fetchData();
+      void refresh();
     };
     
-    window.addEventListener('focus', handleFocus);
     window.addEventListener('ordersUpdated', handleOrdersUpdate);
     
     return () => {
-      window.removeEventListener('focus', handleFocus);
       window.removeEventListener('ordersUpdated', handleOrdersUpdate);
     };
   }, []);
+
+  const orders = useMemo(() => data?.orders ?? [], [data]);
+  const billings = useMemo(() => data?.billings ?? [], [data]);
+  const customers = useMemo(() => data?.customers ?? [], [data]);
+  const expenses = useMemo(() => data?.expenses ?? [], [data]);
 
   // Calculate metrics
   const now = new Date();
@@ -408,7 +334,7 @@ export default function Dashboard() {
   const generateExpenseReport = () => {
     try {
       if (filteredExpenses.length === 0) {
-        alert('No expenses available for the selected period.');
+        showModal("No data", "No expenses available for the selected period.");
         return;
       }
 
@@ -555,7 +481,7 @@ export default function Dashboard() {
     } catch (error: unknown) {
       console.error('Error generating expense report:', error);
       const errorMessage = error instanceof Error ? error.message : 'Unknown error occurred';
-      alert(`Error generating report: ${errorMessage}. Please try again.`);
+      showModal("Error generating report", `${errorMessage}. Please try again.`);
     }
   };
 
@@ -563,7 +489,7 @@ export default function Dashboard() {
   const generateReport = async () => {
     try {
       if (orders.length === 0) {
-        alert('No orders available to generate report.');
+        showModal("No data", "No orders available to generate report.");
         return;
       }
 
@@ -586,7 +512,7 @@ export default function Dashboard() {
       );
 
       if (ordersWithDetails.length === 0) {
-        alert('No order data available to generate report.');
+        showModal("No data", "No order data available to generate report.");
         return;
       }
 
@@ -737,7 +663,7 @@ export default function Dashboard() {
     } catch (error: unknown) {
       console.error('Error generating report:', error);
       const errorMessage = error instanceof Error ? error.message : 'Unknown error occurred';
-      alert(`Error generating report: ${errorMessage}. Please try again.`);
+      showModal("Error generating report", `${errorMessage}. Please try again.`);
     }
   };
 
@@ -757,7 +683,7 @@ export default function Dashboard() {
         <button
           onClick={generateReport}
           className="inline-flex items-center gap-2 rounded-md px-4 py-2 text-white shadow hover:opacity-90 transition"
-          style={{ backgroundColor: "#4e73df" }}
+          style={{ backgroundColor: "var(--accent-color)" }}
         >
           <span className="text-sm">Generate Report</span>
           <svg viewBox="0 0 24 24" className="h-4 w-4 fill-current">
@@ -769,7 +695,7 @@ export default function Dashboard() {
       {/* KPI Cards */}
       <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
         <KpiCard
-          accent="#4e73df"
+          accent="var(--accent-color)"
           title="EARNINGS (MONTHLY)"
           value={formatCurrency(monthlySales)}
           icon={<CalendarIcon />}
@@ -818,8 +744,8 @@ export default function Dashboard() {
             <AreaChart data={salesChartData}>
               <defs>
                 <linearGradient id="colorSales" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="5%" stopColor="#4e73df" stopOpacity={0.8}/>
-                  <stop offset="95%" stopColor="#4e73df" stopOpacity={0}/>
+                  <stop offset="5%" stopColor="var(--accent-color)" stopOpacity={0.8}/>
+                  <stop offset="95%" stopColor="var(--accent-color)" stopOpacity={0}/>
                 </linearGradient>
               </defs>
               <CartesianGrid strokeDasharray="3 3" />
@@ -832,7 +758,7 @@ export default function Dashboard() {
               <Area 
                 type="monotone" 
                 dataKey="sales" 
-                stroke="#4e73df" 
+                stroke="var(--accent-color)" 
                 fillOpacity={1} 
                 fill="url(#colorSales)" 
               />
@@ -884,7 +810,7 @@ export default function Dashboard() {
                 onClick={() => setExpenseViewType('monthly')}
                 className={`px-4 py-2 rounded-lg text-sm font-medium transition ${
                   expenseViewType === 'monthly'
-                    ? 'bg-indigo-600 text-white'
+                    ? 'bg-[var(--accent-color)] text-white'
                     : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                 }`}
               >
@@ -894,7 +820,7 @@ export default function Dashboard() {
                 onClick={() => setExpenseViewType('yearly')}
                 className={`px-4 py-2 rounded-lg text-sm font-medium transition ${
                   expenseViewType === 'yearly'
-                    ? 'bg-indigo-600 text-white'
+                    ? 'bg-[var(--accent-color)] text-white'
                     : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                 }`}
               >
@@ -904,7 +830,7 @@ export default function Dashboard() {
                 onClick={() => setExpenseViewType('category')}
                 className={`px-4 py-2 rounded-lg text-sm font-medium transition ${
                   expenseViewType === 'category'
-                    ? 'bg-indigo-600 text-white'
+                    ? 'bg-[var(--accent-color)] text-white'
                     : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                 }`}
               >
@@ -920,7 +846,7 @@ export default function Dashboard() {
                   type="date"
                   value={expenseStartDate}
                   onChange={(e) => setExpenseStartDate(e.target.value)}
-                  className="border rounded-lg px-3 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-400"
+                  className="border rounded-lg px-3 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-[rgba(14,165,164,0.35)] focus:border-[var(--accent-color)]"
                 />
               </div>
               <div>
@@ -929,7 +855,7 @@ export default function Dashboard() {
                   type="date"
                   value={expenseEndDate}
                   onChange={(e) => setExpenseEndDate(e.target.value)}
-                  className="border rounded-lg px-3 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-400"
+                  className="border rounded-lg px-3 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-[rgba(14,165,164,0.35)] focus:border-[var(--accent-color)]"
                 />
               </div>
               <button
@@ -943,7 +869,7 @@ export default function Dashboard() {
               </button>
               <button
                 onClick={generateExpenseReport}
-                className="px-4 py-1.5 text-sm bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition flex items-center gap-2"
+                className="px-4 py-1.5 text-sm bg-[var(--accent-color)] text-white rounded-lg hover:bg-[var(--accent-color-hover)] transition flex items-center gap-2"
               >
                 <svg viewBox="0 0 24 24" className="h-4 w-4 fill-current">
                   <path d="M5 20h14v-2H5v2zM12 2l4 4h-3v8h-2V6H8l4-4z" />
@@ -1037,7 +963,7 @@ export default function Dashboard() {
                               {entry.fullName || entry.name}
                             </div>
                             <div className="flex items-center gap-4 text-sm">
-                              <span className="font-semibold text-indigo-600">
+                              <span className="font-semibold text-[var(--accent-color)]">
                                 {formatCurrency(entry.expenses)}
                               </span>
                               <span className="text-gray-600 font-medium">
@@ -1151,7 +1077,7 @@ function Card({
   return (
     <section className={`rounded-xl bg-white shadow-sm ${className}`}>
       <div className="flex items-center justify-between border-b px-4 py-3">
-        <h2 className="font-semibold text-[#4e73df]">{shellTitle}</h2>
+        <h2 className="font-semibold text-[var(--accent-color)]">{shellTitle}</h2>
         <button className="grid h-8 w-8 place-items-center rounded-full text-gray-400 hover:bg-gray-100" aria-label="More">
           <svg viewBox="0 0 20 20" className="h-4 w-4 fill-current">
             <circle cx="4" cy="10" r="2" /><circle cx="10" cy="10" r="2" /><circle cx="16" cy="10" r="2" />

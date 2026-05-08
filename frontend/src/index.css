@@ -1,1 +1,43 @@
 @import "tailwindcss";
+
+/* FlexAdmin-like theme tokens (light mode) */
+:root {
+  --background-color: #f4f7fb;
+  --default-color: #1c2635;
+  --heading-color: #0f1728;
+  --accent-color: #0ea5a4;
+  --accent-color-hover: #0b8f8e;
+  --surface-color: #ffffff;
+  --muted-color: #5f6e83;
+  --border-color: #dde5f1;
+  --sidebar-bg: #fbfdff;
+  --sidebar-border: #cfe0f3;
+  --sidebar-color: #223248;
+  --sidebar-muted-color: #6b809d;
+  --sidebar-active-color: #ffffff;
+}
+
+/* Visible scrollbar for the left sidebar */
+.sidebar-scroll {
+  /* Keep layout stable when scrollbar appears */
+  scrollbar-gutter: stable;
+  /* Firefox */
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.35) rgba(255, 255, 255, 0.08);
+}
+
+/* Chromium/WebKit */
+.sidebar-scroll::-webkit-scrollbar {
+  width: 10px;
+}
+.sidebar-scroll::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.08);
+}
+.sidebar-scroll::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.35);
+  border-radius: 999px;
+  border: 2px solid rgba(34, 74, 190, 0.35);
+}
+.sidebar-scroll::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.5);
+}

@@ -3,8 +3,10 @@ from rest_framework import viewsets
 from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
+from rest_framework.exceptions import ValidationError
 from datetime import datetime, date
 from django.db import transaction
+from django.utils import timezone
 from .models import (
     Vendor,
     RawMaterial,
@@ -91,6 +93,22 @@ class CustomerViewSet(viewsets.ModelViewSet):
     queryset = Customer.objects.all()
     serializer_class = CustomerSerializer
     permission_classes = [IsAuthenticated, IsCEOOrManagerCanAdd]
+    
+    def perform_create(self, serializer):
+        now = timezone.now()
+        user_id = getattr(self.request.user, "employee_id", None)
+        serializer.save(
+            created_at=now,
+            created_by=user_id,
+            updated_at=now,
+            updated_by=user_id,
+            is_deleted=None,
+        )
+    
+    def perform_update(self, serializer):
+        now = timezone.now()
+        user_id = getattr(self.request.user, "employee_id", None)
+        serializer.save(updated_at=now, updated_by=user_id)
 
 
 class ProductViewSet(viewsets.ModelViewSet):
@@ -167,7 +185,19 @@ class OrderViewSet(viewsets.ModelViewSet):
             # Generate order number
             last_order = Order.objects.order_by('-order_id').first()
             order_no = f"ORD-{datetime.now().strftime('%Y%m%d')}-{((last_order.order_id if last_order else 0) + 1):04d}"
-            serializer.save(order_no=order_no)
+            now = timezone.now()
+            user_id = getattr(self.request.user, "employee_id", None)
+            total_amount = serializer.validated_data.get("total_amount", 0) or 0
+            discount = serializer.validated_data.get("discount", 0) or 0
+            serializer.save(
+                order_no=order_no,
+                total_bill_after_discount=max(total_amount - discount, 0),
+                created_at=now,
+                created_by=user_id,
+                updated_at=now,
+                updated_by=user_id,
+                is_deleted=None,
+            )
     
     def perform_update(self, serializer):
         instance = serializer.instance
@@ -175,7 +205,15 @@ class OrderViewSet(viewsets.ModelViewSet):
         new_status = serializer.validated_data.get('order_status', instance.order_status)
         
         # Save the order first
-        serializer.save()
+        now = timezone.now()
+        user_id = getattr(self.request.user, "employee_id", None)
+        total_amount = serializer.validated_data.get("total_amount", instance.total_amount) or 0
+        discount = serializer.validated_data.get("discount", instance.discount) or 0
+        serializer.save(
+            total_bill_after_discount=max(total_amount - discount, 0),
+            updated_at=now,
+            updated_by=user_id,
+        )
         
         # If status changed from pending to completed, update/create billing
         if old_status == 0 and new_status == 1:
@@ -188,7 +226,7 @@ class OrderViewSet(viewsets.ModelViewSet):
                 if billing.balance > 0:
                     billing.amount_received = billing.total_bill
                     billing.balance = 0
-                    billing.payment_date = datetime.now()
+                    billing.payment_date = timezone.now()
                     billing.save()
             else:
                 # Create new billing record if order is completed but no billing exists
@@ -199,7 +237,7 @@ class OrderViewSet(viewsets.ModelViewSet):
                     total_bill=instance.total_amount,
                     amount_received=instance.total_amount,  # Assume fully paid if marked complete
                     balance=0,
-                    payment_date=datetime.now()
+                    payment_date=timezone.now()
                 )
 
 
@@ -210,7 +248,26 @@ class OrderDetailsViewSet(viewsets.ModelViewSet):
     
     def perform_create(self, serializer):
         with transaction.atomic():
-            order_detail = serializer.save()
+            # Validate inventory BEFORE saving, so we return JSON 400 instead of HTML 500
+            product = serializer.validated_data.get("product")
+            quantity_ordered = serializer.validated_data.get("quantity", 0) or 0
+            if product and product.quantity < quantity_ordered:
+                raise ValidationError({
+                    "detail": (
+                        f"Insufficient {product.product_name} inventory. "
+                        f"Required: {quantity_ordered}, Available: {product.quantity}"
+                    )
+                })
+
+            now = timezone.now()
+            user_id = getattr(self.request.user, "employee_id", None)
+            order_detail = serializer.save(
+                created_at=now,
+                created_by=user_id,
+                updated_at=now,
+                updated_by=user_id,
+                is_deleted=None,
+            )
             
             # Deduct product inventory when order is placed
             if order_detail.product:
@@ -219,10 +276,12 @@ class OrderDetailsViewSet(viewsets.ModelViewSet):
                 
                 # Check if enough product is available
                 if product.quantity < quantity_ordered:
-                    raise ValueError(
-                        f"Insufficient {product.product_name} inventory. "
-                        f"Required: {quantity_ordered}, Available: {product.quantity}"
-                    )
+                    raise ValidationError({
+                        "detail": (
+                            f"Insufficient {product.product_name} inventory. "
+                            f"Required: {quantity_ordered}, Available: {product.quantity}"
+                        )
+                    })
                 
                 # Deduct product quantity
                 product.quantity -= quantity_ordered
@@ -237,25 +296,44 @@ class BillingViewSet(viewsets.ModelViewSet):
     def perform_create(self, serializer):
         # Set payment_date if amount_received > 0
         amount_received = serializer.validated_data.get('amount_received', 0)
+        now = timezone.now()
+        user_id = getattr(self.request.user, "employee_id", None)
         if amount_received > 0:
-            serializer.save(payment_date=datetime.now())
+            serializer.save(
+                payment_date=now,
+                created_at=now,
+                created_by=user_id,
+                updated_at=now,
+                updated_by=user_id,
+                is_deleted=None,
+            )
+        else:
+            serializer.save(
+                created_at=now,
+                created_by=user_id,
+                updated_at=now,
+                updated_by=user_id,
+                is_deleted=None,
+            )
     
     def perform_update(self, serializer):
         instance = serializer.instance
         old_amount_received = instance.amount_received
         new_amount_received = serializer.validated_data.get('amount_received', instance.amount_received)
+        now = timezone.now()
+        user_id = getattr(self.request.user, "employee_id", None)
         
         # Update payment_date if amount_received increased or was 0 and now > 0
         if new_amount_received > 0 and (old_amount_received == 0 or new_amount_received > old_amount_received):
-            serializer.save(payment_date=datetime.now())
+            serializer.save(payment_date=now, updated_at=now, updated_by=user_id)
         else:
-            serializer.save()
+            serializer.save(updated_at=now, updated_by=user_id)
         
         # Update balance_payment_date if balance becomes 0
         total_bill = serializer.validated_data.get('total_bill', instance.total_bill)
         balance = total_bill - new_amount_received
         if balance == 0 and instance.balance > 0:
-            serializer.save(balance_payment_date=datetime.now())
+            serializer.save(balance_payment_date=now, updated_at=now, updated_by=user_id)
 
 
 class ExpenseCategoryViewSet(viewsets.ModelViewSet):

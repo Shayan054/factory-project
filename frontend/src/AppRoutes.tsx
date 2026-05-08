@@ -7,6 +7,7 @@ import RegisterPage from "./pages/Register";
 import Operations from "./pages/Operations";
 import Management from "./pages/Managment";
 import ProtectedRoute from "./components/ProtectedRoute";
+import { DashboardDataProvider } from "./context/DashboardDataContext";
 
 export default function AppRoutes() {
   return (
@@ -15,7 +16,9 @@ export default function AppRoutes() {
       <Route
         element={
           <ProtectedRoute>
-            <AppLayout />
+            <DashboardDataProvider>
+              <AppLayout />
+            </DashboardDataProvider>
           </ProtectedRoute>
         }
       >

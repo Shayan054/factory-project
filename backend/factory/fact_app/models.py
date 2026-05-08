@@ -106,7 +106,14 @@ class Customer(models.Model):
     name = models.CharField(max_length=100)
     contact = models.CharField(max_length=50)
     address = models.TextField()
-    remark = models.TextField(blank=True)
+    remark = models.TextField(default="", blank=True)
+
+    # Audit fields (managed by backend)
+    created_by = models.IntegerField(null=True, blank=True)
+    created_at = models.DateTimeField(null=True, blank=True)
+    updated_by = models.IntegerField(null=True, blank=True)
+    updated_at = models.DateTimeField(null=True, blank=True)
+    is_deleted = models.IntegerField(null=True, blank=True, default=None)
 
     def __str__(self):
         return self.name
@@ -150,6 +157,18 @@ class Order(models.Model):
     order_status = models.IntegerField(default=0)  # enum value: 0=Pending, 1=Completed
     total_amount = models.IntegerField(default=0)
     discount = models.IntegerField(default=0)  # Discount amount
+    total_bill_after_discount = models.IntegerField(null=True, blank=True)
+    order_req_date = models.DateTimeField(null=True, blank=True)
+    total_item_quantity = models.IntegerField(null=True, blank=True)
+    status = models.CharField(max_length=10, null=True, blank=True)
+    notes = models.CharField(max_length=200, null=True, blank=True)
+
+    # Audit fields (managed by backend)
+    created_by = models.IntegerField(null=True, blank=True)
+    created_at = models.DateTimeField(null=True, blank=True)
+    updated_by = models.IntegerField(null=True, blank=True)
+    updated_at = models.DateTimeField(null=True, blank=True)
+    is_deleted = models.IntegerField(null=True, blank=True, default=None)
     
     customer = models.ForeignKey(
         Customer,
@@ -166,6 +185,14 @@ class OrderDetails(models.Model):
     quantity = models.IntegerField()
     price = models.IntegerField(default=0)  # Price per unit at time of order
     sub_total = models.IntegerField()
+    discount = models.IntegerField(null=True, blank=True)
+
+    # Audit fields (managed by backend)
+    created_by = models.IntegerField(null=True, blank=True)
+    created_at = models.DateTimeField(null=True, blank=True)
+    updated_by = models.IntegerField(null=True, blank=True)
+    updated_at = models.DateTimeField(null=True, blank=True)
+    is_deleted = models.IntegerField(null=True, blank=True, default=None)
 
     order = models.ForeignKey(
         Order,
@@ -192,7 +219,16 @@ class Billing(models.Model):
     bill_date = models.DateTimeField(auto_now_add=True)
     payment_date = models.DateTimeField(null=True, blank=True)
     balance_payment_date = models.DateTimeField(null=True, blank=True)
-    remarks = models.TextField(blank=True)
+    remarks = models.TextField(default="", blank=True)
+    payment_method = models.CharField(max_length=12, null=True, blank=True)
+    status = models.CharField(max_length=7, null=True, blank=True)
+
+    # Audit fields (managed by backend)
+    created_by = models.IntegerField(null=True, blank=True)
+    created_at = models.DateTimeField(null=True, blank=True)
+    updated_by = models.IntegerField(null=True, blank=True)
+    updated_at = models.DateTimeField(null=True, blank=True)
+    is_deleted = models.IntegerField(null=True, blank=True, default=None)
 
     order = models.ForeignKey(
         Order,

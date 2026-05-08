@@ -51,7 +51,7 @@ export default function LoginPage() {
     <div className="bg-gray-100 min-h-screen flex items-center justify-center p-4">
       <div className="w-full max-w-4xl grid md:grid-cols-2 shadow-2xl rounded-3xl overflow-hidden bg-white">
         {/* Left Graphic Section */}
-        <div className="hidden md:flex flex-col items-center justify-center bg-linear-to-br from-purple-700 via-indigo-700 to-blue-700 text-white p-10 relative">
+        <div className="hidden md:flex flex-col items-center justify-center bg-linear-to-br from-[#0ea5a4] via-[#14b8a6] to-[#0f766e] text-white p-10 relative">
           <div className="text-center mb-10">
             <h1 className="text-4xl font-extrabold tracking-wide">Welcome</h1>
             <p className="text-white/80 mt-2">Your journey begins here</p>
@@ -95,7 +95,7 @@ export default function LoginPage() {
               <input
                 id="email"
                 type="email"
-                className="w-full p-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-300"
+                className="w-full p-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-[rgba(14,165,164,0.35)] focus:border-[var(--accent-color)]"
                 placeholder="you@example.com"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
@@ -111,7 +111,7 @@ export default function LoginPage() {
               <input
                 id="password"
                 type="password"
-                className="w-full p-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-300"
+                className="w-full p-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-[rgba(14,165,164,0.35)] focus:border-[var(--accent-color)]"
                 placeholder="••••••••"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
@@ -130,7 +130,7 @@ export default function LoginPage() {
                 />
                 Remember me
               </label>
-              <a href="#" className="text-purple-600 font-medium hover:underline">
+              <a href="#" className="text-[var(--accent-color)] font-medium hover:underline">
                 Forgot Password?
               </a>
             </div>
@@ -138,7 +138,7 @@ export default function LoginPage() {
             <button
               type="submit"
               disabled={loading}
-              className="w-full bg-purple-700 hover:bg-purple-600 disabled:bg-gray-400 disabled:cursor-not-allowed text-white py-3 rounded-xl font-semibold transition shadow-md"
+              className="w-full bg-[var(--accent-color)] hover:bg-[var(--accent-color-hover)] disabled:bg-gray-400 disabled:cursor-not-allowed text-white py-3 rounded-xl font-semibold transition shadow-md"
             >
               {loading ? "Signing in..." : "Sign In"}
             </button>

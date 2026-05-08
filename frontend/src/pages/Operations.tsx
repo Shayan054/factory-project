@@ -1,17 +1,18 @@
 import { useEffect, useState } from "react";
 import { apiRequest } from "../utils/api";
 import { useSearchParams } from "react-router-dom";
+import { useModal } from "../context/ModalContext";
 
 /* ---------- UI CLASSES ---------- */
 const card = "bg-white p-6 rounded-2xl shadow space-y-4";
 const input =
-  "w-full border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-400";
+  "w-full border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[rgba(14,165,164,0.35)] focus:border-[var(--accent-color)]";
 const primaryBtn =
-  "bg-indigo-600 text-white px-6 py-2 rounded-lg hover:bg-indigo-700 transition";
+  "bg-[var(--accent-color)] text-white px-6 py-2 rounded-lg hover:bg-[var(--accent-color-hover)] transition";
 
 /* ---------- TYPES ---------- */
 type Customer = { customer_id: number; name: string; contact: string };
-type Product = { product_id: number; product_name: string; price: number };
+type Product = { product_id: number; product_name: string; price: number; quantity: number };
 type Order = { 
   order_id: number; 
   customer: number; 
@@ -20,6 +21,11 @@ type Order = {
   order_status: number;
   order_no?: string;
   order_date?: string;
+  total_bill_after_discount?: number | null;
+  order_req_date?: string | null;
+  total_item_quantity?: number | null;
+  status?: string | null;
+  notes?: string | null;
 };
 type OrderDetail = {
   order_detail_id: number;
@@ -40,11 +46,13 @@ type Billing = {
 
 const Operations = () => {
   const [searchParams, setSearchParams] = useSearchParams();
-  const [active, setActive] = useState<string | null>(null);
   const [lastPlacedOrderId, setLastPlacedOrderId] = useState<number | null>(null);
+  const { showModal } = useModal();
+
+  // Always derive the active tab from the URL, so it can't go out of sync
+  const active = searchParams.get("tab");
 
   const setActiveTab = (tab: string | null) => {
-    setActive(tab);
     if (!tab) {
       setSearchParams((prev) => {
         const next = new URLSearchParams(prev);
@@ -59,12 +67,6 @@ const Operations = () => {
       return next;
     });
   };
-
-  // Sync active form with URL (?tab=vendor/raw/product/customer/order/billing/expense)
-  useEffect(() => {
-    const tab = searchParams.get("tab");
-    setActive(tab);
-  }, [searchParams]);
 
   // Currency formatter
   const formatCurrency = (amount: number) => {
@@ -141,17 +143,130 @@ const Operations = () => {
     product: "",
     quantity: "",
     order_status: 0,
+    discount: "",
+    order_req_date: "",
+    status: "",
+    notes: "",
   });
+
+  const editOrderIdParam = searchParams.get("editOrderId");
+  const editOrderId = editOrderIdParam ? Number(editOrderIdParam) : null;
+  const isEditMode = active === "order" && Number.isFinite(editOrderId as any) && !!editOrderId;
+  const [editBillingId, setEditBillingId] = useState<number | null>(null);
+  const [editOrderDetailId, setEditOrderDetailId] = useState<number | null>(null);
+
+  type DraftOrder = {
+    customerId: number;
+    productId: number;
+    productName: string;
+    productUnitPrice: number;
+    quantity: number;
+    discount: number;
+    order_status: number;
+    order_req_date: string | null; // ISO string
+    status: string | null;
+    notes: string | null;
+    total_amount: number;
+    total_bill_after_discount: number;
+  };
+
+  const [draftOrder, setDraftOrder] = useState<DraftOrder | null>(null);
+
+  // Persist draft order across query changes / refreshes (session only)
+  useEffect(() => {
+    try {
+      if (draftOrder) {
+        sessionStorage.setItem("draft_order", JSON.stringify(draftOrder));
+      } else {
+        sessionStorage.removeItem("draft_order");
+      }
+    } catch {
+      // ignore storage errors
+    }
+  }, [draftOrder]);
+
+  useEffect(() => {
+    try {
+      if (!draftOrder) {
+        const raw = sessionStorage.getItem("draft_order");
+        if (raw) setDraftOrder(JSON.parse(raw));
+      }
+    } catch {
+      // ignore parse/storage errors
+    }
+    // run once
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const selectedProduct = products.find(p => p.product_id === Number(orderForm.product));
   const productPrice = selectedProduct?.price ?? 0;
   const subTotal = Number(orderForm.quantity) * productPrice;
+  const orderDiscount = Number(orderForm.discount) || 0;
+  const totalAfterDiscount = Math.max(subTotal - orderDiscount, 0);
+  const availableQty = selectedProduct?.quantity ?? null;
+  const requestedQty = Number(orderForm.quantity) || 0;
+  const isQtyInsufficient = availableQty !== null && requestedQty > 0 && requestedQty > availableQty;
 
   /* ---------- BILLING ---------- */
   const [billing, setBilling] = useState({
     order: "",
     amount_received: "",
+    payment_method: "",
+    status: "",
+    remarks: "",
   });
+
+  useEffect(() => {
+    const loadEditData = async () => {
+      if (!isEditMode || !editOrderId) return;
+      try {
+        // Load order
+        const orderRes = await apiRequest(`/orders/${editOrderId}/`);
+        if (!orderRes.ok) {
+          const err = await orderRes.json().catch(() => ({}));
+          showModal("Error", `Failed to load order.\n${JSON.stringify(err)}`);
+          return;
+        }
+        const order = await orderRes.json();
+
+        // Load order-details and pick the first detail for editing
+        const odRes = await apiRequest(`/order-details/`);
+        const odJson = odRes.ok ? await odRes.json() : [];
+        const details = Array.isArray(odJson) ? odJson.filter((d: any) => d.order === editOrderId) : [];
+        const firstDetail = details[0] || null;
+        setEditOrderDetailId(firstDetail?.order_detail_id ?? null);
+
+        setOrderForm({
+          customer: String(order.customer ?? ""),
+          product: String(firstDetail?.product ?? ""),
+          quantity: String(firstDetail?.quantity ?? ""),
+          order_status: Number(order.order_status ?? 0),
+          discount: String(order.discount ?? ""),
+          order_req_date: order.order_req_date ? String(order.order_req_date).slice(0, 10) : "",
+          status: order.status ?? "",
+          notes: order.notes ?? "",
+        });
+
+        // Load billing (if exists)
+        const bRes = await apiRequest(`/billings/`);
+        const bJson = bRes.ok ? await bRes.json() : [];
+        const b = Array.isArray(bJson) ? bJson.find((x: any) => x.order === editOrderId) : null;
+        setEditBillingId(b?.billing_id ?? null);
+        setBilling({
+          order: String(editOrderId),
+          amount_received: b?.amount_received != null ? String(b.amount_received) : "",
+          payment_method: b?.payment_method ?? "",
+          status: b?.status ?? "",
+          remarks: b?.remarks ?? "",
+        });
+      } catch (e: any) {
+        showModal("Error", e?.message || String(e));
+      }
+    };
+
+    void loadEditData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isEditMode, editOrderId]);
 
   /* ---------- EXPENSE ---------- */
   const [expense, setExpense] = useState({
@@ -183,144 +298,321 @@ const Operations = () => {
     });
     if (!response.ok) {
       const error = await response.json();
-      alert(`Error: ${JSON.stringify(error)}`);
+      showModal("Error", JSON.stringify(error));
       return null;
     }
     const result = await response.json();
-    alert("Saved successfully");
+    showModal("Success", "Saved successfully.");
     return result;
   };
 
-  /* ---------- PLACE ORDER ---------- */
-  const placeOrder = async () => {
+  /* ---------- CONFIRM (IN-MEMORY) ORDER ---------- */
+  const confirmOrder = async () => {
     if (!orderForm.customer || !orderForm.product || !orderForm.quantity) {
-      alert("Please fill all required fields");
+      showModal("Missing fields", "Please fill all required fields.");
       return;
     }
 
     if (Number(orderForm.quantity) <= 0) {
-      alert("Quantity must be greater than 0");
+      showModal("Invalid quantity", "Quantity must be greater than 0.");
       return;
     }
 
     try {
-      // Create order
-      const orderData = {
-        customer: Number(orderForm.customer),
-        order_status: orderForm.order_status,
-        total_amount: subTotal,
-      };
-      
-      console.log("Sending order data:", orderData);
-      
-      const orderRes = await apiRequest('/orders/', {
-        method: "POST",
-        body: JSON.stringify(orderData),
-      });
-
-      if (!orderRes.ok) {
-        const errorData = await orderRes.json().catch(() => ({ detail: "Failed to create order" }));
-        console.error("Order creation error:", errorData);
-        throw new Error(JSON.stringify(errorData));
+      if (isQtyInsufficient) {
+        showModal(
+          "Low inventory",
+          `Only ${availableQty} available for ${selectedProduct?.product_name || "this product"}.`
+        );
+        return;
       }
 
-      const order = await orderRes.json();
+      // Save in memory only, then move to billing
+      const customerId = Number(orderForm.customer);
+      const productId = Number(orderForm.product);
+      const qty = Number(orderForm.quantity);
+      const draft: DraftOrder = {
+        customerId,
+        productId,
+        productName: selectedProduct?.product_name || "",
+        productUnitPrice: productPrice,
+        quantity: qty,
+        discount: orderDiscount,
+        order_status: orderForm.order_status,
+        order_req_date: orderForm.order_req_date ? new Date(orderForm.order_req_date).toISOString() : null,
+        status: orderForm.status || null,
+        notes: orderForm.notes || null,
+        total_amount: subTotal,
+        total_bill_after_discount: totalAfterDiscount,
+      };
+      setDraftOrder(draft);
+      setActiveTab("billing");
+      showModal("Order confirmed", "Order is saved in memory. Complete billing to save it to the database.");
+    } catch (error: any) {
+      const errorMessage = error.message || String(error);
+      showModal("Error", `Error placing order: ${errorMessage}`);
+      console.error("Order placement error:", error);
+    }
+  };
 
-      // Create order detail
-      // Handle both 'order_id' and 'id' field names from API
-      const orderId = order.order_id || order.id;
-      const orderDetailRes = await apiRequest('/order-details/', {
-        method: "POST",
-        body: JSON.stringify({
-          order: orderId,
+  const updateExistingOrder = async () => {
+    if (!editOrderId) return;
+    if (!orderForm.customer || !orderForm.product || !orderForm.quantity) {
+      showModal("Missing fields", "Please fill all required fields.");
+      return;
+    }
+    if (Number(orderForm.quantity) <= 0) {
+      showModal("Invalid quantity", "Quantity must be greater than 0.");
+      return;
+    }
+    try {
+      // Update order
+      const orderPayload = {
+        customer: Number(orderForm.customer),
+        order_status: Number(orderForm.order_status) || 0,
+        total_amount: subTotal,
+        discount: orderDiscount,
+        order_req_date: orderForm.order_req_date ? new Date(orderForm.order_req_date).toISOString() : null,
+        total_item_quantity: Number(orderForm.quantity) || null,
+        status: orderForm.status || null,
+        notes: orderForm.notes || null,
+      };
+      const orderRes = await apiRequest(`/orders/${editOrderId}/`, {
+        method: "PUT",
+        body: JSON.stringify(orderPayload),
+      });
+      if (!orderRes.ok) {
+        const err = await orderRes.json().catch(() => ({}));
+        showModal("Error", `Failed to update order.\n${JSON.stringify(err)}`);
+        return;
+      }
+
+      // Update order detail (first row)
+      if (editOrderDetailId) {
+        const detailPayload = {
+          order: editOrderId,
           product: Number(orderForm.product),
           order_item: selectedProduct?.product_name || "",
           quantity: Number(orderForm.quantity),
           price: productPrice,
           sub_total: subTotal,
-        }),
-      });
-
-      if (!orderDetailRes.ok) {
-        const errorData = await orderDetailRes.json().catch(() => ({ detail: "Failed to create order detail" }));
-        throw new Error(`Failed to create order detail: ${JSON.stringify(errorData)}`);
+          discount: orderDiscount,
+        };
+        const dRes = await apiRequest(`/order-details/${editOrderDetailId}/`, {
+          method: "PUT",
+          body: JSON.stringify(detailPayload),
+        });
+        if (!dRes.ok) {
+          const err = await dRes.json().catch(() => ({}));
+          showModal("Error", `Failed to update order details.\n${JSON.stringify(err)}`);
+          return;
+        }
       }
 
-      // Refresh orders list
-      refreshOrders();
-      
-      // Reset form
-      setOrderForm({
-        customer: "",
-        product: "",
-        quantity: "",
-        order_status: 0,
-      });
+      // Update billing if present (or create one if user provided amount)
+      const received = billing.amount_received ? Number(billing.amount_received) : 0;
+      const billPayload = {
+        order: editOrderId,
+        customer: Number(orderForm.customer),
+        total_bill: totalAfterDiscount,
+        amount_received: received,
+        balance: Math.max(totalAfterDiscount - received, 0),
+        payment_method: billing.payment_method || "",
+        status: billing.status || "",
+        remarks: billing.remarks || "",
+      };
 
-      // Store order ID and navigate to billing (orderId already declared above)
-      setLastPlacedOrderId(orderId);
-      alert("Order placed successfully! Moving to billing...");
-      setActiveTab("billing");
-    } catch (error: any) {
-      const errorMessage = error.message || String(error);
-      alert(`Error placing order: ${errorMessage}`);
-      console.error("Order placement error:", error);
+      if (editBillingId) {
+        const bRes = await apiRequest(`/billings/${editBillingId}/`, {
+          method: "PUT",
+          body: JSON.stringify(billPayload),
+        });
+        if (!bRes.ok) {
+          const err = await bRes.json().catch(() => ({}));
+          showModal("Error", `Failed to update billing.\n${JSON.stringify(err)}`);
+          return;
+        }
+      } else if (billing.amount_received || billing.payment_method || billing.status || billing.remarks) {
+        const bRes = await apiRequest(`/billings/`, {
+          method: "POST",
+          body: JSON.stringify(billPayload),
+        });
+        if (!bRes.ok) {
+          const err = await bRes.json().catch(() => ({}));
+          showModal("Error", `Failed to create billing.\n${JSON.stringify(err)}`);
+          return;
+        }
+      }
+
+      showModal("Success", "Order updated successfully.");
+      // refresh local caches
+      apiRequest('/orders/').then(r => r.json()).then(setOrders).catch(console.error);
+      apiRequest('/billings/').then(r => r.json()).then(setBillings).catch(console.error);
+      setSearchParams((prev) => {
+        const next = new URLSearchParams(prev);
+        next.delete("editOrderId");
+        next.set("tab", "order");
+        return next;
+      });
+    } catch (e: any) {
+      showModal("Error", e?.message || String(e));
     }
   };
 
   /* ---------- BILLING ---------- */
   const generateBill = async () => {
-    if (!selectedOrder) {
-      alert("Please select an order");
-      return;
-    }
-
     const received = Number(billing.amount_received);
     if (received < 0) {
-      alert("Amount received cannot be negative");
-      return;
-    }
-
-    if (received > selectedOrder.total_amount) {
-      alert("Amount received cannot be greater than total bill");
+      showModal("Invalid amount", "Amount received cannot be negative.");
       return;
     }
 
     try {
+      // If we have a draft order, confirm it now by writing to DB (order -> order-details -> billing)
+      if (draftOrder) {
+        if (received > draftOrder.total_bill_after_discount) {
+          showModal("Invalid amount", "Amount received cannot be greater than total bill.");
+          return;
+        }
+
+        // 1) Create order
+        const orderRes = await apiRequest("/orders/", {
+          method: "POST",
+          body: JSON.stringify({
+            customer: draftOrder.customerId,
+            order_status: draftOrder.order_status,
+            total_amount: draftOrder.total_amount,
+            discount: draftOrder.discount,
+            total_bill_after_discount: draftOrder.total_bill_after_discount,
+            order_req_date: draftOrder.order_req_date,
+            total_item_quantity: draftOrder.quantity,
+            status: draftOrder.status,
+            notes: draftOrder.notes,
+          }),
+        });
+
+        if (!orderRes.ok) {
+          const err = await orderRes.json().catch(() => ({ detail: "Failed to create order" }));
+          showModal("Error", err?.detail || "Failed to create order");
+          return;
+        }
+
+        const createdOrder = await orderRes.json();
+        const orderId = createdOrder.order_id || createdOrder.id;
+
+        // 2) Create order details
+        const orderDetailRes = await apiRequest("/order-details/", {
+          method: "POST",
+          body: JSON.stringify({
+            order: orderId,
+            product: draftOrder.productId,
+            order_item: draftOrder.productName,
+            quantity: draftOrder.quantity,
+            price: draftOrder.productUnitPrice,
+            discount: draftOrder.discount,
+            sub_total: draftOrder.total_bill_after_discount,
+          }),
+        });
+
+        if (!orderDetailRes.ok) {
+          const err = await orderDetailRes.json().catch(() => ({ detail: "Failed to create order detail" }));
+          // Best-effort cleanup: delete order if details failed
+          try {
+            await apiRequest(`/orders/${orderId}/`, { method: "DELETE" });
+          } catch {
+            // ignore cleanup errors
+          }
+          showModal("Error", err?.detail || "Failed to create order detail");
+          return;
+        }
+
+        // 3) Create billing
+        const billingData = {
+          order: orderId,
+          customer: draftOrder.customerId,
+          total_bill: draftOrder.total_bill_after_discount,
+          amount_received: received,
+          balance: draftOrder.total_bill_after_discount - received,
+          payment_method: billing.payment_method || null,
+          status: billing.status || null,
+          remarks: billing.remarks || "",
+        };
+
+        const result = await post("/billings/", billingData);
+        if (result) {
+          // Refresh lists
+          refreshOrders();
+          apiRequest("/billings/").then((r) => r.json()).then(setBillings).catch(console.error);
+          apiRequest("/products/").then((r) => r.json()).then(setProducts).catch(console.error);
+
+          await printReceipt(result);
+
+          setDraftOrder(null);
+          setBilling({
+            order: "",
+            amount_received: "",
+            payment_method: "",
+            status: "",
+            remarks: "",
+          });
+          showModal("Order confirmed", "Order and billing saved successfully.");
+        }
+        return;
+      }
+
+      // Otherwise, behave as before: bill an existing order
+      if (!selectedOrder) {
+        showModal("Missing order", "Please select an order.");
+        return;
+      }
+
+      if (received > selectedOrder.total_amount) {
+        showModal("Invalid amount", "Amount received cannot be greater than total bill.");
+        return;
+      }
+
       const billingData = {
         order: selectedOrder.order_id,
         customer: selectedOrder.customer,
         total_bill: selectedOrder.total_amount,
         amount_received: received,
         balance: selectedOrder.total_amount - received,
+        payment_method: billing.payment_method || null,
+        status: billing.status || null,
+        remarks: billing.remarks || "",
       };
 
-      const result = await post('/billings/', billingData);
-      
+      const result = await post("/billings/", billingData);
       if (result) {
-        // Refresh billings
-        apiRequest('/billings/').then(r => r.json()).then(setBillings).catch(console.error);
-        
-        // Print receipt
-        printReceipt(result);
-        
-        // Reset billing form
+        apiRequest("/billings/").then((r) => r.json()).then(setBillings).catch(console.error);
+        await printReceipt(result);
         setBilling({
           order: "",
           amount_received: "",
+          payment_method: "",
+          status: "",
+          remarks: "",
         });
         setLastPlacedOrderId(null);
       }
     } catch (error) {
-      alert(`Error generating bill: ${error}`);
+      showModal("Error", `Error confirming order: ${String(error)}`);
     }
   };
 
   /* ---------- PRINT RECEIPT ---------- */
-  const printReceipt = (bill: Billing) => {
-    const order = orders.find(o => o.order_id === bill.order);
+  const printReceipt = async (bill: Billing) => {
     const customer = customers.find(c => c.customer_id === bill.customer);
-    const orderDetails = order ? apiRequest(`/orders/${order.order_id}/`).then(r => r.json()) : null;
+    let orderNo: string | null = null;
+    try {
+      const orderRes = await apiRequest(`/orders/${bill.order}/`);
+      if (orderRes.ok) {
+        const o = await orderRes.json();
+        orderNo = o?.order_no ?? null;
+      }
+    } catch {
+      // ignore
+    }
 
     // Format currency for receipt
     const formatReceiptCurrency = (amount: number) => {
@@ -374,10 +666,10 @@ const Operations = () => {
             <span class="label">Contact:</span>
             <span>${customer?.contact || "N/A"}</span>
           </div>
-          ${order?.order_no ? `
+          ${orderNo ? `
           <div class="info-row">
             <span class="label">Order No:</span>
-            <span>${order.order_no}</span>
+            <span>${orderNo}</span>
           </div>
           ` : ""}
         </div>
@@ -562,7 +854,7 @@ const Operations = () => {
               
               if (!productRes.ok) {
                 const error = await productRes.json();
-                alert(`Error: ${JSON.stringify(error)}`);
+                showModal("Error", JSON.stringify(error));
                 return;
               }
               
@@ -585,7 +877,7 @@ const Operations = () => {
                   
                   if (!bomRes.ok) {
                     const error = await bomRes.json();
-                    alert(`Error creating BOM entry: ${JSON.stringify(error)}`);
+                    showModal("Error creating BOM entry", JSON.stringify(error));
                     return;
                   }
                 }
@@ -620,18 +912,21 @@ const Operations = () => {
                 
                 if (!updateRes.ok) {
                   const error = await updateRes.json();
-                  alert(`Warning: Product created but raw material deduction failed: ${JSON.stringify(error)}`);
+                  showModal(
+                    "Warning",
+                    `Product created but raw material deduction failed:\n${JSON.stringify(error)}`
+                  );
                 }
               }
               
-              alert("Product saved successfully!");
+              showModal("Success", "Product saved successfully!");
               setProduct({ product_name: "", description: "", price: "", quantity: "" });
               setProductRawMaterials([{ raw_material: "", quantity_required: "" }]);
               
               // Refresh products list
               apiRequest('/products/').then(r => r.json()).then(setProducts).catch(console.error);
             } catch (error: any) {
-              alert(`Error: ${error.message || String(error)}`);
+              showModal("Error", error?.message || String(error));
             }
           }}>Save Product</button>
         </div>
@@ -653,6 +948,12 @@ const Operations = () => {
       {/* ---------- PLACE ORDER ---------- */}
       {active === "order" && (
         <div className={card}>
+          {isEditMode && (
+            <div className="rounded-xl border border-[var(--border-color)] bg-[var(--surface-color)] p-3 text-sm text-[var(--muted-color)]">
+              Editing order <span className="font-semibold text-[var(--heading-color)]">#{editOrderId}</span>. Update fields and click{" "}
+              <span className="font-semibold text-[var(--heading-color)]">Update Order</span>.
+            </div>
+          )}
           <label className="block font-semibold mb-2">Customer *</label>
           <select 
             className={input} 
@@ -674,7 +975,7 @@ const Operations = () => {
             <option value="">Select Product</option>
             {products.map(p => (
               <option key={p.product_id} value={p.product_id}>
-                {p.product_name} {p.price ? `- ${formatCurrency(p.price)}` : ""}
+                {p.product_name} {p.price ? `- ${formatCurrency(p.price)}` : ""} {typeof p.quantity === "number" ? `(${p.quantity} available)` : ""}
               </option>
             ))}
           </select>
@@ -694,6 +995,46 @@ const Operations = () => {
             value={orderForm.quantity}
             onChange={e => setOrderForm({ ...orderForm, quantity: e.target.value })} 
           />
+          {isQtyInsufficient && (
+            <div className="rounded-lg border border-red-200 bg-red-50 p-3 text-sm text-red-700">
+              Low inventory. Available: <span className="font-semibold">{availableQty}</span>
+            </div>
+          )}
+
+          <label className="block font-semibold mb-2 mt-4">Discount (PKR)</label>
+          <input
+            className={input}
+            type="number"
+            placeholder="Discount"
+            min="0"
+            value={orderForm.discount}
+            onChange={e => setOrderForm({ ...orderForm, discount: e.target.value })}
+          />
+
+          <label className="block font-semibold mb-2 mt-4">Required Date</label>
+          <input
+            className={input}
+            type="datetime-local"
+            value={orderForm.order_req_date}
+            onChange={e => setOrderForm({ ...orderForm, order_req_date: e.target.value })}
+          />
+
+          <label className="block font-semibold mb-2 mt-4">Status</label>
+          <input
+            className={input}
+            type="text"
+            placeholder="e.g., Pending, Delivered"
+            value={orderForm.status}
+            onChange={e => setOrderForm({ ...orderForm, status: e.target.value })}
+          />
+
+          <label className="block font-semibold mb-2 mt-4">Notes</label>
+          <textarea
+            className={input}
+            placeholder="Notes"
+            value={orderForm.notes}
+            onChange={e => setOrderForm({ ...orderForm, notes: e.target.value })}
+          />
 
           <label className="block font-semibold mb-2 mt-4">Order Status</label>
           <select 
@@ -705,24 +1046,68 @@ const Operations = () => {
             <option value={1}>Completed</option>
           </select>
 
+          {isEditMode && (
+            <div className="rounded-xl border border-[var(--border-color)] bg-[var(--surface-color)] p-4 mt-4 space-y-3">
+              <div className="font-semibold text-[var(--heading-color)]">Billing</div>
+              <label className="block font-semibold">Amount Received (PKR)</label>
+              <input
+                className={input}
+                type="number"
+                min="0"
+                value={billing.amount_received}
+                onChange={(e) => setBilling({ ...billing, amount_received: e.target.value })}
+              />
+              <label className="block font-semibold">Payment Method</label>
+              <select
+                className={input}
+                value={billing.payment_method}
+                onChange={(e) => setBilling({ ...billing, payment_method: e.target.value })}
+              >
+                <option value="">Select payment method</option>
+                <option value="CASH">Cash</option>
+                <option value="BANK_TRANSFER">Bank Transfer</option>
+                <option value="CHEQUE">Cheque</option>
+                <option value="OTHER">Other</option>
+              </select>
+              <label className="block font-semibold">Billing Status</label>
+              <select
+                className={input}
+                value={billing.status}
+                onChange={(e) => setBilling({ ...billing, status: e.target.value })}
+              >
+                <option value="">Select status</option>
+                <option value="PENDING">Pending</option>
+                <option value="PARTIAL">Partial</option>
+                <option value="PAID">Paid</option>
+              </select>
+              <label className="block font-semibold">Remarks</label>
+              <textarea
+                className={input}
+                value={billing.remarks}
+                onChange={(e) => setBilling({ ...billing, remarks: e.target.value })}
+              />
+            </div>
+          )}
+
           {orderForm.product && orderForm.quantity && (
-            <div className="bg-indigo-50 p-4 rounded-lg mt-4">
+            <div className="bg-[rgba(14,165,164,0.10)] p-4 rounded-lg mt-4">
               <div className="flex justify-between items-center">
                 <span className="font-semibold text-lg">Subtotal:</span>
-                <span className="font-bold text-xl text-indigo-600">{formatCurrency(subTotal)}</span>
+                <span className="font-bold text-xl text-[var(--accent-color)]">{formatCurrency(totalAfterDiscount)}</span>
               </div>
               <div className="text-sm text-gray-600 mt-1">
                 {orderForm.quantity} × {formatCurrency(productPrice)} = {formatCurrency(subTotal)}
+                {orderDiscount > 0 ? ` — Discount ${formatCurrency(orderDiscount)} = ${formatCurrency(totalAfterDiscount)}` : ""}
               </div>
             </div>
           )}
 
           <button 
             className={`${primaryBtn} w-full mt-4`} 
-            onClick={placeOrder}
-            disabled={!orderForm.customer || !orderForm.product || !orderForm.quantity}
+            onClick={isEditMode ? updateExistingOrder : confirmOrder}
+            disabled={!orderForm.customer || !orderForm.product || !orderForm.quantity || isQtyInsufficient}
           >
-            Place Order
+            {isEditMode ? "Update Order" : "Confirm"}
           </button>
         </div>
       )}
@@ -730,36 +1115,65 @@ const Operations = () => {
       {/* ---------- BILLING ---------- */}
       {active === "billing" && (
         <div className={card}>
-          <label className="block font-semibold mb-2">Select Order</label>
-          <select 
-            className={input} 
-            value={billing.order}
-            onChange={e => setBilling({ ...billing, order: e.target.value })}
-          >
-            <option value="">Select Order</option>
-            {orders.map(o => (
-              <option key={o.order_id} value={o.order_id}>
-                {o.order_no || `Order #${o.order_id}`} - {customers.find(c => c.customer_id === o.customer)?.name || "Unknown"} ({formatCurrency(o.total_amount)})
-              </option>
-            ))}
-          </select>
-
-          {selectedOrder && selectedCustomer && (
+          {draftOrder ? (
+            <div className="rounded-xl border border-[var(--border-color)] bg-[var(--surface-color)] p-4 space-y-1">
+              <div className="text-sm text-[var(--muted-color)]">Pending (not saved yet)</div>
+              <div className="font-semibold text-[var(--heading-color)]">
+                {draftOrder.productName} × {draftOrder.quantity}
+              </div>
+              <div className="text-sm text-[var(--muted-color)]">
+                Total: {formatCurrency(draftOrder.total_bill_after_discount)}
+              </div>
+            </div>
+          ) : (
             <>
+              <label className="block font-semibold mb-2">Select Order</label>
+              <select 
+                className={input} 
+                value={billing.order}
+                onChange={e => setBilling({ ...billing, order: e.target.value })}
+              >
+                <option value="">Select Order</option>
+                {orders.map(o => (
+                  <option key={o.order_id} value={o.order_id}>
+                    {o.order_no || `Order #${o.order_id}`} - {customers.find(c => c.customer_id === o.customer)?.name || "Unknown"} ({formatCurrency(o.total_amount)})
+                  </option>
+                ))}
+              </select>
+            </>
+          )}
+
+          {!draftOrder && !selectedOrder && (
+            <div className="mt-3 rounded-xl border border-[var(--border-color)] bg-[var(--surface-color)] p-4 text-sm text-[var(--muted-color)]">
+              No pending order. Go to <span className="font-semibold text-[var(--heading-color)]">Orders</span> and click Confirm first, or select an existing order above.
+            </div>
+          )}
+
+          {((selectedOrder && selectedCustomer) || draftOrder) && (
+            <>
+              {(() => {
+                const totalBill = draftOrder
+                  ? draftOrder.total_bill_after_discount
+                  : (selectedOrder?.total_amount ?? 0);
+                const received = Number(billing.amount_received || 0);
+                const balance = totalBill - received;
+
+                return (
+                  <>
               <div className="bg-gray-50 p-4 rounded-lg mt-4 space-y-2">
                 <div className="flex justify-between">
                   <span className="font-semibold">Customer Name:</span>
-                  <span>{selectedCustomer.name}</span>
+                  <span>{draftOrder ? (customers.find(c => c.customer_id === draftOrder.customerId)?.name || "N/A") : selectedCustomer.name}</span>
                 </div>
                 <div className="flex justify-between">
                   <span className="font-semibold">Total Price:</span>
-                  <span className="text-lg font-bold text-indigo-600">{formatCurrency(selectedOrder.total_amount)}</span>
+                  <span className="text-lg font-bold text-[var(--accent-color)]">{formatCurrency(draftOrder ? draftOrder.total_bill_after_discount : selectedOrder.total_amount)}</span>
                 </div>
                 <div className="flex justify-between">
                   <span className="font-semibold">Date:</span>
                   <span>{orderDate}</span>
                 </div>
-                {selectedOrder.order_no && (
+                {!draftOrder && selectedOrder.order_no && (
                   <div className="flex justify-between">
                     <span className="font-semibold">Order No:</span>
                     <span>{selectedOrder.order_no}</span>
@@ -773,28 +1187,63 @@ const Operations = () => {
                 type="number" 
                 placeholder="Amount Received" 
                 min="0"
-                max={selectedOrder.total_amount}
+                max={totalBill}
                 value={billing.amount_received}
                 onChange={e => setBilling({ ...billing, amount_received: e.target.value })} 
+              />
+
+              <label className="block font-semibold mb-2 mt-4">Payment Method</label>
+              <select
+                className={input}
+                value={billing.payment_method}
+                onChange={e => setBilling({ ...billing, payment_method: e.target.value })}
+              >
+                <option value="">Select Payment Method</option>
+                <option value="Cash">Cash</option>
+                <option value="Bank">Bank</option>
+                <option value="Online">Online</option>
+              </select>
+
+              <label className="block font-semibold mb-2 mt-4">Status</label>
+              <select
+                className={input}
+                value={billing.status}
+                onChange={e => setBilling({ ...billing, status: e.target.value })}
+              >
+                <option value="">Select Status</option>
+                <option value="Paid">Paid</option>
+                <option value="Partial">Partial</option>
+                <option value="Unpaid">Unpaid</option>
+              </select>
+
+              <label className="block font-semibold mb-2 mt-4">Remarks</label>
+              <textarea
+                className={input}
+                placeholder="Remarks"
+                value={billing.remarks}
+                onChange={e => setBilling({ ...billing, remarks: e.target.value })}
               />
 
               {billing.amount_received && (
                 <div className="bg-yellow-50 p-3 rounded-lg mt-2">
                   <div className="flex justify-between">
                     <span className="font-semibold">Balance:</span>
-                    <span className={`font-bold ${selectedOrder.total_amount - Number(billing.amount_received || 0) > 0 ? 'text-red-600' : 'text-green-600'}`}>
-                      {formatCurrency(selectedOrder.total_amount - Number(billing.amount_received || 0))}
+                    <span className={`font-bold ${balance > 0 ? 'text-red-600' : 'text-green-600'}`}>
+                      {formatCurrency(balance)}
                     </span>
                   </div>
                 </div>
               )}
+                  </>
+                );
+              })()}
 
               <button 
                 className={`${primaryBtn} w-full mt-4`} 
                 onClick={generateBill}
                 disabled={!billing.amount_received || Number(billing.amount_received) < 0}
               >
-                Generate Bill & Print Receipt
+                Confirm Order
               </button>
             </>
           )}

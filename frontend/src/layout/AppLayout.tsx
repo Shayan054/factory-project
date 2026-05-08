@@ -6,7 +6,7 @@ import { Outlet } from "react-router-dom";
 export default function AppLayout() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   return (
-    <div className="min-h-screen bg-gray-100">
+    <div className="min-h-screen bg-[var(--background-color)] text-[var(--default-color)]">
       {/* Sidebar (mobile overlay + desktop static) */}
       <Sidebar open={sidebarOpen} onClose={() => setSidebarOpen(false)} />
 

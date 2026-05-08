@@ -1,99 +1,98 @@
-// src/components/Topbar.tsx
 import * as React from "react";
 import { useAuth } from "../context/AuthContext";
 
-export default function Topbar({
-  onMenuClick,
-}: {
-  onMenuClick: () => void;
-}) {
+export default function Topbar({ onMenuClick }: { onMenuClick: () => void }) {
   const { user, logout } = useAuth();
-  
-  // Notification and message counts (can be fetched from API later)
+  const [profileOpen, setProfileOpen] = React.useState(false);
+
+  // Notification and message counts (wire to API later)
   const notifCount = 0;
   const msgCount = 0;
-  
-  // Safely get user info
+
   const userName = user ? `${user.first_name} ${user.last_name}` : "User";
   const userRole = user?.role === "CEO" ? "CEO" : "Manager";
-  
+
   return (
-    <header className="sticky top-0 z-30 border-b bg-white/90 backdrop-blur">
-      <div className="mx-auto flex h-16 items-center justify-between px-4 sm:px-6 lg:px-8">
-        {/* Mobile: menu button */}
+    <header className="sticky top-0 z-30 border-b border-[var(--border-color)] bg-[var(--surface-color)]/90 backdrop-blur">
+      <div className="mx-auto flex h-16 items-center gap-3 px-4 sm:px-6 lg:px-8">
+        {/* Sidebar toggle (template-like) */}
         <button
           onClick={onMenuClick}
-          className="inline-flex items-center gap-2 rounded-md border px-3 py-2 text-sm lg:hidden"
-          aria-label="Open sidebar menu"
+          className="grid h-10 w-10 place-items-center rounded-xl border border-[var(--border-color)] bg-[var(--surface-color)] text-[var(--muted-color)] hover:text-[var(--accent-color)] transition lg:hidden"
+          aria-label="Toggle sidebar"
+          title="Toggle Sidebar"
         >
-          <HamburgerIcon className="h-4 w-4" />
-          Menu
+          <SidebarToggleIcon className="h-5 w-5" />
         </button>
 
-        {/* Search (hidden on small screens) */}
+        {/* Search */}
         <form
-          className="mx-4 hidden flex-1 items-center justify-center md:flex"
+          className="hidden flex-1 md:block"
           role="search"
           onSubmit={(e) => e.preventDefault()}
         >
-          <div className="flex w-full max-w-2xl overflow-hidden rounded-full border border-gray-300">
+          <div className="relative max-w-3xl">
+            <SearchIcon className="pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-[var(--muted-color)]" />
             <input
               aria-label="Search"
-              placeholder="Search for..."
-              className="w-full px-4 py-2 outline-none"
+              placeholder="Search users, invoices, tickets..."
+              className="w-full rounded-2xl border border-[var(--border-color)] bg-[var(--surface-color)] py-2.5 pl-11 pr-14 text-sm outline-none focus:ring-2 focus:ring-[rgba(14,165,164,0.25)] focus:border-[var(--accent-color)]"
             />
-            <button
-              type="submit"
-              className="grid place-items-center px-4"
-              aria-label="Search"
-              style={{ backgroundColor: "#4e73df", color: "white" }}
-            >
-              <SearchIcon className="h-5 w-5" />
-            </button>
+            <kbd className="absolute right-3 top-1/2 -translate-y-1/2 rounded-lg border border-[var(--border-color)] bg-[var(--background-color)] px-2 py-0.5 text-[11px] font-semibold text-[var(--muted-color)]">
+              /
+            </kbd>
           </div>
         </form>
 
         {/* Right actions */}
-        <div className="ml-auto flex items-center gap-4">
-          {/* Notifications */}
-          <button
-            className="relative grid h-9 w-9 place-items-center rounded-full border border-gray-300"
-            aria-label="Open notifications"
-          >
-            <BellIcon className="h-4 w-4" />
-            {notifCount > 0 && (
-              <Badge>{notifCount > 9 ? "9+" : `${notifCount}+`}</Badge>
-            )}
-          </button>
+        <div className="ml-auto flex items-center gap-2">
+          <IconButton title="Messages" ariaLabel="Open messages" badge={msgCount}>
+            <ChatIcon className="h-5 w-5" />
+          </IconButton>
+          <IconButton title="Notifications" ariaLabel="Open notifications" badge={notifCount}>
+            <BellIcon className="h-5 w-5" />
+          </IconButton>
 
-          {/* Messages */}
-          <button
-            className="relative grid h-9 w-9 place-items-center rounded-full border border-gray-300"
-            aria-label="Open messages"
-          >
-            <MailIcon className="h-4 w-4" />
-            {msgCount > 0 && <Badge>{msgCount > 9 ? "9+" : `${msgCount}`}</Badge>}
-          </button>
-
-          {/* Divider */}
-          <div className="mx-1 hidden h-6 w-px bg-gray-200 md:block" />
-
-          {/* User */}
-          <div className="hidden items-center gap-3 md:flex">
-            <div className="text-right">
-              <span className="block text-sm font-medium text-gray-700">{userName}</span>
-              <span className="block text-xs text-gray-500">{userRole}</span>
-            </div>
-            <div className="grid h-9 w-9 place-items-center rounded-full bg-indigo-100">
-              <UserIcon className="h-5 w-5 text-indigo-600" />
-            </div>
+          {/* Profile */}
+          <div className="relative ml-1">
             <button
-              onClick={logout}
-              className="ml-2 px-3 py-1 text-sm text-red-600 hover:bg-red-50 rounded-lg transition"
-              title="Logout"
+              className="flex items-center gap-3 rounded-2xl border border-[var(--border-color)] bg-[var(--surface-color)] px-3 py-2 hover:border-[rgba(14,165,164,0.35)] transition"
+              onClick={() => setProfileOpen((v) => !v)}
+              onBlur={(e) => {
+                if (!e.currentTarget.contains(e.relatedTarget as Node)) setProfileOpen(false);
+              }}
+              aria-label="Open profile menu"
             >
-              Logout
+              <div className="grid h-9 w-9 place-items-center rounded-xl bg-[rgba(14,165,164,0.12)]">
+                <UserIcon className="h-5 w-5 text-[var(--accent-color)]" />
+              </div>
+              <div className="hidden text-left md:block">
+                <div className="text-sm font-semibold text-[var(--heading-color)] leading-4">{userName}</div>
+                <div className="text-xs text-[var(--muted-color)]">{userRole}</div>
+              </div>
+              <ChevronDownIcon className="hidden h-4 w-4 text-[var(--muted-color)] md:block" />
             </button>
+
+            {profileOpen && (
+              <div
+                className="absolute right-0 mt-2 w-56 overflow-hidden rounded-2xl border border-[var(--border-color)] bg-[var(--surface-color)] shadow-lg"
+                role="menu"
+              >
+                <div className="px-4 py-3">
+                  <div className="text-sm font-semibold text-[var(--heading-color)]">{userName}</div>
+                  <div className="text-xs text-[var(--muted-color)]">{userRole}</div>
+                </div>
+                <div className="border-t border-[var(--border-color)]" />
+                <button
+                  onClick={logout}
+                  className="flex w-full items-center gap-2 px-4 py-3 text-sm font-semibold text-red-600 hover:bg-red-50"
+                  role="menuitem"
+                >
+                  <LogoutIcon className="h-4 w-4" />
+                  Logout
+                </button>
+              </div>
+            )}
           </div>
         </div>
       </div>
@@ -101,32 +100,45 @@ export default function Topbar({
   );
 }
 
-/* ---------- Small helpers ---------- */
-
-function Badge({ children }: { children: React.ReactNode }) {
+function IconButton({
+  children,
+  title,
+  ariaLabel,
+  badge,
+}: {
+  children: React.ReactNode;
+  title: string;
+  ariaLabel: string;
+  badge: number;
+}) {
   return (
-    <span
-      className="absolute -right-1 -top-1 grid min-h-[18px] min-w-[18px] place-items-center rounded-full px-1 text-[10px] font-semibold text-white"
-      style={{ backgroundColor: "#e74a3b" }} // SB Admin 2 danger red
-      aria-hidden="true"
+    <button
+      className="relative grid h-10 w-10 place-items-center rounded-xl border border-[var(--border-color)] bg-[var(--surface-color)] text-[var(--muted-color)] hover:text-[var(--accent-color)] transition"
+      title={title}
+      aria-label={ariaLabel}
     >
       {children}
-    </span>
+      {badge > 0 && (
+        <span className="absolute -right-1 -top-1 grid min-h-[18px] min-w-[18px] place-items-center rounded-full bg-[var(--accent-color)] px-1 text-[10px] font-bold text-white">
+          {badge > 9 ? "9+" : badge}
+        </span>
+      )}
+    </button>
   );
 }
 
 /* Icons (inherit currentColor) */
-function HamburgerIcon(props: React.SVGProps<SVGSVGElement>) {
+function SidebarToggleIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg viewBox="0 0 24 24" fill="currentColor" {...props}>
-      <path d="M3 6h18v2H3V6zm0 5h18v2H3v-2zm0 5h18v2H3v-2z" />
+      <path d="M4 5h16a1 1 0 011 1v12a1 1 0 01-1 1H4a1 1 0 01-1-1V6a1 1 0 011-1zm7 2H5v10h6V7zm2 0v10h6V7h-6z" />
     </svg>
   );
 }
 function SearchIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg viewBox="0 0 24 24" fill="currentColor" {...props}>
-      <path d="M15.5 14h-.79l-.28-.27a6.5 6.5 0 10-.71.71l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0A4.5 4.5 0 1114 9.5 4.505 4.505 0 019.5 14z" />
+      <path d="M15.5 14h-.79l-.28-.27a6.5 6.5 0 10-.71.71l.27.28v.79l5 4.99L20.49 19l-4.99-5zM10 14a4 4 0 110-8 4 4 0 010 8z" />
     </svg>
   );
 }
@@ -137,10 +149,10 @@ function BellIcon(props: React.SVGProps<SVGSVGElement>) {
     </svg>
   );
 }
-function MailIcon(props: React.SVGProps<SVGSVGElement>) {
+function ChatIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg viewBox="0 0 24 24" fill="currentColor" {...props}>
-      <path d="M20 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V6a2 2 0 00-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
+      <path d="M4 4h16a2 2 0 012 2v10a2 2 0 01-2 2H8l-4 4V6a2 2 0 012-2zm4 5h8v2H8V9zm0 4h6v2H8v-2z" />
     </svg>
   );
 }
@@ -148,6 +160,20 @@ function UserIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg viewBox="0 0 24 24" fill="currentColor" {...props}>
       <path d="M12 12a5 5 0 100-10 5 5 0 000 10zm0 2c-4.418 0-8 2.239-8 5v1h16v-1c0-2.761-3.582-5-8-5z" />
+    </svg>
+  );
+}
+function ChevronDownIcon(props: React.SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 20 20" fill="currentColor" {...props}>
+      <path d="M5.23 7.21a.75.75 0 011.06.02L10 11.17l3.71-3.94a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" />
+    </svg>
+  );
+}
+function LogoutIcon(props: React.SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" {...props}>
+      <path d="M10 17l1.41-1.41L9.83 14H20v-2H9.83l1.58-1.59L10 9l-5 5 5 3zm-6 4h8v-2H4V5h8V3H4a2 2 0 00-2 2v14a2 2 0 002 2z" />
     </svg>
   );
 }
