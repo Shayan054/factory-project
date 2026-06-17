@@ -188,3 +188,4 @@ SIMPLE_JWT = {
     'USER_ID_FIELD': 'employee_id',
     'USER_ID_CLAIM': 'user_id',
 }
+CORS_ALLOWED_ORIGIN_REGEXES = [ r"^https://.*\.vercel\.app$" ]
