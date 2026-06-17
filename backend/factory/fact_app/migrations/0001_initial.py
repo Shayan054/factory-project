@@ -9,6 +9,7 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
+        ('fact_app', '0000_employee'),
     ]
 
     operations = [
