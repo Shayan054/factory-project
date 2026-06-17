@@ -15,6 +15,11 @@ const formatCurrency = (amount: number) => {
 
 type Entity = "customers" | "vendors" | "products" | "raw-materials" | "orders";
 
+const ALLOWED_TABS: Entity[] = ["customers", "vendors", "products", "raw-materials", "orders"];
+
+const parseTab = (tab: string | null): Entity =>
+  ALLOWED_TABS.includes(tab as Entity) ? (tab as Entity) : "customers";
+
 const getId = (item: any) => {
   const key = Object.keys(item).find(
     (k) => k.toLowerCase() === "id" || k.toLowerCase().endsWith("_id")
@@ -73,8 +78,8 @@ const Management = () => {
   const { isCEO } = useAuth();
   const { showModal } = useModal();
   const navigate = useNavigate();
-  const [searchParams, setSearchParams] = useSearchParams();
-  const [activeTab, setActiveTab] = useState<Entity>("customers");
+  const [searchParams] = useSearchParams();
+  const activeTab = parseTab(searchParams.get("tab"));
   const [data, setData] = useState<any[]>([]);
   const [editingItem, setEditingItem] = useState<any | null>(null);
   const [customers, setCustomers] = useState<any[]>([]);
@@ -83,25 +88,6 @@ const Management = () => {
   const [orderSearch, setOrderSearch] = useState("");
   const [orderSortKey, setOrderSortKey] = useState<"order_no" | "order_date" | "customer">("order_date");
   const [orderSortDir, setOrderSortDir] = useState<"asc" | "desc">("desc");
-
-  // Sync active tab with URL (so sidebar submenu can deep-link)
-  useEffect(() => {
-    const tab = searchParams.get("tab") as Entity | null;
-    if (!tab) return;
-    const allowed: Entity[] = ["customers", "vendors", "products", "raw-materials", "orders"];
-    if (allowed.includes(tab) && tab !== activeTab) {
-      setActiveTab(tab);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [searchParams]);
-
-  useEffect(() => {
-    setSearchParams((prev) => {
-      const next = new URLSearchParams(prev);
-      next.set("tab", activeTab);
-      return next;
-    });
-  }, [activeTab, setSearchParams]);
 
   /* ---------------- FETCH DATA ---------------- */
   const loadData = async (entity: Entity) => {
@@ -122,7 +108,29 @@ const Management = () => {
   };
 
   useEffect(() => {
-    loadData(activeTab);
+    let cancelled = false;
+
+    const fetchData = async () => {
+      const res = await apiRequest(`/${activeTab}/`);
+      const json = await res.json();
+      if (cancelled) return;
+      setData(json);
+
+      if (activeTab === "orders") {
+        const [customersRes, billingsRes] = await Promise.all([
+          apiRequest("/customers/"),
+          apiRequest("/billings/"),
+        ]);
+        if (cancelled) return;
+        setCustomers(await customersRes.json());
+        setBillings(await billingsRes.json());
+      }
+    };
+
+    void fetchData();
+    return () => {
+      cancelled = true;
+    };
   }, [activeTab]);
 
   /* ---------------- DELETE ---------------- */

@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: factory
+    env: python
+    region: singapore
+    buildCommand: pip install -r backend/requirements.txt
+    startCommand: gunicorn factory.wsgi:application
+    rootDir: backend
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.10.13

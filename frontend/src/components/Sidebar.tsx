@@ -16,6 +16,9 @@ export default function Sidebar({ open, onClose }: Props) {
   const [salesOpen, setSalesOpen] = useState(false);
   const [salesOrdersOpen, setSalesOrdersOpen] = useState(false);
   const [managementOpen, setManagementOpen] = useState(false);
+  const [managementVendorsOpen, setManagementVendorsOpen] = useState(false);
+  const [managementProductsOpen, setManagementProductsOpen] = useState(false);
+  const [managementRawMaterialsOpen, setManagementRawMaterialsOpen] = useState(false);
 
   // shared link styles (FlexAdmin-like)
   const base =
@@ -31,6 +34,15 @@ export default function Sidebar({ open, onClose }: Props) {
 
   const isSalesOrdersGroupActive =
     isTabActive("/operations", "order") || isTabActive("/management", "orders");
+
+  const isVendorsGroupActive =
+    isTabActive("/operations", "vendor") || isTabActive("/management", "vendors");
+
+  const isProductsGroupActive =
+    isTabActive("/operations", "product") || isTabActive("/management", "products");
+
+  const isRawMaterialsGroupActive =
+    isTabActive("/operations", "raw") || isTabActive("/management", "raw-materials");
 
   return (
     <>
@@ -98,30 +110,6 @@ export default function Sidebar({ open, onClose }: Props) {
 
           {operationsOpen && (
             <div className="space-y-1">
-              <NavLink
-                to="/operations?tab=vendor"
-                className={() => `${subBase} ${isTabActive("/operations", "vendor") ? active : ""}`}
-                onClick={onClose}
-              >
-                <IconVendor className="h-4 w-4 opacity-90" />
-                <span>Add Vendor</span>
-              </NavLink>
-              <NavLink
-                to="/operations?tab=raw"
-                className={() => `${subBase} ${isTabActive("/operations", "raw") ? active : ""}`}
-                onClick={onClose}
-              >
-                <IconRaw className="h-4 w-4 opacity-90" />
-                <span>Add Raw Material</span>
-              </NavLink>
-              <NavLink
-                to="/operations?tab=product"
-                className={() => `${subBase} ${isTabActive("/operations", "product") ? active : ""}`}
-                onClick={onClose}
-              >
-                <IconProduct className="h-4 w-4 opacity-90" />
-                <span>Add Product</span>
-              </NavLink>
               <NavLink
                 to="/operations?tab=expense"
                 className={() => `${subBase} ${isTabActive("/operations", "expense") ? active : ""}`}
@@ -197,64 +185,124 @@ export default function Sidebar({ open, onClose }: Props) {
               </NavLink>
             </div>
           )}
-          {isCEO && (
-            <>
+          <button
+            type="button"
+            className={base}
+            onClick={() => setManagementOpen((v) => !v)}
+            aria-expanded={managementOpen}
+          >
+            <IconTable className="h-4 w-4" />
+            <span className="flex-1 text-left">Management</span>
+            <IconChevron className={`h-4 w-4 transition-transform ${managementOpen ? "rotate-180" : ""}`} />
+          </button>
+
+          {managementOpen && (
+            <div className="space-y-1">
+              <NavLink
+                to="/management?tab=customers"
+                className={() => `${subBase} ${isTabActive("/management", "customers") ? active : ""}`}
+                onClick={onClose}
+              >
+                <IconCustomer className="h-4 w-4 opacity-90" />
+                <span>Customers</span>
+              </NavLink>
+
               <button
                 type="button"
-                className={base}
-                onClick={() => setManagementOpen((v) => !v)}
-                aria-expanded={managementOpen}
+                className={`${subBase} ${isVendorsGroupActive ? active : ""}`}
+                onClick={() => setManagementVendorsOpen((v) => !v)}
+                aria-expanded={managementVendorsOpen}
               >
-                <IconTable className="h-4 w-4" />
-                <span className="flex-1 text-left">Management</span>
-                <IconChevron className={`h-4 w-4 transition-transform ${managementOpen ? "rotate-180" : ""}`} />
+                <IconVendor className="h-4 w-4 opacity-90" />
+                <span className="flex-1 text-left">Vendors</span>
+                <IconChevron className={`h-4 w-4 transition-transform ${managementVendorsOpen ? "rotate-180" : ""}`} />
               </button>
 
-              {managementOpen && (
+              {managementVendorsOpen && (
                 <div className="space-y-1">
                   <NavLink
-                    to="/management?tab=customers"
-                    className={() => `${subBase} ${isTabActive("/management", "customers") ? active : ""}`}
+                    to="/management?tab=vendors"
+                    className={() => `${subBase} ml-12 ${isTabActive("/management", "vendors") ? active : ""}`}
                     onClick={onClose}
                   >
-                    <IconCustomer className="h-4 w-4 opacity-90" />
-                    <span>Customers</span>
+                    <IconTable className="h-4 w-4 opacity-90" />
+                    <span>View Vendors</span>
                   </NavLink>
                   <NavLink
-                    to="/management?tab=vendors"
-                    className={() => `${subBase} ${isTabActive("/management", "vendors") ? active : ""}`}
+                    to="/operations?tab=vendor"
+                    className={() => `${subBase} ml-12 ${isTabActive("/operations", "vendor") ? active : ""}`}
                     onClick={onClose}
                   >
                     <IconVendor className="h-4 w-4 opacity-90" />
-                    <span>Vendors</span>
-                  </NavLink>
-                  <NavLink
-                    to="/management?tab=products"
-                    className={() => `${subBase} ${isTabActive("/management", "products") ? active : ""}`}
-                    onClick={onClose}
-                  >
-                    <IconProduct className="h-4 w-4 opacity-90" />
-                    <span>Products</span>
-                  </NavLink>
-                  <NavLink
-                    to="/management?tab=raw-materials"
-                    className={() => `${subBase} ${isTabActive("/management", "raw-materials") ? active : ""}`}
-                    onClick={onClose}
-                  >
-                    <IconRaw className="h-4 w-4 opacity-90" />
-                    <span>Raw Materials</span>
-                  </NavLink>
-                  <NavLink
-                    to="/management?tab=orders"
-                    className={() => `${subBase} ${isTabActive("/management", "orders") ? active : ""}`}
-                    onClick={onClose}
-                  >
-                    <IconOrders className="h-4 w-4 opacity-90" />
-                    <span>Orders</span>
+                    <span>Add Vendor</span>
                   </NavLink>
                 </div>
               )}
-            </>
+
+              <button
+                type="button"
+                className={`${subBase} ${isProductsGroupActive ? active : ""}`}
+                onClick={() => setManagementProductsOpen((v) => !v)}
+                aria-expanded={managementProductsOpen}
+              >
+                <IconProduct className="h-4 w-4 opacity-90" />
+                <span className="flex-1 text-left">Products</span>
+                <IconChevron className={`h-4 w-4 transition-transform ${managementProductsOpen ? "rotate-180" : ""}`} />
+              </button>
+
+              {managementProductsOpen && (
+                <div className="space-y-1">
+                  <NavLink
+                    to="/management?tab=products"
+                    className={() => `${subBase} ml-12 ${isTabActive("/management", "products") ? active : ""}`}
+                    onClick={onClose}
+                  >
+                    <IconTable className="h-4 w-4 opacity-90" />
+                    <span>View Products</span>
+                  </NavLink>
+                  <NavLink
+                    to="/operations?tab=product"
+                    className={() => `${subBase} ml-12 ${isTabActive("/operations", "product") ? active : ""}`}
+                    onClick={onClose}
+                  >
+                    <IconProduct className="h-4 w-4 opacity-90" />
+                    <span>Add Product</span>
+                  </NavLink>
+                </div>
+              )}
+
+              <button
+                type="button"
+                className={`${subBase} ${isRawMaterialsGroupActive ? active : ""}`}
+                onClick={() => setManagementRawMaterialsOpen((v) => !v)}
+                aria-expanded={managementRawMaterialsOpen}
+              >
+                <IconRaw className="h-4 w-4 opacity-90" />
+                <span className="flex-1 text-left">Raw Materials</span>
+                <IconChevron className={`h-4 w-4 transition-transform ${managementRawMaterialsOpen ? "rotate-180" : ""}`} />
+              </button>
+
+              {managementRawMaterialsOpen && (
+                <div className="space-y-1">
+                  <NavLink
+                    to="/management?tab=raw-materials"
+                    className={() => `${subBase} ml-12 ${isTabActive("/management", "raw-materials") ? active : ""}`}
+                    onClick={onClose}
+                  >
+                    <IconTable className="h-4 w-4 opacity-90" />
+                    <span>View Raw Materials</span>
+                  </NavLink>
+                  <NavLink
+                    to="/operations?tab=raw"
+                    className={() => `${subBase} ml-12 ${isTabActive("/operations", "raw") ? active : ""}`}
+                    onClick={onClose}
+                  >
+                    <IconRaw className="h-4 w-4 opacity-90" />
+                    <span>Add Raw Material</span>
+                  </NavLink>
+                </div>
+              )}
+            </div>
           )}
           {isCEO && (
             <NavLink
