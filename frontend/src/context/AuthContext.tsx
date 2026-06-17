@@ -1,7 +1,12 @@
 import { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const API = "http://127.0.0.1:8000/api"; 
+const API = (import.meta.env.VITE_API_URL as string | undefined)?.replace(/\/$/, '');
+
+const join = (endpoint: string) => {
+  if (!API) throw new Error('Missing VITE_API_URL. Set it in Vercel environment variables.');
+  return endpoint.startsWith('/') ? `${API}${endpoint}` : `${API}/${endpoint}`;
+};
 
 interface User {
   employee_id: number;
@@ -51,7 +56,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
   const login = async (email: string, password: string) => {
     try {
-      const response = await fetch(`${API}/auth/login/`, {
+      const response = await fetch(join('/auth/login/'), {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -102,7 +107,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         return;
       }
 
-      const response = await fetch(`${API}/auth/refresh/`, {
+      const response = await fetch(join('/auth/refresh/'), {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
