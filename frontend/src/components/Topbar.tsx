@@ -54,14 +54,19 @@ export default function Topbar({ onMenuClick }: { onMenuClick: () => void }) {
           </IconButton>
 
           {/* Profile */}
-          <div className="relative ml-1">
+          <div
+            className="relative ml-1"
+            onBlur={(e) => {
+              if (!e.currentTarget.contains(e.relatedTarget as Node)) {
+                setProfileOpen(false);
+              }
+            }}
+          >
             <button
               className="flex items-center gap-3 rounded-2xl border border-[var(--border-color)] bg-[var(--surface-color)] px-3 py-2 hover:border-[rgba(14,165,164,0.35)] transition"
               onClick={() => setProfileOpen((v) => !v)}
-              onBlur={(e) => {
-                if (!e.currentTarget.contains(e.relatedTarget as Node)) setProfileOpen(false);
-              }}
               aria-label="Open profile menu"
+              aria-expanded={profileOpen}
             >
               <div className="grid h-9 w-9 place-items-center rounded-xl bg-[rgba(14,165,164,0.12)]">
                 <UserIcon className="h-5 w-5 text-[var(--accent-color)]" />
@@ -84,7 +89,11 @@ export default function Topbar({ onMenuClick }: { onMenuClick: () => void }) {
                 </div>
                 <div className="border-t border-[var(--border-color)]" />
                 <button
-                  onClick={logout}
+                  type="button"
+                  onClick={() => {
+                    setProfileOpen(false);
+                    logout();
+                  }}
                   className="flex w-full items-center gap-2 px-4 py-3 text-sm font-semibold text-red-600 hover:bg-red-50"
                   role="menuitem"
                 >
