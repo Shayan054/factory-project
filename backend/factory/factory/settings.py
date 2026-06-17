@@ -192,4 +192,4 @@ SIMPLE_JWT = {
     'AUTH_HEADER_NAME': 'HTTP_AUTHORIZATION',
     'USER_ID_FIELD': 'employee_id',
     'USER_ID_CLAIM': 'user_id',
-}CORS_ALLOWED_ORIGIN_REGEXES = [ r"^https://.*\.vercel\.app$" ]
+}
