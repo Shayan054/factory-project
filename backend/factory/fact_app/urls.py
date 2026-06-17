@@ -13,6 +13,7 @@ from .views import (
     ExpenseViewSet,
     ExpenseCategoryViewSet
 )
+from .health_views import db_health_view
 from .auth_views import (
     login_view,
     register_employee_view,
@@ -34,6 +35,7 @@ router.register(r'expense-categories', ExpenseCategoryViewSet)
 
 urlpatterns = [
     # Authentication endpoints
+    path('db-health/', db_health_view, name='db_health'),
     path('auth/login/', login_view, name='login'),
     path('auth/register/', register_employee_view, name='register'),
     path('auth/me/', current_user_view, name='current_user'),
