@@ -1,4 +1,4 @@
-const API = (import.meta.env.VITE_API_URL ).replace(/\/$/, '');
+const API = (import.meta.env.VITE_API_URL).replace(/\/$/, '');
 
 const join = (endpoint: string) => endpoint.startsWith('/') ? `${API}${endpoint}` : `${API}/${endpoint}`;
 
