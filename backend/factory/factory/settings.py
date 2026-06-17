@@ -70,6 +70,12 @@ CORS_ALLOWED_ORIGINS = [
 CORS_EXTRA_ORIGINS = os.environ.get('CORS_EXTRA_ORIGINS', '').split(',')
 CORS_ALLOWED_ORIGINS.extend([origin.strip() for origin in CORS_EXTRA_ORIGINS if origin.strip()])
 
+# Allow Vercel preview / deployment domains (e.g. https://my-app-abc123.vercel.app)
+# If you have a custom domain, prefer adding it explicitly via CORS_EXTRA_ORIGINS.
+CORS_ALLOWED_ORIGIN_REGEXES = [
+    r"^https://.*\.vercel\.app$",
+]
+
 # For development, you can also use this (NOT recommended for production):
 # CORS_ALLOW_ALL_ORIGINS = True  # Only use this in development!
 
