@@ -1,7 +1,8 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { apiRequest } from "../utils/api";
 import { useSearchParams } from "react-router-dom";
 import { useModal } from "../context/ModalContext";
+import SelectWithAdd from "../components/SelectWithAdd";
 
 /* ---------- UI CLASSES ---------- */
 const card = "bg-white p-6 rounded-2xl shadow space-y-4";
@@ -43,6 +44,12 @@ type Billing = {
   balance: number;
   bill_date: string;
 };
+type ExpenseCategory = { category_id: number; name: string };
+
+const uniqueNames = (names: string[]) =>
+  [...new Set(names.map((n) => n.trim()).filter(Boolean))].sort((a, b) =>
+    a.localeCompare(b)
+  );
 
 const Operations = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -83,6 +90,10 @@ const Operations = () => {
   const [orders, setOrders] = useState<Order[]>([]);
   const [billings, setBillings] = useState<Billing[]>([]);
   const [vendors, setVendors] = useState<any[]>([]);
+  const [rawMaterials, setRawMaterials] = useState<any[]>([]);
+  const [expenseCategories, setExpenseCategories] = useState<ExpenseCategory[]>([]);
+  const [extraProductNames, setExtraProductNames] = useState<string[]>([]);
+  const [extraMaterialNames, setExtraMaterialNames] = useState<string[]>([]);
 
   useEffect(() => {
     apiRequest('/customers/').then(r => r.json()).then(setCustomers).catch(console.error);
@@ -91,7 +102,31 @@ const Operations = () => {
     apiRequest('/billings/').then(r => r.json()).then(setBillings).catch(console.error);
     apiRequest('/raw-materials/').then(r => r.json()).then(setRawMaterials).catch(console.error);
     apiRequest('/vendors/').then(r => r.json()).then(setVendors).catch(console.error);
+    apiRequest('/expense-categories/').then(r => r.json()).then(setExpenseCategories).catch(console.error);
   }, []);
+
+  const productNameOptions = useMemo(
+    () =>
+      uniqueNames([
+        ...products.map((p) => p.product_name),
+        ...extraProductNames,
+      ]),
+    [products, extraProductNames]
+  );
+
+  const materialNameOptions = useMemo(
+    () =>
+      uniqueNames([
+        ...rawMaterials.map((rm) => rm.material as string),
+        ...extraMaterialNames,
+      ]),
+    [rawMaterials, extraMaterialNames]
+  );
+
+  const expenseCategoryOptions = useMemo(
+    () => uniqueNames(expenseCategories.map((c) => c.name)),
+    [expenseCategories]
+  );
 
   // Refresh orders after placing new order
   const refreshOrders = () => {
@@ -107,7 +142,6 @@ const Operations = () => {
   });
 
   /* ---------- RAW MATERIAL ---------- */
-  const [rawMaterials, setRawMaterials] = useState<any[]>([]);
   const [raw, setRaw] = useState({
     material: "",
     measuring_unit: "",
@@ -304,6 +338,43 @@ const Operations = () => {
     const result = await response.json();
     showModal("Success", "Saved successfully.");
     return result;
+  };
+
+  const addProductNameOption = async (name: string) => {
+    if (productNameOptions.includes(name)) {
+      showModal("Info", "This product name already exists.");
+      return false;
+    }
+    setExtraProductNames((prev) => [...prev, name]);
+    return true;
+  };
+
+  const addMaterialNameOption = async (name: string) => {
+    if (materialNameOptions.includes(name)) {
+      showModal("Info", "This material name already exists.");
+      return false;
+    }
+    setExtraMaterialNames((prev) => [...prev, name]);
+    return true;
+  };
+
+  const addExpenseCategoryOption = async (name: string) => {
+    if (expenseCategoryOptions.includes(name)) {
+      showModal("Info", "This category already exists.");
+      return false;
+    }
+    const response = await apiRequest("/expense-categories/", {
+      method: "POST",
+      body: JSON.stringify({ name }),
+    });
+    if (!response.ok) {
+      const error = await response.json();
+      showModal("Error", JSON.stringify(error));
+      return false;
+    }
+    const updated = await apiRequest("/expense-categories/").then((r) => r.json());
+    setExpenseCategories(updated);
+    return true;
   };
 
   /* ---------- CONFIRM (IN-MEMORY) ORDER ---------- */
@@ -747,7 +818,15 @@ const Operations = () => {
       {/* ---------- RAW MATERIAL ---------- */}
       {active === "raw" && (
         <div className={card}>
-          <input className={input} placeholder="Material" value={raw.material} onChange={e => setRaw({ ...raw, material: e.target.value })} />
+          <SelectWithAdd
+            label="Material"
+            value={raw.material}
+            onChange={(material) => setRaw({ ...raw, material })}
+            options={materialNameOptions}
+            onAdd={addMaterialNameOption}
+            placeholder="Select Material"
+            required
+          />
           <input className={input} placeholder="Unit" value={raw.measuring_unit} onChange={e => setRaw({ ...raw, measuring_unit: e.target.value })} />
           <input className={input} placeholder="Quantity" type="number" value={raw.quantity} onChange={e => setRaw({ ...raw, quantity: e.target.value })} />
           <input className={input} placeholder="Price per Unit" type="number" value={raw.price} onChange={e => setRaw({ ...raw, price: e.target.value })} />
@@ -780,7 +859,15 @@ const Operations = () => {
       {/* ---------- PRODUCT ---------- */}
       {active === "product" && (
         <div className={card}>
-          <input className={input} placeholder="Product Name" value={product.product_name} onChange={e => setProduct({ ...product, product_name: e.target.value })} />
+          <SelectWithAdd
+            label="Product Name"
+            value={product.product_name}
+            onChange={(product_name) => setProduct({ ...product, product_name })}
+            options={productNameOptions}
+            onAdd={addProductNameOption}
+            placeholder="Select Product"
+            required
+          />
           <textarea className={input} placeholder="Description" value={product.description} onChange={e => setProduct({ ...product, description: e.target.value })} />
           <input className={input} placeholder="Price" type="number" value={product.price} onChange={e => setProduct({ ...product, price: e.target.value })} />
           <input className={input} placeholder="Quantity to Manufacture" type="number" value={product.quantity} onChange={e => setProduct({ ...product, quantity: e.target.value })} />
@@ -941,6 +1028,7 @@ const Operations = () => {
           <textarea className={input} placeholder="Remark" value={customer.remark} onChange={e => setCustomer({ ...customer, remark: e.target.value })} />
           <button className={primaryBtn} onClick={() => post('/customers/', customer).then(() => {
             setCustomer({ name: "", contact: "", address: "", remark: "" });
+            apiRequest('/customers/').then(r => r.json()).then(setCustomers).catch(console.error);
           })}>Save Customer</button>
         </div>
       )}
@@ -1257,13 +1345,14 @@ const Operations = () => {
       {/* ---------- EXPENSE ---------- */}
       {active === "expense" && (
         <div className={card}>
-          <label className="block font-semibold mb-2">Category Name *</label>
-          <input
-            className={input}
-            type="text"
-            placeholder="e.g., Diesel, Guest Tea, Electricity, etc."
+          <SelectWithAdd
+            label="Category Name"
             value={expense.category_name}
-            onChange={e => setExpense({ ...expense, category_name: e.target.value })}
+            onChange={(category_name) => setExpense({ ...expense, category_name })}
+            options={expenseCategoryOptions}
+            onAdd={addExpenseCategoryOption}
+            placeholder="Select Category"
+            required
           />
 
           <label className="block font-semibold mb-2 mt-4">Date *</label>
@@ -1316,6 +1405,7 @@ const Operations = () => {
                 quantity: "",
                 remarks: "",
               });
+              apiRequest('/expense-categories/').then(r => r.json()).then(setExpenseCategories).catch(console.error);
             })}
             disabled={!expense.category_name || !expense.date || !expense.amount}
           >

@@ -1,0 +1,56 @@
+[
+{
+  "model": "fact_app.employee",
+  "pk": 1,
+  "fields": {
+    "password": "pbkdf2_sha256$260000$y9pXClMTM4EUv7CmgSWPDp$tsIvMFQ+zHo02Lqpq/bVEQ1dGJkiaSiu7iiyfbFeZdg=",
+    "last_login": "2025-12-18T19:13:43.432Z",
+    "is_superuser": true,
+    "email": "shayanbaloch90@gmail.com",
+    "first_name": "shayan",
+    "last_name": "baloch",
+    "role": "CEO",
+    "is_active": true,
+    "is_staff": true,
+    "date_joined": "2025-12-18T19:13:19.975Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "fact_app.employee",
+  "pk": 2,
+  "fields": {
+    "password": "pbkdf2_sha256$260000$iwy5YK5QGGiBXKURDUQM7A$FtcP6kvoqemfOML+rzOu/D2kx/50/MJkltO7VaWHq+Q=",
+    "last_login": null,
+    "is_superuser": false,
+    "email": "ali@gmail.com",
+    "first_name": "Ali",
+    "last_name": "khan",
+    "role": "MANAGER",
+    "is_active": true,
+    "is_staff": false,
+    "date_joined": "2025-12-18T19:27:48.242Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "fact_app.employee",
+  "pk": 3,
+  "fields": {
+    "password": "pbkdf2_sha256$260000$QkMT47yoxfDuRkYuyqTyz4$JOkWhSH7lxVcXWKqiPKw6trIoxnhXz+EN3cVEjqPgsw=",
+    "last_login": null,
+    "is_superuser": true,
+    "email": "iqra@gmail.com",
+    "first_name": "iqra",
+    "last_name": "baloch",
+    "role": "CEO",
+    "is_active": true,
+    "is_staff": true,
+    "date_joined": "2026-04-16T14:59:28.129Z",
+    "groups": [],
+    "user_permissions": []
+  }
+}
+]

@@ -1,0 +1,9794 @@
+[
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1502,
+  "fields": {
+    "order_item": "L-60",
+    "quantity": 25,
+    "price": 42,
+    "sub_total": 1050,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1507,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1503,
+  "fields": {
+    "order_item": "L-60",
+    "quantity": 1500,
+    "price": 44,
+    "sub_total": 66000,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1508,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1504,
+  "fields": {
+    "order_item": "L-60",
+    "quantity": 1000,
+    "price": 43,
+    "sub_total": 43000,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1509,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1505,
+  "fields": {
+    "order_item": "L-60",
+    "quantity": 1500,
+    "price": 44,
+    "sub_total": 66000,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1510,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1506,
+  "fields": {
+    "order_item": "L-60",
+    "quantity": 150,
+    "price": 42,
+    "sub_total": 6300,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1511,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1507,
+  "fields": {
+    "order_item": "L-60",
+    "quantity": 350,
+    "price": 41,
+    "sub_total": 14350,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1512,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1508,
+  "fields": {
+    "order_item": "L-74",
+    "quantity": 800,
+    "price": 37,
+    "sub_total": 29600,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1513,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1509,
+  "fields": {
+    "order_item": "L-60",
+    "quantity": 2000,
+    "price": 40,
+    "sub_total": 80000,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1514,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1510,
+  "fields": {
+    "order_item": "L-60",
+    "quantity": 2000,
+    "price": 41,
+    "sub_total": 82000,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1515,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1511,
+  "fields": {
+    "order_item": "L-74",
+    "quantity": 500,
+    "price": 40,
+    "sub_total": 20000,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1516,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1512,
+  "fields": {
+    "order_item": "L-60",
+    "quantity": 600,
+    "price": 41,
+    "sub_total": 24600,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1517,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1513,
+  "fields": {
+    "order_item": "L-60",
+    "quantity": 50,
+    "price": 38,
+    "sub_total": 1900,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1518,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1514,
+  "fields": {
+    "order_item": "L-60",
+    "quantity": 350,
+    "price": 38,
+    "sub_total": 13300,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1519,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1515,
+  "fields": {
+    "order_item": "L-74",
+    "quantity": 650,
+    "price": 41,
+    "sub_total": 26650,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1520,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1516,
+  "fields": {
+    "order_item": "L-60",
+    "quantity": 18,
+    "price": 41,
+    "sub_total": 738,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1521,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1517,
+  "fields": {
+    "order_item": "L-60",
+    "quantity": 60,
+    "price": 40,
+    "sub_total": 2400,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1522,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1518,
+  "fields": {
+    "order_item": "L-60",
+    "quantity": 1200,
+    "price": 41,
+    "sub_total": 49200,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1523,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1519,
+  "fields": {
+    "order_item": "L-74",
+    "quantity": 2400,
+    "price": 37,
+    "sub_total": 88800,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1524,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1520,
+  "fields": {
+    "order_item": "L-60",
+    "quantity": 21,
+    "price": 44,
+    "sub_total": 924,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1525,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1521,
+  "fields": {
+    "order_item": "L-74",
+    "quantity": 40,
+    "price": 38,
+    "sub_total": 1520,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1526,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1522,
+  "fields": {
+    "order_item": "L-60",
+    "quantity": 1000,
+    "price": 43,
+    "sub_total": 43000,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1527,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1523,
+  "fields": {
+    "order_item": "L-60",
+    "quantity": 3500,
+    "price": 40,
+    "sub_total": 140000,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1528,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1524,
+  "fields": {
+    "order_item": "L-60",
+    "quantity": 3000,
+    "price": 41,
+    "sub_total": 123000,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1529,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1525,
+  "fields": {
+    "order_item": "L-60",
+    "quantity": 1800,
+    "price": 46,
+    "sub_total": 82800,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1530,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1526,
+  "fields": {
+    "order_item": "L-74",
+    "quantity": 35,
+    "price": 40,
+    "sub_total": 1400,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1531,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1527,
+  "fields": {
+    "order_item": "L-74",
+    "quantity": 40,
+    "price": 40,
+    "sub_total": 1600,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1532,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1528,
+  "fields": {
+    "order_item": "L-74",
+    "quantity": 50,
+    "price": 40,
+    "sub_total": 2000,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1533,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1529,
+  "fields": {
+    "order_item": "L-60",
+    "quantity": 130,
+    "price": 45,
+    "sub_total": 5850,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1534,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1530,
+  "fields": {
+    "order_item": "L-60",
+    "quantity": 100,
+    "price": 43,
+    "sub_total": 4300,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1535,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1531,
+  "fields": {
+    "order_item": "L-60",
+    "quantity": 334,
+    "price": 45,
+    "sub_total": 15030,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1536,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1532,
+  "fields": {
+    "order_item": "L-50",
+    "quantity": 1000,
+    "price": 50,
+    "sub_total": 50000,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1537,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1533,
+  "fields": {
+    "order_item": "L-60",
+    "quantity": 682,
+    "price": 44,
+    "sub_total": 30008,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1538,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1534,
+  "fields": {
+    "order_item": "L-60",
+    "quantity": 618,
+    "price": 48,
+    "sub_total": 29664,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1539,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1535,
+  "fields": {
+    "order_item": "L-60",
+    "quantity": 50,
+    "price": 44,
+    "sub_total": 2200,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1540,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1536,
+  "fields": {
+    "order_item": "L-60",
+    "quantity": 2000,
+    "price": 44,
+    "sub_total": 88000,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1541,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1537,
+  "fields": {
+    "order_item": "L-60",
+    "quantity": 150,
+    "price": 46,
+    "sub_total": 6900,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1542,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1538,
+  "fields": {
+    "order_item": "L-60",
+    "quantity": 800,
+    "price": 45,
+    "sub_total": 36000,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1543,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1539,
+  "fields": {
+    "order_item": "L-60",
+    "quantity": 60,
+    "price": 47,
+    "sub_total": 2820,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1544,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1540,
+  "fields": {
+    "order_item": "L-60",
+    "quantity": 508,
+    "price": 42,
+    "sub_total": 21336,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1545,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1541,
+  "fields": {
+    "order_item": "L-60",
+    "quantity": 510,
+    "price": 46,
+    "sub_total": 23460,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1546,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1542,
+  "fields": {
+    "order_item": "L-60",
+    "quantity": 500,
+    "price": 47,
+    "sub_total": 23500,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1547,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1543,
+  "fields": {
+    "order_item": "L-60",
+    "quantity": 700,
+    "price": 46,
+    "sub_total": 32200,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1548,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1544,
+  "fields": {
+    "order_item": "L-60",
+    "quantity": 400,
+    "price": 45,
+    "sub_total": 18000,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1549,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1545,
+  "fields": {
+    "order_item": "L-50",
+    "quantity": 400,
+    "price": 50,
+    "sub_total": 20000,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1550,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1546,
+  "fields": {
+    "order_item": "L-50",
+    "quantity": 500,
+    "price": 51,
+    "sub_total": 25500,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1551,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1547,
+  "fields": {
+    "order_item": "L-60",
+    "quantity": 100,
+    "price": 46,
+    "sub_total": 4600,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1552,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1548,
+  "fields": {
+    "order_item": "L-60",
+    "quantity": 500,
+    "price": 46,
+    "sub_total": 23000,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1553,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1549,
+  "fields": {
+    "order_item": "L-60",
+    "quantity": 2000,
+    "price": 45,
+    "sub_total": 90000,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1554,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1550,
+  "fields": {
+    "order_item": "L-60",
+    "quantity": 400,
+    "price": 46,
+    "sub_total": 18400,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1555,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1551,
+  "fields": {
+    "order_item": "L-60",
+    "quantity": 63,
+    "price": 45,
+    "sub_total": 2835,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1556,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1552,
+  "fields": {
+    "order_item": "L-60",
+    "quantity": 160,
+    "price": 45,
+    "sub_total": 7200,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1557,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1553,
+  "fields": {
+    "order_item": "S-78",
+    "quantity": 2600,
+    "price": 37,
+    "sub_total": 96200,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1558,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1554,
+  "fields": {
+    "order_item": "S-78",
+    "quantity": 1000,
+    "price": 36,
+    "sub_total": 36000,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1559,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1555,
+  "fields": {
+    "order_item": "S-78",
+    "quantity": 200,
+    "price": 40,
+    "sub_total": 8000,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1560,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1556,
+  "fields": {
+    "order_item": "L-60",
+    "quantity": 300,
+    "price": 50,
+    "sub_total": 15000,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1561,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1557,
+  "fields": {
+    "order_item": "S-78",
+    "quantity": 500,
+    "price": 37,
+    "sub_total": 18500,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1562,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1558,
+  "fields": {
+    "order_item": "S-78",
+    "quantity": 150,
+    "price": 39,
+    "sub_total": 5850,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1563,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1559,
+  "fields": {
+    "order_item": "S-78",
+    "quantity": 200,
+    "price": 37,
+    "sub_total": 7400,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1564,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1560,
+  "fields": {
+    "order_item": "L-60",
+    "quantity": 150,
+    "price": 46,
+    "sub_total": 6900,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1565,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1561,
+  "fields": {
+    "order_item": "L-50",
+    "quantity": 500,
+    "price": 57,
+    "sub_total": 28500,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1566,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1562,
+  "fields": {
+    "order_item": "L-60",
+    "quantity": 1200,
+    "price": 46,
+    "sub_total": 55200,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1567,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1563,
+  "fields": {
+    "order_item": "L-50",
+    "quantity": 500,
+    "price": 48,
+    "sub_total": 24000,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1568,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1564,
+  "fields": {
+    "order_item": "L-50",
+    "quantity": 145,
+    "price": 50,
+    "sub_total": 7250,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1569,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1565,
+  "fields": {
+    "order_item": "L-60",
+    "quantity": 105,
+    "price": 46,
+    "sub_total": 4830,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1570,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1566,
+  "fields": {
+    "order_item": "S-78",
+    "quantity": 100,
+    "price": 37,
+    "sub_total": 3700,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1571,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1567,
+  "fields": {
+    "order_item": "L-60",
+    "quantity": 500,
+    "price": 45,
+    "sub_total": 22500,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1572,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1568,
+  "fields": {
+    "order_item": "L-60",
+    "quantity": 50,
+    "price": 46,
+    "sub_total": 2300,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1573,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1569,
+  "fields": {
+    "order_item": "L-60",
+    "quantity": 100,
+    "price": 46,
+    "sub_total": 4600,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1574,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1570,
+  "fields": {
+    "order_item": "L-60",
+    "quantity": 50,
+    "price": 46,
+    "sub_total": 2300,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1575,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1571,
+  "fields": {
+    "order_item": "L-60",
+    "quantity": 200,
+    "price": 45,
+    "sub_total": 9000,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1576,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1572,
+  "fields": {
+    "order_item": "L-60",
+    "quantity": 50,
+    "price": 0,
+    "sub_total": 0,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1577,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1573,
+  "fields": {
+    "order_item": "S-78",
+    "quantity": 48,
+    "price": 39,
+    "sub_total": 1872,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1578,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1574,
+  "fields": {
+    "order_item": "L-60",
+    "quantity": 200,
+    "price": 45,
+    "sub_total": 9000,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1579,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1575,
+  "fields": {
+    "order_item": "L-60",
+    "quantity": 200,
+    "price": 44,
+    "sub_total": 8800,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1580,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1576,
+  "fields": {
+    "order_item": "L-60",
+    "quantity": 44,
+    "price": 0,
+    "sub_total": 0,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1581,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1577,
+  "fields": {
+    "order_item": "L-60",
+    "quantity": 800,
+    "price": 45,
+    "sub_total": 36000,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1582,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1578,
+  "fields": {
+    "order_item": "L-60",
+    "quantity": 200,
+    "price": 0,
+    "sub_total": 0,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1583,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1579,
+  "fields": {
+    "order_item": "L-60",
+    "quantity": 250,
+    "price": 42,
+    "sub_total": 10500,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1584,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1580,
+  "fields": {
+    "order_item": "L-60",
+    "quantity": 100,
+    "price": 0,
+    "sub_total": 0,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1585,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1581,
+  "fields": {
+    "order_item": "L-60",
+    "quantity": 250,
+    "price": 45,
+    "sub_total": 11250,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1586,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1582,
+  "fields": {
+    "order_item": "L-60",
+    "quantity": 250,
+    "price": 42,
+    "sub_total": 10500,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1587,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1583,
+  "fields": {
+    "order_item": "L-60",
+    "quantity": 20,
+    "price": 42,
+    "sub_total": 840,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1588,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1584,
+  "fields": {
+    "order_item": "L-60",
+    "quantity": 250,
+    "price": 45,
+    "sub_total": 11250,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1589,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1585,
+  "fields": {
+    "order_item": "S-78",
+    "quantity": 110,
+    "price": 38,
+    "sub_total": 4180,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1590,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1586,
+  "fields": {
+    "order_item": "L-60",
+    "quantity": 40,
+    "price": 42,
+    "sub_total": 1680,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1591,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1587,
+  "fields": {
+    "order_item": "L-60",
+    "quantity": 1000,
+    "price": 43,
+    "sub_total": 43000,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1592,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1588,
+  "fields": {
+    "order_item": "L-60",
+    "quantity": 230,
+    "price": 42,
+    "sub_total": 9660,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1593,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1589,
+  "fields": {
+    "order_item": "S-78",
+    "quantity": 154,
+    "price": 38,
+    "sub_total": 5852,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1594,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1590,
+  "fields": {
+    "order_item": "S-78",
+    "quantity": 200,
+    "price": 37,
+    "sub_total": 7400,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1595,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1591,
+  "fields": {
+    "order_item": "L-60",
+    "quantity": 400,
+    "price": 45,
+    "sub_total": 18000,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1596,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1592,
+  "fields": {
+    "order_item": "S-78",
+    "quantity": 80,
+    "price": 38,
+    "sub_total": 3040,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1597,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1593,
+  "fields": {
+    "order_item": "S-78",
+    "quantity": 75,
+    "price": 36,
+    "sub_total": 2700,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1598,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1594,
+  "fields": {
+    "order_item": "L-60",
+    "quantity": 450,
+    "price": 44,
+    "sub_total": 19800,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1599,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1595,
+  "fields": {
+    "order_item": "L-60",
+    "quantity": 55,
+    "price": 45,
+    "sub_total": 2475,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1600,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1596,
+  "fields": {
+    "order_item": "L-60",
+    "quantity": 700,
+    "price": 45,
+    "sub_total": 31500,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1601,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1597,
+  "fields": {
+    "order_item": "L-74",
+    "quantity": 16,
+    "price": 42,
+    "sub_total": 672,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1602,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1598,
+  "fields": {
+    "order_item": "S-78",
+    "quantity": 250,
+    "price": 39,
+    "sub_total": 9750,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1603,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1599,
+  "fields": {
+    "order_item": "L-60",
+    "quantity": 54,
+    "price": 44,
+    "sub_total": 2376,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1604,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1600,
+  "fields": {
+    "order_item": "S-78",
+    "quantity": 150,
+    "price": 35,
+    "sub_total": 5250,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1605,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1601,
+  "fields": {
+    "order_item": "S-78",
+    "quantity": 92,
+    "price": 36,
+    "sub_total": 3312,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1606,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1602,
+  "fields": {
+    "order_item": "L-60",
+    "quantity": 2000,
+    "price": 44,
+    "sub_total": 88000,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1607,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1603,
+  "fields": {
+    "order_item": "L-74",
+    "quantity": 50,
+    "price": 40,
+    "sub_total": 2000,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1608,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1604,
+  "fields": {
+    "order_item": "L-60",
+    "quantity": 600,
+    "price": 44,
+    "sub_total": 26400,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1609,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1605,
+  "fields": {
+    "order_item": "L-74",
+    "quantity": 2000,
+    "price": 42,
+    "sub_total": 84000,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1610,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1606,
+  "fields": {
+    "order_item": "L-74",
+    "quantity": 520,
+    "price": 42,
+    "sub_total": 21840,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1611,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1607,
+  "fields": {
+    "order_item": "L-60",
+    "quantity": 115,
+    "price": 42,
+    "sub_total": 4830,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1612,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1608,
+  "fields": {
+    "order_item": "L-74",
+    "quantity": 215,
+    "price": 42,
+    "sub_total": 9030,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1613,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1609,
+  "fields": {
+    "order_item": "L-60",
+    "quantity": 20,
+    "price": 45,
+    "sub_total": 900,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1614,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1610,
+  "fields": {
+    "order_item": "L-74",
+    "quantity": 133,
+    "price": 42,
+    "sub_total": 5586,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1615,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1611,
+  "fields": {
+    "order_item": "L-60",
+    "quantity": 67,
+    "price": 45,
+    "sub_total": 3015,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1616,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1612,
+  "fields": {
+    "order_item": "L-60",
+    "quantity": 550,
+    "price": 45,
+    "sub_total": 24750,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1617,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1613,
+  "fields": {
+    "order_item": "L-60",
+    "quantity": 1200,
+    "price": 44,
+    "sub_total": 52800,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1618,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1614,
+  "fields": {
+    "order_item": "L-60",
+    "quantity": 500,
+    "price": 43,
+    "sub_total": 21500,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1619,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1615,
+  "fields": {
+    "order_item": "L-60",
+    "quantity": 1000,
+    "price": 44,
+    "sub_total": 44000,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1620,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1616,
+  "fields": {
+    "order_item": "L-60",
+    "quantity": 300,
+    "price": 44,
+    "sub_total": 13200,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1621,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1617,
+  "fields": {
+    "order_item": "L-60",
+    "quantity": 100,
+    "price": 44,
+    "sub_total": 4400,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1622,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1618,
+  "fields": {
+    "order_item": "L-60",
+    "quantity": 50,
+    "price": 44,
+    "sub_total": 2200,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1623,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1619,
+  "fields": {
+    "order_item": "L-60",
+    "quantity": 600,
+    "price": 43,
+    "sub_total": 25800,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1624,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1620,
+  "fields": {
+    "order_item": "L-60",
+    "quantity": 2000,
+    "price": 43,
+    "sub_total": 86000,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1625,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1621,
+  "fields": {
+    "order_item": "L-60",
+    "quantity": 500,
+    "price": 44,
+    "sub_total": 22000,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1626,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1622,
+  "fields": {
+    "order_item": "L-60",
+    "quantity": 0,
+    "price": 0,
+    "sub_total": 0,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1627,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1623,
+  "fields": {
+    "order_item": "L-60",
+    "quantity": 2000,
+    "price": 43,
+    "sub_total": 86000,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1628,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1624,
+  "fields": {
+    "order_item": "L-60",
+    "quantity": 1200,
+    "price": 43,
+    "sub_total": 51600,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1629,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1625,
+  "fields": {
+    "order_item": "L-60",
+    "quantity": 630,
+    "price": 43,
+    "sub_total": 27090,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1630,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1626,
+  "fields": {
+    "order_item": "L-60",
+    "quantity": 510,
+    "price": 45,
+    "sub_total": 22950,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1631,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1627,
+  "fields": {
+    "order_item": "L-60",
+    "quantity": 110,
+    "price": 44,
+    "sub_total": 4840,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1632,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1628,
+  "fields": {
+    "order_item": "L-60",
+    "quantity": 200,
+    "price": 45,
+    "sub_total": 9000,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1633,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1629,
+  "fields": {
+    "order_item": "L-60",
+    "quantity": 20,
+    "price": 45,
+    "sub_total": 900,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1634,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1630,
+  "fields": {
+    "order_item": "",
+    "quantity": 1346,
+    "price": 45,
+    "sub_total": 60570,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1635,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1631,
+  "fields": {
+    "order_item": "L-60",
+    "quantity": 665,
+    "price": 45,
+    "sub_total": 29925,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1636,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1632,
+  "fields": {
+    "order_item": "L-60",
+    "quantity": 200,
+    "price": 45,
+    "sub_total": 9000,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1637,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1633,
+  "fields": {
+    "order_item": "L-60",
+    "quantity": 60,
+    "price": 45,
+    "sub_total": 2700,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1638,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1634,
+  "fields": {
+    "order_item": "L-60",
+    "quantity": 1800,
+    "price": 45,
+    "sub_total": 81000,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1639,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1635,
+  "fields": {
+    "order_item": "L-60",
+    "quantity": 50,
+    "price": 42,
+    "sub_total": 2100,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1640,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1636,
+  "fields": {
+    "order_item": "L-60",
+    "quantity": 500,
+    "price": 45,
+    "sub_total": 22500,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1641,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1637,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 530,
+    "price": 45,
+    "sub_total": 23850,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1642,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1638,
+  "fields": {
+    "order_item": "L-60",
+    "quantity": 385,
+    "price": 45,
+    "sub_total": 17325,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1643,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1639,
+  "fields": {
+    "order_item": "L-60",
+    "quantity": 1000,
+    "price": 43,
+    "sub_total": 43000,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1644,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1640,
+  "fields": {
+    "order_item": "W-60",
+    "quantity": 300,
+    "price": 45,
+    "sub_total": 13500,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1645,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1641,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 200,
+    "price": 45,
+    "sub_total": 9000,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1646,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1642,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 120,
+    "price": 45,
+    "sub_total": 5400,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1647,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1643,
+  "fields": {
+    "order_item": "W-60",
+    "quantity": 50,
+    "price": 44,
+    "sub_total": 2200,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1648,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1644,
+  "fields": {
+    "order_item": "W-60",
+    "quantity": 200,
+    "price": 45,
+    "sub_total": 9000,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1649,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1645,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 194,
+    "price": 43,
+    "sub_total": 8342,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1650,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1646,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 0,
+    "price": 44,
+    "sub_total": 0,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1651,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1647,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 100,
+    "price": 44,
+    "sub_total": 4400,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1652,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1648,
+  "fields": {
+    "order_item": "W-60",
+    "quantity": 133,
+    "price": 44,
+    "sub_total": 5852,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1653,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1649,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 40,
+    "price": 45,
+    "sub_total": 1800,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1654,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1650,
+  "fields": {
+    "order_item": "W-60",
+    "quantity": 630,
+    "price": 44,
+    "sub_total": 27720,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1655,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1651,
+  "fields": {
+    "order_item": "W-60",
+    "quantity": 450,
+    "price": 44,
+    "sub_total": 19800,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1656,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1652,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 1680,
+    "price": 44,
+    "sub_total": 73920,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1657,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1653,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 200,
+    "price": 45,
+    "sub_total": 9000,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1658,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1654,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 1775,
+    "price": 44,
+    "sub_total": 78100,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1659,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1655,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 3850,
+    "price": 43,
+    "sub_total": 165550,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1660,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1656,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 500,
+    "price": 44,
+    "sub_total": 22000,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1661,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1657,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 550,
+    "price": 44,
+    "sub_total": 24200,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1662,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1658,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 1146,
+    "price": 44,
+    "sub_total": 50424,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1663,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1659,
+  "fields": {
+    "order_item": "W-60",
+    "quantity": 335,
+    "price": 44,
+    "sub_total": 14740,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1664,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1660,
+  "fields": {
+    "order_item": "W-60",
+    "quantity": 150,
+    "price": 43,
+    "sub_total": 6450,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1665,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1661,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 1000,
+    "price": 43,
+    "sub_total": 43000,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1666,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1662,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 1100,
+    "price": 45,
+    "sub_total": 49500,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1667,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1663,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 2500,
+    "price": 44,
+    "sub_total": 110000,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1668,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1664,
+  "fields": {
+    "order_item": "W-60",
+    "quantity": 100,
+    "price": 44,
+    "sub_total": 4400,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1669,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1665,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 1500,
+    "price": 44,
+    "sub_total": 66000,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1670,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1666,
+  "fields": {
+    "order_item": "W-60",
+    "quantity": 500,
+    "price": 44,
+    "sub_total": 22000,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1671,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1667,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 150,
+    "price": 45,
+    "sub_total": 6750,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1672,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1668,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 100,
+    "price": 44,
+    "sub_total": 4400,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1673,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1669,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 301,
+    "price": 44,
+    "sub_total": 13244,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1674,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1670,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 1000,
+    "price": 44,
+    "sub_total": 44000,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1675,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1671,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 50,
+    "price": 44,
+    "sub_total": 2200,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1676,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1672,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 300,
+    "price": 45,
+    "sub_total": 13500,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1677,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1673,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 48,
+    "price": 44,
+    "sub_total": 2112,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1678,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1674,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 500,
+    "price": 44,
+    "sub_total": 22000,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1679,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1675,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 500,
+    "price": 45,
+    "sub_total": 22500,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1680,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1676,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 600,
+    "price": 44,
+    "sub_total": 26400,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1681,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1677,
+  "fields": {
+    "order_item": "S-50",
+    "quantity": 1200,
+    "price": 50,
+    "sub_total": 60000,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1682,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1678,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 1000,
+    "price": 45,
+    "sub_total": 45000,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1683,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1679,
+  "fields": {
+    "order_item": "W-60",
+    "quantity": 150,
+    "price": 43,
+    "sub_total": 6450,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1684,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1680,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 0,
+    "price": 0,
+    "sub_total": 0,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1685,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1681,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 1000,
+    "price": 43,
+    "sub_total": 43000,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1686,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1682,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 100,
+    "price": 43,
+    "sub_total": 4300,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1687,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1683,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 100,
+    "price": 44,
+    "sub_total": 4400,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1688,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1684,
+  "fields": {
+    "order_item": "0",
+    "quantity": 0,
+    "price": 0,
+    "sub_total": 0,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1689,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1685,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 250,
+    "price": 44,
+    "sub_total": 11000,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1690,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1686,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 40,
+    "price": 44,
+    "sub_total": 1760,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1691,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1687,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 250,
+    "price": 44,
+    "sub_total": 11000,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1692,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1688,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 110,
+    "price": 45,
+    "sub_total": 4950,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1693,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1689,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 1000,
+    "price": 45,
+    "sub_total": 45000,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1694,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1690,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 200,
+    "price": 45,
+    "sub_total": 9000,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1695,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1691,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 2000,
+    "price": 44,
+    "sub_total": 88000,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1696,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1692,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 2000,
+    "price": 44,
+    "sub_total": 88000,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1697,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1693,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 500,
+    "price": 43,
+    "sub_total": 21500,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1698,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1694,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 100,
+    "price": 44,
+    "sub_total": 4400,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1699,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1695,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 500,
+    "price": 43,
+    "sub_total": 21500,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1700,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1696,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 350,
+    "price": 43,
+    "sub_total": 15050,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1701,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1697,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 200,
+    "price": 45,
+    "sub_total": 9000,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1702,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1698,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 550,
+    "price": 45,
+    "sub_total": 24750,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1703,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1699,
+  "fields": {
+    "order_item": "W-60",
+    "quantity": 30,
+    "price": 43,
+    "sub_total": 1290,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1704,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1700,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 300,
+    "price": 44,
+    "sub_total": 13200,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1705,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1701,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 200,
+    "price": 45,
+    "sub_total": 9000,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1706,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1702,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 1500,
+    "price": 45,
+    "sub_total": 67500,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1707,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1703,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 150,
+    "price": 44,
+    "sub_total": 6600,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1708,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1704,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 100,
+    "price": 45,
+    "sub_total": 4500,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1709,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1705,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 50,
+    "price": 43,
+    "sub_total": 2150,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1710,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1706,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 550,
+    "price": 45,
+    "sub_total": 24750,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1711,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1707,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 520,
+    "price": 45,
+    "sub_total": 23400,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1712,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1708,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 350,
+    "price": 44,
+    "sub_total": 15400,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1713,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1709,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 50,
+    "price": 43,
+    "sub_total": 2150,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1714,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1710,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 1000,
+    "price": 44,
+    "sub_total": 44000,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1715,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1711,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 200,
+    "price": 44,
+    "sub_total": 8800,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1716,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1712,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 1100,
+    "price": 44,
+    "sub_total": 48400,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1717,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1713,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 800,
+    "price": 44,
+    "sub_total": 35200,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1718,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1714,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 300,
+    "price": 44,
+    "sub_total": 13200,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1719,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1715,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 50,
+    "price": 44,
+    "sub_total": 2200,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1720,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1716,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 100,
+    "price": 43,
+    "sub_total": 4300,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1721,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1717,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 1200,
+    "price": 44,
+    "sub_total": 52800,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1722,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1718,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 700,
+    "price": 44,
+    "sub_total": 30800,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1723,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1719,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 200,
+    "price": 44,
+    "sub_total": 8800,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1724,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1720,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 2800,
+    "price": 50,
+    "sub_total": 140000,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1725,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1721,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 350,
+    "price": 44,
+    "sub_total": 15400,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1726,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1722,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 800,
+    "price": 44,
+    "sub_total": 35200,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1727,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1723,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 500,
+    "price": 44,
+    "sub_total": 22000,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1728,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1724,
+  "fields": {
+    "order_item": "W-60",
+    "quantity": 300,
+    "price": 43,
+    "sub_total": 12900,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1729,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1725,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 200,
+    "price": 44,
+    "sub_total": 8800,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1730,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1726,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 400,
+    "price": 44,
+    "sub_total": 17600,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1731,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1727,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 120,
+    "price": 45,
+    "sub_total": 5400,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1732,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1728,
+  "fields": {
+    "order_item": "W-60",
+    "quantity": 500,
+    "price": 44,
+    "sub_total": 22000,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1733,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1729,
+  "fields": {
+    "order_item": "W-60",
+    "quantity": 200,
+    "price": 44,
+    "sub_total": 8800,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1734,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1730,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 1800,
+    "price": 46,
+    "sub_total": 82800,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1735,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1731,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 550,
+    "price": 46,
+    "sub_total": 25300,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1736,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1732,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 100,
+    "price": 50,
+    "sub_total": 5000,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1737,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1733,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 35,
+    "price": 50,
+    "sub_total": 1750,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1738,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1734,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 60,
+    "price": 44,
+    "sub_total": 2640,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1739,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1735,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 400,
+    "price": 47,
+    "sub_total": 18800,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1740,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1736,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 500,
+    "price": 50,
+    "sub_total": 25000,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1741,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1737,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 300,
+    "price": 49,
+    "sub_total": 14700,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1742,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1738,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 200,
+    "price": 49,
+    "sub_total": 9800,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1743,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1739,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 200,
+    "price": 49,
+    "sub_total": 9800,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1744,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1740,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 700,
+    "price": 50,
+    "sub_total": 35000,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1745,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1741,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 2000,
+    "price": 50,
+    "sub_total": 100000,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1746,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1742,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 50,
+    "price": 49,
+    "sub_total": 2450,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1747,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1743,
+  "fields": {
+    "order_item": "W-60",
+    "quantity": 250,
+    "price": 46,
+    "sub_total": 11500,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1748,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1744,
+  "fields": {
+    "order_item": "W-60",
+    "quantity": 300,
+    "price": 46,
+    "sub_total": 13800,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1749,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1745,
+  "fields": {
+    "order_item": "W-60",
+    "quantity": 54,
+    "price": 46,
+    "sub_total": 2484,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1750,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1746,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 70,
+    "price": 50,
+    "sub_total": 3500,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1751,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1747,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 100,
+    "price": 50,
+    "sub_total": 5000,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1752,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1748,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 500,
+    "price": 50,
+    "sub_total": 25000,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1753,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1749,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 1450,
+    "price": 50,
+    "sub_total": 72500,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1754,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1750,
+  "fields": {
+    "order_item": "W-60",
+    "quantity": 800,
+    "price": 46,
+    "sub_total": 36800,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1755,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1751,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 250,
+    "price": 50,
+    "sub_total": 12500,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1756,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1752,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 100,
+    "price": 50,
+    "sub_total": 5000,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1757,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1753,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 300,
+    "price": 49,
+    "sub_total": 14700,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1758,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1754,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 200,
+    "price": 50,
+    "sub_total": 10000,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1759,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1755,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 375,
+    "price": 50,
+    "sub_total": 18750,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1760,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1756,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 400,
+    "price": 49,
+    "sub_total": 19600,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1761,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1757,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 500,
+    "price": 50,
+    "sub_total": 25000,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1762,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1758,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 1060,
+    "price": 47,
+    "sub_total": 49820,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1763,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1759,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 1000,
+    "price": 49,
+    "sub_total": 49000,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1764,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1760,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 300,
+    "price": 50,
+    "sub_total": 15000,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1765,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1761,
+  "fields": {
+    "order_item": "R-75",
+    "quantity": 800,
+    "price": 45,
+    "sub_total": 36000,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1766,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1762,
+  "fields": {
+    "order_item": "R-75",
+    "quantity": 340,
+    "price": 44,
+    "sub_total": 14960,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1767,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1763,
+  "fields": {
+    "order_item": "R-75",
+    "quantity": 200,
+    "price": 45,
+    "sub_total": 9000,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1768,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1764,
+  "fields": {
+    "order_item": "R-75",
+    "quantity": 350,
+    "price": 44,
+    "sub_total": 15400,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1769,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1765,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 600,
+    "price": 49,
+    "sub_total": 29400,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1770,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1766,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 100,
+    "price": 50,
+    "sub_total": 5000,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1771,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1767,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 130,
+    "price": 48,
+    "sub_total": 6240,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1772,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1768,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 300,
+    "price": 48,
+    "sub_total": 14400,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1773,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1769,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 1100,
+    "price": 48,
+    "sub_total": 52800,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1774,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1770,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 1000,
+    "price": 50,
+    "sub_total": 50000,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1775,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1771,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 400,
+    "price": 48,
+    "sub_total": 19200,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1776,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1772,
+  "fields": {
+    "order_item": "R-50",
+    "quantity": 1250,
+    "price": 56,
+    "sub_total": 70000,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1777,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1773,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 550,
+    "price": 47,
+    "sub_total": 25850,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1778,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1774,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 100,
+    "price": 46,
+    "sub_total": 4600,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1779,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1775,
+  "fields": {
+    "order_item": "W-60",
+    "quantity": 50,
+    "price": 46,
+    "sub_total": 2300,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1780,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1776,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 500,
+    "price": 50,
+    "sub_total": 25000,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1781,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1777,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 200,
+    "price": 48,
+    "sub_total": 9600,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1782,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1778,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 50,
+    "price": 50,
+    "sub_total": 2500,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1783,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1779,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 200,
+    "price": 50,
+    "sub_total": 10000,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1784,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1780,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 40,
+    "price": 50,
+    "sub_total": 2000,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1785,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1781,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 30,
+    "price": 50,
+    "sub_total": 1500,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1786,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1782,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 0,
+    "price": 0,
+    "sub_total": 0,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1787,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1783,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 700,
+    "price": 48,
+    "sub_total": 33600,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1788,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1784,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 200,
+    "price": 48,
+    "sub_total": 9600,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1789,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1785,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 1000,
+    "price": 48,
+    "sub_total": 48000,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1790,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1786,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 100,
+    "price": 48,
+    "sub_total": 4800,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1791,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1787,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 350,
+    "price": 49,
+    "sub_total": 17150,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1792,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1788,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 50,
+    "price": 49,
+    "sub_total": 2450,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1793,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1789,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 50,
+    "price": 49,
+    "sub_total": 2450,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1794,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1790,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 24,
+    "price": 49,
+    "sub_total": 1176,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1795,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1791,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 800,
+    "price": 48,
+    "sub_total": 38400,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1796,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1792,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 400,
+    "price": 49,
+    "sub_total": 19600,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1797,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1793,
+  "fields": {
+    "order_item": "R-48",
+    "quantity": 500,
+    "price": 55,
+    "sub_total": 27500,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1798,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1794,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 930,
+    "price": 49,
+    "sub_total": 45570,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1799,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1795,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 1600,
+    "price": 48,
+    "sub_total": 76800,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1800,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1796,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 100,
+    "price": 50,
+    "sub_total": 5000,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1801,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1797,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 110,
+    "price": 48,
+    "sub_total": 5280,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1802,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1798,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 24,
+    "price": 48,
+    "sub_total": 1152,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1803,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1799,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 500,
+    "price": 0,
+    "sub_total": 0,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1804,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1800,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 600,
+    "price": 48,
+    "sub_total": 28800,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1805,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1801,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 500,
+    "price": 50,
+    "sub_total": 25000,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1806,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1802,
+  "fields": {
+    "order_item": "R-48",
+    "quantity": 31,
+    "price": 54,
+    "sub_total": 1674,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1807,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1803,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 29,
+    "price": 49,
+    "sub_total": 1421,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1808,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1804,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 25,
+    "price": 50,
+    "sub_total": 1250,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1809,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1805,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 1000,
+    "price": 49,
+    "sub_total": 49000,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1810,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1806,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 150,
+    "price": 48,
+    "sub_total": 7200,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1811,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1807,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 50,
+    "price": 50,
+    "sub_total": 2500,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1812,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1808,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 800,
+    "price": 49,
+    "sub_total": 39200,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1813,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1809,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 200,
+    "price": 50,
+    "sub_total": 10000,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1814,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1810,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 200,
+    "price": 50,
+    "sub_total": 10000,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1815,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1811,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 500,
+    "price": 50,
+    "sub_total": 25000,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1816,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1812,
+  "fields": {
+    "order_item": "R-50",
+    "quantity": 0,
+    "price": 55,
+    "sub_total": 0,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1817,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1813,
+  "fields": {
+    "order_item": "R-50",
+    "quantity": 300,
+    "price": 50,
+    "sub_total": 15000,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1818,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1814,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 1000,
+    "price": 48,
+    "sub_total": 48000,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1819,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1815,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 520,
+    "price": 49,
+    "sub_total": 25480,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1820,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1816,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 100,
+    "price": 49,
+    "sub_total": 4900,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1821,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1817,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 250,
+    "price": 48,
+    "sub_total": 12000,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1822,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1818,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 100,
+    "price": 50,
+    "sub_total": 5000,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1823,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1819,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 20,
+    "price": 50,
+    "sub_total": 1000,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1824,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1820,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 300,
+    "price": 48,
+    "sub_total": 14400,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1825,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1821,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 15,
+    "price": 50,
+    "sub_total": 750,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1826,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1822,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 200,
+    "price": 50,
+    "sub_total": 10000,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1827,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1823,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 115,
+    "price": 49,
+    "sub_total": 5635,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1828,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1824,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 550,
+    "price": 48,
+    "sub_total": 26400,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1829,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1825,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 200,
+    "price": 50,
+    "sub_total": 10000,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1830,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1826,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 100,
+    "price": 49,
+    "sub_total": 4900,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1831,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1827,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 380,
+    "price": 49,
+    "sub_total": 18620,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1832,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1828,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 100,
+    "price": 48,
+    "sub_total": 4800,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1833,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1829,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 225,
+    "price": 49,
+    "sub_total": 11025,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1834,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1830,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 100,
+    "price": 48,
+    "sub_total": 4800,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1835,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1831,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 110,
+    "price": 48,
+    "sub_total": 5280,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1836,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1832,
+  "fields": {
+    "order_item": "R-50",
+    "quantity": 2000,
+    "price": 52,
+    "sub_total": 104000,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1837,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1833,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 70,
+    "price": 50,
+    "sub_total": 3500,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1838,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1834,
+  "fields": {
+    "order_item": "S-78",
+    "quantity": 40,
+    "price": 42,
+    "sub_total": 1680,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1839,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1835,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 1000,
+    "price": 48,
+    "sub_total": 48000,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1840,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1836,
+  "fields": {
+    "order_item": "S-50",
+    "quantity": 200,
+    "price": 54,
+    "sub_total": 10800,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1841,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1837,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 70,
+    "price": 50,
+    "sub_total": 3500,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1842,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1838,
+  "fields": {
+    "order_item": "S-78",
+    "quantity": 600,
+    "price": 40,
+    "sub_total": 24000,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1843,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1839,
+  "fields": {
+    "order_item": "S-78",
+    "quantity": 102,
+    "price": 40,
+    "sub_total": 4080,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1844,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1840,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 150,
+    "price": 50,
+    "sub_total": 7500,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1845,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1841,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 550,
+    "price": 48,
+    "sub_total": 26400,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1846,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1842,
+  "fields": {
+    "order_item": "W-78",
+    "quantity": 50,
+    "price": 40,
+    "sub_total": 2000,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1847,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1843,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 100,
+    "price": 48,
+    "sub_total": 4800,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1848,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1844,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 400,
+    "price": 48,
+    "sub_total": 19200,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1849,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1845,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 200,
+    "price": 48,
+    "sub_total": 9600,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1850,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1846,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 450,
+    "price": 50,
+    "sub_total": 22500,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1851,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1847,
+  "fields": {
+    "order_item": "W-78",
+    "quantity": 200,
+    "price": 40,
+    "sub_total": 8000,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1852,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1848,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 100,
+    "price": 50,
+    "sub_total": 5000,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1853,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1849,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 1850,
+    "price": 49,
+    "sub_total": 90650,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1854,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1850,
+  "fields": {
+    "order_item": "S-50",
+    "quantity": 1000,
+    "price": 53,
+    "sub_total": 53000,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1855,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1851,
+  "fields": {
+    "order_item": "W-72",
+    "quantity": 80,
+    "price": 45,
+    "sub_total": 3600,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1856,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1852,
+  "fields": {
+    "order_item": "W-72",
+    "quantity": 150,
+    "price": 45,
+    "sub_total": 6750,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1857,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1853,
+  "fields": {
+    "order_item": "S-78",
+    "quantity": 500,
+    "price": 40,
+    "sub_total": 20000,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1858,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1854,
+  "fields": {
+    "order_item": "S-78",
+    "quantity": 200,
+    "price": 40,
+    "sub_total": 8000,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1859,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1855,
+  "fields": {
+    "order_item": "S-78",
+    "quantity": 200,
+    "price": 40,
+    "sub_total": 8000,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1860,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1856,
+  "fields": {
+    "order_item": "S-78",
+    "quantity": 100,
+    "price": 40,
+    "sub_total": 4000,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1861,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1857,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 100,
+    "price": 50,
+    "sub_total": 5000,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1862,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1858,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 300,
+    "price": 48,
+    "sub_total": 14400,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1863,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1859,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 25,
+    "price": 48,
+    "sub_total": 1200,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1864,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1860,
+  "fields": {
+    "order_item": "S-50",
+    "quantity": 800,
+    "price": 53,
+    "sub_total": 42400,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1865,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1861,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 1000,
+    "price": 48,
+    "sub_total": 48000,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1866,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1862,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 1000,
+    "price": 45,
+    "sub_total": 45000,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1867,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1863,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 75,
+    "price": 48,
+    "sub_total": 3600,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1868,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1864,
+  "fields": {
+    "order_item": "S-50",
+    "quantity": 250,
+    "price": 53,
+    "sub_total": 13250,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1869,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1865,
+  "fields": {
+    "order_item": "W-72",
+    "quantity": 10,
+    "price": 45,
+    "sub_total": 450,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1870,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1866,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 1000,
+    "price": 48,
+    "sub_total": 48000,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1871,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1867,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 200,
+    "price": 48,
+    "sub_total": 9600,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1872,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1868,
+  "fields": {
+    "order_item": "S-50",
+    "quantity": 1000,
+    "price": 53,
+    "sub_total": 53000,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1873,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1869,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 50,
+    "price": 48,
+    "sub_total": 2400,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1874,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1870,
+  "fields": {
+    "order_item": "W-72",
+    "quantity": 550,
+    "price": 45,
+    "sub_total": 24750,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1875,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1871,
+  "fields": {
+    "order_item": "w-78",
+    "quantity": 200,
+    "price": 40,
+    "sub_total": 8000,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1876,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1872,
+  "fields": {
+    "order_item": "w-78",
+    "quantity": 200,
+    "price": 40,
+    "sub_total": 8000,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1877,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1873,
+  "fields": {
+    "order_item": "w-78",
+    "quantity": 40,
+    "price": 40,
+    "sub_total": 1600,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1878,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1874,
+  "fields": {
+    "order_item": "w-78",
+    "quantity": 300,
+    "price": 40,
+    "sub_total": 12000,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1879,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1875,
+  "fields": {
+    "order_item": "S-50",
+    "quantity": 1100,
+    "price": 52,
+    "sub_total": 57200,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1880,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1876,
+  "fields": {
+    "order_item": "w-72",
+    "quantity": 20,
+    "price": 45,
+    "sub_total": 900,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1881,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1877,
+  "fields": {
+    "order_item": "S-50",
+    "quantity": 300,
+    "price": 51,
+    "sub_total": 15300,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1882,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1878,
+  "fields": {
+    "order_item": "S-50",
+    "quantity": 500,
+    "price": 51,
+    "sub_total": 25500,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1883,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1879,
+  "fields": {
+    "order_item": "S-50",
+    "quantity": 800,
+    "price": 53,
+    "sub_total": 42400,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1884,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1880,
+  "fields": {
+    "order_item": "w-78",
+    "quantity": 1000,
+    "price": 38,
+    "sub_total": 38000,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1885,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1881,
+  "fields": {
+    "order_item": "w-78",
+    "quantity": 25,
+    "price": 40,
+    "sub_total": 1000,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1886,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1882,
+  "fields": {
+    "order_item": "S-50",
+    "quantity": 500,
+    "price": 53,
+    "sub_total": 26500,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1887,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1883,
+  "fields": {
+    "order_item": "w-78",
+    "quantity": 300,
+    "price": 49,
+    "sub_total": 14700,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1888,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1884,
+  "fields": {
+    "order_item": "w-78",
+    "quantity": 20,
+    "price": 45,
+    "sub_total": 900,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1889,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1885,
+  "fields": {
+    "order_item": "S-50",
+    "quantity": 280,
+    "price": 52,
+    "sub_total": 14560,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1890,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1886,
+  "fields": {
+    "order_item": "w-78",
+    "quantity": 40,
+    "price": 44,
+    "sub_total": 1760,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1891,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1887,
+  "fields": {
+    "order_item": "w-72",
+    "quantity": 1000,
+    "price": 46,
+    "sub_total": 46000,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1892,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1888,
+  "fields": {
+    "order_item": "S-50",
+    "quantity": 150,
+    "price": 55,
+    "sub_total": 8250,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1893,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1889,
+  "fields": {
+    "order_item": "S-50",
+    "quantity": 35,
+    "price": 50,
+    "sub_total": 1750,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1894,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1890,
+  "fields": {
+    "order_item": "w-72",
+    "quantity": 500,
+    "price": 45,
+    "sub_total": 22500,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1895,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1891,
+  "fields": {
+    "order_item": "w-72",
+    "quantity": 64,
+    "price": 45,
+    "sub_total": 2880,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1896,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1892,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 150,
+    "price": 50,
+    "sub_total": 7500,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1897,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1893,
+  "fields": {
+    "order_item": "w-78",
+    "quantity": 50,
+    "price": 42,
+    "sub_total": 2100,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1898,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1894,
+  "fields": {
+    "order_item": "s-62",
+    "quantity": 300,
+    "price": 54,
+    "sub_total": 16200,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1899,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1895,
+  "fields": {
+    "order_item": "w-78",
+    "quantity": 1000,
+    "price": 40,
+    "sub_total": 40000,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1900,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1896,
+  "fields": {
+    "order_item": "S-52",
+    "quantity": 1000,
+    "price": 54,
+    "sub_total": 54000,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1901,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1897,
+  "fields": {
+    "order_item": "S-52",
+    "quantity": 1500,
+    "price": 55,
+    "sub_total": 82500,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1902,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1898,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 1000,
+    "price": 48,
+    "sub_total": 48000,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1903,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1899,
+  "fields": {
+    "order_item": "w-78",
+    "quantity": 1000,
+    "price": 40,
+    "sub_total": 40000,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1904,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1900,
+  "fields": {
+    "order_item": "S-50",
+    "quantity": 2000,
+    "price": 55,
+    "sub_total": 110000,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1905,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1901,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 300,
+    "price": 49,
+    "sub_total": 14700,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1906,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1902,
+  "fields": {
+    "order_item": "S-50",
+    "quantity": 1000,
+    "price": 55,
+    "sub_total": 55000,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1907,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1903,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 110,
+    "price": 47,
+    "sub_total": 5170,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1908,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1904,
+  "fields": {
+    "order_item": "S-50",
+    "quantity": 250,
+    "price": 54,
+    "sub_total": 13500,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1909,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1905,
+  "fields": {
+    "order_item": "S-50",
+    "quantity": 600,
+    "price": 53,
+    "sub_total": 31800,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1910,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1906,
+  "fields": {
+    "order_item": "W-78",
+    "quantity": 500,
+    "price": 40,
+    "sub_total": 20000,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1911,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1907,
+  "fields": {
+    "order_item": "W-78",
+    "quantity": 400,
+    "price": 42,
+    "sub_total": 16800,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1912,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1908,
+  "fields": {
+    "order_item": "W-78",
+    "quantity": 30,
+    "price": 43,
+    "sub_total": 1290,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1913,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1909,
+  "fields": {
+    "order_item": "S-52",
+    "quantity": 100,
+    "price": 42,
+    "sub_total": 4200,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1914,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1910,
+  "fields": {
+    "order_item": "S-52",
+    "quantity": 1000,
+    "price": 54,
+    "sub_total": 54000,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1915,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1911,
+  "fields": {
+    "order_item": "W-78",
+    "quantity": 50,
+    "price": 54,
+    "sub_total": 2700,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1916,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1912,
+  "fields": {
+    "order_item": "W-78",
+    "quantity": 100,
+    "price": 44,
+    "sub_total": 4400,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1917,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1913,
+  "fields": {
+    "order_item": "S-52",
+    "quantity": 1000,
+    "price": 54,
+    "sub_total": 54000,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1918,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1914,
+  "fields": {
+    "order_item": "W-78",
+    "quantity": 100,
+    "price": 40,
+    "sub_total": 4000,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1919,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1915,
+  "fields": {
+    "order_item": "S-52",
+    "quantity": 300,
+    "price": 54,
+    "sub_total": 16200,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1920,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1916,
+  "fields": {
+    "order_item": "W-78",
+    "quantity": 50,
+    "price": 42,
+    "sub_total": 2100,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1921,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1917,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 50,
+    "price": 48,
+    "sub_total": 2400,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1922,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1918,
+  "fields": {
+    "order_item": "W-78",
+    "quantity": 200,
+    "price": 41,
+    "sub_total": 8200,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1923,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1919,
+  "fields": {
+    "order_item": "S-52",
+    "quantity": 250,
+    "price": 55,
+    "sub_total": 13750,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1924,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1920,
+  "fields": {
+    "order_item": "S-52",
+    "quantity": 1000,
+    "price": 55,
+    "sub_total": 55000,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1925,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1921,
+  "fields": {
+    "order_item": "S-52",
+    "quantity": 150,
+    "price": 52,
+    "sub_total": 7800,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1926,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1922,
+  "fields": {
+    "order_item": "W-78",
+    "quantity": 106,
+    "price": 40,
+    "sub_total": 4240,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1927,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1923,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 600,
+    "price": 47,
+    "sub_total": 28200,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1928,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1924,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 100,
+    "price": 48,
+    "sub_total": 4800,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1929,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1925,
+  "fields": {
+    "order_item": "S-52",
+    "quantity": 201,
+    "price": 55,
+    "sub_total": 11055,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1930,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1926,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 600,
+    "price": 49,
+    "sub_total": 29400,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1931,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1927,
+  "fields": {
+    "order_item": "S-52",
+    "quantity": 200,
+    "price": 54,
+    "sub_total": 10800,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1932,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1928,
+  "fields": {
+    "order_item": "S-52",
+    "quantity": 300,
+    "price": 53,
+    "sub_total": 15900,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1933,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1929,
+  "fields": {
+    "order_item": "S-52",
+    "quantity": 1000,
+    "price": 55,
+    "sub_total": 55000,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1934,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1930,
+  "fields": {
+    "order_item": "S-52",
+    "quantity": 500,
+    "price": 55,
+    "sub_total": 27500,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1935,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1931,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 150,
+    "price": 48,
+    "sub_total": 7200,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1936,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1932,
+  "fields": {
+    "order_item": "S-52",
+    "quantity": 500,
+    "price": 54,
+    "sub_total": 27000,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1937,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1933,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 100,
+    "price": 49,
+    "sub_total": 4900,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1938,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1934,
+  "fields": {
+    "order_item": "S-52",
+    "quantity": 140,
+    "price": 54,
+    "sub_total": 7560,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1939,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1935,
+  "fields": {
+    "order_item": "S-62",
+    "quantity": 2000,
+    "price": 50,
+    "sub_total": 100000,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1940,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1936,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 200,
+    "price": 48,
+    "sub_total": 9600,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1941,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1937,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 150,
+    "price": 48,
+    "sub_total": 7200,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1942,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1938,
+  "fields": {
+    "order_item": "S-52",
+    "quantity": 1000,
+    "price": 51,
+    "sub_total": 51000,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1943,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1939,
+  "fields": {
+    "order_item": "S-52",
+    "quantity": 1000,
+    "price": 52,
+    "sub_total": 52000,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1944,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1940,
+  "fields": {
+    "order_item": "W-72",
+    "quantity": 300,
+    "price": 46,
+    "sub_total": 13800,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1945,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1941,
+  "fields": {
+    "order_item": "W-72",
+    "quantity": 500,
+    "price": 46,
+    "sub_total": 23000,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1946,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1942,
+  "fields": {
+    "order_item": "S-52",
+    "quantity": 250,
+    "price": 53,
+    "sub_total": 13250,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1947,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1943,
+  "fields": {
+    "order_item": "S-52",
+    "quantity": 300,
+    "price": 55,
+    "sub_total": 16500,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1948,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1944,
+  "fields": {
+    "order_item": "S-52",
+    "quantity": 1000,
+    "price": 54,
+    "sub_total": 54000,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1949,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1945,
+  "fields": {
+    "order_item": "S-52",
+    "quantity": 1000,
+    "price": 54,
+    "sub_total": 54000,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1950,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1946,
+  "fields": {
+    "order_item": "S-52",
+    "quantity": 600,
+    "price": 48,
+    "sub_total": 28800,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1951,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1947,
+  "fields": {
+    "order_item": "S-52",
+    "quantity": 200,
+    "price": 55,
+    "sub_total": 11000,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1952,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1948,
+  "fields": {
+    "order_item": "S-52",
+    "quantity": 764,
+    "price": 55,
+    "sub_total": 42020,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1953,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1949,
+  "fields": {
+    "order_item": "S-52",
+    "quantity": 100,
+    "price": 55,
+    "sub_total": 5500,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1954,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1950,
+  "fields": {
+    "order_item": "S-52",
+    "quantity": 250,
+    "price": 55,
+    "sub_total": 13750,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1955,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1951,
+  "fields": {
+    "order_item": "S-52",
+    "quantity": 60,
+    "price": 55,
+    "sub_total": 3300,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1956,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1952,
+  "fields": {
+    "order_item": "S-52",
+    "quantity": 400,
+    "price": 53,
+    "sub_total": 21200,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1957,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1953,
+  "fields": {
+    "order_item": "S-52",
+    "quantity": 400,
+    "price": 53,
+    "sub_total": 21200,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1958,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1954,
+  "fields": {
+    "order_item": "S-52",
+    "quantity": 1100,
+    "price": 54,
+    "sub_total": 59400,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1959,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1955,
+  "fields": {
+    "order_item": "S-52",
+    "quantity": 2800,
+    "price": 54,
+    "sub_total": 151200,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1960,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1956,
+  "fields": {
+    "order_item": "S-52",
+    "quantity": 250,
+    "price": 53,
+    "sub_total": 13250,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1961,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1957,
+  "fields": {
+    "order_item": "S-52",
+    "quantity": 1000,
+    "price": 53,
+    "sub_total": 53000,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1962,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1958,
+  "fields": {
+    "order_item": "S-52",
+    "quantity": 350,
+    "price": 53,
+    "sub_total": 18550,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1963,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1959,
+  "fields": {
+    "order_item": "S-4\"",
+    "quantity": 1000,
+    "price": 36,
+    "sub_total": 36000,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1964,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1960,
+  "fields": {
+    "order_item": "S-52",
+    "quantity": 2000,
+    "price": 54,
+    "sub_total": 108000,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1965,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1961,
+  "fields": {
+    "order_item": "L-52",
+    "quantity": 600,
+    "price": 53,
+    "sub_total": 31800,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1966,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1962,
+  "fields": {
+    "order_item": "S-4\"",
+    "quantity": 150,
+    "price": 37,
+    "sub_total": 5550,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1967,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1963,
+  "fields": {
+    "order_item": "S-52",
+    "quantity": 550,
+    "price": 52,
+    "sub_total": 28600,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1968,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1964,
+  "fields": {
+    "order_item": "S-52",
+    "quantity": 45,
+    "price": 54,
+    "sub_total": 2430,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1969,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1965,
+  "fields": {
+    "order_item": "S-52",
+    "quantity": 250,
+    "price": 53,
+    "sub_total": 13250,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1970,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1966,
+  "fields": {
+    "order_item": "S-4\"",
+    "quantity": 1400,
+    "price": 36,
+    "sub_total": 50400,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1971,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1967,
+  "fields": {
+    "order_item": "S-52",
+    "quantity": 1000,
+    "price": 55,
+    "sub_total": 55000,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1972,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1968,
+  "fields": {
+    "order_item": "S-52",
+    "quantity": 50,
+    "price": 54,
+    "sub_total": 2700,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1973,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1969,
+  "fields": {
+    "order_item": "S-52",
+    "quantity": 60,
+    "price": 53,
+    "sub_total": 3180,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1974,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1970,
+  "fields": {
+    "order_item": "S-4\"",
+    "quantity": 50,
+    "price": 36,
+    "sub_total": 1800,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1975,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1971,
+  "fields": {
+    "order_item": "S-4\"",
+    "quantity": 60,
+    "price": 36,
+    "sub_total": 2160,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1976,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1972,
+  "fields": {
+    "order_item": "S-4\"",
+    "quantity": 500,
+    "price": 36,
+    "sub_total": 18000,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1977,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1973,
+  "fields": {
+    "order_item": "S-4\"",
+    "quantity": 870,
+    "price": 36,
+    "sub_total": 31320,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1978,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1974,
+  "fields": {
+    "order_item": "S-52",
+    "quantity": 300,
+    "price": 53,
+    "sub_total": 15900,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1979,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1975,
+  "fields": {
+    "order_item": "S-52",
+    "quantity": 50,
+    "price": 54,
+    "sub_total": 2700,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1980,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1976,
+  "fields": {
+    "order_item": "S-4\"",
+    "quantity": 400,
+    "price": 36,
+    "sub_total": 14400,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1981,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1977,
+  "fields": {
+    "order_item": "S-4\"",
+    "quantity": 90,
+    "price": 36,
+    "sub_total": 3240,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1982,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1978,
+  "fields": {
+    "order_item": "S-4\"",
+    "quantity": 50,
+    "price": 36,
+    "sub_total": 1800,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1983,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1979,
+  "fields": {
+    "order_item": "S-4\"",
+    "quantity": 50,
+    "price": 36,
+    "sub_total": 1800,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1984,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1980,
+  "fields": {
+    "order_item": "S-4\"",
+    "quantity": 876,
+    "price": 36,
+    "sub_total": 31536,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1985,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1981,
+  "fields": {
+    "order_item": "S-52",
+    "quantity": 1000,
+    "price": 55,
+    "sub_total": 55000,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1986,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1982,
+  "fields": {
+    "order_item": "S-52",
+    "quantity": 820,
+    "price": 55,
+    "sub_total": 45100,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1987,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1983,
+  "fields": {
+    "order_item": "S-52",
+    "quantity": 1000,
+    "price": 53,
+    "sub_total": 53000,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1988,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1984,
+  "fields": {
+    "order_item": "S-52",
+    "quantity": 536,
+    "price": 53,
+    "sub_total": 28408,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1989,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1985,
+  "fields": {
+    "order_item": "S-52",
+    "quantity": 800,
+    "price": 53,
+    "sub_total": 42400,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1990,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1986,
+  "fields": {
+    "order_item": "S-52",
+    "quantity": 110,
+    "price": 53,
+    "sub_total": 5830,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1991,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1987,
+  "fields": {
+    "order_item": "S-52",
+    "quantity": 200,
+    "price": 54,
+    "sub_total": 10800,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1992,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1988,
+  "fields": {
+    "order_item": "S-52",
+    "quantity": 300,
+    "price": 54,
+    "sub_total": 16200,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1993,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1989,
+  "fields": {
+    "order_item": "S-52",
+    "quantity": 3000,
+    "price": 53,
+    "sub_total": 159000,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1994,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1990,
+  "fields": {
+    "order_item": "S-52",
+    "quantity": 500,
+    "price": 55,
+    "sub_total": 27500,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1995,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1991,
+  "fields": {
+    "order_item": "W-72",
+    "quantity": 530,
+    "price": 45,
+    "sub_total": 23850,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1996,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1992,
+  "fields": {
+    "order_item": "S-4\"",
+    "quantity": 555,
+    "price": 36,
+    "sub_total": 19980,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1997,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1993,
+  "fields": {
+    "order_item": "S-52",
+    "quantity": 16,
+    "price": 53,
+    "sub_total": 848,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1998,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1994,
+  "fields": {
+    "order_item": "S-52",
+    "quantity": 273,
+    "price": 55,
+    "sub_total": 15015,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 1999,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1995,
+  "fields": {
+    "order_item": "S-52",
+    "quantity": 200,
+    "price": 36,
+    "sub_total": 7200,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 2000,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1996,
+  "fields": {
+    "order_item": "S-4\"",
+    "quantity": 102,
+    "price": 36,
+    "sub_total": 3672,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 2001,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1997,
+  "fields": {
+    "order_item": "S-52",
+    "quantity": 100,
+    "price": 53,
+    "sub_total": 5300,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 2002,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1998,
+  "fields": {
+    "order_item": "S-4\"",
+    "quantity": 500,
+    "price": 36,
+    "sub_total": 18000,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 2003,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 1999,
+  "fields": {
+    "order_item": "S-52",
+    "quantity": 100,
+    "price": 55,
+    "sub_total": 5500,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 2004,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 2000,
+  "fields": {
+    "order_item": "S-52",
+    "quantity": 450,
+    "price": 54,
+    "sub_total": 24300,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 2005,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 2001,
+  "fields": {
+    "order_item": "S-52",
+    "quantity": 2000,
+    "price": 53,
+    "sub_total": 106000,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 2006,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 2002,
+  "fields": {
+    "order_item": "S-4\"",
+    "quantity": 250,
+    "price": 36,
+    "sub_total": 9000,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 2007,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 2003,
+  "fields": {
+    "order_item": "S-52",
+    "quantity": 500,
+    "price": 53,
+    "sub_total": 26500,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 2008,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 2004,
+  "fields": {
+    "order_item": "S-52",
+    "quantity": 270,
+    "price": 54,
+    "sub_total": 14580,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 2009,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 2005,
+  "fields": {
+    "order_item": "S-52",
+    "quantity": 1432,
+    "price": 55,
+    "sub_total": 78760,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 2010,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 2006,
+  "fields": {
+    "order_item": "W-78",
+    "quantity": 500,
+    "price": 40,
+    "sub_total": 20000,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 2011,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 2007,
+  "fields": {
+    "order_item": "S-4\"",
+    "quantity": 800,
+    "price": 36,
+    "sub_total": 28800,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 2012,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 2008,
+  "fields": {
+    "order_item": "S-4\"",
+    "quantity": 120,
+    "price": 36,
+    "sub_total": 4320,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 2013,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 2009,
+  "fields": {
+    "order_item": "S-52",
+    "quantity": 600,
+    "price": 54,
+    "sub_total": 32400,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 2014,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 2010,
+  "fields": {
+    "order_item": "S-52",
+    "quantity": 250,
+    "price": 54,
+    "sub_total": 13500,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 2015,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 2011,
+  "fields": {
+    "order_item": "S-4\"",
+    "quantity": 150,
+    "price": 36,
+    "sub_total": 5400,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 2016,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 2012,
+  "fields": {
+    "order_item": "S-52",
+    "quantity": 20,
+    "price": 54,
+    "sub_total": 1080,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 2017,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 2013,
+  "fields": {
+    "order_item": "S-52",
+    "quantity": 2000,
+    "price": 54,
+    "sub_total": 108000,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 2018,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 2014,
+  "fields": {
+    "order_item": "S-4\"",
+    "quantity": 77,
+    "price": 36,
+    "sub_total": 2772,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 2019,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 2015,
+  "fields": {
+    "order_item": "S-52",
+    "quantity": 200,
+    "price": 54,
+    "sub_total": 10800,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 2020,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 2016,
+  "fields": {
+    "order_item": "S-48",
+    "quantity": 700,
+    "price": 54,
+    "sub_total": 37800,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 2021,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 2017,
+  "fields": {
+    "order_item": "S-52",
+    "quantity": 500,
+    "price": 52,
+    "sub_total": 26000,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 2022,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 2018,
+  "fields": {
+    "order_item": "R-60",
+    "quantity": 600,
+    "price": 50,
+    "sub_total": 30000,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 2023,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 2019,
+  "fields": {
+    "order_item": "S-52",
+    "quantity": 110,
+    "price": 52,
+    "sub_total": 5720,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 2024,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 2020,
+  "fields": {
+    "order_item": "S-52",
+    "quantity": 50,
+    "price": 54,
+    "sub_total": 2700,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 2025,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 2021,
+  "fields": {
+    "order_item": "S-52",
+    "quantity": 1000,
+    "price": 52,
+    "sub_total": 52000,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 2026,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 2022,
+  "fields": {
+    "order_item": "S-52",
+    "quantity": 700,
+    "price": 54,
+    "sub_total": 37800,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 2027,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 2023,
+  "fields": {
+    "order_item": "S-52",
+    "quantity": 400,
+    "price": 53,
+    "sub_total": 21200,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 2028,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 2024,
+  "fields": {
+    "order_item": "S-52",
+    "quantity": 25,
+    "price": 53,
+    "sub_total": 1325,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 2029,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 2025,
+  "fields": {
+    "order_item": "S-52",
+    "quantity": 800,
+    "price": 52,
+    "sub_total": 41600,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 2030,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 2026,
+  "fields": {
+    "order_item": "S-52",
+    "quantity": 500,
+    "price": 54,
+    "sub_total": 27000,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 2031,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 2027,
+  "fields": {
+    "order_item": "W-72",
+    "quantity": 300,
+    "price": 48,
+    "sub_total": 14400,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 2032,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 2028,
+  "fields": {
+    "order_item": "S-52",
+    "quantity": 1000,
+    "price": 55,
+    "sub_total": 55000,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 2033,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 2029,
+  "fields": {
+    "order_item": "S-52",
+    "quantity": 500,
+    "price": 52,
+    "sub_total": 26000,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 2034,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 2030,
+  "fields": {
+    "order_item": "S-52",
+    "quantity": 200,
+    "price": 53,
+    "sub_total": 10600,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 2035,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 2031,
+  "fields": {
+    "order_item": "S-4",
+    "quantity": 50,
+    "price": 36,
+    "sub_total": 1800,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 2036,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 2032,
+  "fields": {
+    "order_item": "S-4",
+    "quantity": 180,
+    "price": 36,
+    "sub_total": 6480,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 2037,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 2033,
+  "fields": {
+    "order_item": "W-72",
+    "quantity": 50,
+    "price": 46,
+    "sub_total": 2300,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 2038,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 2034,
+  "fields": {
+    "order_item": "S-52",
+    "quantity": 2000,
+    "price": 54,
+    "sub_total": 108000,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 2039,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 2035,
+  "fields": {
+    "order_item": "S-52",
+    "quantity": 50,
+    "price": 54,
+    "sub_total": 2700,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 2040,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 2036,
+  "fields": {
+    "order_item": "S-52",
+    "quantity": 100,
+    "price": 54,
+    "sub_total": 5400,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 2041,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 2037,
+  "fields": {
+    "order_item": "S-52",
+    "quantity": 200,
+    "price": 53,
+    "sub_total": 10600,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 2042,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 2038,
+  "fields": {
+    "order_item": "S-4",
+    "quantity": 53,
+    "price": 30,
+    "sub_total": 1590,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 2043,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 2039,
+  "fields": {
+    "order_item": "W-72",
+    "quantity": 350,
+    "price": 48,
+    "sub_total": 16800,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 2044,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 2040,
+  "fields": {
+    "order_item": "W-72",
+    "quantity": 500,
+    "price": 47,
+    "sub_total": 23500,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 2045,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 2041,
+  "fields": {
+    "order_item": "S-4",
+    "quantity": 250,
+    "price": 38,
+    "sub_total": 9500,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 2046,
+    "product": null
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 2042,
+  "fields": {
+    "order_item": "block",
+    "quantity": 5,
+    "price": 100,
+    "sub_total": 500,
+    "discount": null,
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null,
+    "order": 2047,
+    "product": 5
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 2045,
+  "fields": {
+    "order_item": "block",
+    "quantity": 2,
+    "price": 100,
+    "sub_total": 200,
+    "discount": 0,
+    "created_by": 3,
+    "created_at": "2026-05-01T13:53:06Z",
+    "updated_by": 3,
+    "updated_at": "2026-05-01T13:53:06Z",
+    "is_deleted": null,
+    "order": 2051,
+    "product": 5
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 2046,
+  "fields": {
+    "order_item": "block",
+    "quantity": 7,
+    "price": 100,
+    "sub_total": 700,
+    "discount": 0,
+    "created_by": 3,
+    "created_at": "2026-05-01T14:15:20Z",
+    "updated_by": 3,
+    "updated_at": "2026-05-01T14:15:20Z",
+    "is_deleted": null,
+    "order": 2052,
+    "product": 5
+  }
+},
+{
+  "model": "fact_app.orderdetails",
+  "pk": 2047,
+  "fields": {
+    "order_item": "block",
+    "quantity": 2,
+    "price": 100,
+    "sub_total": 200,
+    "discount": 0,
+    "created_by": 3,
+    "created_at": "2026-05-01T14:24:02Z",
+    "updated_by": 3,
+    "updated_at": "2026-05-01T14:24:02Z",
+    "is_deleted": null,
+    "order": 2053,
+    "product": 5
+  }
+}
+]

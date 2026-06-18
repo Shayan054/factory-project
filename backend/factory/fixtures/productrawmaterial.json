@@ -1,0 +1,29 @@
+[
+{
+  "model": "fact_app.productrawmaterial",
+  "pk": 1,
+  "fields": {
+    "product": 4,
+    "raw_material": 2,
+    "quantity_required": 1
+  }
+},
+{
+  "model": "fact_app.productrawmaterial",
+  "pk": 4,
+  "fields": {
+    "product": 5,
+    "raw_material": 2,
+    "quantity_required": 0
+  }
+},
+{
+  "model": "fact_app.productrawmaterial",
+  "pk": 6,
+  "fields": {
+    "product": 6,
+    "raw_material": 2,
+    "quantity_required": 1
+  }
+}
+]

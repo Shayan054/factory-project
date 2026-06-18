@@ -1,0 +1,62 @@
+[
+{
+  "model": "fact_app.product",
+  "pk": 1,
+  "fields": {
+    "product_name": "Block",
+    "description": "7inch",
+    "price": 0,
+    "quantity": 0
+  }
+},
+{
+  "model": "fact_app.product",
+  "pk": 2,
+  "fields": {
+    "product_name": "Big Blocks",
+    "description": "10 inch block",
+    "price": 100,
+    "quantity": 0
+  }
+},
+{
+  "model": "fact_app.product",
+  "pk": 3,
+  "fields": {
+    "product_name": "Black medium",
+    "description": "5 inch",
+    "price": 200,
+    "quantity": 0
+  }
+},
+{
+  "model": "fact_app.product",
+  "pk": 4,
+  "fields": {
+    "product_name": "Block",
+    "description": "large",
+    "price": 45,
+    "quantity": 0
+  }
+},
+{
+  "model": "fact_app.product",
+  "pk": 5,
+  "fields": {
+    "product_name": "block",
+    "description": "largee",
+    "price": 100,
+    "quantity": 29
+  }
+},
+{
+  "model": "fact_app.product",
+  "pk": 6,
+  "fields": {
+    "product_name": "block lllx",
+    "description": "",
+    "price": 500,
+    "quantity": 100
+  }
+}
+]

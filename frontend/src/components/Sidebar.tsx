@@ -16,6 +16,7 @@ export default function Sidebar({ open, onClose }: Props) {
   const [salesOpen, setSalesOpen] = useState(false);
   const [salesOrdersOpen, setSalesOrdersOpen] = useState(false);
   const [managementOpen, setManagementOpen] = useState(false);
+  const [managementCustomersOpen, setManagementCustomersOpen] = useState(false);
   const [managementVendorsOpen, setManagementVendorsOpen] = useState(false);
   const [managementProductsOpen, setManagementProductsOpen] = useState(false);
   const [managementRawMaterialsOpen, setManagementRawMaterialsOpen] = useState(false);
@@ -34,6 +35,9 @@ export default function Sidebar({ open, onClose }: Props) {
 
   const isSalesOrdersGroupActive =
     isTabActive("/operations", "order") || isTabActive("/management", "orders");
+
+  const isCustomersGroupActive =
+    isTabActive("/operations", "customer") || isTabActive("/management", "customers");
 
   const isVendorsGroupActive =
     isTabActive("/operations", "vendor") || isTabActive("/management", "vendors");
@@ -134,15 +138,6 @@ export default function Sidebar({ open, onClose }: Props) {
 
           {salesOpen && (
             <div className="space-y-1">
-              <NavLink
-                to="/operations?tab=customer"
-                className={() => `${subBase} ${isTabActive("/operations", "customer") ? active : ""}`}
-                onClick={onClose}
-              >
-                <IconCustomer className="h-4 w-4 opacity-90" />
-                <span>Customer</span>
-              </NavLink>
-
               <button
                 type="button"
                 className={`${subBase} ${isSalesOrdersGroupActive ? active : ""}`}
@@ -198,14 +193,37 @@ export default function Sidebar({ open, onClose }: Props) {
 
           {managementOpen && (
             <div className="space-y-1">
-              <NavLink
-                to="/management?tab=customers"
-                className={() => `${subBase} ${isTabActive("/management", "customers") ? active : ""}`}
-                onClick={onClose}
+              <button
+                type="button"
+                className={`${subBase} ${isCustomersGroupActive ? active : ""}`}
+                onClick={() => setManagementCustomersOpen((v) => !v)}
+                aria-expanded={managementCustomersOpen}
               >
                 <IconCustomer className="h-4 w-4 opacity-90" />
-                <span>Customers</span>
-              </NavLink>
+                <span className="flex-1 text-left">Customers</span>
+                <IconChevron className={`h-4 w-4 transition-transform ${managementCustomersOpen ? "rotate-180" : ""}`} />
+              </button>
+
+              {managementCustomersOpen && (
+                <div className="space-y-1">
+                  <NavLink
+                    to="/management?tab=customers"
+                    className={() => `${subBase} ml-12 ${isTabActive("/management", "customers") ? active : ""}`}
+                    onClick={onClose}
+                  >
+                    <IconTable className="h-4 w-4 opacity-90" />
+                    <span>View Customers</span>
+                  </NavLink>
+                  <NavLink
+                    to="/operations?tab=customer"
+                    className={() => `${subBase} ml-12 ${isTabActive("/operations", "customer") ? active : ""}`}
+                    onClick={onClose}
+                  >
+                    <IconCustomer className="h-4 w-4 opacity-90" />
+                    <span>Add Customer</span>
+                  </NavLink>
+                </div>
+              )}
 
               <button
                 type="button"

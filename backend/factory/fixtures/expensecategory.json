@@ -1,0 +1,58 @@
+[
+{
+  "model": "fact_app.expensecategory",
+  "pk": 10,
+  "fields": {
+    "name": "Guest / Tea / Sugar"
+  }
+},
+{
+  "model": "fact_app.expensecategory",
+  "pk": 11,
+  "fields": {
+    "name": "Sand"
+  }
+},
+{
+  "model": "fact_app.expensecategory",
+  "pk": 12,
+  "fields": {
+    "name": "Cement"
+  }
+},
+{
+  "model": "fact_app.expensecategory",
+  "pk": 13,
+  "fields": {
+    "name": "Bijri"
+  }
+},
+{
+  "model": "fact_app.expensecategory",
+  "pk": 14,
+  "fields": {
+    "name": "Labour"
+  }
+},
+{
+  "model": "fact_app.expensecategory",
+  "pk": 15,
+  "fields": {
+    "name": "Diesel"
+  }
+},
+{
+  "model": "fact_app.expensecategory",
+  "pk": 16,
+  "fields": {
+    "name": "Machine Repair"
+  }
+},
+{
+  "model": "fact_app.expensecategory",
+  "pk": 17,
+  "fields": {
+    "name": "Production"
+  }
+}
+]

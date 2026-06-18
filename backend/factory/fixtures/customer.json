@@ -1,0 +1,5072 @@
+[
+{
+  "model": "fact_app.customer",
+  "pk": 933,
+  "fields": {
+    "name": "Razaq Mochi",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 934,
+  "fields": {
+    "name": "Bilal Kalwal",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 935,
+  "fields": {
+    "name": "Shagir Mushtaq,   Kala Gorrh",
+    "contact": "03005144375",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 936,
+  "fields": {
+    "name": "Arshad, Kalagorh",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 937,
+  "fields": {
+    "name": "Zeno Khan,",
+    "contact": "03466921509",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 938,
+  "fields": {
+    "name": "Arif Charrhoya",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 939,
+  "fields": {
+    "name": "Amin Shidi",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 940,
+  "fields": {
+    "name": "Khurram Ijaz",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 941,
+  "fields": {
+    "name": "Kamal Khan",
+    "contact": "",
+    "address": "",
+    "remark": "DISC. 600",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 942,
+  "fields": {
+    "name": "Subhan Wagan",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 943,
+  "fields": {
+    "name": "Ikram Mistry H. abad",
+    "contact": "3467978879",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 944,
+  "fields": {
+    "name": "Ikram Mistry H.abad",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 945,
+  "fields": {
+    "name": "Kala Gorrh",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 946,
+  "fields": {
+    "name": "Azmat Khan",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 947,
+  "fields": {
+    "name": "Shah Nawaz/ Arshad, Kala Gorrh",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 948,
+  "fields": {
+    "name": "Immran Mistry, H.Abad.",
+    "contact": "03409055415",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 949,
+  "fields": {
+    "name": "Bilal Cheena",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 950,
+  "fields": {
+    "name": "Fayyaz",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 951,
+  "fields": {
+    "name": "Gh. Jilani Mistry",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 952,
+  "fields": {
+    "name": "nan",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 953,
+  "fields": {
+    "name": "Khadim Khan Hote",
+    "contact": "03469730390",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 954,
+  "fields": {
+    "name": "Master Qayyum",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 955,
+  "fields": {
+    "name": "Sher Zaman, K. Gorrh",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 956,
+  "fields": {
+    "name": "Bakhtiar Khan",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 957,
+  "fields": {
+    "name": "Sammi Khan",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 958,
+  "fields": {
+    "name": "Siddique, Mithapur",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 959,
+  "fields": {
+    "name": "Babu Wagan",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 960,
+  "fields": {
+    "name": "Shah Jhan, Cheena",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 961,
+  "fields": {
+    "name": "Nasrullah",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 962,
+  "fields": {
+    "name": "Baga Illahi Bux",
+    "contact": "03434519302",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 963,
+  "fields": {
+    "name": "Naveed s/o Khuda Bux",
+    "contact": "Disc.200",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 964,
+  "fields": {
+    "name": "Rehmatullah Baloch",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 965,
+  "fields": {
+    "name": "Daoud Khan",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 966,
+  "fields": {
+    "name": "Suhail Khan, Rangpur",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 967,
+  "fields": {
+    "name": "Abdul Rehman",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 968,
+  "fields": {
+    "name": "Ulfat Khan",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 969,
+  "fields": {
+    "name": "Hafiz Saeed",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 970,
+  "fields": {
+    "name": "Hamad Hassan Khan",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 971,
+  "fields": {
+    "name": "Kalim Ullah",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 972,
+  "fields": {
+    "name": "Wazir Ustad",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 973,
+  "fields": {
+    "name": "Ahmad Kumbhar",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 974,
+  "fields": {
+    "name": "Aman Ullah Kumbhar",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 975,
+  "fields": {
+    "name": "Waseem Khan",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 976,
+  "fields": {
+    "name": "Irfan Ustad",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 977,
+  "fields": {
+    "name": "Sattar Ustad",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 978,
+  "fields": {
+    "name": "Rabani Bhatti",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 979,
+  "fields": {
+    "name": "Mama Zulfiqar",
+    "contact": "",
+    "address": "",
+    "remark": "?",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 980,
+  "fields": {
+    "name": "Wdha Cheena",
+    "contact": "",
+    "address": "",
+    "remark": "?",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 981,
+  "fields": {
+    "name": "Malik Javed Kurror",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 982,
+  "fields": {
+    "name": "Tanveer",
+    "contact": "",
+    "address": "",
+    "remark": "?",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 983,
+  "fields": {
+    "name": "Zaffar Kala Gorrh",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 984,
+  "fields": {
+    "name": "Jhangi Kala Gorrh",
+    "contact": "",
+    "address": "",
+    "remark": "?",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 985,
+  "fields": {
+    "name": "Shakeel Kumbhar",
+    "contact": "Tot.19851",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 986,
+  "fields": {
+    "name": "Saleem Khan",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 987,
+  "fields": {
+    "name": "Zahoor Khan",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 988,
+  "fields": {
+    "name": "Sohail Khan, Rangpur",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 989,
+  "fields": {
+    "name": "Tanzeel Khan",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 990,
+  "fields": {
+    "name": "Aslam Wagan",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 991,
+  "fields": {
+    "name": "Rizwan",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 992,
+  "fields": {
+    "name": "Uzair Khan",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 993,
+  "fields": {
+    "name": "Rabani Cheena",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 994,
+  "fields": {
+    "name": "Hajji Koda",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 995,
+  "fields": {
+    "name": "Masjid Syedena Hussain",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 996,
+  "fields": {
+    "name": "Moulvi Arif",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 997,
+  "fields": {
+    "name": "Sanaullah Patwari, Shiddi",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 998,
+  "fields": {
+    "name": "Dr. Altaf Shiddi",
+    "contact": "03447694253",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 999,
+  "fields": {
+    "name": "Abbass Shah",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1000,
+  "fields": {
+    "name": "Aurangzeb Rehrri ban",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1001,
+  "fields": {
+    "name": "Nasim shah",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1002,
+  "fields": {
+    "name": "Moulvi Abul Jabbar",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1003,
+  "fields": {
+    "name": "Mushtaq Ustad",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1004,
+  "fields": {
+    "name": "Khadim Zargar",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1005,
+  "fields": {
+    "name": "Bilal Machi",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1006,
+  "fields": {
+    "name": "Qabar Mama Ismail",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1007,
+  "fields": {
+    "name": "Arif Khan",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1008,
+  "fields": {
+    "name": "Sibghatullah",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1009,
+  "fields": {
+    "name": "Ashraf wagan",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1010,
+  "fields": {
+    "name": "Dr. Shafqat",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1011,
+  "fields": {
+    "name": "Ramazan Qassi",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1012,
+  "fields": {
+    "name": "Kazim s/o Khuda Bux",
+    "contact": "03468806393",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1013,
+  "fields": {
+    "name": "Bahawal Hote",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1014,
+  "fields": {
+    "name": "Faiz ur Rehman, K. G",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1015,
+  "fields": {
+    "name": "Ikram Mistry, Hafiz abad",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1016,
+  "fields": {
+    "name": "Masjid Albadar",
+    "contact": "",
+    "address": "",
+    "remark": "Abdul Raouf",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1017,
+  "fields": {
+    "name": "Qabar Walida Ibrahim",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1018,
+  "fields": {
+    "name": "Chacha Allah Bux",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1019,
+  "fields": {
+    "name": "Adnan Sheroo",
+    "contact": "",
+    "address": "",
+    "remark": "Advance",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1020,
+  "fields": {
+    "name": "Qamar Din Zargar",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1021,
+  "fields": {
+    "name": "Rashid Zamu",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1022,
+  "fields": {
+    "name": "Master Rashid",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1023,
+  "fields": {
+    "name": "Fida Shidi",
+    "contact": "03429479825",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1024,
+  "fields": {
+    "name": "Dilawar Baloch",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1025,
+  "fields": {
+    "name": "Qabbar Walid Dani B",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1026,
+  "fields": {
+    "name": "Sher Ali Khan",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1027,
+  "fields": {
+    "name": "Masjid Badar",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1028,
+  "fields": {
+    "name": "Rabbani Cheena",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1029,
+  "fields": {
+    "name": "Hamayun Khan",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1030,
+  "fields": {
+    "name": "Ahtesham Khan",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1031,
+  "fields": {
+    "name": "Banni Kurrur",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1032,
+  "fields": {
+    "name": "Naimat Kurrur",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1033,
+  "fields": {
+    "name": "Ulfat Kalagorh",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1034,
+  "fields": {
+    "name": "Aijaz Khan mama",
+    "contact": "",
+    "address": "",
+    "remark": "P-18",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1035,
+  "fields": {
+    "name": "Sardar khan hoat",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1036,
+  "fields": {
+    "name": "Molvi Abdul Jabbar",
+    "contact": "Tot. 40000",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1037,
+  "fields": {
+    "name": "Fiaz khan hoat",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1038,
+  "fields": {
+    "name": "Abdul Saeed Utra",
+    "contact": "",
+    "address": "",
+    "remark": "In courtesy of Akram ",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1039,
+  "fields": {
+    "name": "Muhammad Nawaz hoat",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1040,
+  "fields": {
+    "name": "Kazim Kouda",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1041,
+  "fields": {
+    "name": "Hammad Khan",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1042,
+  "fields": {
+    "name": "Ramazan Bhatti",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1043,
+  "fields": {
+    "name": "Rustam chisti Kurror",
+    "contact": "03492399246",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1044,
+  "fields": {
+    "name": "Malik Kala Kalygor",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1045,
+  "fields": {
+    "name": "Haji Kurror",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1046,
+  "fields": {
+    "name": "Sakhi Jan, Kurror",
+    "contact": "",
+    "address": "",
+    "remark": "Not complet record",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1047,
+  "fields": {
+    "name": "Sattar Kalagorh",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1048,
+  "fields": {
+    "name": "Aslam Kouda",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1049,
+  "fields": {
+    "name": "Ahtisham Khan",
+    "contact": "",
+    "address": "",
+    "remark": "?",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1050,
+  "fields": {
+    "name": "Doctor Altaf",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1051,
+  "fields": {
+    "name": "Shakeel Baloch",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1052,
+  "fields": {
+    "name": "Qabar Walida Khanzada Khan",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1053,
+  "fields": {
+    "name": "Allah Bux Lohar , Kalagorgh",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1054,
+  "fields": {
+    "name": "Waseem Khn",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1055,
+  "fields": {
+    "name": "Fouji Fareed Mochi, Kalagorh",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1056,
+  "fields": {
+    "name": "Allah Bux Faqeer",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1057,
+  "fields": {
+    "name": "Farid Jrah, Mithapur",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1058,
+  "fields": {
+    "name": "Wazir Kodhan, Kala Gorgh",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1059,
+  "fields": {
+    "name": "Hafiz Qudratullah",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1060,
+  "fields": {
+    "name": "Ahsan ullah, Shiddi",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1061,
+  "fields": {
+    "name": "Inam Khan, Hoat",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1062,
+  "fields": {
+    "name": "Had Khan s/o Saeed Marola",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1063,
+  "fields": {
+    "name": "Yaseen Kurrorr",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1064,
+  "fields": {
+    "name": "Kamal Hoat Murraba",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1065,
+  "fields": {
+    "name": "Muhammad Irfan, Mandhra.",
+    "contact": "",
+    "address": "",
+    "remark": "Disc-750",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1066,
+  "fields": {
+    "name": "Ashiq Bhatti",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1067,
+  "fields": {
+    "name": "Asiq Bhatti",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1068,
+  "fields": {
+    "name": "Jamal Khan, Hoat",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1069,
+  "fields": {
+    "name": "Rehmatullah fauji kumbhar",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1070,
+  "fields": {
+    "name": "Muhammad Asif khan S/O Nasrulla khan",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1071,
+  "fields": {
+    "name": "Kaleem Ullah kalagorh",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1072,
+  "fields": {
+    "name": "Fauji Yaseen chisti Khaki",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1073,
+  "fields": {
+    "name": "Rehmatullah fauji",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1074,
+  "fields": {
+    "name": "Adil khan Hoat",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1075,
+  "fields": {
+    "name": "Fauji Yaseen Khaki",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1076,
+  "fields": {
+    "name": "Ramzan waggon",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1077,
+  "fields": {
+    "name": "Tanveer Baloch",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1078,
+  "fields": {
+    "name": "Fauji Aman Ullah Rangpur",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1079,
+  "fields": {
+    "name": "Allah Ditta kurror",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1080,
+  "fields": {
+    "name": "Masoom Mochi",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1081,
+  "fields": {
+    "name": "Saeed Uttra",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1082,
+  "fields": {
+    "name": "Arshad, Gulabkhel",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1083,
+  "fields": {
+    "name": "Musa Khan Arrian, Kurror",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1084,
+  "fields": {
+    "name": "Ammanullah Fouji",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1085,
+  "fields": {
+    "name": "Sakhi Jan Kurror",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1086,
+  "fields": {
+    "name": "Daniyan Khan Hoat",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1087,
+  "fields": {
+    "name": "Sohna Khan Bahawal Khel",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1088,
+  "fields": {
+    "name": "Asif Khan s/o Nasrullah khan",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1089,
+  "fields": {
+    "name": "Ummar Zaman s/o Qamar Zaman",
+    "contact": "",
+    "address": "",
+    "remark": "?",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1090,
+  "fields": {
+    "name": "Baitullah Khan",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1091,
+  "fields": {
+    "name": "Jan Kurror",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1092,
+  "fields": {
+    "name": "Mehdi khan Hoat",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1093,
+  "fields": {
+    "name": "Kamal Mujahid",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1094,
+  "fields": {
+    "name": "Malik Rizwan",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1095,
+  "fields": {
+    "name": "Ustad Yasin Kurror",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1096,
+  "fields": {
+    "name": "M. Zubair, Kurror",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1097,
+  "fields": {
+    "name": "Nazir Khan, Electrician",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1098,
+  "fields": {
+    "name": "Faza, Kalagorh",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1099,
+  "fields": {
+    "name": "Masjid Khalid bin Waleed.",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1100,
+  "fields": {
+    "name": "Waseem Khan Hote",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1101,
+  "fields": {
+    "name": "Ulfat Khan, Hote",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1102,
+  "fields": {
+    "name": "Faqira Naeem",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1103,
+  "fields": {
+    "name": "Majid Khan",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1104,
+  "fields": {
+    "name": "Abdullah, Ustad",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1105,
+  "fields": {
+    "name": "Tariq Buddwal",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1106,
+  "fields": {
+    "name": "Sohna Khan, Hote",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1107,
+  "fields": {
+    "name": "Waqar Ahmad, Kalagorh",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1108,
+  "fields": {
+    "name": "Ikram, Kumbhar",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1109,
+  "fields": {
+    "name": "Allah Wasaya, Kaneera",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1110,
+  "fields": {
+    "name": "Kamal Mali, Arrian",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1111,
+  "fields": {
+    "name": "Shadi Khan, Shidi",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1112,
+  "fields": {
+    "name": "Sanaullah Khan, Hote",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1113,
+  "fields": {
+    "name": "Chacha Abdul Haq",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1114,
+  "fields": {
+    "name": "Qadeem, Shidi",
+    "contact": "",
+    "address": "",
+    "remark": "Disc. 200",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1115,
+  "fields": {
+    "name": "Ghulam Muhammad, Charroha",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1116,
+  "fields": {
+    "name": "Yaqoob Balach",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1117,
+  "fields": {
+    "name": "Fouji Nazir Khaki",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1118,
+  "fields": {
+    "name": "Nakkrro Baloch",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1119,
+  "fields": {
+    "name": "Sohna Khan S/o Ahmad Khan Hoat",
+    "contact": "",
+    "address": "",
+    "remark": "!st entry?",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1120,
+  "fields": {
+    "name": "Luqman, Bahawal Khel",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1121,
+  "fields": {
+    "name": "Abdur Rehman",
+    "contact": "",
+    "address": "",
+    "remark": "Entry Miss",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1122,
+  "fields": {
+    "name": "Bilal, Mithapur",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1123,
+  "fields": {
+    "name": "Gul Khan, Shiddi kurror",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1124,
+  "fields": {
+    "name": "Gull Zaman, Chenna",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1125,
+  "fields": {
+    "name": "Shakeel Damani",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1126,
+  "fields": {
+    "name": "Amir Balaoch",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1127,
+  "fields": {
+    "name": "Kamal Awan",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1128,
+  "fields": {
+    "name": "Ishfaq Khan",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1129,
+  "fields": {
+    "name": "Solgi, Saggu",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1130,
+  "fields": {
+    "name": "Immran, Charhoya",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1131,
+  "fields": {
+    "name": "Yousaf Kh. Hoat",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1132,
+  "fields": {
+    "name": "Allah Nawaz, Pappu",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1133,
+  "fields": {
+    "name": "Zubair",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1134,
+  "fields": {
+    "name": "Qabar Zoja Aslam",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1135,
+  "fields": {
+    "name": "Kamal Khan, Hoat",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1136,
+  "fields": {
+    "name": "Sanaullah, Hoat",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1137,
+  "fields": {
+    "name": "Sahib Khan, Kala Gorgh",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1138,
+  "fields": {
+    "name": "Tariq / Hameed Loahar",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1139,
+  "fields": {
+    "name": "Asad Mochi",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1140,
+  "fields": {
+    "name": "Juma Kumbhar",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1141,
+  "fields": {
+    "name": "Jahanzeb khan",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1142,
+  "fields": {
+    "name": "Gulzar Utra",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1143,
+  "fields": {
+    "name": "Nadeem, Bhedwal",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1144,
+  "fields": {
+    "name": "Gulzar Arriaen",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1145,
+  "fields": {
+    "name": "Qamar Perhain",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1146,
+  "fields": {
+    "name": "Hakim Shidi",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1147,
+  "fields": {
+    "name": "Kaka Cheena",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1148,
+  "fields": {
+    "name": "Rehmatullah, Kumbhar",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1149,
+  "fields": {
+    "name": "Zubair saeed",
+    "contact": "",
+    "address": "",
+    "remark": "Disc. 100",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1150,
+  "fields": {
+    "name": "Ramazan Hoat",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1151,
+  "fields": {
+    "name": "Sher zman cheena",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1152,
+  "fields": {
+    "name": "Sami khan",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1153,
+  "fields": {
+    "name": "Nadir Hoat",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1154,
+  "fields": {
+    "name": "GHS Rangpur",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1155,
+  "fields": {
+    "name": "Altaf Kumbhar",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1156,
+  "fields": {
+    "name": "Qabar Khan Zaman Hoat",
+    "contact": "",
+    "address": "",
+    "remark": "Disc. 780",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1157,
+  "fields": {
+    "name": "Ghulam Raza, Lodhran",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1158,
+  "fields": {
+    "name": "Phakko/Chakoo Kurror",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1159,
+  "fields": {
+    "name": "Shah Jahan, Mistry",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1160,
+  "fields": {
+    "name": "Sohna, Kalagorh",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1161,
+  "fields": {
+    "name": "Shah nawaz Hoat",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1162,
+  "fields": {
+    "name": "Wajih Hassan, Hoat",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1163,
+  "fields": {
+    "name": "Mustaqim Hoat.",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1164,
+  "fields": {
+    "name": "Amir Zamon",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1165,
+  "fields": {
+    "name": "Father Block labour",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1166,
+  "fields": {
+    "name": "Ditto Fouji",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1167,
+  "fields": {
+    "name": "Javed Malik Kurror",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1168,
+  "fields": {
+    "name": "Gullo Khan Hoat",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1169,
+  "fields": {
+    "name": "Riaz Kurror",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1170,
+  "fields": {
+    "name": "Sharf Din, Kalagorh",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1171,
+  "fields": {
+    "name": "Rajab Ali, Kalagorh",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1172,
+  "fields": {
+    "name": "Maqbool, Kalagorh",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1173,
+  "fields": {
+    "name": "Fouji Ammanullah",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1174,
+  "fields": {
+    "name": "Bashir Mohana, Kalagorh",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1175,
+  "fields": {
+    "name": "Anwar Khan",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1176,
+  "fields": {
+    "name": "Ishfaq Khokha",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1177,
+  "fields": {
+    "name": "Hassena khala",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1178,
+  "fields": {
+    "name": "Hassnain Mochi",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1179,
+  "fields": {
+    "name": "Qayyum Mochi",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1180,
+  "fields": {
+    "name": "Hashim Mochi",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1181,
+  "fields": {
+    "name": "Sajrah kalagorh",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1182,
+  "fields": {
+    "name": "Shah Jahan, Charroya",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1183,
+  "fields": {
+    "name": "Hajji Uttra.",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1184,
+  "fields": {
+    "name": "Nazir Baloch",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1185,
+  "fields": {
+    "name": "Ibrar Muhktiar",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1186,
+  "fields": {
+    "name": "Malik Mulazim shiddi",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1187,
+  "fields": {
+    "name": "Johar Yasin",
+    "contact": "",
+    "address": "",
+    "remark": "?",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1188,
+  "fields": {
+    "name": "Gulistan Kurror",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1189,
+  "fields": {
+    "name": "Qari Saeed",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1190,
+  "fields": {
+    "name": "Hafiz Qouda",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1191,
+  "fields": {
+    "name": "Malik Manzoor Shiddi",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1192,
+  "fields": {
+    "name": "Shabbir Mohana",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1193,
+  "fields": {
+    "name": "Mukhtiar Khan",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1194,
+  "fields": {
+    "name": "Jamia Masjid, Rangpur",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1195,
+  "fields": {
+    "name": "Gullo Kalagorh",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1196,
+  "fields": {
+    "name": "Sooba Shiddi",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1197,
+  "fields": {
+    "name": "Gh. Jillani, Saggu",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1198,
+  "fields": {
+    "name": "Adil khan Khakki",
+    "contact": "",
+    "address": "",
+    "remark": "Shaheen School",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1199,
+  "fields": {
+    "name": "Shoukat Mohana, Mitha pur",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1200,
+  "fields": {
+    "name": "Bilal Ahmad Hoat",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1201,
+  "fields": {
+    "name": "Matiullah / Attaullah",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1202,
+  "fields": {
+    "name": "Qabar Zoja Nadeem",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1203,
+  "fields": {
+    "name": "Rehmatullah, Kurror",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1204,
+  "fields": {
+    "name": "Riaz Jhoke Jhabana",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1205,
+  "fields": {
+    "name": "Immran, Ramzo",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1206,
+  "fields": {
+    "name": "Haroon Ashraf",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1207,
+  "fields": {
+    "name": "Shera Shiddi",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1208,
+  "fields": {
+    "name": "Fazal ur Rehman",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1209,
+  "fields": {
+    "name": "Tariq Jhoke Jhabana",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1210,
+  "fields": {
+    "name": "Adil Khan, Khaki",
+    "contact": "",
+    "address": "",
+    "remark": "Shaheen School",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1211,
+  "fields": {
+    "name": "Umar Mansoor",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1212,
+  "fields": {
+    "name": "Manzoor Shiddi",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1213,
+  "fields": {
+    "name": "Shah Jhan, Shiddi",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1214,
+  "fields": {
+    "name": "Qasim Kurrur Shiddi",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1215,
+  "fields": {
+    "name": "Zubair Uttra",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1216,
+  "fields": {
+    "name": "Lal Mali",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1217,
+  "fields": {
+    "name": "Sami Uttra",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1218,
+  "fields": {
+    "name": "Shah Jhan Shiddi",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1219,
+  "fields": {
+    "name": "Javed Saggu",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1220,
+  "fields": {
+    "name": "Shoaib Baloch",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1221,
+  "fields": {
+    "name": "Ahsan Jhangir",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1222,
+  "fields": {
+    "name": "Syed Gh. Bahu",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1223,
+  "fields": {
+    "name": "Koudda",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1224,
+  "fields": {
+    "name": "Abdul Sattar, Kalagorh",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1225,
+  "fields": {
+    "name": "Irshad Hoat",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1226,
+  "fields": {
+    "name": "Amir Ummar",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1227,
+  "fields": {
+    "name": "Sohna Kurror",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1228,
+  "fields": {
+    "name": "Javid Hashim",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1229,
+  "fields": {
+    "name": "Latif Dhap",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1230,
+  "fields": {
+    "name": "Kala Mochi",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1231,
+  "fields": {
+    "name": "Lal Khan",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1232,
+  "fields": {
+    "name": "Abdul Ghaffar Moulvi",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1233,
+  "fields": {
+    "name": "Yasir Shah Mithapur",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1234,
+  "fields": {
+    "name": "Najibullah Khan",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1235,
+  "fields": {
+    "name": "Kalimullah Peter",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1236,
+  "fields": {
+    "name": "Fayyaz khan",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1237,
+  "fields": {
+    "name": "Jamal Din Kumbhar",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1238,
+  "fields": {
+    "name": "Tanzil Khan",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1239,
+  "fields": {
+    "name": "Rehmatullah Saggu",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1240,
+  "fields": {
+    "name": "Papu Nai",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1241,
+  "fields": {
+    "name": "Raouf Moulvi",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1242,
+  "fields": {
+    "name": "Habibullah khan",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1243,
+  "fields": {
+    "name": "Kashif Uttra",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1244,
+  "fields": {
+    "name": "Qabar Saqlain walida",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1245,
+  "fields": {
+    "name": "Hajji Ashiq",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1246,
+  "fields": {
+    "name": "Attaullah Baloch, Larr",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1247,
+  "fields": {
+    "name": "Jhanzeb Sheero",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1248,
+  "fields": {
+    "name": "Muhammad Nawaz Misri",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1249,
+  "fields": {
+    "name": "Shah Burhan, Buddhan",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1250,
+  "fields": {
+    "name": "Riaz Shah",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1251,
+  "fields": {
+    "name": "Ali Shah, Kalagorh",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1252,
+  "fields": {
+    "name": "Moulvi Abul Ghaffar",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1253,
+  "fields": {
+    "name": "Muhammad Nawaz, Misri",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1254,
+  "fields": {
+    "name": "Shah Nawaz, Kalagorh",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1255,
+  "fields": {
+    "name": "Farooq Hamad Colony",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1256,
+  "fields": {
+    "name": "Qabar Hamshera Hameed",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1257,
+  "fields": {
+    "name": "Hafiz Sami Hoat",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1258,
+  "fields": {
+    "name": "Altaf Shiddi",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1259,
+  "fields": {
+    "name": "Shah Nawaz Kalagorh",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1260,
+  "fields": {
+    "name": "Qazi Ikram Segrra",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1261,
+  "fields": {
+    "name": "Asim Kumbhar",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1262,
+  "fields": {
+    "name": "Sadiq Khan",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1263,
+  "fields": {
+    "name": "Shoaib Kalagorh",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1264,
+  "fields": {
+    "name": "Nazim Shah",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1265,
+  "fields": {
+    "name": "Bachal S/o Mushtaq Fouji",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1266,
+  "fields": {
+    "name": "Bai Khokha",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1267,
+  "fields": {
+    "name": "Deena Khan (Javed)",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1268,
+  "fields": {
+    "name": "Sohna Khan Hoat",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1269,
+  "fields": {
+    "name": "Muzaffar Kalagorh",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+},
+{
+  "model": "fact_app.customer",
+  "pk": 1270,
+  "fields": {
+    "name": "Hazratullah",
+    "contact": "",
+    "address": "",
+    "remark": "",
+    "created_by": null,
+    "created_at": null,
+    "updated_by": null,
+    "updated_at": null,
+    "is_deleted": null
+  }
+}
+]

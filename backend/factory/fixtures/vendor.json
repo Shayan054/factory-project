@@ -1,0 +1,22 @@
+[
+{
+  "model": "fact_app.vendor",
+  "pk": 1,
+  "fields": {
+    "name": "Cement Vendors",
+    "contact_person": "Asif",
+    "email": "asif@gmail.com",
+    "phone": "03000000000"
+  }
+},
+{
+  "model": "fact_app.vendor",
+  "pk": 3,
+  "fields": {
+    "name": "Sand Provided",
+    "contact_person": "Jamil",
+    "email": "jamil@gmail.com",
+    "phone": "0300000001"
+  }
+}
+]

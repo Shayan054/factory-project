@@ -1,0 +1,26 @@
+[
+{
+  "model": "fact_app.rawmaterial",
+  "pk": 2,
+  "fields": {
+    "material": "cement",
+    "description": "",
+    "measuring_unit": "kg",
+    "quantity": 3,
+    "price": 100,
+    "vendor": 3
+  }
+},
+{
+  "model": "fact_app.rawmaterial",
+  "pk": 3,
+  "fields": {
+    "material": "sand",
+    "description": "",
+    "measuring_unit": "Troly",
+    "quantity": 1,
+    "price": 1500,
+    "vendor": 1
+  }
+}
+]
