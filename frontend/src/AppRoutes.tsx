@@ -6,6 +6,7 @@ import LoginPage from "./pages/Login";
 import RegisterPage from "./pages/Register";
 import Operations from "./pages/Operations";
 import Management from "./pages/Managment";
+import Reports from "./pages/Reports";
 import ProtectedRoute from "./components/ProtectedRoute";
 import { DashboardDataProvider } from "./context/DashboardDataContext";
 
@@ -23,6 +24,7 @@ export default function AppRoutes() {
         }
       >
         <Route path="/" element={<Dashboard />} />
+        <Route path="/reports" element={<Reports />} />
         <Route path="/operations" element={<Operations />} />
         <Route path="/management" element={<Management />} />
         <Route path="/register" element={<RegisterPage />} />

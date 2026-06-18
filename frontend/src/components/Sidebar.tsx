@@ -94,6 +94,14 @@ export default function Sidebar({ open, onClose }: Props) {
             <IconHome className="h-4 w-4" />
             <span>Dashboard</span>
           </NavLink>
+          <NavLink
+            to="/reports"
+            className={({ isActive }) => `${base} ${isActive ? active : ""}`}
+            onClick={onClose}
+          >
+            <IconReport className="h-4 w-4" />
+            <span>Reports</span>
+          </NavLink>
         </nav>
 
         <Divider className="my-3" />
@@ -355,6 +363,13 @@ function SectionLabel({ children }: { children: React.ReactNode }) {
 /* Minimal inline icons (inherit currentColor) */
 function IconHome(props: React.SVGProps<SVGSVGElement>) {
   return (<svg viewBox="0 0 24 24" fill="currentColor" {...props}><path d="M12 3l9 8h-3v9H6v-9H3l9-8z"/></svg>);
+}
+function IconReport(props: React.SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" {...props}>
+      <path d="M6 2h9l5 5v15a2 2 0 01-2 2H6a2 2 0 01-2-2V4a2 2 0 012-2zm8 1.5V8h4.5L14 3.5zM8 12h8v2H8v-2zm0 4h8v2H8v-2zm0-8h4v2H8V8z" />
+    </svg>
+  );
 }
 function IconCog(props: React.SVGProps<SVGSVGElement>) {
   return (<svg viewBox="0 0 24 24" fill="currentColor" {...props}><path d="M12 8a4 4 0 100 8 4 4 0 000-8zm8.7 4a7.8 7.8 0 00-.25-2l2-1.6-2-3.4-2.4.5a8 8 0 00-1.7-1l-.4-2.5h-4l-.4 2.5a8 8 0 00-1.7 1l-2.4-.5-2 3.4 2 1.6a7.8 7.8 0 000 4l-2 1.6 2 3.4 2.4-.5a8 8 0 001.7 1l.4 2.5h4l.4-2.5a8 8 0 001.7-1l2.4.5 2-3.4-2-1.6c.17-.65.26-1.32.26-2z"/></svg>);
