@@ -1,5 +1,6 @@
-import { createContext, ReactNode, useContext, useEffect, useMemo, useRef, useState } from "react";
+import { createContext, ReactNode, useContext, useMemo, useRef, useState } from "react";
 import { apiRequest } from "../utils/api";
+import { fetchList } from "../utils/listApi";
 import { useAuth } from "./AuthContext";
 
 export interface OrderDetail {
@@ -49,10 +50,22 @@ export interface Expense {
   category_name_display?: string;
 }
 
+export interface DashboardMetrics {
+  monthly_sales: number;
+  annual_sales: number;
+  amount_received: number;
+  remaining_amount: number;
+  total_orders: number;
+  pending_orders: number;
+  completed_orders: number;
+  monthly_expenses: number;
+  annual_expenses: number;
+  sales_chart: { month: string; sales: number }[];
+  expense_chart_from: string;
+}
+
 type DashboardData = {
-  orders: Order[];
-  billings: Billing[];
-  customers: Customer[];
+  metrics: DashboardMetrics | null;
   expenses: Expense[];
 };
 
@@ -81,25 +94,19 @@ export function DashboardDataProvider({ children }: { children: ReactNode }) {
     setLoading(true);
     setError(null);
     try {
-      const [ordersRes, billingsRes, customersRes, expensesRes] = await Promise.all([
-        apiRequest("/orders/"),
-        apiRequest("/billings/"),
-        apiRequest("/customers/"),
-        apiRequest("/expenses/"),
-      ]);
-
-      if (!ordersRes.ok || !billingsRes.ok || !customersRes.ok || !expensesRes.ok) {
-        throw new Error("Failed to load dashboard data");
+      const metricsRes = await apiRequest("/dashboard/metrics/");
+      if (!metricsRes.ok) {
+        throw new Error("Failed to load dashboard metrics");
       }
+      const metrics: DashboardMetrics = await metricsRes.json();
 
-      const [orders, billings, customers, expenses] = await Promise.all([
-        ordersRes.json(),
-        billingsRes.json(),
-        customersRes.json(),
-        expensesRes.json(),
-      ]);
+      const expenses = await fetchList<Expense>("/expenses/", {
+        date_from: metrics.expense_chart_from,
+        exclude_production: "1",
+        page_size: 500,
+      });
 
-      setData({ orders, billings, customers, expenses });
+      setData({ metrics, expenses });
       setLastFetchedAt(Date.now());
     } catch (e: any) {
       setError(e?.message || "Failed to load dashboard data");
@@ -134,19 +141,6 @@ export function DashboardDataProvider({ children }: { children: ReactNode }) {
     await inFlightRef.current;
   };
 
-  // Prefetch once when authenticated (first app open after login/refresh)
-  useEffect(() => {
-    if (isAuthenticated) {
-      void ensureLoaded();
-    } else {
-      setData(null);
-      setLastFetchedAt(null);
-      setError(null);
-      setLoading(false);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isAuthenticated]);
-
   const value = useMemo<DashboardDataContextValue>(
     () => ({
       data,
@@ -167,4 +161,3 @@ export function useDashboardData() {
   if (!ctx) throw new Error("useDashboardData must be used within DashboardDataProvider");
   return ctx;
 }
-

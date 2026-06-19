@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
-import { apiRequest } from "../utils/api";
-import { useDashboardData } from "../context/DashboardDataContext";
+import { useState } from "react";
+import { fetchAllPages, fetchList } from "../utils/listApi";
+import { Customer, Expense, Order } from "../context/DashboardDataContext";
 import { useModal } from "../context/ModalContext";
 import {
   generateExpensePdf,
@@ -17,7 +17,6 @@ const primaryBtn =
   "bg-[var(--accent-color)] text-white px-6 py-2.5 rounded-lg hover:bg-[var(--accent-color-hover)] transition disabled:opacity-50 disabled:cursor-not-allowed";
 
 export default function Reports() {
-  const { data, loading, ensureLoaded } = useDashboardData();
   const { showModal } = useModal();
 
   const [reportType, setReportType] = useState<ReportType>("expense");
@@ -25,10 +24,6 @@ export default function Reports() {
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
   const [generating, setGenerating] = useState(false);
-
-  useEffect(() => {
-    void ensureLoaded();
-  }, [ensureLoaded]);
 
   const handleGenerate = async () => {
     if (!startDate || !endDate) {
@@ -39,15 +34,17 @@ export default function Reports() {
       showModal("Invalid range", "Start date cannot be after end date.");
       return;
     }
-    if (!data) {
-      showModal("No data", "Report data is still loading. Please try again.");
-      return;
-    }
 
     setGenerating(true);
     try {
       if (reportType === "expense") {
-        const result = generateExpensePdf(data.expenses, startDate, endDate, reportStyle);
+        const expenses = await fetchList<Expense>("/expenses/", {
+          date_from: startDate,
+          date_to: endDate,
+          exclude_production: "1",
+          page_size: 500,
+        });
+        const result = generateExpensePdf(expenses, startDate, endDate, reportStyle);
         if (!result.ok) {
           showModal("No data", result.error);
           return;
@@ -56,17 +53,22 @@ export default function Reports() {
         return;
       }
 
+      const [orders, customers] = await Promise.all([
+        fetchList<Order>("/orders/", {
+          date_from: startDate,
+          date_to: endDate,
+          include_details: "1",
+          page_size: 500,
+        }),
+        fetchAllPages<Customer>("/customers/"),
+      ]);
+
       const result = await generateIncomePdf(
-        data.orders,
-        data.customers,
+        orders,
+        customers,
         startDate,
         endDate,
-        reportStyle,
-        async (id) => {
-          const res = await apiRequest(`/orders/${id}/`);
-          if (!res.ok) throw new Error("Failed to fetch order");
-          return res.json();
-        }
+        reportStyle
       );
       if (!result.ok) {
         showModal("No data", result.error);
@@ -80,14 +82,6 @@ export default function Reports() {
       setGenerating(false);
     }
   };
-
-  if (loading && !data) {
-    return (
-      <div className="flex items-center justify-center h-64">
-        <div className="text-gray-500">Loading report data...</div>
-      </div>
-    );
-  }
 
   return (
     <div className="space-y-6 max-w-3xl">

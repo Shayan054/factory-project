@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { apiRequest } from "../utils/api";
+import { fetchAllPages, fetchList } from "../utils/listApi";
 import { useAuth } from "../context/AuthContext";
 import { useModal } from "../context/ModalContext";
 
@@ -91,19 +92,12 @@ const Management = () => {
 
   /* ---------------- FETCH DATA ---------------- */
   const loadData = async (entity: Entity) => {
-    const res = await apiRequest(`/${entity}/`);
-    const json = await res.json();
+    const json = await fetchList(`/${entity}/`, { page_size: 200 });
     setData(json);
     
-    // Load customers and billings for orders display
     if (entity === "orders") {
-      const customersRes = await apiRequest('/customers/');
-      const customersJson = await customersRes.json();
-      setCustomers(customersJson);
-      
-      const billingsRes = await apiRequest('/billings/');
-      const billingsJson = await billingsRes.json();
-      setBillings(billingsJson);
+      setCustomers(await fetchAllPages("/customers/"));
+      setBillings(await fetchList("/billings/", { page_size: 500 }));
     }
   };
 
@@ -111,19 +105,18 @@ const Management = () => {
     let cancelled = false;
 
     const fetchData = async () => {
-      const res = await apiRequest(`/${activeTab}/`);
-      const json = await res.json();
+      const json = await fetchList(`/${activeTab}/`, { page_size: 200 });
       if (cancelled) return;
       setData(json);
 
       if (activeTab === "orders") {
-        const [customersRes, billingsRes] = await Promise.all([
-          apiRequest("/customers/"),
-          apiRequest("/billings/"),
+        const [customersList, billingsList] = await Promise.all([
+          fetchAllPages("/customers/"),
+          fetchList("/billings/", { page_size: 500 }),
         ]);
         if (cancelled) return;
-        setCustomers(await customersRes.json());
-        setBillings(await billingsRes.json());
+        setCustomers(customersList);
+        setBillings(billingsList);
       }
     };
 

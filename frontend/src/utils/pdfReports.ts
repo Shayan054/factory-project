@@ -3,6 +3,8 @@ import jsPDF from "jspdf";
 import autoTable from "jspdf-autotable";
 import { Expense, Order, OrderDetail, Customer } from "../context/DashboardDataContext";
 
+export type { Expense };
+
 export type ReportStyle = "simple" | "detail";
 
 const BRAND = {
@@ -290,24 +292,12 @@ export async function generateIncomePdf(
   customers: Customer[],
   startDate: string,
   endDate: string,
-  style: ReportStyle,
-  fetchOrder: (id: number) => Promise<Order>
+  style: ReportStyle
 ) {
-  const filtered = filterOrdersByRange(orders, startDate, endDate);
-  if (filtered.length === 0) {
+  const ordersWithDetails = filterOrdersByRange(orders, startDate, endDate);
+  if (ordersWithDetails.length === 0) {
     return { ok: false as const, error: "No income (orders) found for the selected period." };
   }
-
-  const ordersWithDetails = await Promise.all(
-    filtered.map(async (order) => {
-      if (order.order_details?.length) return order;
-      try {
-        return await fetchOrder(order.order_id);
-      } catch {
-        return order;
-      }
-    })
-  );
 
   const doc = new jsPDF();
   const grandTotal = ordersWithDetails.reduce((sum, o) => sum + (Number(o.total_amount) || 0), 0);

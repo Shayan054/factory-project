@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { apiRequest } from "../utils/api";
+import { fetchAllPages, fetchList } from "../utils/listApi";
 import { useSearchParams } from "react-router-dom";
 import { useModal } from "../context/ModalContext";
 import SelectWithAdd from "../components/SelectWithAdd";
@@ -43,6 +44,9 @@ type Billing = {
   amount_received: number;
   balance: number;
   bill_date: string;
+  payment_method?: string;
+  status?: string;
+  remarks?: string;
 };
 type ExpenseCategory = { category_id: number; name: string };
 
@@ -88,7 +92,6 @@ const Operations = () => {
   const [customers, setCustomers] = useState<Customer[]>([]);
   const [products, setProducts] = useState<Product[]>([]);
   const [orders, setOrders] = useState<Order[]>([]);
-  const [billings, setBillings] = useState<Billing[]>([]);
   const [vendors, setVendors] = useState<any[]>([]);
   const [rawMaterials, setRawMaterials] = useState<any[]>([]);
   const [expenseCategories, setExpenseCategories] = useState<ExpenseCategory[]>([]);
@@ -96,14 +99,33 @@ const Operations = () => {
   const [extraMaterialNames, setExtraMaterialNames] = useState<string[]>([]);
 
   useEffect(() => {
-    apiRequest('/customers/').then(r => r.json()).then(setCustomers).catch(console.error);
-    apiRequest('/products/').then(r => r.json()).then(setProducts).catch(console.error);
-    apiRequest('/orders/').then(r => r.json()).then(setOrders).catch(console.error);
-    apiRequest('/billings/').then(r => r.json()).then(setBillings).catch(console.error);
-    apiRequest('/raw-materials/').then(r => r.json()).then(setRawMaterials).catch(console.error);
-    apiRequest('/vendors/').then(r => r.json()).then(setVendors).catch(console.error);
-    apiRequest('/expense-categories/').then(r => r.json()).then(setExpenseCategories).catch(console.error);
-  }, []);
+    const loadTabData = async () => {
+      if (!active) return;
+      try {
+        if (active === "customer" || active === "order" || active === "billing") {
+          setCustomers(await fetchAllPages<Customer>("/customers/"));
+        }
+        if (active === "order" || active === "product" || active === "billing") {
+          setProducts(await fetchAllPages<Product>("/products/"));
+        }
+        if (active === "order" || active === "billing") {
+          setOrders(await fetchList<Order>("/orders/", { page_size: 200 }));
+        }
+        if (active === "raw" || active === "product") {
+          setRawMaterials(await fetchAllPages("/raw-materials/"));
+        }
+        if (active === "raw") {
+          setVendors(await fetchAllPages("/vendors/"));
+        }
+        if (active === "expense") {
+          setExpenseCategories(await fetchAllPages<ExpenseCategory>("/expense-categories/"));
+        }
+      } catch (err) {
+        console.error(err);
+      }
+    };
+    void loadTabData();
+  }, [active]);
 
   const productNameOptions = useMemo(
     () =>
@@ -130,7 +152,7 @@ const Operations = () => {
 
   // Refresh orders after placing new order
   const refreshOrders = () => {
-    apiRequest('/orders/').then(r => r.json()).then(setOrders).catch(console.error);
+    fetchList<Order>("/orders/", { page_size: 200 }).then(setOrders).catch(console.error);
   };
 
   /* ---------- VENDOR ---------- */
@@ -263,11 +285,7 @@ const Operations = () => {
         }
         const order = await orderRes.json();
 
-        // Load order-details and pick the first detail for editing
-        const odRes = await apiRequest(`/order-details/`);
-        const odJson = odRes.ok ? await odRes.json() : [];
-        const details = Array.isArray(odJson) ? odJson.filter((d: any) => d.order === editOrderId) : [];
-        const firstDetail = details[0] || null;
+        const firstDetail = order.order_details?.[0] ?? null;
         setEditOrderDetailId(firstDetail?.order_detail_id ?? null);
 
         setOrderForm({
@@ -281,10 +299,10 @@ const Operations = () => {
           notes: order.notes ?? "",
         });
 
-        // Load billing (if exists)
-        const bRes = await apiRequest(`/billings/`);
-        const bJson = bRes.ok ? await bRes.json() : [];
-        const b = Array.isArray(bJson) ? bJson.find((x: any) => x.order === editOrderId) : null;
+        const billingsForOrder = await fetchList<Billing>("/billings/", {
+          order: editOrderId,
+        });
+        const b = billingsForOrder[0] ?? null;
         setEditBillingId(b?.billing_id ?? null);
         setBilling({
           order: String(editOrderId),
@@ -372,7 +390,7 @@ const Operations = () => {
       showModal("Error", JSON.stringify(error));
       return false;
     }
-    const updated = await apiRequest("/expense-categories/").then((r) => r.json());
+    const updated = await fetchAllPages<ExpenseCategory>("/expense-categories/");
     setExpenseCategories(updated);
     return true;
   };
@@ -517,8 +535,7 @@ const Operations = () => {
 
       showModal("Success", "Order updated successfully.");
       // refresh local caches
-      apiRequest('/orders/').then(r => r.json()).then(setOrders).catch(console.error);
-      apiRequest('/billings/').then(r => r.json()).then(setBillings).catch(console.error);
+      refreshOrders();
       setSearchParams((prev) => {
         const next = new URLSearchParams(prev);
         next.delete("editOrderId");
@@ -613,8 +630,8 @@ const Operations = () => {
         if (result) {
           // Refresh lists
           refreshOrders();
-          apiRequest("/billings/").then((r) => r.json()).then(setBillings).catch(console.error);
-          apiRequest("/products/").then((r) => r.json()).then(setProducts).catch(console.error);
+          refreshOrders();
+          fetchAllPages<Product>("/products/").then(setProducts).catch(console.error);
 
           await printReceipt(result);
 
@@ -655,7 +672,7 @@ const Operations = () => {
 
       const result = await post("/billings/", billingData);
       if (result) {
-        apiRequest("/billings/").then((r) => r.json()).then(setBillings).catch(console.error);
+        refreshOrders();
         await printReceipt(result);
         setBilling({
           order: "",
@@ -851,7 +868,7 @@ const Operations = () => {
             vendor: Number(raw.vendor) || 0,
           }).then(() => {
             setRaw({ material: "", measuring_unit: "", description: "", quantity: "", price: "", vendor: "" });
-            apiRequest('/raw-materials/').then(r => r.json()).then(setRawMaterials).catch(console.error);
+            fetchAllPages("/raw-materials/").then(setRawMaterials).catch(console.error);
           })}>Save Raw Material</button>
         </div>
       )}
@@ -1011,7 +1028,7 @@ const Operations = () => {
               setProductRawMaterials([{ raw_material: "", quantity_required: "" }]);
               
               // Refresh products list
-              apiRequest('/products/').then(r => r.json()).then(setProducts).catch(console.error);
+              fetchAllPages<Product>("/products/").then(setProducts).catch(console.error);
             } catch (error: any) {
               showModal("Error", error?.message || String(error));
             }
@@ -1028,7 +1045,7 @@ const Operations = () => {
           <textarea className={input} placeholder="Remark" value={customer.remark} onChange={e => setCustomer({ ...customer, remark: e.target.value })} />
           <button className={primaryBtn} onClick={() => post('/customers/', customer).then(() => {
             setCustomer({ name: "", contact: "", address: "", remark: "" });
-            apiRequest('/customers/').then(r => r.json()).then(setCustomers).catch(console.error);
+            fetchAllPages<Customer>("/customers/").then(setCustomers).catch(console.error);
           })}>Save Customer</button>
         </div>
       )}
@@ -1405,7 +1422,7 @@ const Operations = () => {
                 quantity: "",
                 remarks: "",
               });
-              apiRequest('/expense-categories/').then(r => r.json()).then(setExpenseCategories).catch(console.error);
+              fetchAllPages<ExpenseCategory>("/expense-categories/").then(setExpenseCategories).catch(console.error);
             })}
             disabled={!expense.category_name || !expense.date || !expense.amount}
           >

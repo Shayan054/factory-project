@@ -40,12 +40,22 @@ class ProductRawMaterialSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-class ProductSerializer(serializers.ModelSerializer):
-    raw_materials_used = ProductRawMaterialSerializer(many=True, read_only=True)
-    
+class ProductListSerializer(serializers.ModelSerializer):
     class Meta:
         model = Product
         fields = '__all__'
+
+
+class ProductDetailSerializer(serializers.ModelSerializer):
+    raw_materials_used = ProductRawMaterialSerializer(many=True, read_only=True)
+
+    class Meta:
+        model = Product
+        fields = '__all__'
+
+
+# Backward-compatible alias for create/update responses
+ProductSerializer = ProductDetailSerializer
 
 
 class OrderDetailsSerializer(serializers.ModelSerializer):
@@ -54,7 +64,16 @@ class OrderDetailsSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-class OrderSerializer(serializers.ModelSerializer):
+class OrderListSerializer(serializers.ModelSerializer):
+    order_no = serializers.CharField(required=False, read_only=True)
+    order_date = serializers.DateTimeField(required=False, read_only=True)
+
+    class Meta:
+        model = Order
+        fields = '__all__'
+
+
+class OrderDetailSerializer(serializers.ModelSerializer):
     order_details = OrderDetailsSerializer(many=True, read_only=True)
     order_no = serializers.CharField(required=False, read_only=True)
     order_date = serializers.DateTimeField(required=False, read_only=True)
@@ -62,6 +81,10 @@ class OrderSerializer(serializers.ModelSerializer):
     class Meta:
         model = Order
         fields = '__all__'
+
+
+# Backward-compatible alias
+OrderSerializer = OrderDetailSerializer
 
 
 class BillingSerializer(serializers.ModelSerializer):
@@ -77,7 +100,7 @@ class ExpenseCategorySerializer(serializers.ModelSerializer):
 
 
 class ExpenseSerializer(serializers.ModelSerializer):
-    category_name = serializers.CharField(write_only=True, required=True)
+    category_name = serializers.CharField(write_only=True, required=False)
     category_name_display = serializers.CharField(source='category.name', read_only=True)
     
     class Meta:

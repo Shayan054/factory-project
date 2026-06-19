@@ -26,90 +26,28 @@ export default function Dashboard() {
     };
   }, []);
 
-  const orders = useMemo(() => data?.orders ?? [], [data]);
-  const billings = useMemo(() => data?.billings ?? [], [data]);
-  const customers = useMemo(() => data?.customers ?? [], [data]);
+  const metrics = data?.metrics ?? null;
   const expenses = useMemo(() => data?.expenses ?? [], [data]);
 
-  // Calculate metrics
-  const now = new Date();
-  const currentMonth = now.getMonth();
-  const currentYear = now.getFullYear();
+  const monthlySales = metrics?.monthly_sales ?? 0;
+  const annualSales = metrics?.annual_sales ?? 0;
+  const amountReceived = metrics?.amount_received ?? 0;
+  const remainingAmount = metrics?.remaining_amount ?? 0;
+  const totalOrders = metrics?.total_orders ?? 0;
+  const pendingOrders = metrics?.pending_orders ?? 0;
+  const completedOrders = metrics?.completed_orders ?? 0;
+  const monthlyExpenses = metrics?.monthly_expenses ?? 0;
+  const annualExpenses = metrics?.annual_expenses ?? 0;
+  const salesChartData = metrics?.sales_chart ?? [];
 
-  // Monthly sales (from orders in current month)
-  const monthlySales = orders
-    .filter(order => {
-      const orderDate = new Date(order.order_date);
-      return orderDate.getMonth() === currentMonth && orderDate.getFullYear() === currentYear;
-    })
-    .reduce((sum, order) => sum + (order.total_amount || 0), 0);
-
-  // Annual sales (from orders in current year)
-  const annualSales = orders
-    .filter(order => {
-      const orderDate = new Date(order.order_date);
-      return orderDate.getFullYear() === currentYear;
-    })
-    .reduce((sum, order) => sum + (order.total_amount || 0), 0);
-
-  // Amount received (from billings)
-  const amountReceived = billings.reduce((sum, billing) => sum + (billing.amount_received || 0), 0);
-
-  // Remaining amount calculation:
-  // For orders with billing: use billing.balance
-  // For orders without billing: use order.total_amount
-  const remainingAmount = (() => {
-    const ordersWithBilling = new Set(billings.map(b => b.order));
-    let remaining = 0;
-    
-    orders.forEach(order => {
-      if (ordersWithBilling.has(order.order_id)) {
-        // Order has billing - use billing balance
-        const billing = billings.find(b => b.order === order.order_id);
-        if (billing) {
-          remaining += billing.balance || 0;
-        }
-      } else {
-        // Order has no billing - use full order amount
-        remaining += order.total_amount || 0;
-      }
-    });
-    
-    return remaining;
-  })();
-
-  // Order statistics for donut chart
-  const totalOrders = orders.length;
-  const pendingOrders = orders.filter(o => o.order_status === 0).length;
-  const completedOrders = orders.filter(o => o.order_status === 1).length;
-
-  // Sales chart data (last 6 months)
-  const salesChartData: { month: string; sales: number }[] = (() => {
-    const months: { month: string; sales: number }[] = [];
-    for (let i = 5; i >= 0; i--) {
-      const date = new Date(currentYear, currentMonth - i, 1);
-      const monthName = date.toLocaleString('default', { month: 'short' });
-      
-      const monthSales = orders
-        .filter(order => {
-          const orderDate = new Date(order.order_date);
-          return orderDate.getMonth() === date.getMonth() && orderDate.getFullYear() === date.getFullYear();
-        })
-        .reduce((sum, order) => sum + (order.total_amount || 0), 0);
-      
-      months.push({
-        month: monthName,
-        sales: monthSales,
-      });
-    }
-    return months;
-  })();
-
-  // Donut chart data
   const donutChartData: { name: string; value: number; color: string }[] = [
     { name: 'Completed', value: completedOrders, color: '#1cc88a' },
     { name: 'Pending', value: pendingOrders, color: '#f6c23e' },
   ];
+
+  const now = new Date();
+  const currentMonth = now.getMonth();
+  const currentYear = now.getFullYear();
 
   // Filter expenses by date range and exclude "production" category
   const getFilteredExpenses = () => {
@@ -147,42 +85,7 @@ export default function Dashboard() {
 
   const filteredExpenses = getFilteredExpenses();
 
-  // Expense calculations (excluding "production" category)
-  const monthlyExpenses = expenses
-    .filter(expense => {
-      if (!expense.date) return false;
-      
-      // Exclude "production" category
-      const categoryName = (expense.category_name || expense.category_name_display || '').toLowerCase().trim();
-      if (categoryName === 'production') return false;
-      
-      try {
-        const expenseDate = new Date(expense.date);
-        return expenseDate.getMonth() === currentMonth && expenseDate.getFullYear() === currentYear;
-      } catch {
-        return false;
-      }
-    })
-    .reduce((sum, expense) => sum + (Number(expense.amount) || 0), 0);
-
-  const annualExpenses = expenses
-    .filter(expense => {
-      if (!expense.date) return false;
-      
-      // Exclude "production" category
-      const categoryName = (expense.category_name || expense.category_name_display || '').toLowerCase().trim();
-      if (categoryName === 'production') return false;
-      
-      try {
-        const expenseDate = new Date(expense.date);
-        return expenseDate.getFullYear() === currentYear;
-      } catch {
-        return false;
-      }
-    })
-    .reduce((sum, expense) => sum + (Number(expense.amount) || 0), 0);
-
-  // Expense chart data based on view type
+  // Expense calculations (excluding "production" category) — KPIs from server metrics above
   const getExpenseChartData = () => {
     if (expenseViewType === 'category') {
       // Category-wise data
