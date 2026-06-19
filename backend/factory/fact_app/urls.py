@@ -24,7 +24,11 @@ from .auth_views import (
 
 router = DefaultRouter()
 router.register(r'vendors', VendorViewSet)
-router.register(r'raw-materials', RawMaterialViewSet)
+router.register(
+    r'raw-materials',
+    RawMaterialViewSet,
+    basename='raw-material'
+)
 router.register(r'customers', CustomerViewSet)
 router.register(r'products', ProductViewSet)
 router.register(r'product-raw-materials', ProductRawMaterialViewSet)
