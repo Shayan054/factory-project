@@ -64,6 +64,9 @@ CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",
     "http://127.0.0.1:5173",
 ]
+CSRF_TRUSTED_ORIGINS = [
+    'https://factory-project-production.up.railway.app',
+]
 
 # Allow additional origins from environment variable (for production)
 # Set CORS_EXTRA_ORIGINS in your PythonAnywhere environment
