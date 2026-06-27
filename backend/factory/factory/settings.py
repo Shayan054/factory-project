@@ -20,8 +20,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-++@_vxl(8k#7g_g%(j$n00g3$l*3dc=()--8&yn&gtt10kzedq'
+SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-fallback-for-local')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
@@ -105,15 +104,17 @@ WSGI_APPLICATION = 'factory.wsgi.application'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
 if os.environ.get("DATABASE_URL"):
-    DATABASES = {
-        "default": dj_database_url.config(
-            default=os.environ.get("DATABASE_URL"),
-            conn_max_age=600,
-            ssl_require=True,
-        )
-    }
+    import dj_database_url
+    db_config = dj_database_url.config(
+        default=os.environ.get("DATABASE_URL"),
+        conn_max_age=600,
+    )
+    # Remove sslmode - MySQL doesn't support it
+    if 'OPTIONS' in db_config:
+        db_config['OPTIONS'].pop('sslmode', None)
+    DATABASES = {"default": db_config}
 else:
-    # Local development (XAMPP MySQL). Render cannot reach localhost MySQL.
+    # Local development (XAMPP MySQL)
     DATABASES = {
         "default": {
             "ENGINE": "django.db.backends.mysql",
