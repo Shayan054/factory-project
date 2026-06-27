@@ -7,4 +7,7 @@ export default defineConfig({
     react(),
     tailwindcss(),
   ],
+  preview: {
+    allowedHosts: ['friendly-purpose-production-9a5b.up.railway.app'],
+  }
 })
