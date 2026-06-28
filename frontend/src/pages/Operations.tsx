@@ -4,6 +4,8 @@ import { fetchAllPages, fetchList } from "../utils/listApi";
 import { useSearchParams } from "react-router-dom";
 import { useModal } from "../context/ModalContext";
 import SelectWithAdd from "../components/SelectWithAdd";
+import SearchableSelect from "../components/SearchableSelect";
+import { contactInputProps, validateFormContact, clearContactValidity } from "../utils/contact";
 
 /* ---------- UI CLASSES ---------- */
 const card = "bg-white p-6 rounded-2xl shadow space-y-4";
@@ -54,6 +56,25 @@ const uniqueNames = (names: string[]) =>
   [...new Set(names.map((n) => n.trim()).filter(Boolean))].sort((a, b) =>
     a.localeCompare(b)
   );
+
+const todayDate = () => new Date().toISOString().split("T")[0];
+
+const toDateInputValue = (value: string | null | undefined) =>
+  value ? String(value).slice(0, 10) : "";
+
+function derivePaymentStatus(received: number, total: number) {
+  if (total > 0 && received >= total) return "Paid";
+  if (received > 0) return "Partial";
+  return "Unpaid";
+}
+
+function deriveOrderStatus(received: number, total: number) {
+  const complete = total > 0 && received >= total;
+  return {
+    order_status: complete ? 1 : 0,
+    status: complete ? "Completed" : "Not Completed",
+  };
+}
 
 const Operations = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -198,10 +219,8 @@ const Operations = () => {
     customer: "",
     product: "",
     quantity: "",
-    order_status: 0,
     discount: "",
-    order_req_date: "",
-    status: "",
+    order_req_date: todayDate(),
     notes: "",
   });
 
@@ -218,9 +237,7 @@ const Operations = () => {
     productUnitPrice: number;
     quantity: number;
     discount: number;
-    order_status: number;
-    order_req_date: string | null; // ISO string
-    status: string | null;
+    order_req_date: string | null;
     notes: string | null;
     total_amount: number;
     total_bill_after_discount: number;
@@ -263,6 +280,16 @@ const Operations = () => {
   const requestedQty = Number(orderForm.quantity) || 0;
   const isQtyInsufficient = availableQty !== null && requestedQty > 0 && requestedQty > availableQty;
 
+  const customerOptions = useMemo(
+    () =>
+      customers.map((c) => ({
+        value: String(c.customer_id),
+        label: `${c.name} (${c.contact})`,
+        searchText: `${c.name} ${c.contact}`,
+      })),
+    [customers]
+  );
+
   /* ---------- BILLING ---------- */
   const [billing, setBilling] = useState({
     order: "",
@@ -292,10 +319,8 @@ const Operations = () => {
           customer: String(order.customer ?? ""),
           product: String(firstDetail?.product ?? ""),
           quantity: String(firstDetail?.quantity ?? ""),
-          order_status: Number(order.order_status ?? 0),
           discount: String(order.discount ?? ""),
-          order_req_date: order.order_req_date ? String(order.order_req_date).slice(0, 10) : "",
-          status: order.status ?? "",
+          order_req_date: toDateInputValue(order.order_req_date),
           notes: order.notes ?? "",
         });
 
@@ -341,6 +366,13 @@ const Operations = () => {
   const orderDate = selectedOrder?.order_date 
     ? new Date(selectedOrder.order_date).toLocaleDateString() 
     : new Date().toLocaleDateString();
+
+  const billingTotal = draftOrder
+    ? draftOrder.total_bill_after_discount
+    : (selectedOrder?.total_amount ?? 0);
+  const billingReceived = Number(billing.amount_received || 0);
+  const autoPaymentStatus = derivePaymentStatus(billingReceived, billingTotal);
+  const autoOrderStatus = deriveOrderStatus(billingReceived, billingTotal);
 
   /* ---------- HELPERS ---------- */
   const post = async (url: string, data: any) => {
@@ -427,9 +459,7 @@ const Operations = () => {
         productUnitPrice: productPrice,
         quantity: qty,
         discount: orderDiscount,
-        order_status: orderForm.order_status,
         order_req_date: orderForm.order_req_date ? new Date(orderForm.order_req_date).toISOString() : null,
-        status: orderForm.status || null,
         notes: orderForm.notes || null,
         total_amount: subTotal,
         total_bill_after_discount: totalAfterDiscount,
@@ -455,15 +485,19 @@ const Operations = () => {
       return;
     }
     try {
+      const received = billing.amount_received ? Number(billing.amount_received) : 0;
+      const { order_status, status } = deriveOrderStatus(received, totalAfterDiscount);
+      const paymentStatus = derivePaymentStatus(received, totalAfterDiscount);
+
       // Update order
       const orderPayload = {
         customer: Number(orderForm.customer),
-        order_status: Number(orderForm.order_status) || 0,
+        order_status,
         total_amount: subTotal,
         discount: orderDiscount,
         order_req_date: orderForm.order_req_date ? new Date(orderForm.order_req_date).toISOString() : null,
         total_item_quantity: Number(orderForm.quantity) || null,
-        status: orderForm.status || null,
+        status,
         notes: orderForm.notes || null,
       };
       const orderRes = await apiRequest(`/orders/${editOrderId}/`, {
@@ -499,7 +533,6 @@ const Operations = () => {
       }
 
       // Update billing if present (or create one if user provided amount)
-      const received = billing.amount_received ? Number(billing.amount_received) : 0;
       const billPayload = {
         order: editOrderId,
         customer: Number(orderForm.customer),
@@ -507,7 +540,7 @@ const Operations = () => {
         amount_received: received,
         balance: Math.max(totalAfterDiscount - received, 0),
         payment_method: billing.payment_method || "",
-        status: billing.status || "",
+        status: paymentStatus,
         remarks: billing.remarks || "",
       };
 
@@ -521,7 +554,7 @@ const Operations = () => {
           showModal("Error", `Failed to update billing.\n${JSON.stringify(err)}`);
           return;
         }
-      } else if (billing.amount_received || billing.payment_method || billing.status || billing.remarks) {
+      } else if (billing.amount_received || billing.payment_method || billing.remarks) {
         const bRes = await apiRequest(`/billings/`, {
           method: "POST",
           body: JSON.stringify(billPayload),
@@ -564,17 +597,18 @@ const Operations = () => {
         }
 
         // 1) Create order
+        const { order_status, status } = deriveOrderStatus(received, draftOrder.total_bill_after_discount);
         const orderRes = await apiRequest("/orders/", {
           method: "POST",
           body: JSON.stringify({
             customer: draftOrder.customerId,
-            order_status: draftOrder.order_status,
+            order_status,
             total_amount: draftOrder.total_amount,
             discount: draftOrder.discount,
             total_bill_after_discount: draftOrder.total_bill_after_discount,
             order_req_date: draftOrder.order_req_date,
             total_item_quantity: draftOrder.quantity,
-            status: draftOrder.status,
+            status,
             notes: draftOrder.notes,
           }),
         });
@@ -622,7 +656,7 @@ const Operations = () => {
           amount_received: received,
           balance: draftOrder.total_bill_after_discount - received,
           payment_method: billing.payment_method || null,
-          status: billing.status || null,
+          status: derivePaymentStatus(received, draftOrder.total_bill_after_discount),
           remarks: billing.remarks || "",
         };
 
@@ -666,12 +700,17 @@ const Operations = () => {
         amount_received: received,
         balance: selectedOrder.total_amount - received,
         payment_method: billing.payment_method || null,
-        status: billing.status || null,
+        status: derivePaymentStatus(received, selectedOrder.total_amount),
         remarks: billing.remarks || "",
       };
 
       const result = await post("/billings/", billingData);
       if (result) {
+        const { order_status, status } = deriveOrderStatus(received, selectedOrder.total_amount);
+        await apiRequest(`/orders/${selectedOrder.order_id}/`, {
+          method: "PATCH",
+          body: JSON.stringify({ order_status, status }),
+        });
         refreshOrders();
         await printReceipt(result);
         setBilling({
@@ -810,6 +849,35 @@ const Operations = () => {
     }
   };
 
+  const submitVendor = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const form = e.currentTarget;
+    validateFormContact(form, "phone");
+    if (!form.checkValidity()) {
+      form.reportValidity();
+      return;
+    }
+    const result = await post("/vendors/", vendor);
+    if (result) {
+      setVendor({ name: "", contact_person: "", email: "", phone: "" });
+    }
+  };
+
+  const submitCustomer = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const form = e.currentTarget;
+    validateFormContact(form, "contact");
+    if (!form.checkValidity()) {
+      form.reportValidity();
+      return;
+    }
+    const result = await post("/customers/", customer);
+    if (result) {
+      setCustomer({ name: "", contact: "", address: "", remark: "" });
+      fetchAllPages<Customer>("/customers/").then(setCustomers).catch(console.error);
+    }
+  };
+
   return (
     <div className="p-6 space-y-6">
       <h1 className="text-2xl font-semibold">Operations</h1>
@@ -821,15 +889,21 @@ const Operations = () => {
 
       {/* ---------- VENDOR ---------- */}
       {active === "vendor" && (
-        <div className={card}>
-          <input className={input} placeholder="Vendor Name" value={vendor.name} onChange={e => setVendor({ ...vendor, name: e.target.value })} />
-          <input className={input} placeholder="Contact Person" value={vendor.contact_person} onChange={e => setVendor({ ...vendor, contact_person: e.target.value })} />
-          <input className={input} placeholder="Email" type="email" value={vendor.email} onChange={e => setVendor({ ...vendor, email: e.target.value })} />
-          <input className={input} placeholder="Phone" value={vendor.phone} onChange={e => setVendor({ ...vendor, phone: e.target.value })} />
-          <button className={primaryBtn} onClick={() => post('/vendors/', vendor).then(() => {
-            setVendor({ name: "", contact_person: "", email: "", phone: "" });
-          })}>Save Vendor</button>
-        </div>
+        <form className={card} onSubmit={submitVendor}>
+          <input className={input} name="name" placeholder="Vendor Name" required value={vendor.name} onChange={e => setVendor({ ...vendor, name: e.target.value })} />
+          <input className={input} name="contact_person" placeholder="Contact Person" value={vendor.contact_person} onChange={e => setVendor({ ...vendor, contact_person: e.target.value })} />
+          <input className={input} name="email" placeholder="Email" type="email" value={vendor.email} onChange={e => setVendor({ ...vendor, email: e.target.value })} />
+          <input
+            className={input}
+            name="phone"
+            placeholder="Phone"
+            {...contactInputProps}
+            value={vendor.phone}
+            onChange={e => setVendor({ ...vendor, phone: e.target.value })}
+            onInput={clearContactValidity}
+          />
+          <button type="submit" className={primaryBtn}>Save Vendor</button>
+        </form>
       )}
 
       {/* ---------- RAW MATERIAL ---------- */}
@@ -1038,16 +1112,21 @@ const Operations = () => {
 
       {/* ---------- CUSTOMER ---------- */}
       {active === "customer" && (
-        <div className={card}>
-          <input className={input} placeholder="Name" value={customer.name} onChange={e => setCustomer({ ...customer, name: e.target.value })} />
-          <input className={input} placeholder="Contact" value={customer.contact} onChange={e => setCustomer({ ...customer, contact: e.target.value })} />
-          <textarea className={input} placeholder="Address" value={customer.address} onChange={e => setCustomer({ ...customer, address: e.target.value })} />
-          <textarea className={input} placeholder="Remark" value={customer.remark} onChange={e => setCustomer({ ...customer, remark: e.target.value })} />
-          <button className={primaryBtn} onClick={() => post('/customers/', customer).then(() => {
-            setCustomer({ name: "", contact: "", address: "", remark: "" });
-            fetchAllPages<Customer>("/customers/").then(setCustomers).catch(console.error);
-          })}>Save Customer</button>
-        </div>
+        <form className={card} onSubmit={submitCustomer}>
+          <input className={input} name="name" placeholder="Name" required value={customer.name} onChange={e => setCustomer({ ...customer, name: e.target.value })} />
+          <input
+            className={input}
+            name="contact"
+            placeholder="Contact"
+            {...contactInputProps}
+            value={customer.contact}
+            onChange={e => setCustomer({ ...customer, contact: e.target.value })}
+            onInput={clearContactValidity}
+          />
+          <textarea className={input} name="address" placeholder="Address" value={customer.address} onChange={e => setCustomer({ ...customer, address: e.target.value })} />
+          <textarea className={input} name="remark" placeholder="Remark" value={customer.remark} onChange={e => setCustomer({ ...customer, remark: e.target.value })} />
+          <button type="submit" className={primaryBtn}>Save Customer</button>
+        </form>
       )}
 
       {/* ---------- PLACE ORDER ---------- */}
@@ -1060,16 +1139,12 @@ const Operations = () => {
             </div>
           )}
           <label className="block font-semibold mb-2">Customer *</label>
-          <select 
-            className={input} 
+          <SearchableSelect
             value={orderForm.customer}
-            onChange={e => setOrderForm({ ...orderForm, customer: e.target.value })}
-          >
-            <option value="">Select Customer</option>
-            {customers.map(c => (
-              <option key={c.customer_id} value={c.customer_id}>{c.name} ({c.contact})</option>
-            ))}
-          </select>
+            onChange={(customer) => setOrderForm({ ...orderForm, customer })}
+            options={customerOptions}
+            placeholder="Search customer by name or contact"
+          />
 
           <label className="block font-semibold mb-2 mt-4">Product Name *</label>
           <select 
@@ -1119,18 +1194,9 @@ const Operations = () => {
           <label className="block font-semibold mb-2 mt-4">Required Date</label>
           <input
             className={input}
-            type="datetime-local"
+            type="date"
             value={orderForm.order_req_date}
             onChange={e => setOrderForm({ ...orderForm, order_req_date: e.target.value })}
-          />
-
-          <label className="block font-semibold mb-2 mt-4">Status</label>
-          <input
-            className={input}
-            type="text"
-            placeholder="e.g., Pending, Delivered"
-            value={orderForm.status}
-            onChange={e => setOrderForm({ ...orderForm, status: e.target.value })}
           />
 
           <label className="block font-semibold mb-2 mt-4">Notes</label>
@@ -1140,16 +1206,6 @@ const Operations = () => {
             value={orderForm.notes}
             onChange={e => setOrderForm({ ...orderForm, notes: e.target.value })}
           />
-
-          <label className="block font-semibold mb-2 mt-4">Order Status</label>
-          <select 
-            className={input} 
-            value={orderForm.order_status}
-            onChange={e => setOrderForm({ ...orderForm, order_status: Number(e.target.value) })}
-          >
-            <option value={0}>Pending</option>
-            <option value={1}>Completed</option>
-          </select>
 
           {isEditMode && (
             <div className="rounded-xl border border-[var(--border-color)] bg-[var(--surface-color)] p-4 mt-4 space-y-3">
@@ -1174,17 +1230,13 @@ const Operations = () => {
                 <option value="CHEQUE">Cheque</option>
                 <option value="OTHER">Other</option>
               </select>
-              <label className="block font-semibold">Billing Status</label>
-              <select
-                className={input}
-                value={billing.status}
-                onChange={(e) => setBilling({ ...billing, status: e.target.value })}
-              >
-                <option value="">Select status</option>
-                <option value="PENDING">Pending</option>
-                <option value="PARTIAL">Partial</option>
-                <option value="PAID">Paid</option>
-              </select>
+              <div className="rounded-lg border border-[var(--border-color)] bg-gray-50 px-3 py-2 text-sm">
+                <span className="font-semibold text-[var(--heading-color)]">Payment Status: </span>
+                <span>{derivePaymentStatus(Number(billing.amount_received || 0), totalAfterDiscount)}</span>
+                <span className="mx-2 text-[var(--muted-color)]">|</span>
+                <span className="font-semibold text-[var(--heading-color)]">Order Status: </span>
+                <span>{deriveOrderStatus(Number(billing.amount_received || 0), totalAfterDiscount).status}</span>
+              </div>
               <label className="block font-semibold">Remarks</label>
               <textarea
                 className={input}
@@ -1309,17 +1361,13 @@ const Operations = () => {
                 <option value="Online">Online</option>
               </select>
 
-              <label className="block font-semibold mb-2 mt-4">Status</label>
-              <select
-                className={input}
-                value={billing.status}
-                onChange={e => setBilling({ ...billing, status: e.target.value })}
-              >
-                <option value="">Select Status</option>
-                <option value="Paid">Paid</option>
-                <option value="Partial">Partial</option>
-                <option value="Unpaid">Unpaid</option>
-              </select>
+              <div className="rounded-lg border border-[var(--border-color)] bg-gray-50 px-3 py-2 mt-4 text-sm">
+                <span className="font-semibold text-[var(--heading-color)]">Payment Status: </span>
+                <span>{autoPaymentStatus}</span>
+                <span className="mx-2 text-[var(--muted-color)]">|</span>
+                <span className="font-semibold text-[var(--heading-color)]">Order Status: </span>
+                <span>{autoOrderStatus.status}</span>
+              </div>
 
               <label className="block font-semibold mb-2 mt-4">Remarks</label>
               <textarea
