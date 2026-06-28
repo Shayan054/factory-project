@@ -24,10 +24,10 @@ export default function Sidebar({ open, onClose }: Props) {
 
   // shared link styles (FlexAdmin-like)
   const base =
-    "flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-semibold text-[var(--sidebar-color)] transition-colors hover:bg-[rgba(14,165,164,0.10)] focus:outline-none focus:ring-2 focus:ring-[rgba(14,165,164,0.25)]";
-  const active = "bg-[var(--accent-color)] text-[var(--sidebar-active-color)]";
+    "flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-semibold text-[var(--sidebar-color)] transition-colors hover:bg-[rgba(14,165,164,0.10)] focus:outline-none focus:ring-2 focus:ring-[rgba(14,165,164,0.25)]";
+  const active = "bg-[var(--accent-color)] text-[var(--sidebar-active-color)] shadow-sm";
   const subBase =
-    "ml-7 flex items-center gap-3 rounded-lg bg-[rgba(14,165,164,0.03)] px-3 py-2 text-sm font-medium text-[var(--sidebar-color)] transition-colors hover:bg-[var(--accent-color)] hover:text-white focus:outline-none focus:ring-2 focus:ring-[rgba(14,165,164,0.25)]";
+    "ml-7 flex items-center gap-3 rounded-lg bg-[rgba(14,165,164,0.03)] px-3 py-2.5 text-sm font-medium text-[var(--sidebar-color)] transition-colors hover:bg-[var(--accent-color)] hover:text-white focus:outline-none focus:ring-2 focus:ring-[rgba(14,165,164,0.25)]";
 
   const currentSearch = new URLSearchParams(location.search);
   const currentTab = currentSearch.get("tab");
@@ -70,22 +70,26 @@ export default function Sidebar({ open, onClose }: Props) {
         aria-label="Sidebar"
       >
         {/* Brand */}
-        <div className="flex h-16 items-center px-4">
-          <Link to="/" className="flex min-w-0 items-center gap-3 font-extrabold tracking-wide">
-            <span className="inline-grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-[rgba(14,165,164,0.12)] text-[var(--accent-color)]">
-              <img src={logo} alt="Asghar Block Factory Logo" className="w-8 h-8 object-contain" />
+        <div className="border-b border-[var(--border-color)] px-4 py-5">
+          <Link to="/" className="flex min-w-0 items-center gap-3 transition hover:opacity-90" onClick={onClose}>
+            <span className="inline-grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-[rgba(14,165,164,0.12)] ring-1 ring-[rgba(14,165,164,0.18)]">
+              <img src={logo} alt="" className="h-8 w-8 object-contain" />
             </span>
-            <span className="truncate uppercase text-[13px] font-extrabold tracking-wide text-[var(--heading-color)]">
-              Asghar Block Factory
-            </span>
+            <div className="min-w-0">
+              <div className="truncate text-sm font-bold leading-tight tracking-tight text-[var(--heading-color)]">
+                Asghar Block Factory
+              </div>
+              <div className="truncate text-xs font-medium text-[var(--sidebar-muted-color)]">
+                Management System
+              </div>
+            </div>
           </Link>
         </div>
 
-        <Divider className="" />
-
         {/* Dashboard section */}
+        <div className="pt-5">
         <SectionLabel>Dashboard</SectionLabel>
-        <nav className="px-3 space-y-1">
+        <nav className="space-y-1.5 px-3 pb-1">
           <NavLink
             to="/"
             end
@@ -104,12 +108,14 @@ export default function Sidebar({ open, onClose }: Props) {
             <span>Reports</span>
           </NavLink>
         </nav>
+        </div>
 
-        <Divider className="my-3" />
+        <Divider className="mx-4 my-4" />
 
         {/* Factory Operations */}
+        <div className="pb-6">
         <SectionLabel>Factory Operations</SectionLabel>
-        <nav className="px-3 space-y-1">
+        <nav className="space-y-1.5 px-3">
           <button
             type="button"
             className={base}
@@ -342,6 +348,7 @@ export default function Sidebar({ open, onClose }: Props) {
             </NavLink>
           )}*/}
         </nav>
+        </div>
 
         {/* Footer strip removed */}
       </aside>
@@ -355,7 +362,7 @@ function Divider({ className = "my-3" }: { className?: string }) {
 }
 function SectionLabel({ children }: { children: React.ReactNode }) {
   return (
-    <div className="px-4 pb-2 text-[11px] font-bold uppercase tracking-wider text-[var(--sidebar-muted-color)]">
+    <div className="px-4 pb-2.5 text-xs font-bold uppercase tracking-wider text-[var(--sidebar-muted-color)]">
       {children}
     </div>
   );
