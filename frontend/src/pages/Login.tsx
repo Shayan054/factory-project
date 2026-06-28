@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import { formToJSON } from "../utils/form";
+import logo from "../assets/logo.png";
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
@@ -54,26 +55,19 @@ export default function LoginPage() {
         <div className="hidden md:flex flex-col items-center justify-center bg-linear-to-br from-[#0ea5a4] via-[#14b8a6] to-[#0f766e] text-white p-10 relative">
           <div className="text-center mb-10">
             <h1 className="text-4xl font-extrabold tracking-wide">Welcome</h1>
-            <p className="text-white/80 mt-2">Your journey begins here</p>
           </div>
 
-          <div className="w-64 h-64 rounded-full bg-white/10 backdrop-blur-xl flex items-center justify-center shadow-2xl">
-            <svg
-              width="130"
-              height="130"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="white"
-              strokeWidth="1.5"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <path d="M12 20l9-5-9-5-9 5 9 5z" />
-              <path d="M12 12l9-5-9-5-9 5 9 5z" />
-            </svg>
-          </div>
+          <div className="w-64 h-64 flex items-center justify-center">
+  <div className="bg-white rounded-full p-6 shadow-[0_20px_40px_rgba(0,0,0,0.25)] border border-gray-100 transform -translate-y-2">
+    <img
+      src={logo}
+      alt="Asghar Block Factory Logo"
+      className="w-44 h-44 rounded-full object-cover"
+    />
+  </div>
+</div>
 
-          <p className="mt-10 text-sm text-white/60">© {year} ModernUI Co.</p>
+          <p className="mt-10 text-sm text-white/60">© {year} Asghar Block Factory. All rights reserved.</p>
         </div>
 
         {/* Right Login Form */}
