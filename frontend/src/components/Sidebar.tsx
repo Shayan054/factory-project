@@ -331,7 +331,7 @@ export default function Sidebar({ open, onClose }: Props) {
               )}
             </div>
           )}
-          /*{isCEO && (
+          {/*{isCEO && (
             <NavLink
               to="/register"
               className={({ isActive }) => `${base} ${isActive ? active : ""}`}
@@ -340,7 +340,7 @@ export default function Sidebar({ open, onClose }: Props) {
               <IconFolder className="h-4 w-4" />
               <span>Register Employee</span>
             </NavLink>
-          )}*/
+          )}*/}
         </nav>
 
         {/* Footer strip removed */}
