@@ -27,7 +27,10 @@ export default function Topbar({ onMenuClick }: { onMenuClick: () => void }) {
 
        
 
-        
+        {/* Right actions */}
+        <div className="ml-auto flex items-center gap-2">
+         
+
           {/* Profile */}
           <div
             className="relative ml-1"
