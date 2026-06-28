@@ -72,8 +72,21 @@ function deriveOrderStatus(received: number, total: number) {
   const complete = total > 0 && received >= total;
   return {
     order_status: complete ? 1 : 0,
-    status: complete ? "Completed" : "Not Completed",
+    // API field max_length is 10 — "Incomplete" fits; shown as "Not Completed" in UI
+    status: complete ? "Completed" : "Incomplete",
   };
+}
+
+function formatOrderStatusLabel(status: string) {
+  return status === "Incomplete" ? "Not Completed" : status;
+}
+
+function formatApiError(err: unknown): string {
+  if (!err || typeof err !== "object") return String(err);
+  if ("detail" in err && (err as { detail?: unknown }).detail) {
+    return String((err as { detail: unknown }).detail);
+  }
+  return JSON.stringify(err, null, 2);
 }
 
 const Operations = () => {
@@ -493,10 +506,10 @@ const Operations = () => {
       const orderPayload = {
         customer: Number(orderForm.customer),
         order_status,
-        total_amount: subTotal,
-        discount: orderDiscount,
+        total_amount: Math.round(subTotal),
+        discount: Math.round(orderDiscount),
         order_req_date: orderForm.order_req_date ? new Date(orderForm.order_req_date).toISOString() : null,
-        total_item_quantity: Number(orderForm.quantity) || null,
+        total_item_quantity: Math.round(Number(orderForm.quantity)) || null,
         status,
         notes: orderForm.notes || null,
       };
@@ -603,11 +616,11 @@ const Operations = () => {
           body: JSON.stringify({
             customer: draftOrder.customerId,
             order_status,
-            total_amount: draftOrder.total_amount,
-            discount: draftOrder.discount,
-            total_bill_after_discount: draftOrder.total_bill_after_discount,
+            total_amount: Math.round(draftOrder.total_amount),
+            discount: Math.round(draftOrder.discount),
+            total_bill_after_discount: Math.round(draftOrder.total_bill_after_discount),
             order_req_date: draftOrder.order_req_date,
-            total_item_quantity: draftOrder.quantity,
+            total_item_quantity: Math.round(draftOrder.quantity),
             status,
             notes: draftOrder.notes,
           }),
@@ -615,7 +628,7 @@ const Operations = () => {
 
         if (!orderRes.ok) {
           const err = await orderRes.json().catch(() => ({ detail: "Failed to create order" }));
-          showModal("Error", err?.detail || "Failed to create order");
+          showModal("Error", formatApiError(err) || "Failed to create order");
           return;
         }
 
@@ -1235,7 +1248,7 @@ const Operations = () => {
                 <span>{derivePaymentStatus(Number(billing.amount_received || 0), totalAfterDiscount)}</span>
                 <span className="mx-2 text-[var(--muted-color)]">|</span>
                 <span className="font-semibold text-[var(--heading-color)]">Order Status: </span>
-                <span>{deriveOrderStatus(Number(billing.amount_received || 0), totalAfterDiscount).status}</span>
+                <span>{formatOrderStatusLabel(deriveOrderStatus(Number(billing.amount_received || 0), totalAfterDiscount).status)}</span>
               </div>
               <label className="block font-semibold">Remarks</label>
               <textarea
@@ -1366,7 +1379,7 @@ const Operations = () => {
                 <span>{autoPaymentStatus}</span>
                 <span className="mx-2 text-[var(--muted-color)]">|</span>
                 <span className="font-semibold text-[var(--heading-color)]">Order Status: </span>
-                <span>{autoOrderStatus.status}</span>
+                <span>{formatOrderStatusLabel(autoOrderStatus.status)}</span>
               </div>
 
               <label className="block font-semibold mb-2 mt-4">Remarks</label>
