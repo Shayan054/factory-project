@@ -1,5 +1,7 @@
 import * as React from "react";
+import { Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
+import logo from "../assets/logo.png";
 
 export default function Topbar({ onMenuClick }: { onMenuClick: () => void }) {
   const { user, logout } = useAuth();
@@ -25,7 +27,23 @@ export default function Topbar({ onMenuClick }: { onMenuClick: () => void }) {
           <SidebarToggleIcon className="h-5 w-5" />
         </button>
 
-       
+        {/* Brand */}
+        <Link
+          to="/"
+          className="flex min-w-0 items-center gap-3 rounded-xl px-1 py-1 transition hover:opacity-90"
+        >
+          <span className="inline-grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-[rgba(14,165,164,0.12)] ring-1 ring-[rgba(14,165,164,0.18)]">
+            <img src={logo} alt="" className="h-8 w-8 object-contain" />
+          </span>
+          <div className="min-w-0">
+            <div className="truncate text-base font-bold leading-tight tracking-tight text-[var(--heading-color)] sm:text-lg">
+              Asghar Block Factory
+            </div>
+            <div className="hidden truncate text-sm font-medium text-[var(--muted-color)] sm:block">
+              Factory Management System
+            </div>
+          </div>
+        </Link>
 
         {/* Right actions */}
         <div className="ml-auto flex items-center gap-2">
@@ -50,10 +68,10 @@ export default function Topbar({ onMenuClick }: { onMenuClick: () => void }) {
                 <UserIcon className="h-5 w-5 text-[var(--accent-color)]" />
               </div>
               <div className="hidden text-left md:block">
-                <div className="text-sm font-semibold text-[var(--heading-color)] leading-4">{userName}</div>
-                <div className="text-xs text-[var(--muted-color)]">{userRole}</div>
+                <div className="text-base font-semibold leading-5 text-[var(--heading-color)]">{userName}</div>
+                <div className="text-sm font-medium text-[var(--muted-color)]">{userRole}</div>
               </div>
-              <ChevronDownIcon className="hidden h-4 w-4 text-[var(--muted-color)] md:block" />
+              <ChevronDownIcon className="hidden h-5 w-5 text-[var(--muted-color)] md:block" />
             </button>
 
             {profileOpen && (
@@ -62,8 +80,8 @@ export default function Topbar({ onMenuClick }: { onMenuClick: () => void }) {
                 role="menu"
               >
                 <div className="px-4 py-3">
-                  <div className="text-sm font-semibold text-[var(--heading-color)]">{userName}</div>
-                  <div className="text-xs text-[var(--muted-color)]">{userRole}</div>
+                  <div className="text-base font-semibold text-[var(--heading-color)]">{userName}</div>
+                  <div className="text-sm font-medium text-[var(--muted-color)]">{userRole}</div>
                 </div>
                 <div className="border-t border-[var(--border-color)]" />
                 <button
@@ -72,7 +90,7 @@ export default function Topbar({ onMenuClick }: { onMenuClick: () => void }) {
                     setProfileOpen(false);
                     logout();
                   }}
-                  className="flex w-full items-center gap-2 px-4 py-3 text-sm font-semibold text-red-600 hover:bg-red-50"
+                  className="flex w-full items-center gap-2 px-4 py-3 text-base font-semibold text-red-600 hover:bg-red-50"
                   role="menuitem"
                 >
                   <LogoutIcon className="h-4 w-4" />
