@@ -18,6 +18,14 @@ type Entity = "customers" | "vendors" | "products" | "raw-materials" | "orders";
 
 const ALLOWED_TABS: Entity[] = ["customers", "vendors", "products", "raw-materials", "orders"];
 
+const PAGE_META: Record<Entity, { title: string; entityLabel: string }> = {
+  customers: { title: "View Customers", entityLabel: "customer" },
+  vendors: { title: "View Vendors", entityLabel: "vendor" },
+  products: { title: "View Products", entityLabel: "product" },
+  "raw-materials": { title: "View Raw Materials", entityLabel: "raw material" },
+  orders: { title: "View Orders", entityLabel: "order" },
+};
+
 const parseTab = (tab: string | null): Entity =>
   ALLOWED_TABS.includes(tab as Entity) ? (tab as Entity) : "customers";
 
@@ -324,18 +332,17 @@ const Management = () => {
     setOrderSortDir((d) => (d === "asc" ? "desc" : "asc"));
   };
 
+  const { title: pageTitle, entityLabel } = PAGE_META[activeTab];
+  const pageDescription = isCEO
+    ? `View, edit, and delete ${entityLabel} records.`
+    : `View ${entityLabel} records. Edit and delete are available to the CEO only.`;
+
   /* ---------------- UI ---------------- */
   return (
     <div className="p-6 space-y-6">
-      <h1 className="text-2xl font-semibold">Management</h1>
-      <p className="text-gray-600">
-        {isCEO 
-          ? "View, edit, and delete factory records" 
-          : "View factory records (Edit/Delete: CEO only)"}
-      </p>
-
-      <div className="rounded-xl border border-[var(--border-color)] bg-[var(--surface-color)] p-4 text-sm text-[var(--muted-color)]">
-        Select an option from the left <span className="font-semibold text-[var(--heading-color)]">Management</span> menu to manage that data.
+      <div>
+        <h1 className="text-2xl font-semibold text-[var(--heading-color)]">{pageTitle}</h1>
+        <p className="mt-1 text-[var(--muted-color)]">{pageDescription}</p>
       </div>
 
       {/* -------- TABLE -------- */}
