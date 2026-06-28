@@ -2,6 +2,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell, Legend } from "recharts";
 import { Expense, useDashboardData } from "../context/DashboardDataContext";
+import logo from "../assets/logo.png";
 
 export default function Dashboard() {
   const { data, loading, error, ensureLoaded, refresh } = useDashboardData();
@@ -595,7 +596,7 @@ function KpiCard({
       <span className="absolute inset-y-0 left-0 w-1.5 rounded-l-xl" style={{ backgroundColor: accent }} />
       <div className="flex items-center justify-between gap-4 p-5">
         <div>
-          <div className="text-xs font-bold uppercase tracking-wide" style={{ color: accent }}>
+          <div className="text-sl font-bold uppercase tracking-wide" style={{ color: accent }}>
             {title}
           </div>
           <div className="mt-2 text-2xl font-bold text-gray-800">{value}</div>
