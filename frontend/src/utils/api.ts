@@ -50,7 +50,7 @@ export const apiRequest = async (endpoint: string, options: RequestInit = {}) =>
           
           // Retry original request
           headers['Authorization'] = `Bearer ${data.access}`;
-          return fetch(`${API}${endpoint}`, {
+          return fetch(join(endpoint), {
             ...options,
             headers,
           });

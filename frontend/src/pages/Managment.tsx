@@ -29,15 +29,30 @@ const PAGE_META: Record<Entity, { title: string; entityLabel: string }> = {
 const parseTab = (tab: string | null): Entity =>
   ALLOWED_TABS.includes(tab as Entity) ? (tab as Entity) : "customers";
 
-const getId = (item: any) => {
-  const key = Object.keys(item).find(
-    (k) => k.toLowerCase() === "id" || k.toLowerCase().endsWith("_id")
-  );
-  return key ? item[key] : null;
+const ENTITY_ID_FIELD: Record<Entity, string> = {
+  customers: "customer_id",
+  vendors: "vendor_id",
+  products: "product_id",
+  "raw-materials": "material_id",
+  orders: "order_id",
 };
 
-const isPrimaryKey = (key: string) =>
-  key.toLowerCase().endsWith("id");
+const getRecordId = (item: any, entity: Entity) => {
+  const field = ENTITY_ID_FIELD[entity];
+  const value = item?.[field];
+  if (value !== null && value !== undefined && value !== "") {
+    return value;
+  }
+  const fallbackKey = Object.keys(item ?? {}).find(
+    (k) => k.toLowerCase() === "id" || k.toLowerCase().endsWith("_id")
+  );
+  return fallbackKey ? item[fallbackKey] : null;
+};
+
+const isPrimaryKey = (key: string, entity?: Entity) => {
+  if (entity && ENTITY_ID_FIELD[entity] === key) return true;
+  return key === "id";
+};
 
 const isAuditField = (key: string) => {
   const k = key.toLowerCase();
@@ -136,7 +151,7 @@ const Management = () => {
 
   /* ---------------- DELETE ---------------- */
   const deleteItem = async (item: any) => {
-    const id = getId(item);
+    const id = getRecordId(item, activeTab);
     if (!id) return showModal("Error", "Invalid record ID");
 
     if (!confirm("Are you sure you want to delete this record?")) return;
@@ -160,14 +175,16 @@ const Management = () => {
 
   /* ---------------- UPDATE ---------------- */
   const updateItem = async () => {
-    const id = getId(editingItem);
+    const id = getRecordId(editingItem, activeTab);
     if (!id) return showModal("Error", "Invalid record ID");
 
     // remove primary key and order_no before sending update
     const payload = { ...editingItem };
     Object.keys(payload).forEach((k) => {
-      if (isPrimaryKey(k) || k === "order_no" || isAuditField(k)) delete payload[k];
+      if (isPrimaryKey(k, activeTab) || k === "order_no" || isAuditField(k)) delete payload[k];
     });
+
+    const endpoint = `/${activeTab}/${id}/`;
 
     try {
       // If updating an order and amount_received is provided, update/create billing
@@ -180,7 +197,7 @@ const Management = () => {
 
         const orderId = id;
         const order = data.find(o => {
-          const oId = getId(o);
+          const oId = getRecordId(o, "orders");
           return oId === orderId;
         });
 
@@ -244,15 +261,26 @@ const Management = () => {
         }
       }
 
-      // Update the order
-      const response = await apiRequest(`/${activeTab}/${id}/`, {
-        method: "PUT",
+      // Update the record
+      const response = await apiRequest(endpoint, {
+        method: "PATCH",
         body: JSON.stringify(payload),
       });
 
       if (!response.ok) {
-        const error = await response.json();
-        showModal("Error updating record", JSON.stringify(error));
+        const error = await response.json().catch(() => ({}));
+        if (response.status === 403) {
+          showModal("Permission denied", "Only the CEO can edit records.");
+          return;
+        }
+        if (response.status === 404) {
+          showModal(
+            "Record not found",
+            `Could not find this record at ${endpoint}. It may have been deleted. Try refreshing the page.`
+          );
+          return;
+        }
+        showModal("Error updating record", JSON.stringify(error, null, 2));
         return;
       }
 
@@ -491,7 +519,7 @@ const Management = () => {
             ) : (
               <>
                 {data.map((item) => (
-                  <tr key={getId(item)}>
+                  <tr key={getRecordId(item, activeTab)}>
                     {Object.keys(item)
                       .filter((key) => {
                         // Hide audit fields
@@ -510,18 +538,24 @@ const Management = () => {
                       ))}
 
                     <td className="border p-2 space-x-2">
-                      <button
-                        className="bg-yellow-500 text-white px-3 py-1 rounded"
-                        onClick={() => setEditingItem(item)}
-                      >
-                        Edit
-                      </button>
-                      <button
-                        className="bg-red-600 text-white px-3 py-1 rounded"
-                        onClick={() => deleteItem(item)}
-                      >
-                        Delete
-                      </button>
+                      {isCEO ? (
+                        <>
+                          <button
+                            className="bg-yellow-500 text-white px-3 py-1 rounded hover:bg-yellow-600"
+                            onClick={() => setEditingItem(item)}
+                          >
+                            Edit
+                          </button>
+                          <button
+                            className="bg-red-600 text-white px-3 py-1 rounded hover:bg-red-700"
+                            onClick={() => deleteItem(item)}
+                          >
+                            Delete
+                          </button>
+                        </>
+                      ) : (
+                        <span className="text-gray-500 text-sm">View only</span>
+                      )}
                     </td>
                   </tr>
                 ))}
@@ -613,7 +647,7 @@ const Management = () => {
                 return true;
               })
               .map((key) => {
-                const isDisabled = isPrimaryKey(key) || (activeTab === "orders" && key === "order_no");
+                const isDisabled = isPrimaryKey(key, activeTab) || (activeTab === "orders" && key === "order_no");
                 const isStatusField = activeTab === "orders" && key === "order_status";
                 
                 return (

@@ -57,3 +57,12 @@ class IsCEOOrManagerCanAdd(permissions.BasePermission):
         
         return False
 
+
+class CEOUpdateDestroyMixin:
+    """Restrict update and delete actions to CEO only."""
+
+    def get_permissions(self):
+        if self.action in ("update", "partial_update", "destroy"):
+            return [IsAuthenticated(), IsCEO()]
+        return [permission() for permission in self.permission_classes]
+

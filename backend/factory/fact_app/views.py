@@ -30,7 +30,7 @@ from .serializers import (
     ExpenseSerializer,
     ExpenseCategorySerializer
 )
-from .permissions import IsCEOOrManagerCanAdd
+from .permissions import IsCEOOrManagerCanAdd, CEOUpdateDestroyMixin
 from .pagination import StandardPagination
 from .querysets import (
     active_customers,
@@ -45,14 +45,14 @@ from .querysets import (
 )
 
 
-class VendorViewSet(viewsets.ModelViewSet):
+class VendorViewSet(CEOUpdateDestroyMixin, viewsets.ModelViewSet):
     queryset = Vendor.objects.all().order_by("name")
     serializer_class = VendorSerializer
     permission_classes = [IsAuthenticated, IsCEOOrManagerCanAdd]
     pagination_class = StandardPagination
 
 
-class RawMaterialViewSet(viewsets.ModelViewSet):
+class RawMaterialViewSet(CEOUpdateDestroyMixin, viewsets.ModelViewSet):
     serializer_class = RawMaterialSerializer
     permission_classes = [IsAuthenticated, IsCEOOrManagerCanAdd]
     pagination_class = StandardPagination
@@ -96,7 +96,7 @@ class RawMaterialViewSet(viewsets.ModelViewSet):
             )
 
 
-class CustomerViewSet(viewsets.ModelViewSet):
+class CustomerViewSet(CEOUpdateDestroyMixin, viewsets.ModelViewSet):
     serializer_class = CustomerSerializer
     permission_classes = [IsAuthenticated, IsCEOOrManagerCanAdd]
     pagination_class = StandardPagination
@@ -121,7 +121,7 @@ class CustomerViewSet(viewsets.ModelViewSet):
         serializer.save(updated_at=now, updated_by=user_id)
 
 
-class ProductViewSet(viewsets.ModelViewSet):
+class ProductViewSet(CEOUpdateDestroyMixin, viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated, IsCEOOrManagerCanAdd]
     pagination_class = StandardPagination
 
