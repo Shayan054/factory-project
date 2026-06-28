@@ -17,6 +17,35 @@ export function parseListResponse<T>(json: unknown): T[] {
   return [];
 }
 
+export async function fetchPaginated<T>(
+  endpoint: string,
+  params?: Record<string, string | number | undefined>
+): Promise<{ results: T[]; count: number }> {
+  const search = new URLSearchParams();
+  if (params) {
+    Object.entries(params).forEach(([key, value]) => {
+      if (value !== undefined && value !== "") {
+        search.set(key, String(value));
+      }
+    });
+  }
+  const qs = search.toString();
+  const url = qs ? `${endpoint}?${qs}` : endpoint;
+  const res = await apiRequest(url);
+  if (!res.ok) {
+    throw new Error(`Failed to fetch ${endpoint}`);
+  }
+  const json = await res.json();
+  if (Array.isArray(json)) {
+    return { results: json as T[], count: json.length };
+  }
+  const paginated = json as PaginatedResponse<T>;
+  return {
+    results: paginated.results ?? [],
+    count: paginated.count ?? paginated.results?.length ?? 0,
+  };
+}
+
 export async function fetchList<T>(
   endpoint: string,
   params?: Record<string, string | number | undefined>

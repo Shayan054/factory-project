@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { apiRequest } from "../utils/api";
-import { fetchAllPages, fetchList } from "../utils/listApi";
+import { fetchAllPages, fetchList, fetchPaginated } from "../utils/listApi";
 import { useAuth } from "../context/AuthContext";
 import { useModal } from "../context/ModalContext";
 
@@ -98,6 +98,60 @@ const formatCellValue = (value: any): string => {
   return String(value);
 };
 
+const PAGE_SIZE = 20;
+
+const SEARCH_PLACEHOLDER: Record<Entity, string> = {
+  customers: "Search by name or contact...",
+  vendors: "Search by name, phone, or email...",
+  products: "Search by product name or description...",
+  "raw-materials": "Search by material name or unit...",
+  orders: "Search orders...",
+};
+
+function buildUpdatePayload(entity: Entity, item: any) {
+  switch (entity) {
+    case "customers":
+      return {
+        name: item.name,
+        contact: item.contact,
+        address: item.address,
+        remark: item.remark ?? "",
+      };
+    case "vendors":
+      return {
+        name: item.name,
+        contact_person: item.contact_person ?? "",
+        email: item.email ?? "",
+        phone: item.phone ?? "",
+      };
+    case "products":
+      return {
+        product_name: item.product_name,
+        description: item.description ?? "",
+        price: Number(item.price) || 0,
+        quantity: Number(item.quantity) || 0,
+      };
+    case "raw-materials":
+      return {
+        material: item.material,
+        measuring_unit: item.measuring_unit,
+        description: item.description ?? "",
+        quantity: Number(item.quantity) || 0,
+        price: Number(item.price) || 0,
+        vendor: Number(item.vendor) || item.vendor,
+      };
+    default: {
+      const payload = { ...item };
+      Object.keys(payload).forEach((k) => {
+        if (isPrimaryKey(k, entity) || k === "order_no" || isAuditField(k)) {
+          delete payload[k];
+        }
+      });
+      return payload;
+    }
+  }
+}
+
 const Management = () => {
   const { isCEO } = useAuth();
   const { showModal } = useModal();
@@ -112,34 +166,71 @@ const Management = () => {
   const [orderSearch, setOrderSearch] = useState("");
   const [orderSortKey, setOrderSortKey] = useState<"order_no" | "order_date" | "customer">("order_date");
   const [orderSortDir, setOrderSortDir] = useState<"asc" | "desc">("desc");
+  const [page, setPage] = useState(1);
+  const [totalCount, setTotalCount] = useState(0);
+  const [recordSearch, setRecordSearch] = useState("");
+  const [editingRecordId, setEditingRecordId] = useState<string | number | null>(null);
+
+  const totalPages = Math.max(1, Math.ceil(totalCount / PAGE_SIZE));
+  const showingFrom = totalCount === 0 ? 0 : (page - 1) * PAGE_SIZE + 1;
+  const showingTo = Math.min(page * PAGE_SIZE, totalCount);
 
   /* ---------------- FETCH DATA ---------------- */
-  const loadData = async (entity: Entity) => {
-    const json = await fetchList(`/${entity}/`, { page_size: 200 });
-    setData(json);
-    
+  const loadData = async (entity: Entity, opts?: { page?: number; search?: string }) => {
     if (entity === "orders") {
+      const json = await fetchList(`/${entity}/`, { page_size: 500 });
+      setData(json);
       setCustomers(await fetchAllPages("/customers/"));
       setBillings(await fetchList("/billings/", { page_size: 500 }));
+      return;
     }
+
+    const { results, count } = await fetchPaginated(`/${entity}/`, {
+      page: opts?.page ?? page,
+      page_size: PAGE_SIZE,
+      search: opts?.search ?? (recordSearch || undefined),
+    });
+    setData(results);
+    setTotalCount(count);
   };
+
+  useEffect(() => {
+    setPage(1);
+    setRecordSearch("");
+    setEditingItem(null);
+    setEditingRecordId(null);
+  }, [activeTab]);
 
   useEffect(() => {
     let cancelled = false;
 
     const fetchData = async () => {
-      const json = await fetchList(`/${activeTab}/`, { page_size: 200 });
-      if (cancelled) return;
-      setData(json);
+      try {
+        if (activeTab === "orders") {
+          const json = await fetchList("/orders/", { page_size: 500 });
+          if (cancelled) return;
+          setData(json);
 
-      if (activeTab === "orders") {
-        const [customersList, billingsList] = await Promise.all([
-          fetchAllPages("/customers/"),
-          fetchList("/billings/", { page_size: 500 }),
-        ]);
+          const [customersList, billingsList] = await Promise.all([
+            fetchAllPages("/customers/"),
+            fetchList("/billings/", { page_size: 500 }),
+          ]);
+          if (cancelled) return;
+          setCustomers(customersList);
+          setBillings(billingsList);
+          return;
+        }
+
+        const { results, count } = await fetchPaginated(`/${activeTab}/`, {
+          page,
+          page_size: PAGE_SIZE,
+          search: recordSearch || undefined,
+        });
         if (cancelled) return;
-        setCustomers(customersList);
-        setBillings(billingsList);
+        setData(results);
+        setTotalCount(count);
+      } catch (error) {
+        console.error("Failed to load management data:", error);
       }
     };
 
@@ -147,7 +238,7 @@ const Management = () => {
     return () => {
       cancelled = true;
     };
-  }, [activeTab]);
+  }, [activeTab, page, recordSearch]);
 
   /* ---------------- DELETE ---------------- */
   const deleteItem = async (item: any) => {
@@ -175,15 +266,10 @@ const Management = () => {
 
   /* ---------------- UPDATE ---------------- */
   const updateItem = async () => {
-    const id = getRecordId(editingItem, activeTab);
-    if (!id) return showModal("Error", "Invalid record ID");
+    const id = editingRecordId ?? getRecordId(editingItem, activeTab);
+    if (!id || !editingItem) return showModal("Error", "Invalid record ID");
 
-    // remove primary key and order_no before sending update
-    const payload = { ...editingItem };
-    Object.keys(payload).forEach((k) => {
-      if (isPrimaryKey(k, activeTab) || k === "order_no" || isAuditField(k)) delete payload[k];
-    });
-
+    const payload = buildUpdatePayload(activeTab, editingItem);
     const endpoint = `/${activeTab}/${id}/`;
 
     try {
@@ -263,7 +349,7 @@ const Management = () => {
 
       // Update the record
       const response = await apiRequest(endpoint, {
-        method: "PATCH",
+        method: "PUT",
         body: JSON.stringify(payload),
       });
 
@@ -285,6 +371,7 @@ const Management = () => {
       }
 
       setEditingItem(null);
+      setEditingRecordId(null);
       setAmountReceived("");
       loadData(activeTab);
       
@@ -375,16 +462,21 @@ const Management = () => {
 
       {/* -------- TABLE -------- */}
       <div className="bg-white shadow rounded-xl overflow-x-auto">
-        {activeTab === "orders" && (
-          <div className="flex items-center justify-end gap-2 p-3">
-            <input
-              className="w-full max-w-xs rounded-lg border border-[var(--border-color)] bg-white px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[rgba(14,165,164,0.25)]"
-              placeholder="Search orders..."
-              value={orderSearch}
-              onChange={(e) => setOrderSearch(e.target.value)}
-            />
-          </div>
-        )}
+        <div className="flex items-center justify-end gap-2 p-3">
+          <input
+            className="w-full max-w-sm rounded-lg border border-[var(--border-color)] bg-white px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[rgba(14,165,164,0.25)]"
+            placeholder={SEARCH_PLACEHOLDER[activeTab]}
+            value={activeTab === "orders" ? orderSearch : recordSearch}
+            onChange={(e) => {
+              if (activeTab === "orders") {
+                setOrderSearch(e.target.value);
+              } else {
+                setRecordSearch(e.target.value);
+                setPage(1);
+              }
+            }}
+          />
+        </div>
         <table className="w-full border-collapse">
           <thead className="bg-gray-100">
             <tr>
@@ -542,7 +634,10 @@ const Management = () => {
                         <>
                           <button
                             className="bg-yellow-500 text-white px-3 py-1 rounded hover:bg-yellow-600"
-                            onClick={() => setEditingItem(item)}
+                            onClick={() => {
+                              setEditingItem(item);
+                              setEditingRecordId(getRecordId(item, activeTab));
+                            }}
                           >
                             Edit
                           </button>
@@ -571,12 +666,43 @@ const Management = () => {
             )}
           </tbody>
         </table>
+
+        {activeTab !== "orders" && (
+          <div className="flex flex-col gap-3 border-t border-[var(--border-color)] p-3 sm:flex-row sm:items-center sm:justify-between">
+            <p className="text-sm text-[var(--muted-color)]">
+              {totalCount === 0
+                ? "No records to display"
+                : `Showing ${showingFrom}-${showingTo} of ${totalCount}`}
+            </p>
+            <div className="flex items-center gap-2">
+              <button
+                type="button"
+                className="rounded-lg border border-[var(--border-color)] px-3 py-1.5 text-sm disabled:cursor-not-allowed disabled:opacity-50"
+                disabled={page <= 1}
+                onClick={() => setPage((p) => Math.max(1, p - 1))}
+              >
+                Previous
+              </button>
+              <span className="text-sm text-[var(--muted-color)]">
+                Page {page} of {totalPages}
+              </span>
+              <button
+                type="button"
+                className="rounded-lg border border-[var(--border-color)] px-3 py-1.5 text-sm disabled:cursor-not-allowed disabled:opacity-50"
+                disabled={page >= totalPages}
+                onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
+              >
+                Next
+              </button>
+            </div>
+          </div>
+        )}
       </div>
 
       {/* -------- EDIT PANEL -------- */}
       {editingItem && isCEO && activeTab !== "orders" && (
         <div className="bg-white p-4 rounded-xl shadow">
-          <h2 className="font-semibold mb-3">Edit Record</h2>
+          <h2 className="font-semibold mb-3 capitalize">Edit {entityLabel}</h2>
 
           {/* Show order_no as read-only for orders */}
           {activeTab === "orders" && editingItem.order_no && (
@@ -699,6 +825,7 @@ const Management = () => {
             <button
               onClick={() => {
                 setEditingItem(null);
+                setEditingRecordId(null);
                 setAmountReceived("");
               }}
               className="bg-gray-400 text-white px-4 py-2 rounded-lg"

@@ -1,3 +1,5 @@
+from django.db.models import Q
+
 from .models import (
     Billing,
     Customer,
@@ -23,6 +25,16 @@ def active_order_details():
 
 def active_billings():
     return Billing.objects.exclude(is_deleted=1)
+
+
+def apply_text_search(queryset, search, *fields):
+    term = (search or "").strip()
+    if not term or not fields:
+        return queryset
+    condition = Q()
+    for field in fields:
+        condition |= Q(**{f"{field}__icontains": term})
+    return queryset.filter(condition)
 
 
 def filter_by_date_range(qs, field_name, date_from, date_to):

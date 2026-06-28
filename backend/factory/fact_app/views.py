@@ -34,6 +34,7 @@ from .permissions import IsCEOOrManagerCanAdd, CEOUpdateDestroyMixin
 from .pagination import StandardPagination
 from .querysets import (
     active_customers,
+    apply_text_search,
     billings_queryset,
     expenses_queryset,
     order_details_queryset,
@@ -50,15 +51,35 @@ class VendorViewSet(CEOUpdateDestroyMixin, viewsets.ModelViewSet):
     serializer_class = VendorSerializer
     permission_classes = [IsAuthenticated, IsCEOOrManagerCanAdd]
     pagination_class = StandardPagination
+    lookup_field = "vendor_id"
+
+    def get_queryset(self):
+        qs = Vendor.objects.all().order_by("name")
+        return apply_text_search(
+            qs,
+            self.request.query_params.get("search"),
+            "name",
+            "phone",
+            "contact_person",
+            "email",
+        )
 
 
 class RawMaterialViewSet(CEOUpdateDestroyMixin, viewsets.ModelViewSet):
     serializer_class = RawMaterialSerializer
     permission_classes = [IsAuthenticated, IsCEOOrManagerCanAdd]
     pagination_class = StandardPagination
+    lookup_field = "material_id"
 
     def get_queryset(self):
-        return raw_materials_queryset()
+        qs = raw_materials_queryset()
+        return apply_text_search(
+            qs,
+            self.request.query_params.get("search"),
+            "material",
+            "measuring_unit",
+            "description",
+        )
     
     def perform_create(self, serializer):
         with transaction.atomic():
@@ -100,9 +121,17 @@ class CustomerViewSet(CEOUpdateDestroyMixin, viewsets.ModelViewSet):
     serializer_class = CustomerSerializer
     permission_classes = [IsAuthenticated, IsCEOOrManagerCanAdd]
     pagination_class = StandardPagination
+    lookup_field = "customer_id"
 
     def get_queryset(self):
-        return active_customers().order_by("name")
+        qs = active_customers().order_by("name")
+        return apply_text_search(
+            qs,
+            self.request.query_params.get("search"),
+            "name",
+            "contact",
+            "address",
+        )
     
     def perform_create(self, serializer):
         now = timezone.now()
@@ -124,11 +153,19 @@ class CustomerViewSet(CEOUpdateDestroyMixin, viewsets.ModelViewSet):
 class ProductViewSet(CEOUpdateDestroyMixin, viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated, IsCEOOrManagerCanAdd]
     pagination_class = StandardPagination
+    lookup_field = "product_id"
 
     def get_queryset(self):
         if self.action == "retrieve":
-            return products_detail_queryset()
-        return products_list_queryset()
+            qs = products_detail_queryset()
+        else:
+            qs = products_list_queryset()
+        return apply_text_search(
+            qs,
+            self.request.query_params.get("search"),
+            "product_name",
+            "description",
+        )
 
     def get_serializer_class(self):
         if self.action == "retrieve":
