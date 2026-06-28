@@ -25,34 +25,9 @@ export default function Topbar({ onMenuClick }: { onMenuClick: () => void }) {
           <SidebarToggleIcon className="h-5 w-5" />
         </button>
 
-        {/* Search */}
-        <form
-          className="hidden flex-1 md:block"
-          role="search"
-          onSubmit={(e) => e.preventDefault()}
-        >
-          <div className="relative max-w-3xl">
-            <SearchIcon className="pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-[var(--muted-color)]" />
-            <input
-              aria-label="Search"
-              placeholder="Search users, invoices, tickets..."
-              className="w-full rounded-2xl border border-[var(--border-color)] bg-[var(--surface-color)] py-2.5 pl-11 pr-14 text-sm outline-none focus:ring-2 focus:ring-[rgba(14,165,164,0.25)] focus:border-[var(--accent-color)]"
-            />
-            <kbd className="absolute right-3 top-1/2 -translate-y-1/2 rounded-lg border border-[var(--border-color)] bg-[var(--background-color)] px-2 py-0.5 text-[11px] font-semibold text-[var(--muted-color)]">
-              /
-            </kbd>
-          </div>
-        </form>
+       
 
-        {/* Right actions */}
-        <div className="ml-auto flex items-center gap-2">
-          <IconButton title="Messages" ariaLabel="Open messages" badge={msgCount}>
-            <ChatIcon className="h-5 w-5" />
-          </IconButton>
-          <IconButton title="Notifications" ariaLabel="Open notifications" badge={notifCount}>
-            <BellIcon className="h-5 w-5" />
-          </IconButton>
-
+        
           {/* Profile */}
           <div
             className="relative ml-1"

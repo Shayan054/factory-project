@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { NavLink, Link, useLocation } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
+import logo from "../assets/logo.png";
 
 type Props = { open: boolean; onClose: () => void };
 
@@ -72,7 +73,7 @@ export default function Sidebar({ open, onClose }: Props) {
         <div className="flex h-16 items-center px-4">
           <Link to="/" className="flex min-w-0 items-center gap-3 font-extrabold tracking-wide">
             <span className="inline-grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-[rgba(14,165,164,0.12)] text-[var(--accent-color)]">
-              <IconBlocks className="h-5 w-5" />
+              <img src={logo} alt="Asghar Block Factory Logo" className="w-8 h-8 object-contain" />
             </span>
             <span className="truncate uppercase text-[13px] font-extrabold tracking-wide text-[var(--heading-color)]">
               Asghar Block Factory
