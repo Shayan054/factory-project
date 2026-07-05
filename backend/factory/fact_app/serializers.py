@@ -17,6 +17,9 @@ class VendorSerializer(serializers.ModelSerializer):
     class Meta:
         model = Vendor
         fields = '__all__'
+        extra_kwargs = {
+            'email': {'required': False, 'allow_blank': True},
+        }
 
 
 class RawMaterialSerializer(serializers.ModelSerializer):

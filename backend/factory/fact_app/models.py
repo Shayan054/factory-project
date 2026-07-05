@@ -73,7 +73,8 @@ class Vendor(models.Model):
     )
     email = models.EmailField(
         max_length=150,
-        default=""
+        default="",
+        blank=True,
     )
     phone = models.CharField(
         max_length=20,
