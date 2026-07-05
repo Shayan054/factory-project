@@ -259,7 +259,19 @@ const Management = () => {
       }
       showModal("Success", "Order deleted (soft delete).");
     } else {
-      await apiRequest(`/${activeTab}/${id}/`, { method: "DELETE" });
+      try {
+        const resp = await apiRequest(`/${activeTab}/${id}/`, { method: "DELETE" });
+        if (!resp.ok) {
+          const err = await resp.json().catch(() => ({}));
+          const detail = err.detail ?? JSON.stringify(err);
+          showModal("Error", `Failed to delete ${PAGE_META[activeTab].entityLabel}.\n${detail}`);
+          return;
+        }
+      } catch (error) {
+        const message = error instanceof Error ? error.message : "Delete failed.";
+        showModal("Error", message);
+        return;
+      }
     }
     loadData(activeTab);
   };
