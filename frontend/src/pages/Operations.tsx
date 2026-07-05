@@ -1003,6 +1003,8 @@ const Operations = () => {
             options={materialNameOptions}
             onAdd={addMaterialNameOption}
             placeholder="Select Material"
+            addTitle="Add Material"
+            addPlaceholder="Material name"
             required
           />
           <SelectWithAdd
@@ -1012,6 +1014,8 @@ const Operations = () => {
             options={unitOptionsForMaterial}
             onAdd={addUnitOption}
             placeholder={raw.material ? "Select Unit" : "Select a material first"}
+            addTitle="Add Unit"
+            addPlaceholder="Unit (e.g. kg, bag, ton)"
             required
             disabled={!raw.material.trim()}
           />
@@ -1054,6 +1058,8 @@ const Operations = () => {
             options={productNameOptions}
             onAdd={addProductNameOption}
             placeholder="Select Product"
+            addTitle="Add Product Name"
+            addPlaceholder="Product name"
             required
           />
           <textarea className={input} placeholder="Description" value={product.description} onChange={e => setProduct({ ...product, description: e.target.value })} />
@@ -1514,6 +1520,8 @@ const Operations = () => {
             options={expenseCategoryOptions}
             onAdd={addExpenseCategoryOption}
             placeholder="Select Category"
+            addTitle="Add Expense Category"
+            addPlaceholder="Category name"
             required
           />
 
