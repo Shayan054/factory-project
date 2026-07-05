@@ -161,7 +161,7 @@ const Operations = () => {
         if (active === "order" || active === "billing") {
           setOrders(await fetchList<Order>("/orders/", { page_size: 200 }));
         }
-        if (active === "raw" || active === "product") {
+        if (active === "raw" || active === "product" || active === "expense") {
           setRawMaterials(await fetchAllPages("/raw-materials/"));
         }
         if (active === "raw") {
@@ -195,10 +195,18 @@ const Operations = () => {
     [rawMaterials, extraMaterialNames]
   );
 
-  const expenseCategoryOptions = useMemo(
-    () => uniqueNames(expenseCategories.map((c) => c.name)),
-    [expenseCategories]
+  const rawMaterialNames = useMemo(
+    () =>
+      new Set(
+        rawMaterials.map((rm) => String(rm.material ?? "").trim().toLowerCase()).filter(Boolean)
+      ),
+    [rawMaterials]
   );
+
+  const expenseCategoryOptions = useMemo(() => {
+    const names = uniqueNames(expenseCategories.map((c) => c.name));
+    return names.filter((name) => !rawMaterialNames.has(name.trim().toLowerCase()));
+  }, [expenseCategories, rawMaterialNames]);
 
   // Refresh orders after placing new order
   const refreshOrders = () => {
@@ -488,13 +496,21 @@ const Operations = () => {
   };
 
   const addExpenseCategoryOption = async (name: string) => {
-    if (expenseCategoryOptions.includes(name)) {
+    const trimmed = name.trim();
+    if (rawMaterialNames.has(trimmed.toLowerCase())) {
+      showModal(
+        "Not allowed",
+        "Raw material purchases are recorded automatically when you add raw material. Use the Add Raw Material form instead."
+      );
+      return false;
+    }
+    if (expenseCategoryOptions.includes(trimmed)) {
       showModal("Info", "This category already exists.");
       return false;
     }
     const response = await apiRequest("/expense-categories/", {
       method: "POST",
-      body: JSON.stringify({ name }),
+      body: JSON.stringify({ name: trimmed }),
     });
     if (!response.ok) {
       const error = await response.json();
