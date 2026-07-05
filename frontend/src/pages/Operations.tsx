@@ -5,7 +5,9 @@ import { useSearchParams } from "react-router-dom";
 import { useModal } from "../context/ModalContext";
 import SelectWithAdd from "../components/SelectWithAdd";
 import SearchableSelect from "../components/SearchableSelect";
+import VendorSelectWithModal, { VendorRecord } from "../components/VendorSelectWithModal";
 import { contactInputProps, validateFormContact, clearContactValidity } from "../utils/contact";
+import { isValidOptionalEmail } from "../utils/email";
 
 /* ---------- UI CLASSES ---------- */
 const card = "bg-white p-6 rounded-2xl shadow space-y-4";
@@ -56,6 +58,19 @@ const uniqueNames = (names: string[]) =>
   [...new Set(names.map((n) => n.trim()).filter(Boolean))].sort((a, b) =>
     a.localeCompare(b)
   );
+
+/** Match material name to DB rows (case-insensitive). */
+const resolveUnitsForMaterial = (
+  material: string,
+  unitsMap: Record<string, string[]>
+): string[] => {
+  const trimmed = material.trim();
+  if (!trimmed) return [];
+  if (unitsMap[trimmed]?.length) return unitsMap[trimmed];
+  const lower = trimmed.toLowerCase();
+  const matchedKey = Object.keys(unitsMap).find((key) => key.toLowerCase() === lower);
+  return matchedKey ? unitsMap[matchedKey] : [];
+};
 
 const todayDate = () => new Date().toISOString().split("T")[0];
 
@@ -126,11 +141,12 @@ const Operations = () => {
   const [customers, setCustomers] = useState<Customer[]>([]);
   const [products, setProducts] = useState<Product[]>([]);
   const [orders, setOrders] = useState<Order[]>([]);
-  const [vendors, setVendors] = useState<any[]>([]);
+  const [vendors, setVendors] = useState<VendorRecord[]>([]);
   const [rawMaterials, setRawMaterials] = useState<any[]>([]);
   const [expenseCategories, setExpenseCategories] = useState<ExpenseCategory[]>([]);
   const [extraProductNames, setExtraProductNames] = useState<string[]>([]);
   const [extraMaterialNames, setExtraMaterialNames] = useState<string[]>([]);
+  const [extraUnitNames, setExtraUnitNames] = useState<string[]>([]);
 
   useEffect(() => {
     const loadTabData = async () => {
@@ -206,6 +222,38 @@ const Operations = () => {
     price: "",
     vendor: "",
   });
+
+  const materialUnitsMap = useMemo(() => {
+    const map: Record<string, string[]> = {};
+    for (const rm of rawMaterials) {
+      const name = String(rm.material ?? "").trim();
+      const unit = String(rm.measuring_unit ?? "").trim();
+      if (!name || !unit) continue;
+      if (!map[name]) map[name] = [];
+      if (!map[name].includes(unit)) map[name].push(unit);
+    }
+    return map;
+  }, [rawMaterials]);
+
+  const unitOptionsForMaterial = useMemo(() => {
+    const fromDb = raw.material ? resolveUnitsForMaterial(raw.material, materialUnitsMap) : [];
+    return uniqueNames([...fromDb, ...extraUnitNames]);
+  }, [raw.material, materialUnitsMap, extraUnitNames]);
+
+  useEffect(() => {
+    if (!raw.material.trim()) return;
+    const units = resolveUnitsForMaterial(raw.material, materialUnitsMap);
+    if (units.length === 0) return;
+    setRaw((prev) => {
+      if (prev.material.trim().toLowerCase() !== raw.material.trim().toLowerCase()) {
+        return prev;
+      }
+      if (prev.measuring_unit && units.includes(prev.measuring_unit)) {
+        return prev;
+      }
+      return { ...prev, measuring_unit: units[0] };
+    });
+  }, [raw.material, materialUnitsMap]);
 
   /* ---------- PRODUCT ---------- */
   const [product, setProduct] = useState({
@@ -419,6 +467,24 @@ const Operations = () => {
     }
     setExtraMaterialNames((prev) => [...prev, name]);
     return true;
+  };
+
+  const addUnitOption = async (name: string) => {
+    if (unitOptionsForMaterial.includes(name)) {
+      showModal("Info", "This unit already exists.");
+      return false;
+    }
+    setExtraUnitNames((prev) => [...prev, name]);
+    return true;
+  };
+
+  const handleMaterialChange = (material: string) => {
+    const units = resolveUnitsForMaterial(material, materialUnitsMap);
+    setRaw((prev) => ({
+      ...prev,
+      material,
+      measuring_unit: units[0] ?? "",
+    }));
   };
 
   const addExpenseCategoryOption = async (name: string) => {
@@ -870,7 +936,15 @@ const Operations = () => {
       form.reportValidity();
       return;
     }
-    const result = await post("/vendors/", vendor);
+    if (!isValidOptionalEmail(vendor.email)) {
+      showModal("Invalid email", "Please enter a valid email address or leave it blank.");
+      return;
+    }
+    const payload = {
+      ...vendor,
+      email: vendor.email.trim(),
+    };
+    const result = await post("/vendors/", payload);
     if (result) {
       setVendor({ name: "", contact_person: "", email: "", phone: "" });
     }
@@ -905,7 +979,7 @@ const Operations = () => {
         <form className={card} onSubmit={submitVendor}>
           <input className={input} name="name" placeholder="Vendor Name" required value={vendor.name} onChange={e => setVendor({ ...vendor, name: e.target.value })} />
           <input className={input} name="contact_person" placeholder="Contact Person" value={vendor.contact_person} onChange={e => setVendor({ ...vendor, contact_person: e.target.value })} />
-          <input className={input} name="email" placeholder="Email" type="email" value={vendor.email} onChange={e => setVendor({ ...vendor, email: e.target.value })} />
+          <input className={input} name="email" placeholder="Email (optional)" type="text" value={vendor.email} onChange={e => setVendor({ ...vendor, email: e.target.value })} />
           <input
             className={input}
             name="phone"
@@ -925,38 +999,48 @@ const Operations = () => {
           <SelectWithAdd
             label="Material"
             value={raw.material}
-            onChange={(material) => setRaw({ ...raw, material })}
+            onChange={handleMaterialChange}
             options={materialNameOptions}
             onAdd={addMaterialNameOption}
             placeholder="Select Material"
             required
           />
-          <input className={input} placeholder="Unit" value={raw.measuring_unit} onChange={e => setRaw({ ...raw, measuring_unit: e.target.value })} />
+          <SelectWithAdd
+            label="Unit"
+            value={raw.measuring_unit}
+            onChange={(measuring_unit) => setRaw({ ...raw, measuring_unit })}
+            options={unitOptionsForMaterial}
+            onAdd={addUnitOption}
+            placeholder={raw.material ? "Select Unit" : "Select a material first"}
+            required
+            disabled={!raw.material.trim()}
+          />
           <input className={input} placeholder="Quantity" type="number" value={raw.quantity} onChange={e => setRaw({ ...raw, quantity: e.target.value })} />
           <input className={input} placeholder="Price per Unit" type="number" value={raw.price} onChange={e => setRaw({ ...raw, price: e.target.value })} />
           <textarea className={input} placeholder="Description" value={raw.description} onChange={e => setRaw({ ...raw, description: e.target.value })} />
-          <label className="block font-semibold mb-2">Vendor *</label>
-          <select
-            className={input}
+          <VendorSelectWithModal
             value={raw.vendor}
-            onChange={e => setRaw({ ...raw, vendor: e.target.value })}
-          >
-            <option value="">Select Vendor</option>
-            {vendors.map(v => (
-              <option key={v.vendor_id} value={v.vendor_id}>
-                {v.name} - {v.phone || 'No phone'}
-              </option>
-            ))}
-          </select>
-          <button className={primaryBtn} onClick={() => post('/raw-materials/', {
-            ...raw,
-            quantity: Number(raw.quantity) || 0,
-            price: Number(raw.price) || 0,
-            vendor: Number(raw.vendor) || 0,
-          }).then(() => {
-            setRaw({ material: "", measuring_unit: "", description: "", quantity: "", price: "", vendor: "" });
-            fetchAllPages("/raw-materials/").then(setRawMaterials).catch(console.error);
-          })}>Save Raw Material</button>
+            onChange={(vendor) => setRaw({ ...raw, vendor })}
+            vendors={vendors}
+            onVendorsChange={setVendors}
+            required
+          />
+          <button className={primaryBtn} onClick={() => {
+            if (!raw.material || !raw.measuring_unit || !raw.vendor) {
+              showModal("Missing fields", "Please select material, unit, and vendor.");
+              return;
+            }
+            post('/raw-materials/', {
+              ...raw,
+              quantity: Number(raw.quantity) || 0,
+              price: Number(raw.price) || 0,
+              vendor: Number(raw.vendor) || 0,
+            }).then(() => {
+              setRaw({ material: "", measuring_unit: "", description: "", quantity: "", price: "", vendor: "" });
+              setExtraUnitNames([]);
+              fetchAllPages("/raw-materials/").then(setRawMaterials).catch(console.error);
+            });
+          }}>Save Raw Material</button>
         </div>
       )}
 

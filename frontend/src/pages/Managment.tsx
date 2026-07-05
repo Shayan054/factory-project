@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { apiRequest } from "../utils/api";
 import { fetchAllPages, fetchList, fetchPaginated } from "../utils/listApi";
+import { isValidOptionalEmail } from "../utils/email";
 import { useAuth } from "../context/AuthContext";
 import { useModal } from "../context/ModalContext";
 
@@ -283,6 +284,11 @@ const Management = () => {
 
     const payload = buildUpdatePayload(activeTab, editingItem);
     const endpoint = `/${activeTab}/${id}/`;
+
+    if (activeTab === "vendors" && !isValidOptionalEmail(String(editingItem.email ?? ""))) {
+      showModal("Invalid email", "Please enter a valid email address or leave it blank.");
+      return;
+    }
 
     try {
       // If updating an order and amount_received is provided, update/create billing
@@ -787,11 +793,13 @@ const Management = () => {
               .map((key) => {
                 const isDisabled = isPrimaryKey(key, activeTab) || (activeTab === "orders" && key === "order_no");
                 const isStatusField = activeTab === "orders" && key === "order_status";
+                const isOptionalEmailField = activeTab === "vendors" && key === "email";
+                const label = key.replace(/_/g, " ").replace(/\b\w/g, (l) => l.toUpperCase());
                 
                 return (
                   <div key={key}>
                     <label className="block text-sm font-medium mb-1">
-                      {key.replace(/_/g, " ").replace(/\b\w/g, (l) => l.toUpperCase())}
+                      {isOptionalEmailField ? `${label} (optional)` : label}
                     </label>
                     {isStatusField ? (
                       <select
@@ -813,6 +821,7 @@ const Management = () => {
                         className={`w-full border rounded-lg px-3 py-2 ${
                           isDisabled ? "bg-gray-100 cursor-not-allowed" : ""
                         }`}
+                        placeholder={isOptionalEmailField ? "Email (optional)" : undefined}
                         value={formatCellValue(editingItem[key])}
                         onChange={(e) =>
                           setEditingItem({

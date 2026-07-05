@@ -11,6 +11,7 @@ type Props = {
   onAdd: (name: string) => Promise<boolean>;
   placeholder?: string;
   required?: boolean;
+  disabled?: boolean;
 };
 
 export default function SelectWithAdd({
@@ -21,6 +22,7 @@ export default function SelectWithAdd({
   onAdd,
   placeholder = "Select an option",
   required = false,
+  disabled = false,
 }: Props) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [adding, setAdding] = useState(false);
@@ -83,10 +85,12 @@ export default function SelectWithAdd({
         <div ref={containerRef} className="relative w-full">
           <input
             type="text"
-            className={input}
+            className={`${input}${disabled ? " bg-gray-100 cursor-not-allowed" : ""}`}
             placeholder={placeholder}
             value={query}
+            disabled={disabled}
             onChange={(e) => {
+              if (disabled) return;
               setQuery(e.target.value);
               setOpen(true);
               const exact = options.find(
@@ -94,10 +98,12 @@ export default function SelectWithAdd({
               );
               onChange(exact ?? "");
             }}
-            onFocus={() => setOpen(true)}
+            onFocus={() => {
+              if (!disabled) setOpen(true);
+            }}
             autoComplete="off"
           />
-          {open && (
+          {open && !disabled && (
             <ul className="absolute z-20 mt-1 max-h-56 w-full overflow-auto rounded-lg border border-[var(--border-color)] bg-white shadow-lg">
               {filtered.length === 0 ? (
                 <li className="px-3 py-2 text-sm text-[var(--muted-color)]">No matches found</li>
@@ -122,8 +128,9 @@ export default function SelectWithAdd({
         </div>
         <button
           type="button"
-          className="shrink-0 bg-[var(--accent-color)] text-white px-3 py-2 rounded-lg hover:bg-[var(--accent-color-hover)] transition font-bold text-lg leading-none"
+          className="shrink-0 bg-[var(--accent-color)] text-white px-3 py-2 rounded-lg hover:bg-[var(--accent-color-hover)] transition font-bold text-lg leading-none disabled:cursor-not-allowed disabled:opacity-50"
           onClick={() => setAdding((v) => !v)}
+          disabled={disabled}
           title="Add new option"
           aria-label="Add new option"
         >
