@@ -32,12 +32,14 @@ export default function SelectWithAdd({
   addPlaceholder = "Enter name",
 }: Props) {
   const containerRef = useRef<HTMLDivElement>(null);
+  const listRef = useRef<HTMLUListElement>(null);
   const modalTitle = addTitle ?? `Add ${label}`;
   const [modalOpen, setModalOpen] = useState(false);
   const [newName, setNewName] = useState("");
   const [saving, setSaving] = useState(false);
   const [open, setOpen] = useState(false);
   const [query, setQuery] = useState(value);
+  const [highlightIndex, setHighlightIndex] = useState(-1);
 
   useEffect(() => {
     if (!open) setQuery(value);
@@ -48,6 +50,16 @@ export default function SelectWithAdd({
     if (!q) return options;
     return options.filter((name) => name.toLowerCase().includes(q));
   }, [options, query]);
+
+  useEffect(() => {
+    setHighlightIndex(-1);
+  }, [query, open]);
+
+  useEffect(() => {
+    if (!open || highlightIndex < 0) return;
+    const el = listRef.current?.querySelector<HTMLElement>(`[data-option-index="${highlightIndex}"]`);
+    el?.scrollIntoView({ block: "nearest" });
+  }, [highlightIndex, open]);
 
   useEffect(() => {
     const onDocClick = (e: MouseEvent) => {
@@ -101,6 +113,44 @@ export default function SelectWithAdd({
     onChange(name);
     setQuery(name);
     setOpen(false);
+    setHighlightIndex(-1);
+  };
+
+  const onInputKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (disabled) return;
+
+    if (e.key === "ArrowDown") {
+      e.preventDefault();
+      if (!open) {
+        setOpen(true);
+        if (filtered.length > 0) setHighlightIndex(0);
+        return;
+      }
+      if (filtered.length === 0) return;
+      setHighlightIndex((i) => (i < 0 ? 0 : Math.min(i + 1, filtered.length - 1)));
+      return;
+    }
+
+    if (e.key === "ArrowUp") {
+      e.preventDefault();
+      if (!open || filtered.length === 0) return;
+      setHighlightIndex((i) => (i <= 0 ? 0 : i - 1));
+      return;
+    }
+
+    if (e.key === "Enter") {
+      if (open && highlightIndex >= 0 && filtered[highlightIndex]) {
+        e.preventDefault();
+        pick(filtered[highlightIndex]);
+      }
+      return;
+    }
+
+    if (e.key === "Escape") {
+      e.preventDefault();
+      setOpen(false);
+      setHighlightIndex(-1);
+    }
   };
 
   const modalContent = modalOpen ? (
@@ -169,6 +219,9 @@ export default function SelectWithAdd({
             placeholder={placeholder}
             value={query}
             disabled={disabled}
+            role="combobox"
+            aria-expanded={open}
+            aria-autocomplete="list"
             onChange={(e) => {
               if (disabled) return;
               setQuery(e.target.value);
@@ -181,10 +234,15 @@ export default function SelectWithAdd({
             onFocus={() => {
               if (!disabled) setOpen(true);
             }}
+            onKeyDown={onInputKeyDown}
             autoComplete="off"
           />
           {open && !disabled && (
-            <ul className="absolute z-30 mt-1 max-h-56 w-full overflow-auto rounded-lg border border-[var(--border-color)] bg-white shadow-lg">
+            <ul
+              ref={listRef}
+              role="listbox"
+              className="absolute z-30 mt-1 max-h-56 w-full overflow-auto rounded-lg border border-[var(--border-color)] bg-white shadow-lg"
+            >
               <li className="sticky top-0 border-b border-[var(--border-color)] bg-white">
                 <button
                   type="button"
@@ -198,14 +256,20 @@ export default function SelectWithAdd({
               {filtered.length === 0 ? (
                 <li className="px-3 py-2 text-sm text-[var(--muted-color)]">No matches found</li>
               ) : (
-                filtered.map((name) => (
-                  <li key={name}>
+                filtered.map((name, index) => (
+                  <li key={name} role="option" aria-selected={index === highlightIndex}>
                     <button
                       type="button"
+                      data-option-index={index}
                       className={`w-full px-3 py-2 text-left text-sm hover:bg-[rgba(14,165,164,0.10)] ${
-                        name === value ? "bg-[rgba(14,165,164,0.08)] font-semibold" : ""
+                        index === highlightIndex
+                          ? "bg-[rgba(14,165,164,0.18)] font-semibold"
+                          : name === value
+                            ? "bg-[rgba(14,165,164,0.08)] font-semibold"
+                            : ""
                       }`}
                       onMouseDown={(e) => e.preventDefault()}
+                      onMouseEnter={() => setHighlightIndex(index)}
                       onClick={() => pick(name)}
                     >
                       {name}
