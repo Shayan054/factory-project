@@ -4,7 +4,7 @@ import { useAuth } from "../context/AuthContext";
 import logo from "../assets/logo.png";
 
 export default function Topbar({ onMenuClick }: { onMenuClick: () => void }) {
-  const { user, logout } = useAuth();
+  const { user, logout, isGuest } = useAuth();
   const [profileOpen, setProfileOpen] = React.useState(false);
 
   // Notification and message counts (wire to API later)
@@ -12,7 +12,7 @@ export default function Topbar({ onMenuClick }: { onMenuClick: () => void }) {
   const msgCount = 0;
 
   const userName = user ? `${user.first_name} ${user.last_name}` : "User";
-  const userRole = user?.role === "CEO" ? "CEO" : "Manager";
+  const userRole = isGuest ? "Demo Guest" : user?.role === "CEO" ? "CEO" : "Manager";
 
   return (
     <header className="sticky top-0 z-30 border-b border-[var(--border-color)] bg-[var(--surface-color)]/90 backdrop-blur">
@@ -82,6 +82,11 @@ export default function Topbar({ onMenuClick }: { onMenuClick: () => void }) {
                 <div className="px-4 py-3">
                   <div className="text-base font-semibold text-[var(--heading-color)]">{userName}</div>
                   <div className="text-sm font-medium text-[var(--muted-color)]">{userRole}</div>
+                  {isGuest && (
+                    <div className="mt-1 text-xs font-medium text-amber-700">
+                      Demo data is temporary and not saved to the server.
+                    </div>
+                  )}
                 </div>
                 <div className="border-t border-[var(--border-color)]" />
                 <button
@@ -94,7 +99,7 @@ export default function Topbar({ onMenuClick }: { onMenuClick: () => void }) {
                   role="menuitem"
                 >
                   <LogoutIcon className="h-4 w-4" />
-                  Logout
+                  {isGuest ? "Exit Demo" : "Logout"}
                 </button>
               </div>
             )}

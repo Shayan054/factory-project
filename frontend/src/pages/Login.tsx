@@ -10,10 +10,9 @@ export default function LoginPage() {
   const [remember, setRemember] = useState(false);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
-  const { login, isAuthenticated } = useAuth();
+  const { login, enterGuest, isAuthenticated } = useAuth();
   const navigate = useNavigate();
 
-  // Redirect if already authenticated
   useEffect(() => {
     if (isAuthenticated) {
       navigate("/", { replace: true });
@@ -28,16 +27,16 @@ export default function LoginPage() {
     setLoading(true);
 
     try {
-      // Convert form values to a JSON object so the API gets JSON payloads
       const payload = formToJSON(e.currentTarget);
-
-      // Prefer form values if present, otherwise fall back to local state
       const emailToUse = payload.email ?? email;
       const passwordToUse = payload.password ?? password;
 
-      // Normalize remember checkbox if submitted via form
-      if (typeof payload.remember !== 'undefined') {
-        setRemember(payload.remember === true || payload.remember === 'true' || payload.remember === 'on');
+      if (typeof payload.remember !== "undefined") {
+        setRemember(
+          payload.remember === true ||
+            payload.remember === "true" ||
+            payload.remember === "on"
+        );
       }
 
       await login(emailToUse, passwordToUse);
@@ -51,29 +50,33 @@ export default function LoginPage() {
   return (
     <div className="bg-gray-100 min-h-screen flex items-center justify-center p-4">
       <div className="w-full max-w-4xl grid md:grid-cols-2 shadow-2xl rounded-3xl overflow-hidden bg-white">
-        {/* Left Graphic Section */}
         <div className="hidden md:flex flex-col items-center justify-center bg-linear-to-br from-[#0ea5a4] via-[#14b8a6] to-[#0f766e] text-white p-10 relative">
           <div className="text-center mb-10">
             <h1 className="text-4xl font-extrabold tracking-wide">Welcome</h1>
           </div>
 
           <div className="w-64 h-64 flex items-center justify-center">
-  <div className="bg-white rounded-full p-6 shadow-[0_20px_40px_rgba(0,0,0,0.25)] border border-gray-100 transform -translate-y-2">
-    <img
-      src={logo}
-      alt="Asghar Block Factory Logo"
-      className="w-44 h-44 rounded-full object-cover"
-    />
-  </div>
-</div>
+            <div className="bg-white rounded-full p-6 shadow-[0_20px_40px_rgba(0,0,0,0.25)] border border-gray-100 transform -translate-y-2">
+              <img
+                src={logo}
+                alt="Asghar Block Factory Logo"
+                className="w-44 h-44 rounded-full object-cover"
+              />
+            </div>
+          </div>
 
-          <p className="mt-10 text-sm text-white/60">© {year} Asghar Block Factory. All rights reserved.</p>
+          <p className="mt-10 text-sm text-white/60">
+            © {year} Asghar Block Factory. All rights reserved.
+          </p>
         </div>
 
-        {/* Right Login Form */}
         <div className="p-10 flex flex-col justify-center">
-          <h2 className="text-3xl font-bold text-gray-800 mb-2 text-center">Login to Your Account</h2>
-          <p className="text-gray-500 text-center mb-8">Access your dashboard and manage everything</p>
+          <h2 className="text-3xl font-bold text-gray-800 mb-2 text-center">
+            Login to Your Account
+          </h2>
+          <p className="text-gray-500 text-center mb-8">
+            Access your dashboard and manage everything
+          </p>
 
           {error && (
             <div className="mb-4 p-3 bg-red-100 border border-red-400 text-red-700 rounded-lg">
@@ -138,9 +141,28 @@ export default function LoginPage() {
             </button>
           </form>
 
-          <p className="text-center text-gray-600 text-sm mt-6">
-            Factory Management System
+          <div className="mt-5 flex items-center gap-3">
+            <div className="h-px flex-1 bg-gray-200" />
+            <span className="text-xs font-medium uppercase tracking-wide text-gray-400">or</span>
+            <div className="h-px flex-1 bg-gray-200" />
+          </div>
+
+          <button
+            type="button"
+            onClick={() => {
+              setError("");
+              enterGuest();
+            }}
+            disabled={loading}
+            className="mt-5 w-full rounded-xl border-2 border-[var(--accent-color)] bg-white py-3 font-semibold text-[var(--accent-color)] transition hover:bg-[rgba(14,165,164,0.08)] disabled:cursor-not-allowed disabled:opacity-50"
+          >
+            Continue as Guest / Try Demo
+          </button>
+          <p className="mt-2 text-center text-xs text-gray-500">
+            Explore with sample data. Demo orders are not saved to the server.
           </p>
+
+          <p className="text-center text-gray-600 text-sm mt-6">Factory Management System</p>
         </div>
       </div>
     </div>

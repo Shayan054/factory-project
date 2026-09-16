@@ -16,14 +16,21 @@ import dj_database_url
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+# Optional local overrides (backend/factory/.env). Hosting injects env vars directly.
+try:
+    from dotenv import load_dotenv
+    load_dotenv(BASE_DIR / '.env')
+except ImportError:
+    pass
+
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-fallback-for-local')
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+# Hosting: leave unset or DEBUG=False. Local: set DEBUG=True if you want detailed errors.
+DEBUG = os.environ.get('DEBUG', 'False').lower() in ('1', 'true', 'yes')
 
 ALLOWED_HOSTS = ['*',]
 
@@ -68,6 +75,8 @@ CORS_ALLOWED_ORIGINS = [
 ]
 CSRF_TRUSTED_ORIGINS = [
     'https://factory-project-production.up.railway.app',
+    'http://localhost:5173',
+    'http://127.0.0.1:5173',
 ]
 
 # Allow additional origins from environment variable (for production)

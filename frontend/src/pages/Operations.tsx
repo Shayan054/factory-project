@@ -3,6 +3,7 @@ import { apiRequest } from "../utils/api";
 import { fetchAllPages, fetchList } from "../utils/listApi";
 import { useSearchParams } from "react-router-dom";
 import { useModal } from "../context/ModalContext";
+import { useAuth } from "../context/AuthContext";
 import SelectWithAdd from "../components/SelectWithAdd";
 import SearchableSelect from "../components/SearchableSelect";
 import VendorSelectWithModal, { VendorRecord } from "../components/VendorSelectWithModal";
@@ -108,6 +109,7 @@ const Operations = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [lastPlacedOrderId, setLastPlacedOrderId] = useState<number | null>(null);
   const { showModal } = useModal();
+  const { isGuest } = useAuth();
 
   // Always derive the active tab from the URL, so it can't go out of sync
   const active = searchParams.get("tab");
@@ -455,7 +457,12 @@ const Operations = () => {
       return null;
     }
     const result = await response.json();
-    showModal("Success", "Saved successfully.");
+    showModal(
+      "Success",
+      isGuest
+        ? "Saved in Demo Mode (browser only — not sent to the server)."
+        : "Saved successfully."
+    );
     return result;
   };
 

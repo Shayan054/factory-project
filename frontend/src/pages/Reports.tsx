@@ -10,11 +10,12 @@ import {
 
 type ReportType = "expense" | "income";
 
-const card = "bg-white p-6 rounded-2xl shadow space-y-5";
+const card =
+  "bg-white p-8 sm:p-10 rounded-3xl border border-gray-100 shadow-xl shadow-gray-200/80 space-y-6";
 const input =
-  "w-full border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[rgba(14,165,164,0.35)] focus:border-[var(--accent-color)]";
+  "w-full border rounded-lg px-3 py-2.5 focus:outline-none focus:ring-2 focus:ring-[rgba(14,165,164,0.35)] focus:border-[var(--accent-color)]";
 const primaryBtn =
-  "bg-[var(--accent-color)] text-white px-6 py-2.5 rounded-lg hover:bg-[var(--accent-color-hover)] transition disabled:opacity-50 disabled:cursor-not-allowed";
+  "bg-[var(--accent-color)] text-white px-8 py-3 rounded-xl hover:bg-[var(--accent-color-hover)] transition disabled:opacity-50 disabled:cursor-not-allowed text-base font-semibold";
 
 export default function Reports() {
   const { showModal } = useModal();
@@ -84,15 +85,15 @@ export default function Reports() {
   };
 
   return (
-    <div className="space-y-6 max-w-3xl">
-      <div>
-        <h1 className="text-2xl text-gray-800 font-semibold">Reports</h1>
-        <p className="text-sm text-gray-500 mt-1">
+    <div className="mx-auto flex w-full max-w-3xl flex-col items-center px-2 py-4 sm:py-8">
+      <div className="mb-6 w-full text-center">
+        <h1 className="text-3xl font-semibold text-gray-800">Reports</h1>
+        <p className="mx-auto mt-2 max-w-lg text-sm text-gray-500">
           Generate PDF reports for expenses and income over a selected period.
         </p>
       </div>
 
-      <div className={card}>
+      <div className={`${card} w-full`}>
         <div>
           <label className="block font-semibold mb-3">Report Category</label>
           <div className="grid grid-cols-2 gap-3">
@@ -184,7 +185,7 @@ export default function Reports() {
           </div>
         </div>
 
-        <div className="rounded-lg bg-gray-50 border border-gray-200 p-4 text-sm text-gray-600">
+        <div className="rounded-xl border border-[rgba(14,165,164,0.2)] bg-[rgba(14,165,164,0.06)] p-4 text-sm text-gray-700">
           {reportType === "expense" && reportStyle === "simple" && (
             <p>
               <strong>Simple expense report</strong> shows each category with entry count and total
@@ -211,17 +212,19 @@ export default function Reports() {
           )}
         </div>
 
-        <button
-          type="button"
-          className={`${primaryBtn} inline-flex items-center gap-2`}
-          onClick={() => void handleGenerate()}
-          disabled={generating}
-        >
-          <svg viewBox="0 0 24 24" className="h-4 w-4 fill-current">
-            <path d="M5 20h14v-2H5v2zM12 2l4 4h-3v8h-2V6H8l4-4z" />
-          </svg>
-          {generating ? "Generating..." : "Download PDF Report"}
-        </button>
+        <div className="flex justify-center pt-1">
+          <button
+            type="button"
+            className={`${primaryBtn} inline-flex items-center gap-2`}
+            onClick={() => void handleGenerate()}
+            disabled={generating}
+          >
+            <svg viewBox="0 0 24 24" className="h-5 w-5 fill-current">
+              <path d="M5 20h14v-2H5v2zM12 2l4 4h-3v8h-2V6H8l4-4z" />
+            </svg>
+            {generating ? "Generating..." : "Download PDF Report"}
+          </button>
+        </div>
       </div>
     </div>
   );

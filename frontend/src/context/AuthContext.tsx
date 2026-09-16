@@ -1,12 +1,21 @@
 import { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { GUEST_USER } from '../demo/demoData';
+import {
+  clearGuestSessionStorage,
+  isGuestMode,
+  setGuestModeFlag,
+  startFreshDemoStore,
+} from '../demo/demoStore';
 
-const API = (import.meta.env.VITE_API_URL as string | undefined)?.replace(/\/$/, '');
+// Local default for `npm run dev`; hosting sets VITE_API_URL at build time.
+const API = (
+  (import.meta.env.VITE_API_URL as string | undefined) ||
+  'http://127.0.0.1:8000/api'
+).replace(/\/$/, '');
 
-const join = (endpoint: string) => {
-  if (!API) throw new Error('Missing VITE_API_URL. Set it in Vercel environment variables.');
-  return endpoint.startsWith('/') ? `${API}${endpoint}` : `${API}/${endpoint}`;
-};
+const join = (endpoint: string) =>
+  endpoint.startsWith('/') ? `${API}${endpoint}` : `${API}/${endpoint}`;
 
 interface User {
   employee_id: number;
@@ -21,8 +30,10 @@ interface AuthContextType {
   user: User | null;
   token: string | null;
   login: (email: string, password: string) => Promise<void>;
+  enterGuest: () => void;
   logout: () => void;
   isAuthenticated: boolean;
+  isGuest: boolean;
   isCEO: boolean;
   isManager: boolean;
   refreshToken: () => Promise<void>;
@@ -33,20 +44,27 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState<User | null>(null);
   const [token, setToken] = useState<string | null>(null);
+  const [isGuest, setIsGuest] = useState(false);
   const navigate = useNavigate();
 
-  // Load user from localStorage on mount
+  // Load real user from localStorage, or restore guest session from sessionStorage
   useEffect(() => {
+    if (isGuestMode()) {
+      setIsGuest(true);
+      setUser(GUEST_USER);
+      setToken(null);
+      return;
+    }
+
     const storedToken = localStorage.getItem('access_token');
     const storedUser = localStorage.getItem('user');
-    
+
     if (storedToken && storedUser) {
       try {
         setToken(storedToken);
         setUser(JSON.parse(storedUser));
       } catch (error) {
         console.error('Error loading user from localStorage:', error);
-        // Clear invalid data
         localStorage.removeItem('access_token');
         localStorage.removeItem('refresh_token');
         localStorage.removeItem('user');
@@ -55,6 +73,10 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   }, []);
 
   const login = async (email: string, password: string) => {
+    // Leaving demo for a real login
+    clearGuestSessionStorage();
+    setIsGuest(false);
+
     try {
       const response = await fetch(join('/auth/login/'), {
         method: 'POST',
@@ -70,18 +92,14 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       }
 
       const data = await response.json();
-      
-      // Store tokens and user
+
       localStorage.setItem('access_token', data.access);
       localStorage.setItem('refresh_token', data.refresh);
       localStorage.setItem('user', JSON.stringify(data.user));
-      
-      // Update state first
+
       setToken(data.access);
       setUser(data.user);
-      
-      // Navigate to dashboard after a brief delay to ensure state is updated
-      // This ensures ProtectedRoute recognizes the user as authenticated
+
       setTimeout(() => {
         navigate('/', { replace: true });
       }, 100);
@@ -90,16 +108,40 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     }
   };
 
-  const logout = () => {
+  /** Start Guest/Demo Mode with a fresh in-browser dataset (no backend). */
+  const enterGuest = () => {
+    // Clear any real auth so we never mix tokens with demo mode
     localStorage.removeItem('access_token');
     localStorage.removeItem('refresh_token');
     localStorage.removeItem('user');
     setToken(null);
+
+    clearGuestSessionStorage();
+    setGuestModeFlag(true);
+    startFreshDemoStore();
+
+    setIsGuest(true);
+    setUser(GUEST_USER);
+
+    setTimeout(() => {
+      navigate('/', { replace: true });
+    }, 50);
+  };
+
+  const logout = () => {
+    localStorage.removeItem('access_token');
+    localStorage.removeItem('refresh_token');
+    localStorage.removeItem('user');
+    clearGuestSessionStorage();
+    setToken(null);
     setUser(null);
+    setIsGuest(false);
     navigate('/login');
   };
 
   const refreshToken = async () => {
+    if (isGuest || isGuestMode()) return;
+
     try {
       const refresh = localStorage.getItem('refresh_token');
       if (!refresh) {
@@ -123,14 +165,14 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       const data = await response.json();
       localStorage.setItem('access_token', data.access);
       setToken(data.access);
-    } catch (error) {
+    } catch {
       logout();
     }
   };
 
-  const isAuthenticated = !!token && !!user;
-  const isCEO = user?.role === 'CEO';
-  const isManager = user?.role === 'MANAGER';
+  const isAuthenticated = (!!token && !!user) || isGuest;
+  const isCEO = !isGuest && user?.role === 'CEO';
+  const isManager = isGuest || user?.role === 'MANAGER';
 
   return (
     <AuthContext.Provider
@@ -138,8 +180,10 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         user,
         token,
         login,
+        enterGuest,
         logout,
         isAuthenticated,
+        isGuest,
         isCEO,
         isManager,
         refreshToken,
@@ -157,4 +201,3 @@ export const useAuth = () => {
   }
   return context;
 };
-
