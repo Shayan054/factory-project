@@ -1,9 +1,43 @@
+# Virtual Environment
 venv/
+.venv/
+env/
+
+# Dependencies & Build Output
 node_modules/
+dist/
+dist-ssr/
+staticfiles/
+*.egg-info/
+
+# Python Cache
 __pycache__/
 *.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+
+# Environment Files
 .env
 .env.local
-frontend/.env.local
+*.local
 backend/factory/.env
+frontend/.env.local
+frontend/.env
 
+# Allow Example and Development Templates
+!.env.example
+!*.env.example
+!frontend/.env.example
+!frontend/.env.development
+
+# Database dumps / Local SQLite
+*.sqlite3
+*.db
+factory_backup.json
+
+# IDE / OS Files
+.DS_Store
+.vscode/
+.idea/
+*.swp

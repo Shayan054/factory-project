@@ -19,20 +19,45 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Load backend/factory/.env for local DB credentials (hosting uses injected env vars).
 try:
     from dotenv import load_dotenv
-    load_dotenv(BASE_DIR / '.env', override=True)
+    load_dotenv(BASE_DIR / '.env', override=False)
 except ImportError:
-    pass
+    env_file = BASE_DIR / '.env'
+    if env_file.exists():
+        try:
+            with open(env_file, 'r', encoding='utf-8') as f:
+                for line in f:
+                    line = line.strip()
+                    if line and not line.startswith('#') and '=' in line:
+                        k, v = line.split('=', 1)
+                        os.environ.setdefault(k.strip(), v.strip())
+        except Exception:
+            pass
 
+
+from django.core.exceptions import ImproperlyConfigured
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
-SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-fallback-for-local')
-
 # Hosting: leave unset or DEBUG=False. Local: set DEBUG=True if you want detailed errors.
 DEBUG = os.environ.get('DEBUG', 'False').lower() in ('1', 'true', 'yes')
 
-ALLOWED_HOSTS = ['*',]
+SECRET_KEY = os.environ.get('SECRET_KEY')
+if not SECRET_KEY:
+    if DEBUG:
+        SECRET_KEY = 'django-insecure-fallback-for-local'
+    else:
+        raise ImproperlyConfigured(
+            "SECRET_KEY environment variable must be set when DEBUG is False."
+        )
+
+# Allowed hosts configuration (comma separated environment variable or local defaults)
+raw_allowed_hosts = os.environ.get('ALLOWED_HOSTS', '')
+if raw_allowed_hosts:
+    ALLOWED_HOSTS = [host.strip() for host in raw_allowed_hosts.split(',') if host.strip()]
+else:
+    # Default local development hosts
+    ALLOWED_HOSTS = ['localhost', '127.0.0.1', '[::1]']
 
 
 # Application definition
@@ -65,34 +90,32 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 # CORS Configuration - Allow local development and production
-import os
-
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",
     "http://127.0.0.1:5173",
-    "https://factory-project-production.up.railway.app",
-    "https://friendly-purpose-production-9a5b.up.railway.app",  
 ]
+
 CSRF_TRUSTED_ORIGINS = [
-    'https://factory-project-production.up.railway.app',
-    'http://localhost:5173',
-    'http://127.0.0.1:5173',
+    "http://localhost:5173",
+    "http://127.0.0.1:5173",
 ]
 
-# Allow additional origins from environment variable (for production)
-# Set CORS_EXTRA_ORIGINS in your PythonAnywhere environment
-# Example: CORS_EXTRA_ORIGINS=https://your-app.vercel.app,https://www.yourdomain.com
-CORS_EXTRA_ORIGINS = os.environ.get('CORS_EXTRA_ORIGINS', '').split(',')
-CORS_ALLOWED_ORIGINS.extend([origin.strip() for origin in CORS_EXTRA_ORIGINS if origin.strip()])
+# Support custom frontend origins via CORS_ALLOWED_ORIGINS or CORS_EXTRA_ORIGINS env vars
+# Example: CORS_ALLOWED_ORIGINS=https://your-frontend.vercel.app,https://yourdomain.com
+raw_cors_origins = (
+    os.environ.get('CORS_ALLOWED_ORIGINS', '') or
+    os.environ.get('CORS_EXTRA_ORIGINS', '')
+)
+if raw_cors_origins:
+    for origin in [o.strip() for o in raw_cors_origins.split(',') if o.strip()]:
+        if origin not in CORS_ALLOWED_ORIGINS:
+            CORS_ALLOWED_ORIGINS.append(origin)
 
-# Allow Vercel preview / deployment domains (e.g. https://my-app-abc123.vercel.app)
-# If you have a custom domain, prefer adding it explicitly via CORS_EXTRA_ORIGINS.
-CORS_ALLOWED_ORIGIN_REGEXES = [
-    r"^https://.*\.vercel\.app$",
-]
-
-# For development, you can also use this (NOT recommended for production):
-# CORS_ALLOW_ALL_ORIGINS = True  # Only use this in development!
+raw_csrf_origins = os.environ.get('CSRF_TRUSTED_ORIGINS', '')
+if raw_csrf_origins:
+    for origin in [o.strip() for o in raw_csrf_origins.split(',') if o.strip()]:
+        if origin not in CSRF_TRUSTED_ORIGINS:
+            CSRF_TRUSTED_ORIGINS.append(origin)
 
 ROOT_URLCONF = 'factory.urls'
 
@@ -233,7 +256,7 @@ REST_FRAMEWORK = {
 from datetime import timedelta
 
 SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': timedelta(days=1),
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=30),
     'REFRESH_TOKEN_LIFETIME': timedelta(days=7),
     'ROTATE_REFRESH_TOKENS': True,
     'BLACKLIST_AFTER_ROTATION': True,

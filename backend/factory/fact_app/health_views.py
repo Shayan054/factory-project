@@ -10,20 +10,17 @@ from .models import Employee
 @permission_classes([AllowAny])
 def db_health_view(request):
     """
-    Lightweight DB connectivity check for Render/free (no shell).
-    Safe enough for debugging; remove/lock down after you're done.
+    Lightweight DB connectivity check.
+    Returns standard status without exposing internal database details or exceptions.
     """
     try:
         with connection.cursor() as cursor:
             cursor.execute("SELECT 1;")
             cursor.fetchone()
-
-        # Also verify that Django can access application tables.
-        employee_count = Employee.objects.count()
-        return Response({"ok": True, "employee_count": employee_count})
-    except Exception as e:
+        return Response({"status": "healthy", "ok": True})
+    except Exception:
         return Response(
-            {"ok": False, "error": str(e)},
+            {"status": "unhealthy", "ok": False},
             status=500,
         )
 
