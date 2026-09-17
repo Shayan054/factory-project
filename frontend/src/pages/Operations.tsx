@@ -5,7 +5,7 @@ import { useSearchParams } from "react-router-dom";
 import { useModal } from "../context/ModalContext";
 import { useAuth } from "../context/AuthContext";
 import SelectWithAdd from "../components/SelectWithAdd";
-import SearchableSelect from "../components/SearchableSelect";
+import CustomerSelectWithModal, { CustomerRecord } from "../components/CustomerSelectWithModal";
 import VendorSelectWithModal, { VendorRecord } from "../components/VendorSelectWithModal";
 import { contactInputProps, validateFormContact, clearContactValidity } from "../utils/contact";
 import { isValidOptionalEmail } from "../utils/email";
@@ -18,7 +18,7 @@ const primaryBtn =
   "bg-[var(--accent-color)] text-white px-6 py-2 rounded-lg hover:bg-[var(--accent-color-hover)] transition";
 
 /* ---------- TYPES ---------- */
-type Customer = { customer_id: number; name: string; contact: string };
+type Customer = CustomerRecord;
 type Product = { product_id: number; product_name: string; price: number; quantity: number };
 type Order = { 
   order_id: number; 
@@ -350,16 +350,6 @@ const Operations = () => {
   const availableQty = selectedProduct?.quantity ?? null;
   const requestedQty = Number(orderForm.quantity) || 0;
   const isQtyInsufficient = availableQty !== null && requestedQty > 0 && requestedQty > availableQty;
-
-  const customerOptions = useMemo(
-    () =>
-      customers.map((c) => ({
-        value: String(c.customer_id),
-        label: `${c.name} (${c.contact})`,
-        searchText: `${c.name} ${c.contact}`,
-      })),
-    [customers]
-  );
 
   /* ---------- BILLING ---------- */
   const [billing, setBilling] = useState({
@@ -1264,12 +1254,12 @@ const Operations = () => {
               <span className="font-semibold text-[var(--heading-color)]">Update Order</span>.
             </div>
           )}
-          <label className="block font-semibold mb-2">Customer *</label>
-          <SearchableSelect
+          <CustomerSelectWithModal
             value={orderForm.customer}
             onChange={(customer) => setOrderForm({ ...orderForm, customer })}
-            options={customerOptions}
-            placeholder="Search customer by name or contact"
+            customers={customers}
+            onCustomersChange={setCustomers}
+            required
           />
 
           <label className="block font-semibold mb-2 mt-4">Product Name *</label>
