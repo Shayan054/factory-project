@@ -300,7 +300,7 @@ export async function generateIncomePdf(
   }
 
   const doc = new jsPDF();
-  const grandTotal = ordersWithDetails.reduce((sum, o) => sum + (Number(o.total_amount) || 0), 0);
+  const grandTotal = ordersWithDetails.reduce((sum, o) => sum + (Number(o.total_bill_after_discount ?? o.total_amount) || 0), 0);
   const period = formatPeriodLabel(startDate, endDate);
 
   let y = createReportHeader(doc, "Income Report", BRAND.income, {
@@ -331,7 +331,7 @@ export async function generateIncomePdf(
         const name = "Unspecified";
         const current = productMap.get(name) || { qty: 0, total: 0 };
         current.qty += 1;
-        current.total += Number(order.total_amount) || 0;
+        current.total += Number(order.total_bill_after_discount ?? order.total_amount) || 0;
         productMap.set(name, current);
       }
     });
@@ -356,7 +356,7 @@ export async function generateIncomePdf(
     const byDay = groupByDateKey(ordersWithDetails, (o) => o.order_date);
 
     byDay.forEach(([dateKey, dayOrders]) => {
-      const dayTotal = dayOrders.reduce((sum, o) => sum + (Number(o.total_amount) || 0), 0);
+      const dayTotal = dayOrders.reduce((sum, o) => sum + (Number(o.total_bill_after_discount ?? o.total_amount) || 0), 0);
       y = addSectionTitle(doc, y, `${formatDatePK(dateKey)} — Day Total: ${formatCurrencyPKR(dayTotal)}`);
 
       const body = dayOrders.map((order) => {
@@ -368,7 +368,7 @@ export async function generateIncomePdf(
           customer?.name || "Unknown",
           items,
           order.order_status === 1 ? "Completed" : "Pending",
-          formatCurrencyPKR(Number(order.total_amount) || 0),
+          formatCurrencyPKR(Number(order.total_bill_after_discount ?? order.total_amount) || 0),
         ];
       });
 

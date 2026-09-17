@@ -18,6 +18,7 @@ export interface Order {
   order_status: number;
   total_amount: number;
   discount: number;
+  total_bill_after_discount?: number | null;
   customer: number;
   order_details?: OrderDetail[];
 }

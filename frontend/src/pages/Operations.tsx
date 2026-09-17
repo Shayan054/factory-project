@@ -9,6 +9,8 @@ import CustomerSelectWithModal, { CustomerRecord } from "../components/CustomerS
 import VendorSelectWithModal, { VendorRecord } from "../components/VendorSelectWithModal";
 import { contactInputProps, validateFormContact, clearContactValidity } from "../utils/contact";
 import { isValidOptionalEmail } from "../utils/email";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 /* ---------- UI CLASSES ---------- */
 const card = "bg-white p-6 rounded-2xl shadow space-y-4";
@@ -430,7 +432,7 @@ const Operations = () => {
 
   const billingTotal = draftOrder
     ? draftOrder.total_bill_after_discount
-    : (selectedOrder?.total_amount ?? 0);
+    : (selectedOrder?.total_bill_after_discount ?? selectedOrder?.total_amount ?? 0);
   const billingReceived = Number(billing.amount_received || 0);
   const autoPaymentStatus = derivePaymentStatus(billingReceived, billingTotal);
   const autoOrderStatus = deriveOrderStatus(billingReceived, billingTotal);
@@ -780,7 +782,8 @@ const Operations = () => {
         return;
       }
 
-      if (received > selectedOrder.total_amount) {
+      const orderTotal = selectedOrder.total_bill_after_discount ?? selectedOrder.total_amount;
+      if (received > orderTotal) {
         showModal("Invalid amount", "Amount received cannot be greater than total bill.");
         return;
       }
@@ -788,17 +791,17 @@ const Operations = () => {
       const billingData = {
         order: selectedOrder.order_id,
         customer: selectedOrder.customer,
-        total_bill: selectedOrder.total_amount,
+        total_bill: orderTotal,
         amount_received: received,
-        balance: selectedOrder.total_amount - received,
+        balance: orderTotal - received,
         payment_method: billing.payment_method || null,
-        status: derivePaymentStatus(received, selectedOrder.total_amount),
+        status: derivePaymentStatus(received, orderTotal),
         remarks: billing.remarks || "",
       };
 
       const result = await post("/billings/", billingData);
       if (result) {
-        const { order_status, status } = deriveOrderStatus(received, selectedOrder.total_amount);
+        const { order_status, status } = deriveOrderStatus(received, orderTotal);
         await apiRequest(`/orders/${selectedOrder.order_id}/`, {
           method: "PATCH",
           body: JSON.stringify({ order_status, status }),
@@ -1308,12 +1311,24 @@ const Operations = () => {
           />
 
           <label className="block font-semibold mb-2 mt-4">Required Date</label>
-          <input
-            className={input}
-            type="date"
-            value={orderForm.order_req_date}
-            onChange={e => setOrderForm({ ...orderForm, order_req_date: e.target.value })}
-          />
+          <DatePicker
+  selected={
+    orderForm.order_req_date
+      ? new Date(orderForm.order_req_date + "T00:00:00")
+      : null
+  }
+  onChange={(date) =>
+    setOrderForm({
+      ...orderForm,
+      order_req_date: date
+        ? date.toISOString().split("T")[0]
+        : ""
+    })
+  }
+  dateFormat="dd/MM/yyyy"
+  placeholderText="DD/MM/YYYY"
+  className={input}
+/>
 
           <label className="block font-semibold mb-2 mt-4">Notes</label>
           <textarea
@@ -1409,7 +1424,7 @@ const Operations = () => {
                 <option value="">Select Order</option>
                 {orders.map(o => (
                   <option key={o.order_id} value={o.order_id}>
-                    {o.order_no || `Order #${o.order_id}`} - {customers.find(c => c.customer_id === o.customer)?.name || "Unknown"} ({formatCurrency(o.total_amount)})
+                    {o.order_no || `Order #${o.order_id}`} - {customers.find(c => c.customer_id === o.customer)?.name || "Unknown"} ({formatCurrency(o.total_bill_after_discount ?? o.total_amount)})
                   </option>
                 ))}
               </select>
@@ -1427,7 +1442,7 @@ const Operations = () => {
               {(() => {
                 const totalBill = draftOrder
                   ? draftOrder.total_bill_after_discount
-                  : (selectedOrder?.total_amount ?? 0);
+                  : (selectedOrder?.total_bill_after_discount ?? selectedOrder?.total_amount ?? 0);
                 const received = Number(billing.amount_received || 0);
                 const balance = totalBill - received;
 
@@ -1440,7 +1455,7 @@ const Operations = () => {
                 </div>
                 <div className="flex justify-between">
                   <span className="font-semibold">Total Price:</span>
-                  <span className="text-lg font-bold text-[var(--accent-color)]">{formatCurrency(draftOrder ? draftOrder.total_bill_after_discount : selectedOrder.total_amount)}</span>
+                  <span className="text-lg font-bold text-[var(--accent-color)]">{formatCurrency(draftOrder ? draftOrder.total_bill_after_discount : (selectedOrder.total_bill_after_discount ?? selectedOrder.total_amount))}</span>
                 </div>
                 <div className="flex justify-between">
                   <span className="font-semibold">Date:</span>
@@ -1539,12 +1554,24 @@ const Operations = () => {
           />
 
           <label className="block font-semibold mb-2 mt-4">Date *</label>
-          <input
-            className={input}
-            type="date"
-            value={expense.date}
-            onChange={e => setExpense({ ...expense, date: e.target.value })}
-          />
+          <DatePicker
+  selected={
+    orderForm.order_req_date
+      ? new Date(orderForm.order_req_date + "T00:00:00")
+      : null
+  }
+  onChange={(date) =>
+    setOrderForm({
+      ...orderForm,
+      order_req_date: date
+        ? date.toISOString().split("T")[0]
+        : ""
+    })
+  }
+  dateFormat="dd/MM/yyyy"
+  placeholderText="DD/MM/YYYY"
+  className={input}
+/>
 
           <label className="block font-semibold mb-2 mt-4">Amount *</label>
           <input

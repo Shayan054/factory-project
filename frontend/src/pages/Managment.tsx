@@ -310,7 +310,7 @@ const Management = () => {
           return;
         }
 
-        const totalAmount = order.total_amount || 0;
+        const totalAmount = order.total_bill_after_discount ?? order.total_amount ?? 0;
         if (receivedAmount > totalAmount) {
           showModal(
             "Invalid amount",
@@ -555,7 +555,7 @@ const Management = () => {
                   const orderId = item.order_id || item.id;
                   const billing = getOrderBilling(orderId);
                   const amountReceived = billing?.amount_received || 0;
-                  const remaining = billing ? billing.balance : item.total_amount;
+                  const remaining = billing ? billing.balance : (item.total_bill_after_discount ?? item.total_amount);
                   
                   const discount = item.discount || 0;
                   const netAmount = (item.total_amount || 0) - discount;
@@ -744,14 +744,14 @@ const Management = () => {
                   className="w-full border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
                   placeholder="Enter amount customer paid"
                   min="0"
-                  max={editingItem.total_amount || 0}
+                  max={editingItem.total_bill_after_discount ?? editingItem.total_amount ?? 0}
                   value={amountReceived}
                   onChange={(e) => setAmountReceived(e.target.value)}
                 />
                 <div className="mt-2 text-sm text-gray-600">
                   <div className="flex justify-between mb-1">
                     <span>Total Amount:</span>
-                    <span className="font-semibold">{formatCurrency(editingItem.total_amount || 0)}</span>
+                    <span className="font-semibold">{formatCurrency(editingItem.total_bill_after_discount ?? editingItem.total_amount ?? 0)}</span>
                   </div>
                   {amountReceived && (
                     <>
@@ -761,8 +761,8 @@ const Management = () => {
                       </div>
                       <div className="flex justify-between pt-1 border-t">
                         <span>Remaining:</span>
-                        <span className={`font-semibold ${(editingItem.total_amount || 0) - (Number(amountReceived) || 0) > 0 ? 'text-red-600' : 'text-green-600'}`}>
-                          {formatCurrency((editingItem.total_amount || 0) - (Number(amountReceived) || 0))}
+                        <span className={`font-semibold ${(editingItem.total_bill_after_discount ?? editingItem.total_amount ?? 0) - (Number(amountReceived) || 0) > 0 ? 'text-red-600' : 'text-green-600'}`}>
+                          {formatCurrency((editingItem.total_bill_after_discount ?? editingItem.total_amount ?? 0) - (Number(amountReceived) || 0))}
                         </span>
                       </div>
                     </>

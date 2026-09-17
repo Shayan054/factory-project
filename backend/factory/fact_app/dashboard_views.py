@@ -2,6 +2,7 @@ from calendar import month_abbr
 from datetime import timedelta
 
 from django.db.models import Sum
+from django.db.models.functions import Coalesce
 from django.utils import timezone
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
@@ -25,13 +26,13 @@ def dashboard_metrics_view(request):
         orders.filter(
             order_date__year=current_year,
             order_date__month=current_month,
-        ).aggregate(total=Sum("total_amount"))["total"]
+        ).aggregate(total=Sum(Coalesce("total_bill_after_discount", "total_amount")))["total"]
         or 0
     )
 
     annual_sales = (
         orders.filter(order_date__year=current_year).aggregate(
-            total=Sum("total_amount")
+            total=Sum(Coalesce("total_bill_after_discount", "total_amount"))
         )["total"]
         or 0
     )
@@ -46,7 +47,7 @@ def dashboard_metrics_view(request):
     )
     remaining_unbilled = (
         orders.exclude(order_id__in=billed_order_ids).aggregate(
-            total=Sum("total_amount")
+            total=Sum(Coalesce("total_bill_after_discount", "total_amount"))
         )["total"]
         or 0
     )
@@ -67,7 +68,7 @@ def dashboard_metrics_view(request):
             orders.filter(
                 order_date__year=year,
                 order_date__month=month_index,
-            ).aggregate(total=Sum("total_amount"))["total"]
+            ).aggregate(total=Sum(Coalesce("total_bill_after_discount", "total_amount")))["total"]
             or 0
         )
         sales_chart.append(

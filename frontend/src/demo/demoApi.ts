@@ -57,10 +57,10 @@ function computeMetrics(store: DemoStore) {
 
   const monthly_sales = activeOrders
     .filter((o) => inMonth(o.order_date))
-    .reduce((s, o) => s + Number(o.total_amount || 0), 0);
+    .reduce((s, o) => s + Number(o.total_bill_after_discount ?? o.total_amount ?? 0), 0);
   const annual_sales = activeOrders
     .filter((o) => inYear(o.order_date))
-    .reduce((s, o) => s + Number(o.total_amount || 0), 0);
+    .reduce((s, o) => s + Number(o.total_bill_after_discount ?? o.total_amount ?? 0), 0);
 
   const amount_received = store.billings.reduce(
     (s, b) => s + Number(b.amount_received || 0),
@@ -73,7 +73,7 @@ function computeMetrics(store: DemoStore) {
   );
   const remaining_unbilled = activeOrders
     .filter((o) => !billedIds.has(o.order_id))
-    .reduce((s, o) => s + Number(o.total_amount || 0), 0);
+    .reduce((s, o) => s + Number(o.total_bill_after_discount ?? o.total_amount ?? 0), 0);
 
   const sales_chart = [];
   for (let i = 5; i >= 0; i--) {
@@ -88,7 +88,7 @@ function computeMetrics(store: DemoStore) {
         const d = new Date(o.order_date);
         return d.getFullYear() === y && d.getMonth() + 1 === m;
       })
-      .reduce((s, o) => s + Number(o.total_amount || 0), 0);
+      .reduce((s, o) => s + Number(o.total_bill_after_discount ?? o.total_amount ?? 0), 0);
     sales_chart.push({ month: monthAbbr(m), sales });
   }
 
