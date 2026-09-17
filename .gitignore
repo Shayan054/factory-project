@@ -6,3 +6,4 @@ __pycache__/
 .env.local
 frontend/.env.local
 backend/factory/.env
+

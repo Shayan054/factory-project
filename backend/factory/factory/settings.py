@@ -16,10 +16,10 @@ import dj_database_url
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# Optional local overrides (backend/factory/.env). Hosting injects env vars directly.
+# Load backend/factory/.env for local DB credentials (hosting uses injected env vars).
 try:
     from dotenv import load_dotenv
-    load_dotenv(BASE_DIR / '.env')
+    load_dotenv(BASE_DIR / '.env', override=True)
 except ImportError:
     pass
 
@@ -116,27 +116,61 @@ WSGI_APPLICATION = 'factory.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
+#
+# Local (default): PostgreSQL `factory` on localhost:5432
+# Production/Aiven: set DJANGO_ENV=production (and DATABASE_URL or DB_* vars)
+# Backward compatible: if DJANGO_ENV is unset and DATABASE_URL is set, use remote DB
 
-if os.environ.get("DATABASE_URL"):
-    import dj_database_url
-    db_config = dj_database_url.config(
-        default=os.environ.get("DATABASE_URL"),
-        conn_max_age=600,
-    )
-    # Remove sslmode - MySQL doesn't support it
-    if 'OPTIONS' in db_config:
-        db_config['OPTIONS'].pop('sslmode', None)
+DJANGO_ENV = os.environ.get("DJANGO_ENV", "").strip().lower()
+DATABASE_URL = os.environ.get("DATABASE_URL", "").strip()
+
+if DJANGO_ENV in ("production", "prod"):
+    _use_remote_db = True
+elif DJANGO_ENV in ("local", "development", "dev"):
+    _use_remote_db = False
+else:
+    # Unset DJANGO_ENV → previous behavior (DATABASE_URL means hosted DB)
+    _use_remote_db = bool(DATABASE_URL)
+
+if _use_remote_db:
+    if DATABASE_URL:
+        db_config = dj_database_url.config(
+            default=DATABASE_URL,
+            conn_max_age=600,
+            ssl_require=True,
+        )
+    else:
+        db_config = {
+            "ENGINE": "django.db.backends.postgresql",
+            "NAME": os.environ.get("DB_NAME", ""),
+            "USER": os.environ.get("DB_USER", ""),
+            "PASSWORD": (
+                os.environ.get("DB_PASSWORD")
+                or os.environ.get("POSTGRES_PASSWORD")
+                or ""
+            ).strip(),
+            "HOST": os.environ.get("DB_HOST", ""),
+            "PORT": os.environ.get("DB_PORT", "5432"),
+            "CONN_MAX_AGE": 600,
+        }
+    # Aiven / hosted PostgreSQL requires SSL
+    db_config.setdefault("OPTIONS", {})
+    db_config["OPTIONS"]["sslmode"] = "require"
     DATABASES = {"default": db_config}
 else:
-    # Local development (XAMPP MySQL)
+    # Local development PostgreSQL (no SSL)
     DATABASES = {
         "default": {
-            "ENGINE": "django.db.backends.mysql",
-            "NAME": "factory_db",
-            "USER": "root",
-            "PASSWORD": "",
-            "HOST": "localhost",
-            "PORT": "3306",
+            "ENGINE": "django.db.backends.postgresql",
+            "NAME": os.environ.get("DB_NAME", "factory"),
+            "USER": os.environ.get("DB_USER", "postgres"),
+            "PASSWORD": (
+                os.environ.get("DB_PASSWORD")
+                or os.environ.get("POSTGRES_PASSWORD")
+                or ""
+            ).strip(),
+            "HOST": os.environ.get("DB_HOST", "localhost"),
+            "PORT": os.environ.get("DB_PORT", "5432"),
         }
     }
 
